@@ -4,6 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestOMatic2012", "TestOMatic2012\TestOMatic2012.csproj", "{C65C43B9-E9FA-408D-A016-280D6FC694EC}"
 EndProject
 Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TestOMatic2012\\TestOMatic2012.csproj
+		SccProjectName1 = \u0022$/MBacon/TestOMatic2012/TestOMatic2012\u0022,\u0020SNZEAAAA
+		SccLocalPath1 = TestOMatic2012
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
