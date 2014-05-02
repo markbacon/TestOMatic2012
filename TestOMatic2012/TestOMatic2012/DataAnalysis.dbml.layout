@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.5, 8.5" name="DataAnalysis">
+  <DataContextMoniker Name="/DataAnalysisDataContext" />
+  <nestedChildShapes>
+    <classShape Id="fab1e429-955e-4b47-9550-c95a9571d4ee" absoluteBounds="3.375, 1.25, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/DataAnalysisDataContext/ErrorEmail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2dee1a44-cf31-4b8a-a988-8940892ca575" absoluteBounds="3.39, 1.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="47632061-ab97-46fd-964a-0619b20f17a3" absoluteBounds="7.125, 1.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataAnalysisDataContext/LaborHour" />
+      <nestedChildShapes>
+        <elementListCompartment Id="985cb1bc-31aa-44bd-885e-d965330031cc" absoluteBounds="7.14, 2.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cebed0c1-8cf3-4b14-9dca-42fed9bf661e" absoluteBounds="0.75, 5.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataAnalysisDataContext/MenuMixFile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ca409f15-634b-48b1-9ab4-bf0595abd155" absoluteBounds="0.765, 5.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d2a9dff0-ce2f-4969-afd2-42068733b579" absoluteBounds="0.75, 2.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataAnalysisDataContext/MenuMixItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6f6d6557-c26e-42e3-acb1-61e957007048" absoluteBounds="0.765, 2.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4cad8258-329a-42f8-bea0-5a46d698c934" absoluteBounds="3.5, 5, 2, 2.3478011067708326">
+      <DataClassMoniker Name="/DataAnalysisDataContext/MenuMixPollItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5a8ebbc9-8d61-4a26-8222-74b2c8dadcde" absoluteBounds="3.515, 5.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 6.16429768880208); (3.5 : 6.16429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataAnalysisDataContext/MenuMixFile/MenuMixFile_MenuMixPollItem" />
+      <nodes>
+        <classShapeMoniker Id="cebed0c1-8cf3-4b14-9dca-42fed9bf661e" />
+        <classShapeMoniker Id="4cad8258-329a-42f8-bea0-5a46d698c934" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 3.51849609375); (5.46875 : 3.51849609375); (5.46875 : 5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataAnalysisDataContext/MenuMixItem/MenuMixItem_MenuMixPollItem" />
+      <nodes>
+        <classShapeMoniker Id="d2a9dff0-ce2f-4969-afd2-42068733b579" />
+        <classShapeMoniker Id="4cad8258-329a-42f8-bea0-5a46d698c934" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f8a75967-98b5-4864-8a4b-fb2cb200e5d6" absoluteBounds="7.75, 4.25, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/DataAnalysisDataContext/DepositDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="86a70a46-15b8-46d0-92ff-9fef5ce65654" absoluteBounds="7.765, 4.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="32a40796-df25-41c8-92fe-17efc76160b7" absoluteBounds="10.25, 1.375, 2, 3.1170068359375">
+      <DataClassMoniker Name="/DataAnalysisDataContext/EpassDepositDetailFactArchive" />
+      <nestedChildShapes>
+        <elementListCompartment Id="06939d63-9449-4d3d-bb41-7ec85b07b104" absoluteBounds="10.265, 1.835, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

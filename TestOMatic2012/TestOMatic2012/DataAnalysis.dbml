@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DataAnalysis" Class="DataAnalysisDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\MSSQLSERVER2012;Initial Catalog=DataAnalysis;Integrated Security=True" SettingsObjectName="TestOMatic2012.Properties.Settings" SettingsPropertyName="DataAnalysisConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ErrorEmail" Member="ErrorEmails">
+    <Type Name="ErrorEmail">
+      <Column Name="ErrorEmailId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="NVarChar(7) NOT NULL" CanBeNull="false" />
+      <Column Name="ErrorDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ErrorType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ErrorMessage" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LaborHours" Member="LaborHours">
+    <Type Name="LaborHour">
+      <Column Name="LaborHoursId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SSN" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Hours" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MenuMixFile" Member="MenuMixFiles">
+    <Type Name="MenuMixFile">
+      <Column Name="MenuMixFileId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="FileDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="MenuMixFile_MenuMixPollItem" Member="MenuMixPollItems" ThisKey="MenuMixFileId" OtherKey="MenuMixFileId" Type="MenuMixPollItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MenuMixItem" Member="MenuMixItems">
+    <Type Name="MenuMixItem">
+      <Column Name="MenuMixItemId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MenuItemCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="MenuMixItem_MenuMixPollItem" Member="MenuMixPollItems" ThisKey="MenuMixItemId" OtherKey="MenuMixItemId" Type="MenuMixPollItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MenuMixPollItem" Member="MenuMixPollItems">
+    <Type Name="MenuMixPollItem">
+      <Column Name="MenuMixPollItemId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MenuMixFileId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MenuMixItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="MenuMixFile_MenuMixPollItem" Member="MenuMixFile" ThisKey="MenuMixFileId" OtherKey="MenuMixFileId" Type="MenuMixFile" IsForeignKey="true" />
+      <Association Name="MenuMixItem_MenuMixPollItem" Member="MenuMixItem" ThisKey="MenuMixItemId" OtherKey="MenuMixItemId" Type="MenuMixItem" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DepositDetail" Member="DepositDetails">
+    <Type Name="DepositDetail">
+      <Column Name="DepositDetailId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DepositDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="HFSDB_DepositId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EpassDepositDetailFactArchive" Member="EpassDepositDetailFactArchives">
+    <Type Name="EpassDepositDetailFactArchive">
+      <Column Name="deposit_dtl_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="deposit_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="POS_fact_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="System_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Restaurant_no" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cal_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Deposit_amt" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="create_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="create_by" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="last_chg_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="last_chg_by" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="source" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

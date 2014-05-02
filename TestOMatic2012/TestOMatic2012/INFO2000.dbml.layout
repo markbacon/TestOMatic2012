@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="INFO2000">
+  <DataContextMoniker Name="/INFO2000DataContext" />
+  <nestedChildShapes>
+    <classShape Id="03c5df47-451d-498b-bfc4-a4677f8158c3" absoluteBounds="0.875, 0.625, 2, 3.1170068359375">
+      <DataClassMoniker Name="/INFO2000DataContext/deposit_dtl_fact" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9472764a-2886-4705-bc71-0e7bd2815616" absoluteBounds="0.88999999999999968, 1.085, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ff534936-9457-4083-a422-d0afa16469f6" absoluteBounds="5.25, 0.75, 2, 2.5401025390625">
+      <DataClassMoniker Name="/INFO2000DataContext/deposit_dim" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3a96c8e3-eccc-4fb3-ac7a-99f7c369c40b" absoluteBounds="5.265, 1.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.25 : 2.02005126953125); (2.875 : 2.02005126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/INFO2000DataContext/deposit_dim/deposit_dim_deposit_dtl_fact" />
+      <nodes>
+        <classShapeMoniker Id="ff534936-9457-4083-a422-d0afa16469f6" />
+        <classShapeMoniker Id="03c5df47-451d-498b-bfc4-a4677f8158c3" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

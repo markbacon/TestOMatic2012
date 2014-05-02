@@ -1,0 +1,4 @@
+﻿SELECT MAX(OrderId)
+FROM Detail.PosOrder
+WHERE OrderNumber  = !ORDER_NUMBER
+AND CONVERT(DATE, OrderDate) = '!BUSINESS_DATE'
