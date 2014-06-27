@@ -76,4 +76,29 @@
       <Column Name="source" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Win7Units" Member="Win7Units">
+    <Type Name="Win7Unit">
+      <Column Name="RestaurantNo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WeeklyLaborFile" Member="WeeklyLaborFiles">
+    <Type Name="WeeklyLaborFile">
+      <Column Name="WeeklyLaborFileId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FileDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WeeklyLaborDetail" Member="WeeklyLaborDetails">
+    <Type Name="WeeklyLaborDetail">
+      <Column Name="WeekLaborDetailId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WeekLaborFileId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="RegularPayCrew" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="RegularPayLeader" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="OverTimePayCrew" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="OverTimePayLeader" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

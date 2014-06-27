@@ -22,8 +22,54 @@ namespace TestOMatic2012 {
 				return ConfigurationManager.ConnectionStrings["INFO2000ConnectionString"].ConnectionString;
 			}
 		}
+		//---------------------------------------------------------------------------------------------------
+		public static string IRISConnectionString {
 
+			get {
+				return ConfigurationManager.ConnectionStrings["IRISConnectionString"].ConnectionString;
+			}
+		}
+		//---------------------------------------------------------------------------------------------------
+		public static string SmartReportsZipFileName {
 
+			get {
+				return ConfigurationManager.AppSettings["SmartReportsZipFileName"];
+			}
+		}
+		//---------------------------------------------------------------------------------------------------
+		public static string StoreArchiveDirectory {
 
+			get {
+				return ConfigurationManager.AppSettings["StoreArchiveDirectory"];
+			}
+		}
+		//---------------------------------------------------------------------------------------------------
+		public static string WeeklyLaborSummaryByDayFileNamePrefix {
+
+			get {
+				return ConfigurationManager.AppSettings["WeeklyLaborSummaryByDayFileNamePrefix"];
+			}
+		}
+		//---------------------------------------------------------------------------------------------------
+		public static string WeeklyLaborSummaryFileNamePrefix {
+
+			get {
+				return ConfigurationManager.AppSettings["WeeklyLaborSummaryFileNamePrefix"];
+			}
+		}
+		//---------------------------------------------------------------------------------------------------
+		public static string WeeklyRingOutLaborSummaryFileNamePrefix {
+
+			get {
+				return ConfigurationManager.AppSettings["WeeklyRingOutLaborSummaryFileNamePrefix"];
+			}
+		}
+		//---------------------------------------------------------------------------------------------------
+		public static string Win7UnitListFilePath {
+
+			get {
+				return ConfigurationManager.AppSettings["Win7UnitListFilePath"];
+			}
+		}
 	}
 }

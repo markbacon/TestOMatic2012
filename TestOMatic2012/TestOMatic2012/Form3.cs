@@ -56,7 +56,16 @@ namespace TestOMatic2012 {
 
 			foreach (FileInfo file in files) {
 
-				ProcessDepositDetailFile(unitNumber, file);
+				////depositDetail20140504
+
+				string temp = Path.GetFileNameWithoutExtension(file.Name).Substring(13);
+
+				int fileNum = Convert.ToInt32(temp);
+
+				if (fileNum > 20140505) {
+
+					ProcessDepositDetailFile(unitNumber, file);
+				}
 			}
 		}
 		//---------------------------------------------------------------------------------------------------------

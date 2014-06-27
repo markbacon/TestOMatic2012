@@ -54,7 +54,7 @@ namespace TestOMatic2012 {
 				sb.Append("'");
 				sb.Append(line.Trim());
 				sb.Append("', ");
-
+				//sb.Append(", ");
 				if (++counter % 10 == 0) {
 
 					sb.Append("\r\n");
@@ -947,6 +947,61 @@ namespace TestOMatic2012 {
 			}
 			
 			textBox1.Text = sb.ToString();
+		}
+
+		private void button5_Click(object sender, EventArgs e) {
+
+
+			DateTime dt1 = new DateTime(2014, 5, 9);
+			DateTime dt2 = new DateTime(2014, 9, 10);
+
+			textBox1.Text = (dt2 - dt1).ToString();
+
+			//StringBuilder sb = new StringBuilder();
+
+			//string[] lines = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+			//int counter = 1;
+
+			//foreach (string line in lines) {
+
+
+			//	if (line.IndexOf("Deleting record with deposit_dtl_id:") > -1) {
+
+			//		string depositDetailId = line.Substring(62).Trim();
+
+			//		sb.Append(depositDetailId);
+			//		sb.Append(", ");
+
+			//		if (++counter % 10 == 0) {
+
+			//			sb.Append("\r\n");
+
+			//		}
+			//	}
+			//}
+
+			//textBox1.Text = sb.ToString();
+
+		}
+
+		private void button6_Click(object sender, EventArgs e) {
+
+			StringBuilder sb = new StringBuilder();
+
+			DateTime businessDate = new DateTime(2013, 12, 1);
+
+			while (businessDate < DateTime.Today) {
+
+				sb.Append("NextGenFileGenerator ");
+				sb.Append(businessDate.ToString("MM/dd/yyyy"));
+				sb.Append("\r\n");
+
+				businessDate = businessDate.AddDays(1);
+			}
+
+			textBox1.Text = sb.ToString();
+
 		}
 	}
 }

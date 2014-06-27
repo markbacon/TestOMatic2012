@@ -31,12 +31,15 @@ namespace TestOMatic2012 {
 
 			foreach (DataRow dr in dt.Rows) {
 
-				int restauranNo = Convert.ToInt32(dr["UnitNumber"].ToString().Substring(1));
 				DateTime businessDate = Convert.ToDateTime(dr["DepositDate"]);
-				int deletedDepositCount = Convert.ToInt32(dr["DeletedDepositCount"]);
 
-				ProcessUnitData(restauranNo, businessDate, deletedDepositCount);
+				if (businessDate >= new DateTime(2014, 5, 2)) {
 
+					int restauranNo = Convert.ToInt32(dr["UnitNumber"].ToString().Substring(1));
+					int deletedDepositCount = Convert.ToInt32(dr["DeletedDepositCount"]);
+
+					ProcessUnitData(restauranNo, businessDate, deletedDepositCount);
+				}
 			}
 
 			button1.Enabled = true;

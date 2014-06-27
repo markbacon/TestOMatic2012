@@ -2,10 +2,10 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.5, 8.5" name="DataAnalysis">
   <DataContextMoniker Name="/DataAnalysisDataContext" />
   <nestedChildShapes>
-    <classShape Id="fab1e429-955e-4b47-9550-c95a9571d4ee" absoluteBounds="3.375, 1.25, 2, 1.7708968098958331">
+    <classShape Id="fab1e429-955e-4b47-9550-c95a9571d4ee" absoluteBounds="5, 2.25, 2, 1.7708968098958331">
       <DataClassMoniker Name="/DataAnalysisDataContext/ErrorEmail" />
       <nestedChildShapes>
-        <elementListCompartment Id="2dee1a44-cf31-4b8a-a988-8940892ca575" absoluteBounds="3.39, 1.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="2dee1a44-cf31-4b8a-a988-8940892ca575" absoluteBounds="5.0150000000000006, 2.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="47632061-ab97-46fd-964a-0619b20f17a3" absoluteBounds="7.125, 1.875, 2, 1.5785953776041666">
@@ -39,7 +39,7 @@
         <classShapeMoniker Id="4cad8258-329a-42f8-bea0-5a46d698c934" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 3.51849609375); (5.46875 : 3.51849609375); (5.46875 : 5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 3.95359537760417); (3.125 : 4.32859537760417); (3.125 : 6.17390055338542); (3.5 : 6.17390055338542)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataAnalysisDataContext/MenuMixItem/MenuMixItem_MenuMixPollItem" />
       <nodes>
         <classShapeMoniker Id="d2a9dff0-ce2f-4969-afd2-42068733b579" />
@@ -56,6 +56,24 @@
       <DataClassMoniker Name="/DataAnalysisDataContext/EpassDepositDetailFactArchive" />
       <nestedChildShapes>
         <elementListCompartment Id="06939d63-9449-4d3d-bb41-7ec85b07b104" absoluteBounds="10.265, 1.835, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5ea275fb-dae0-4743-8ac1-d0f63360d983" absoluteBounds="5.625, 0.5, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/DataAnalysisDataContext/Win7Unit" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fba2fec8-1f18-4665-99d3-141ee713e30c" absoluteBounds="5.64, 0.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="53c75853-b216-4aea-8245-eef45d1e6a49" absoluteBounds="0.5, 0.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataAnalysisDataContext/WeeklyLaborFile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ec4c3491-db33-4b3b-a0a7-1e9b83fcae51" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6b59209d-9ede-48c8-adab-767767177794" absoluteBounds="3, 0.5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/DataAnalysisDataContext/WeeklyLaborDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7896bc54-d021-4a8e-9805-df01eca68b35" absoluteBounds="3.015, 0.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

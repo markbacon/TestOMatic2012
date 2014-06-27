@@ -51,6 +51,15 @@ namespace TestOMatic2012
     partial void InsertEpassDepositDetailFactArchive(EpassDepositDetailFactArchive instance);
     partial void UpdateEpassDepositDetailFactArchive(EpassDepositDetailFactArchive instance);
     partial void DeleteEpassDepositDetailFactArchive(EpassDepositDetailFactArchive instance);
+    partial void InsertWin7Unit(Win7Unit instance);
+    partial void UpdateWin7Unit(Win7Unit instance);
+    partial void DeleteWin7Unit(Win7Unit instance);
+    partial void InsertWeeklyLaborFile(WeeklyLaborFile instance);
+    partial void UpdateWeeklyLaborFile(WeeklyLaborFile instance);
+    partial void DeleteWeeklyLaborFile(WeeklyLaborFile instance);
+    partial void InsertWeeklyLaborDetail(WeeklyLaborDetail instance);
+    partial void UpdateWeeklyLaborDetail(WeeklyLaborDetail instance);
+    partial void DeleteWeeklyLaborDetail(WeeklyLaborDetail instance);
     #endregion
 		
 		public DataAnalysisDataContext() : 
@@ -136,6 +145,30 @@ namespace TestOMatic2012
 			get
 			{
 				return this.GetTable<EpassDepositDetailFactArchive>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Win7Unit> Win7Units
+		{
+			get
+			{
+				return this.GetTable<Win7Unit>();
+			}
+		}
+		
+		public System.Data.Linq.Table<WeeklyLaborFile> WeeklyLaborFiles
+		{
+			get
+			{
+				return this.GetTable<WeeklyLaborFile>();
+			}
+		}
+		
+		public System.Data.Linq.Table<WeeklyLaborDetail> WeeklyLaborDetails
+		{
+			get
+			{
+				return this.GetTable<WeeklyLaborDetail>();
 			}
 		}
 	}
@@ -1575,6 +1608,432 @@ namespace TestOMatic2012
 					this._source = value;
 					this.SendPropertyChanged("source");
 					this.OnsourceChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Win7Units")]
+	public partial class Win7Unit : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RestaurantNo;
+		
+		private string _UnitNumber;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRestaurantNoChanging(int value);
+    partial void OnRestaurantNoChanged();
+    partial void OnUnitNumberChanging(string value);
+    partial void OnUnitNumberChanged();
+    #endregion
+		
+		public Win7Unit()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RestaurantNo", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int RestaurantNo
+		{
+			get
+			{
+				return this._RestaurantNo;
+			}
+			set
+			{
+				if ((this._RestaurantNo != value))
+				{
+					this.OnRestaurantNoChanging(value);
+					this.SendPropertyChanging();
+					this._RestaurantNo = value;
+					this.SendPropertyChanged("RestaurantNo");
+					this.OnRestaurantNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitNumber", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string UnitNumber
+		{
+			get
+			{
+				return this._UnitNumber;
+			}
+			set
+			{
+				if ((this._UnitNumber != value))
+				{
+					this.OnUnitNumberChanging(value);
+					this.SendPropertyChanging();
+					this._UnitNumber = value;
+					this.SendPropertyChanged("UnitNumber");
+					this.OnUnitNumberChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.WeeklyLaborFile")]
+	public partial class WeeklyLaborFile : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _WeeklyLaborFileId;
+		
+		private string _UnitNumber;
+		
+		private string _FileName;
+		
+		private System.DateTime _FileDate;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnWeeklyLaborFileIdChanging(int value);
+    partial void OnWeeklyLaborFileIdChanged();
+    partial void OnUnitNumberChanging(string value);
+    partial void OnUnitNumberChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
+    partial void OnFileDateChanging(System.DateTime value);
+    partial void OnFileDateChanged();
+    #endregion
+		
+		public WeeklyLaborFile()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WeeklyLaborFileId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int WeeklyLaborFileId
+		{
+			get
+			{
+				return this._WeeklyLaborFileId;
+			}
+			set
+			{
+				if ((this._WeeklyLaborFileId != value))
+				{
+					this.OnWeeklyLaborFileIdChanging(value);
+					this.SendPropertyChanging();
+					this._WeeklyLaborFileId = value;
+					this.SendPropertyChanged("WeeklyLaborFileId");
+					this.OnWeeklyLaborFileIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitNumber", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string UnitNumber
+		{
+			get
+			{
+				return this._UnitNumber;
+			}
+			set
+			{
+				if ((this._UnitNumber != value))
+				{
+					this.OnUnitNumberChanging(value);
+					this.SendPropertyChanging();
+					this._UnitNumber = value;
+					this.SendPropertyChanged("UnitNumber");
+					this.OnUnitNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FileName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string FileName
+		{
+			get
+			{
+				return this._FileName;
+			}
+			set
+			{
+				if ((this._FileName != value))
+				{
+					this.OnFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FileDate", DbType="DateTime NOT NULL")]
+		public System.DateTime FileDate
+		{
+			get
+			{
+				return this._FileDate;
+			}
+			set
+			{
+				if ((this._FileDate != value))
+				{
+					this.OnFileDateChanging(value);
+					this.SendPropertyChanging();
+					this._FileDate = value;
+					this.SendPropertyChanged("FileDate");
+					this.OnFileDateChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.WeeklyLaborDetail")]
+	public partial class WeeklyLaborDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _WeekLaborDetailId;
+		
+		private int _WeekLaborFileId;
+		
+		private System.DateTime _BusinessDate;
+		
+		private decimal _RegularPayCrew;
+		
+		private decimal _RegularPayLeader;
+		
+		private decimal _OverTimePayCrew;
+		
+		private decimal _OverTimePayLeader;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnWeekLaborDetailIdChanging(int value);
+    partial void OnWeekLaborDetailIdChanged();
+    partial void OnWeekLaborFileIdChanging(int value);
+    partial void OnWeekLaborFileIdChanged();
+    partial void OnBusinessDateChanging(System.DateTime value);
+    partial void OnBusinessDateChanged();
+    partial void OnRegularPayCrewChanging(decimal value);
+    partial void OnRegularPayCrewChanged();
+    partial void OnRegularPayLeaderChanging(decimal value);
+    partial void OnRegularPayLeaderChanged();
+    partial void OnOverTimePayCrewChanging(decimal value);
+    partial void OnOverTimePayCrewChanged();
+    partial void OnOverTimePayLeaderChanging(decimal value);
+    partial void OnOverTimePayLeaderChanged();
+    #endregion
+		
+		public WeeklyLaborDetail()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WeekLaborDetailId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int WeekLaborDetailId
+		{
+			get
+			{
+				return this._WeekLaborDetailId;
+			}
+			set
+			{
+				if ((this._WeekLaborDetailId != value))
+				{
+					this.OnWeekLaborDetailIdChanging(value);
+					this.SendPropertyChanging();
+					this._WeekLaborDetailId = value;
+					this.SendPropertyChanged("WeekLaborDetailId");
+					this.OnWeekLaborDetailIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WeekLaborFileId", DbType="Int NOT NULL")]
+		public int WeekLaborFileId
+		{
+			get
+			{
+				return this._WeekLaborFileId;
+			}
+			set
+			{
+				if ((this._WeekLaborFileId != value))
+				{
+					this.OnWeekLaborFileIdChanging(value);
+					this.SendPropertyChanging();
+					this._WeekLaborFileId = value;
+					this.SendPropertyChanged("WeekLaborFileId");
+					this.OnWeekLaborFileIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BusinessDate", DbType="Date NOT NULL")]
+		public System.DateTime BusinessDate
+		{
+			get
+			{
+				return this._BusinessDate;
+			}
+			set
+			{
+				if ((this._BusinessDate != value))
+				{
+					this.OnBusinessDateChanging(value);
+					this.SendPropertyChanging();
+					this._BusinessDate = value;
+					this.SendPropertyChanged("BusinessDate");
+					this.OnBusinessDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegularPayCrew", DbType="Decimal(18,4) NOT NULL")]
+		public decimal RegularPayCrew
+		{
+			get
+			{
+				return this._RegularPayCrew;
+			}
+			set
+			{
+				if ((this._RegularPayCrew != value))
+				{
+					this.OnRegularPayCrewChanging(value);
+					this.SendPropertyChanging();
+					this._RegularPayCrew = value;
+					this.SendPropertyChanged("RegularPayCrew");
+					this.OnRegularPayCrewChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegularPayLeader", DbType="Decimal(18,4) NOT NULL")]
+		public decimal RegularPayLeader
+		{
+			get
+			{
+				return this._RegularPayLeader;
+			}
+			set
+			{
+				if ((this._RegularPayLeader != value))
+				{
+					this.OnRegularPayLeaderChanging(value);
+					this.SendPropertyChanging();
+					this._RegularPayLeader = value;
+					this.SendPropertyChanged("RegularPayLeader");
+					this.OnRegularPayLeaderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OverTimePayCrew", DbType="Decimal(18,4) NOT NULL")]
+		public decimal OverTimePayCrew
+		{
+			get
+			{
+				return this._OverTimePayCrew;
+			}
+			set
+			{
+				if ((this._OverTimePayCrew != value))
+				{
+					this.OnOverTimePayCrewChanging(value);
+					this.SendPropertyChanging();
+					this._OverTimePayCrew = value;
+					this.SendPropertyChanged("OverTimePayCrew");
+					this.OnOverTimePayCrewChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OverTimePayLeader", DbType="Decimal(18,4) NOT NULL")]
+		public decimal OverTimePayLeader
+		{
+			get
+			{
+				return this._OverTimePayLeader;
+			}
+			set
+			{
+				if ((this._OverTimePayLeader != value))
+				{
+					this.OnOverTimePayLeaderChanging(value);
+					this.SendPropertyChanging();
+					this._OverTimePayLeader = value;
+					this.SendPropertyChanged("OverTimePayLeader");
+					this.OnOverTimePayLeaderChanged();
 				}
 			}
 		}
