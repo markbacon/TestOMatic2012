@@ -25,10 +25,32 @@ namespace TestOMatic2012 {
 
 			button1.Enabled = false;
 
-			ProcessDepositDetail();
+			GetTLogCounts();
+
+			//ProcessDepositDetail();
 
 			button1.Enabled = true;
 
+		}
+		//---------------------------------------------------------------------------------------------------------
+		private void GetTLogCounts() {
+
+			StringBuilder sb = new StringBuilder();
+
+			DirectoryInfo di = new DirectoryInfo("D:\\TLogs");
+
+			DirectoryInfo[] directories = di.GetDirectories("X15*");
+
+			foreach (DirectoryInfo directory in directories) {
+
+				sb.Append(directory.Name);
+				sb.Append('\t');
+				sb.Append(directory.GetFiles().Count());
+				sb.Append("\r\n");
+			}
+
+
+			textBox1.Text = sb.ToString();
 		}
 		//---------------------------------------------------------------------------------------------------------
 		private void ProcessDepositDetail() {

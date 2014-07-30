@@ -60,6 +60,9 @@ namespace TestOMatic2012
     partial void InsertWeeklyLaborDetail(WeeklyLaborDetail instance);
     partial void UpdateWeeklyLaborDetail(WeeklyLaborDetail instance);
     partial void DeleteWeeklyLaborDetail(WeeklyLaborDetail instance);
+    partial void InsertCouponOrder(CouponOrder instance);
+    partial void UpdateCouponOrder(CouponOrder instance);
+    partial void DeleteCouponOrder(CouponOrder instance);
     #endregion
 		
 		public DataAnalysisDataContext() : 
@@ -169,6 +172,14 @@ namespace TestOMatic2012
 			get
 			{
 				return this.GetTable<WeeklyLaborDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CouponOrder> CouponOrders
+		{
+			get
+			{
+				return this.GetTable<CouponOrder>();
 			}
 		}
 	}
@@ -2034,6 +2045,164 @@ namespace TestOMatic2012
 					this._OverTimePayLeader = value;
 					this.SendPropertyChanged("OverTimePayLeader");
 					this.OnOverTimePayLeaderChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CouponOrders")]
+	public partial class CouponOrder : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _CouponOrdersId;
+		
+		private string _UnitNumber;
+		
+		private System.Nullable<System.DateTime> _BusinessDate;
+		
+		private System.Nullable<int> _Quantity;
+		
+		private System.Nullable<decimal> _Amount;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCouponOrdersIdChanging(int value);
+    partial void OnCouponOrdersIdChanged();
+    partial void OnUnitNumberChanging(string value);
+    partial void OnUnitNumberChanged();
+    partial void OnBusinessDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnBusinessDateChanged();
+    partial void OnQuantityChanging(System.Nullable<int> value);
+    partial void OnQuantityChanged();
+    partial void OnAmountChanging(System.Nullable<decimal> value);
+    partial void OnAmountChanged();
+    #endregion
+		
+		public CouponOrder()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CouponOrdersId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int CouponOrdersId
+		{
+			get
+			{
+				return this._CouponOrdersId;
+			}
+			set
+			{
+				if ((this._CouponOrdersId != value))
+				{
+					this.OnCouponOrdersIdChanging(value);
+					this.SendPropertyChanging();
+					this._CouponOrdersId = value;
+					this.SendPropertyChanged("CouponOrdersId");
+					this.OnCouponOrdersIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitNumber", DbType="NVarChar(50)")]
+		public string UnitNumber
+		{
+			get
+			{
+				return this._UnitNumber;
+			}
+			set
+			{
+				if ((this._UnitNumber != value))
+				{
+					this.OnUnitNumberChanging(value);
+					this.SendPropertyChanging();
+					this._UnitNumber = value;
+					this.SendPropertyChanged("UnitNumber");
+					this.OnUnitNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BusinessDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> BusinessDate
+		{
+			get
+			{
+				return this._BusinessDate;
+			}
+			set
+			{
+				if ((this._BusinessDate != value))
+				{
+					this.OnBusinessDateChanging(value);
+					this.SendPropertyChanging();
+					this._BusinessDate = value;
+					this.SendPropertyChanged("BusinessDate");
+					this.OnBusinessDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int")]
+		public System.Nullable<int> Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Amount
+		{
+			get
+			{
+				return this._Amount;
+			}
+			set
+			{
+				if ((this._Amount != value))
+				{
+					this.OnAmountChanging(value);
+					this.SendPropertyChanging();
+					this._Amount = value;
+					this.SendPropertyChanged("Amount");
+					this.OnAmountChanged();
 				}
 			}
 		}

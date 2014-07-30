@@ -101,4 +101,13 @@
       <Column Name="OverTimePayLeader" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.CouponOrders" Member="CouponOrders">
+    <Type Name="CouponOrder">
+      <Column Name="CouponOrdersId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

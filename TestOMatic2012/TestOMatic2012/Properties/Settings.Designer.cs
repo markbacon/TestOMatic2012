@@ -75,5 +75,27 @@ namespace TestOMatic2012.Properties {
                 return ((string)(this["INFO2000ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\mssqlserver2012;Initial Catalog=HFSDB;Integrated Security=T" +
+            "rue")]
+        public string HFSDBConnectionString {
+            get {
+                return ((string)(this["HFSDBConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\MSSQLServer2012;Initial Catalog=DataAnalysis;Integrated Sec" +
+            "urity=True")]
+        public string DataAnalysisConnectionString3 {
+            get {
+                return ((string)(this["DataAnalysisConnectionString3"]));
+            }
+        }
     }
 }

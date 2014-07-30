@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Coupon">
+  <DataContextMoniker Name="/CouponDataContext" />
+  <nestedChildShapes>
+    <classShape Id="232f48a7-776c-4245-8b88-a33f92b8b4ac" absoluteBounds="2.375, 0.75, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/CouponDataContext/ScannedCoupon" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8b23c28d-f2de-41d7-bb99-2f64e4e558ee" absoluteBounds="2.3899999999999997, 1.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

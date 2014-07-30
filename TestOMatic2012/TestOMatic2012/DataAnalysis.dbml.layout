@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.5, 8.5" name="DataAnalysis">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 13.125, 8.5" name="DataAnalysis">
   <DataContextMoniker Name="/DataAnalysisDataContext" />
   <nestedChildShapes>
     <classShape Id="fab1e429-955e-4b47-9550-c95a9571d4ee" absoluteBounds="5, 2.25, 2, 1.7708968098958331">
@@ -39,7 +39,7 @@
         <classShapeMoniker Id="4cad8258-329a-42f8-bea0-5a46d698c934" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 3.95359537760417); (3.125 : 4.32859537760417); (3.125 : 6.17390055338542); (3.5 : 6.17390055338542)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 3.95359537760417); (3.125 : 4.32859537760417); (3.125 : 6.17390055338542); (3.5 : 6.17390055338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataAnalysisDataContext/MenuMixItem/MenuMixItem_MenuMixPollItem" />
       <nodes>
         <classShapeMoniker Id="d2a9dff0-ce2f-4969-afd2-42068733b579" />
@@ -74,6 +74,12 @@
       <DataClassMoniker Name="/DataAnalysisDataContext/WeeklyLaborDetail" />
       <nestedChildShapes>
         <elementListCompartment Id="7896bc54-d021-4a8e-9805-df01eca68b35" absoluteBounds="3.015, 0.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a127a321-806b-49ac-85ff-5e6c2f5f015e" absoluteBounds="10.875, 5.375, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/DataAnalysisDataContext/CouponOrder" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4886d635-2d82-4d95-82cc-f6880d91431b" absoluteBounds="10.89, 5.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
