@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="INFO2000">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.625, 22.75" name="INFO2000">
   <DataContextMoniker Name="/INFO2000DataContext" />
   <nestedChildShapes>
     <classShape Id="03c5df47-451d-498b-bfc4-a4677f8158c3" absoluteBounds="0.875, 0.625, 2, 3.1170068359375">
@@ -8,18 +8,54 @@
         <elementListCompartment Id="9472764a-2886-4705-bc71-0e7bd2815616" absoluteBounds="0.88999999999999968, 1.085, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="ff534936-9457-4083-a422-d0afa16469f6" absoluteBounds="5.25, 0.75, 2, 2.5401025390625">
+    <classShape Id="ff534936-9457-4083-a422-d0afa16469f6" absoluteBounds="6.875, 0.5, 2, 2.5401025390625">
       <DataClassMoniker Name="/INFO2000DataContext/deposit_dim" />
       <nestedChildShapes>
-        <elementListCompartment Id="3a96c8e3-eccc-4fb3-ac7a-99f7c369c40b" absoluteBounds="5.265, 1.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3a96c8e3-eccc-4fb3-ac7a-99f7c369c40b" absoluteBounds="6.89, 0.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.25 : 2.02005126953125); (2.875 : 2.02005126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.875 : 1.21875); (2.875 : 1.21875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/INFO2000DataContext/deposit_dim/deposit_dim_deposit_dtl_fact" />
       <nodes>
         <classShapeMoniker Id="ff534936-9457-4083-a422-d0afa16469f6" />
         <classShapeMoniker Id="03c5df47-451d-498b-bfc4-a4677f8158c3" />
       </nodes>
     </associationConnector>
+    <classShape Id="19d44951-adb0-41ca-aff1-034c02bb811c" absoluteBounds="3.75, 1.875, 2.375, 20.616437174479167">
+      <DataClassMoniker Name="/INFO2000DataContext/IR_Total_Net_Sale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c431d430-ca54-4258-ac2a-a6467dad0e31" absoluteBounds="3.765, 2.335, 2.3449999999999998, 20.056437174479164" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9636f5e9-e4bf-4b86-b41d-6a9b1bff8e09" absoluteBounds="0.5, 11, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/INFO2000DataContext/mbminvs_load" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2bf56ef9-19cc-4583-bc47-6c544756df06" absoluteBounds="0.51500000000000012, 11.46, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4f89ade8-3691-4219-90e2-c2579736d3dc" absoluteBounds="6.5, 9.875, 2, 6.1938297526041657">
+      <DataClassMoniker Name="/INFO2000DataContext/restaurant_dim" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1d3392eb-8f9e-45ad-b43d-1d813e832bfa" absoluteBounds="6.515, 10.335, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3480150b-add2-4d05-aa1c-f69ac24475a8" absoluteBounds="1, 16.5, 2, 4.4631168619791666">
+      <DataClassMoniker Name="/INFO2000DataContext/inv_item_cke_dim" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2911a46a-6822-4f56-ab64-d8d6e98b084b" absoluteBounds="1.0150000000000001, 16.96, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="878056f3-26f0-49c4-bcde-8e4b447242a5" absoluteBounds="6.625, 17.75, 2, 3.1170068359375">
+      <DataClassMoniker Name="/INFO2000DataContext/inv_item_xref" />
+      <nestedChildShapes>
+        <elementListCompartment Id="47f82b28-28b9-4afa-9ab0-2c12ceedeb09" absoluteBounds="6.64, 18.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fb0fe617-5f0d-44f7-a91d-e89729f92576" absoluteBounds="9.375, 16.625, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/INFO2000DataContext/inv_item_dim" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6462dec2-a865-4cf2-829a-148cc34b778e" absoluteBounds="9.39, 17.085, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

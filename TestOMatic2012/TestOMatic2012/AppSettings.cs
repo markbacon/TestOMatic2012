@@ -9,10 +9,31 @@ namespace TestOMatic2012 {
 	
 	class AppSettings {
 
+		public static string CjrDirectory {
+
+			get {
+				return ConfigurationManager.AppSettings["CjrDirectory"];
+			}
+		}
+		//---------------------------------------------------------------------------------------------------
+		public static string CkeTimePollDataConnectionString {
+
+			get {
+				return ConfigurationManager.ConnectionStrings["CkeTimePollDataConnectionString"].ConnectionString;
+			}
+		}
+		//---------------------------------------------------------------------------------------------------
 		public static string DataAnalysisConnectionString {
 
 			get {
 				return ConfigurationManager.ConnectionStrings["DataAnalysisConnectionString"].ConnectionString;
+			}
+		}
+		//---------------------------------------------------------------------------------------------------
+		public static string IMSConnectionString {
+
+			get {
+				return ConfigurationManager.ConnectionStrings["IMSConnectionString"].ConnectionString;
 			}
 		}
 		//---------------------------------------------------------------------------------------------------
@@ -23,10 +44,24 @@ namespace TestOMatic2012 {
 			}
 		}
 		//---------------------------------------------------------------------------------------------------
+		public static string INFO2000ConnectionStringProd {
+
+			get {
+				return ConfigurationManager.ConnectionStrings["INFO2000ConnectionStringProd"].ConnectionString;
+			}
+		}
+		//---------------------------------------------------------------------------------------------------
 		public static string IRISConnectionString {
 
 			get {
 				return ConfigurationManager.ConnectionStrings["IRISConnectionString"].ConnectionString;
+			}
+		}
+		//---------------------------------------------------------------------------------------------------
+		public static string LocalLaborHfsDirectory {
+
+			get {
+				return ConfigurationManager.AppSettings["LocalLaborHfsDirectory"];
 			}
 		}
 		//---------------------------------------------------------------------------------------------------

@@ -19,6 +19,9 @@ namespace TestOMatic2012 {
 
 			XmlNodeList nodes = xmlDoc.SelectNodes(xpath);
 
+			Logger.Write(nodes.Count.ToString() + " scanned coupon items found in file: " + filePath);
+
+
 			_dataContext.Dispose();
 			_dataContext = new CouponDataContext();
 
@@ -30,22 +33,18 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------------
 		public void Run() {
 
-			string tlogDirectory = "D:\\TLogs";
+			string tlogDirectory = "D:\\TLogsIII";
 
 			DirectoryInfo di = new DirectoryInfo(tlogDirectory);
 
-			DirectoryInfo[] directories = di.GetDirectories("X15*");
+
+			DirectoryInfo[] directories = di.GetDirectories("X1500671");
 
 			foreach (DirectoryInfo directory in directories) {
 
-				//if (string.Compare(directory.Name, "x1501298") < 0) {
-				//	Logger.Write("Skipping Directory: " + directory.FullName);
-				//	continue;
-				//}
-
 				Logger.Write("Processing Directory: " + directory.FullName);
 
-				FileInfo[] files = directory.GetFiles("20140722.transhist.xml");
+				FileInfo[] files = directory.GetFiles("*.transhist.xml");
 
 				foreach (FileInfo file in files) {
 
@@ -53,9 +52,44 @@ namespace TestOMatic2012 {
 
 						int fileNum = Convert.ToInt32(file.Name.Substring(0, 8));
 
-						if (fileNum > 20140721) {
+						if (fileNum >= 20130901) {
 							Logger.Write("Processing File: " + file.FullName);
 							ProcessFile(directory.Name, file.FullName);
+						}
+					}
+				}
+			}
+		}
+		//---------------------------------------------------------------------------------------------------------
+		public void RunFoo() {
+
+			string tlogDirectory = "D:\\TLogsIII";
+
+			DirectoryInfo di = new DirectoryInfo(tlogDirectory);
+
+			List<string> unitList = GetUnitList();
+
+			foreach (string unit in unitList) {
+
+
+				DirectoryInfo[] directories = di.GetDirectories(unit);
+
+				foreach (DirectoryInfo directory in directories) {
+
+					Logger.Write("Processing Directory: " + directory.FullName);
+
+					FileInfo[] files = directory.GetFiles("*.transhist.xml");
+
+					foreach (FileInfo file in files) {
+
+						if (char.IsDigit(file.Name[0])) {
+
+							//int fileNum = Convert.ToInt32(file.Name.Substring(0, 8));
+
+							//if (fileNum > 20140721) {
+							Logger.Write("Processing File: " + file.FullName);
+							ProcessFile(directory.Name, file.FullName);
+							//}
 						}
 					}
 				}
@@ -83,6 +117,30 @@ namespace TestOMatic2012 {
 			}
 
 			return nodeValue;
+		}
+		//---------------------------------------------------------------------------------------------------
+		private List<string> GetUnitList() {
+
+			List<string> unitList = new List<string>();
+
+			unitList.Add("X1500671");
+
+			//string filePath = "C:\\Temp\\CouponUnitList-2014-08-13.txt";
+
+			//using (StreamReader sr = new StreamReader(filePath)) {
+
+			//	while (sr.Peek() != -1) {
+
+			//		string line = sr.ReadLine();
+			//		string[] items = line.Split(new char[] { ',' });
+
+			//		foreach (string item in items) {
+			//			unitList.Add(item.Trim());
+			//		}
+			//	}
+			//}
+
+			return unitList;
 		}
 		//---------------------------------------------------------------------------------------------------
 		private void ProcessScannedCouponItemsNode(string unitNumber, XmlNode node) {

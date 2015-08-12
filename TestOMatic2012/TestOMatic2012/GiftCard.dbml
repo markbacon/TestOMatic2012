@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GiftCardProd" Class="GiftCardDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\sql2012;Initial Catalog=GiftCardProd;Integrated Security=True" SettingsObjectName="TestOMatic2012.Properties.Settings" SettingsPropertyName="GiftCardProdConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.SvsHostRecon" Member="SvsHostRecons">
+    <Type Name="SvsHostRecon">
+      <Column Name="SvsHostReconId" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FileId" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Card" Type="System.String" DbType="NChar(19) NOT NULL" CanBeNull="false" />
+      <Column Name="MerchantNumber" Type="System.String" DbType="NChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="DivisionNumber" Type="System.String" DbType="NChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Unit" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TransCode" Type="System.String" DbType="NChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="DebitCredit" Type="System.Char" DbType="NChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="PosDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="HostDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="PosRequestedAmount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="PosApprovedamount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="BaseRequestedamount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="BaseApprovedAmount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="SequenceNumber" Type="System.String" DbType="NChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceNumber" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="State" Type="System.String" DbType="NChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

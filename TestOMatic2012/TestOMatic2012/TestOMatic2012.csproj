@@ -9,12 +9,13 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestOMatic2012</RootNamespace>
     <AssemblyName>TestOMatic2012</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -57,11 +58,13 @@
   <ItemGroup>
     <Compile Include="AccessCardNumber.cs" />
     <Compile Include="AppSettings.cs" />
+    <Compile Include="CkeTimePollData.cs" />
     <Compile Include="Coupon.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Coupon.dbml</DependentUpon>
     </Compile>
+    <Compile Include="CouponConfigProcessor.cs" />
     <Compile Include="CouponOrdersProcessor.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="DataAnalysis.designer.cs">
@@ -74,16 +77,78 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataAnalysis2.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DataAnalysisData.cs" />
     <Compile Include="DataValidation.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataValidation.dbml</DependentUpon>
     </Compile>
+    <Compile Include="EpassData.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form10.Designer.cs">
+      <DependentUpon>Form10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form11.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form11.Designer.cs">
+      <DependentUpon>Form11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form12.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form12.Designer.cs">
+      <DependentUpon>Form12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form13.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form13.Designer.cs">
+      <DependentUpon>Form13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form14.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form14.Designer.cs">
+      <DependentUpon>Form14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form15.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form15.Designer.cs">
+      <DependentUpon>Form15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form16.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form16.Designer.cs">
+      <DependentUpon>Form16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form17.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form17.Designer.cs">
+      <DependentUpon>Form17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form18.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form18.Designer.cs">
+      <DependentUpon>Form18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form19.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form19.Designer.cs">
+      <DependentUpon>Form19.cs</DependentUpon>
     </Compile>
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
@@ -91,11 +156,101 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form20.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form20.Designer.cs">
+      <DependentUpon>Form20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form21.Designer.cs">
+      <DependentUpon>Form21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form22.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form22.Designer.cs">
+      <DependentUpon>Form22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form23.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form23.Designer.cs">
+      <DependentUpon>Form23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form24.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form24.Designer.cs">
+      <DependentUpon>Form24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form25.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form25.Designer.cs">
+      <DependentUpon>Form25.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form26.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form26.Designer.cs">
+      <DependentUpon>Form26.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form27.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form27.Designer.cs">
+      <DependentUpon>Form27.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form28.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form28.Designer.cs">
+      <DependentUpon>Form28.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form29.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form29.Designer.cs">
+      <DependentUpon>Form29.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form3.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form30.Designer.cs">
+      <DependentUpon>Form30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form31.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form31.Designer.cs">
+      <DependentUpon>Form31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form32.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form32.Designer.cs">
+      <DependentUpon>Form32.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form33.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form33.Designer.cs">
+      <DependentUpon>Form33.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form34.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form34.Designer.cs">
+      <DependentUpon>Form34.cs</DependentUpon>
     </Compile>
     <Compile Include="Form4.cs">
       <SubType>Form</SubType>
@@ -127,13 +282,54 @@
     <Compile Include="Form8.Designer.cs">
       <DependentUpon>Form8.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form9.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form9.Designer.cs">
+      <DependentUpon>Form9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmScannedCouponEpassUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmScannedCouponEpassUpdate.Designer.cs">
+      <DependentUpon>frmScannedCouponEpassUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSmartReportsFix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSmartReportsFix.Designer.cs">
+      <DependentUpon>frmSmartReportsFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsageTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsageTest.Designer.cs">
+      <DependentUpon>frmUsageTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GiftCard.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GiftCard.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="GiftCardTrans.cs" />
+    <Compile Include="HardeesRecipeData.cs" />
+    <Compile Include="HardeesRecipes.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HardeesRecipes.dbml</DependentUpon>
+    </Compile>
     <Compile Include="HashOMatic.cs" />
     <Compile Include="HFSDBData.cs" />
+    <Compile Include="IdealUsageCalculator.cs" />
+    <Compile Include="ImsData.cs" />
     <Compile Include="INFO2000.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>INFO2000.dbml</DependentUpon>
     </Compile>
+    <Compile Include="INFO2000Data.cs" />
+    <Compile Include="InventoryItem.cs" />
+    <Compile Include="InventoryUsage.cs" />
     <Compile Include="LaborHoursProcessor.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="LoggerEventArgs.cs" />
@@ -143,13 +339,41 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaryDataReader.cs" />
+    <Compile Include="ScannCouponProcessor.cs" />
     <Compile Include="ScannedCouponItem.cs" />
     <Compile Include="SmartReportsProcessor.cs" />
     <Compile Include="SqlTemplateBroker.cs" />
     <Compile Include="TextEncryption.cs" />
+    <Compile Include="TimeFileAnalysis.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimeFileAnalysis.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TransHist.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransHist.dbml</DependentUpon>
+    </Compile>
     <Compile Include="TransHistCouponProcessor.cs" />
     <Compile Include="Unzipper.cs" />
+    <Compile Include="ValidationFileBuilder.cs" />
     <Compile Include="Win7NodeUtility.cs" />
+    <None Include="TimeFileAnalysis.dbml.layout">
+      <DependentUpon>TimeFileAnalysis.dbml</DependentUpon>
+    </None>
+    <None Include="HardeesRecipes.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>HardeesRecipes.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TimeFileAnalysis.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TimeFileAnalysis.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TransHist.dbml.layout">
+      <DependentUpon>TransHist.dbml</DependentUpon>
+    </None>
     <None Include="Coupon.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Coupon.designer.cs</LastGenOutput>
@@ -170,6 +394,7 @@
     </None>
     <None Include="DataAnalysis.dbml.layout">
       <DependentUpon>DataAnalysis.dbml</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="DataAnalysis2.dbml.layout">
       <DependentUpon>DataAnalysis2.dbml</DependentUpon>
@@ -180,15 +405,95 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form10.resx">
+      <DependentUpon>Form10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form11.resx">
+      <DependentUpon>Form11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form12.resx">
+      <DependentUpon>Form12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form13.resx">
+      <DependentUpon>Form13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form14.resx">
+      <DependentUpon>Form14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form15.resx">
+      <DependentUpon>Form15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form16.resx">
+      <DependentUpon>Form16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form17.resx">
+      <DependentUpon>Form17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form18.resx">
+      <DependentUpon>Form18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form19.resx">
+      <DependentUpon>Form19.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form20.resx">
+      <DependentUpon>Form20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form21.resx">
+      <DependentUpon>Form21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form22.resx">
+      <DependentUpon>Form22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form23.resx">
+      <DependentUpon>Form23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form24.resx">
+      <DependentUpon>Form24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form25.resx">
+      <DependentUpon>Form25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form26.resx">
+      <DependentUpon>Form26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form27.resx">
+      <DependentUpon>Form27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form28.resx">
+      <DependentUpon>Form28.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form29.resx">
+      <DependentUpon>Form29.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form30.resx">
+      <DependentUpon>Form30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form31.resx">
+      <DependentUpon>Form31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form32.resx">
+      <DependentUpon>Form32.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form33.resx">
+      <DependentUpon>Form33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form34.resx">
+      <DependentUpon>Form34.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form4.resx">
       <DependentUpon>Form4.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="GiftCard.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>GiftCard.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="INFO2000.dbml.layout">
       <DependentUpon>INFO2000.dbml</DependentUpon>
     </None>
@@ -204,6 +509,24 @@
     <EmbeddedResource Include="Form8.resx">
       <DependentUpon>Form8.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form9.resx">
+      <DependentUpon>Form9.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="GiftCard.dbml.layout">
+      <DependentUpon>GiftCard.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="frmScannedCouponEpassUpdate.resx">
+      <DependentUpon>frmScannedCouponEpassUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSmartReportsFix.resx">
+      <DependentUpon>frmSmartReportsFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsageTest.resx">
+      <DependentUpon>frmUsageTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="HardeesRecipes.dbml.layout">
+      <DependentUpon>HardeesRecipes.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -212,6 +535,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="DataValidation.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
@@ -232,6 +556,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="TransHist.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TransHist.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -263,6 +592,61 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SQL\DeleteEpassDepositDetail.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\GetCouponId.sql" />
+    <EmbeddedResource Include="SQL\GetPosFactId.sql" />
+    <EmbeddedResource Include="SQL\GetScannedCouponUnits.sql" />
+    <EmbeddedResource Include="SQL\InsertEpassCouponDetailFactRecord.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\GetScannedCouponDates.sql" />
+    <EmbeddedResource Include="SQL\GetScannedCouponUnitData.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\GetIdealUsageJrList.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\GetProductsForMenuItem.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\CheckIfCouponRecordsExist.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\UpdatePosFact.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\GetDepositDtlDim.sql" />
+    <EmbeddedResource Include="SQL\InsertDepositDetailFact.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\GetOrderItemModifier.sql" />
+    <EmbeddedResource Include="SQL\GetOrderItem.sql" />
+    <EmbeddedResource Include="SQL\GetPosOrder.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\InsertOrderItem.sql" />
+    <EmbeddedResource Include="SQL\InsertOrderItemModifier.sql" />
+    <EmbeddedResource Include="SQL\InsertPosOrder.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\GetCarlsValidation.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\GetHardeesValidation.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\GetMbmRcptDetailWithNegativeCost.sql" />
+    <EmbeddedResource Include="SQL\UpdateMbmDtlCost.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\GetEmployeeData.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\GetCkeTimePollEmployee.sql" />
+    <EmbeddedResource Include="SQL\GetCkeTimePollSsnDataList.sql" />
+    <EmbeddedResource Include="SQL\GetCarlsCompanyStores.sql" />
+    <Content Include="SQL\GetEmployeeBySSN.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,35 @@
+﻿USE [HFSDB]
+
+SELECT [OrderID]
+      ,[TerminalID]
+      ,[OrderNumber]
+      ,[OrderDate]
+      ,[EmployeeID]
+      ,[DestinationID]
+      ,[OrderType]
+      ,[TotalNonFoodSale]
+      ,[TotalFoodSale]
+      ,[TotalTaxableSale]
+      ,[TaxCollected]
+      ,[PromoAmount]
+      ,[PromoCount]
+      ,[CouponAmount]
+      ,[CouponCount]
+      ,[FreeAmount]
+      ,[FreeCount]
+      ,[FCTTranID]
+      ,[CentsOffAmount]
+      ,[CentsOffCount]
+      ,[CreditCardAmount]
+      ,[GiftCardSaleAmount]
+      ,[GiftCardSaleCount]
+      ,[GiftCardRedemAmount]
+      ,[GiftCardRedemCount]
+      ,[DebitCardAmount]
+      ,[CashBackAmount]
+  FROM [Detail].[POSOrder]
+  WHERE Convert(DATE, OrderDate) = '!BUSINESS_DATE'
+  ORDER BY OrderID
+
+
+

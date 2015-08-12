@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="INFO2000" Class="INFO2000DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=INFO2000;Integrated Security=True" SettingsObjectName="TestOMatic2012.Properties.Settings" SettingsPropertyName="INFO2000ConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\sql2012;Initial Catalog=INFO2000;Integrated Security=True" SettingsObjectName="TestOMatic2012.Properties.Settings" SettingsPropertyName="INFO2000ConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.deposit_dtl_fact" Member="deposit_dtl_facts">
     <Type Name="deposit_dtl_fact">
       <Column Name="deposit_dtl_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -29,6 +29,224 @@
       <Column Name="deposit_group" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="deposit_category" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Association Name="deposit_dim_deposit_dtl_fact" Member="deposit_dtl_facts" ThisKey="deposit_id" OtherKey="deposit_id" Type="deposit_dtl_fact" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IR_Total_Net_Sales" Member="IR_Total_Net_Sales">
+    <Type Name="IR_Total_Net_Sale">
+      <Column Name="IR_Unit_Number" Type="System.String" DbType="VarChar(7) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IR_Sales_Date" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Total_Net_Sales_Here" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Net_Sales_Togo" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Net_Sales_Drive" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Trans_Here" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_Trans_Togo" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_Trans_Drive" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_NF_Sales_Here" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_NF_Sales_Togo" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_NF_Sales_Drive" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Voids_Amt" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Voids_Cnt" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_Free_Sales_Here" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Free_Sales_Togo" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Free_Sales_Drive" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Free_Trans_Here" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_Free_Trans_Togo" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_Free_Trans_Drive" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_Cleared_Amt" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Cleared_Cnt" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_Paid_I_Amt" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Paid_O_Amt" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Cents_Off_Here_Amt" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Cents_Off_Here_Cnt" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Cents_Off_Togo_Amt" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Cents_Off_Togo_Cnt" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Cents_Off_Drive_Amt" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Cents_Off_Drive_Cnt" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_Nrs_Total" Type="System.Decimal" DbType="Decimal(15,0)" CanBeNull="true" />
+      <Column Name="Total_Taxable_Sales" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Tax_Collected" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Opn_Promo_Here" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Opn_Promo_Togo" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Opn_Promo_Drive" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Opn_Trans_Here" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_Opn_Trans_Togo" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_Opn_Trans_Drive" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_Cpn_Promo_Here" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Cpn_Promo_Togo" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Cpn_Promo_Drive" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_Cpn_Trans_Here" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_Cpn_Trans_Togo" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_Cpn_Trans_Drive" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Amt_A_Here" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Cnt_A_Here" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Amt_B_Here" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Cnt_B_Here" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Amt_C_Here" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Cnt_C_Here" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Amt_A_Togo" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Cnt_A_Togo" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Amt_B_Togo" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Cnt_B_Togo" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Amt_C_Togo" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Cnt_C_Togo" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Amt_A_Drive" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Cnt_A_Drive" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Amt_B_Drive" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Cnt_B_Drive" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Amt_C_Drive" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Cust_Dis_Cnt_C_Drive" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Emp_Dis_Amt_A" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Emp_Dis_Cnt_A" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Emp_Dis_Amt_B" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Emp_Dis_Cnt_B" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Emp_Dis_Amt_C" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Emp_Dis_Cnt_C" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Mgr_Dis_Amt_A" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Mgr_Dis_Cnt_A" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Mgr_Dis_Amt_B" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Mgr_Dis_Cnt_B" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Tot_Mgr_Dis_Amt_C" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Tot_Mgr_Dis_Cnt_C" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Assoc_Menu_Id_1" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Assoc_Trans_Cnt_1" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Assoc_Type_1" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Assoc_Menu_Id_2" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Assoc_Trans_Cnt_2" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Assoc_Type_2" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Assoc_Menu_Id_3" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Assoc_Trans_Cnt_3" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Assoc_Type_3" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Cash_Deposits_1" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Cash_Deposits_2" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Cash_Deposits_3" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Cash_Deposits_4" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Cash_Deposits_5" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Cash_Deposits_6" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_giftcard_sales_amt" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Total_giftcard_sales_cnt" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="ATM" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Checks" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Visa_Master_Card" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="American_Express" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="FirstCard" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="Discover" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="total_gftcrt_sls_amt" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="total_gftcrt_sls_cnt" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="process_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="process_flag" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Total_Scanned_Cpn_Cnt" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Total_Scanned_Cpn_Amt" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mbminvs_load" Member="mbminvs_loads">
+    <Type Name="mbminvs_load">
+      <Column Name="mbm_line_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="system_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hfs_unit_no" Type="System.String" DbType="Char(7)" CanBeNull="true" />
+      <Column Name="hfs_inv_item" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="mbm_qty" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="mbm_sales" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="mbm_order_no" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="mbm_invoice_no" Type="System.String" DbType="Char(11)" CanBeNull="true" />
+      <Column Name="mbm_inv_date" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="mbm_inv_total" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="mbm_ref_no" Type="System.String" DbType="Char(11)" CanBeNull="true" />
+      <Column Name="process_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="process_flag" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="inv_item_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="inv_xref_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="item_number_type" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.restaurant_dim" Member="restaurant_dims">
+    <Type Name="restaurant_dim">
+      <Column Name="restaurant_no" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="system_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RESTAURANT_NO_OLD" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="RESTAURANT_DESC" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="B_UNIT_NO" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="B_UNIT_DESC" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="CITY" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="COUNTY" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="STATE" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="ZIPCODE" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="COUNTRY" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CONCEPT_CODE" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="CONCEPT_DESC" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="STATUS_DESC" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="UNIT_TYPE_CODE" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="UNIT_TYPE_DESC" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DMA_CODE" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="DMA_DESC" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="CLOSEDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OPENDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SHORTNAME" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="ADDRESS" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="EFF_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="node" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="trecs_no" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="phone_no" Type="System.String" DbType="VarChar(24)" CanBeNull="true" />
+      <Column Name="XP_PSNum_Prj" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.inv_item_cke_dim" Member="inv_item_cke_dims">
+    <Type Name="inv_item_cke_dim">
+      <Column Name="inv_item_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="system_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="inv_item_code" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="inv_descr" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="inv_account_no" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="inv_piece_count" Type="System.Decimal" DbType="Decimal(9,3)" CanBeNull="true" />
+      <Column Name="std_unit_measure" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="alt_unit_measure" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="usage_conversion" Type="System.Decimal" DbType="Decimal(9,3)" CanBeNull="true" />
+      <Column Name="class_code" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="non_dc_flag" Type="System.String" DbType="Char(11)" CanBeNull="true" />
+      <Column Name="create_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="create_by" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="last_chg_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="last_chg_by" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="is_mbm_code" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="recipe_code" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="is_reciped" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="new_class_code" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.inv_item_xref" Member="inv_item_xrefs">
+    <Type Name="inv_item_xref">
+      <Column Name="inv_xref_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="exitem_code" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="exitem_descr" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="inv_item_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="initem_code" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="inv_packaged" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="inv_piece_count" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="inv_lbs_count" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="inv_ffm_retail" Type="System.Decimal" DbType="Decimal(10,3)" CanBeNull="true" />
+      <Column Name="ffm_nonffm_flag" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="inv_type_code" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="mbm_code" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.inv_item_dim" Member="inv_item_dims">
+    <Type Name="inv_item_dim">
+      <Column Name="inv_item_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="inv_item_code" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="inv_descr" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="inv_pkg_count" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="inv_ffm_retail" Type="System.Decimal" DbType="Decimal(10,3)" CanBeNull="true" />
+      <Column Name="inv_perc_targ_hi" Type="System.Decimal" DbType="Decimal(3,3)" CanBeNull="true" />
+      <Column Name="inv_perc_low" Type="System.Decimal" DbType="Decimal(3,3)" CanBeNull="true" />
+      <Column Name="inv_group_code" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="ffm_nonffm_flag" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="inv_fried_code" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="inv_qty_pound_conv_factor" Type="System.Decimal" DbType="Decimal(11,4)" CanBeNull="true" />
+      <Column Name="inv_bulk_item_flag" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="inv_type_code" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="account_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="inv_account_no" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="new_class_code" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

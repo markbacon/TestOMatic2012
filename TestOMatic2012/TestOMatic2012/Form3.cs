@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,13 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------------
 		//-- Private Members 
 		//---------------------------------------------------------------------------------------------------------
+		private class MonthYearCount {
+			public int Month = 0;
+			public int Year = 0;
+			public int Count = 0;
+		}
+		
+		
 		private DataAnalysisDataContext _dataContext = new DataAnalysisDataContext();
 		//---------------------------------------------------------------------------------------------------------
 
@@ -37,16 +45,21 @@ namespace TestOMatic2012 {
 
 			StringBuilder sb = new StringBuilder();
 
-			DirectoryInfo di = new DirectoryInfo("D:\\TLogs");
+			DirectoryInfo di = new DirectoryInfo("D:\\TLogsII");
 
-			DirectoryInfo[] directories = di.GetDirectories("X15*");
+			DirectoryInfo[] directories = di.GetDirectories("X1500025");
 
 			foreach (DirectoryInfo directory in directories) {
 
-				sb.Append(directory.Name);
-				sb.Append('\t');
-				sb.Append(directory.GetFiles().Count());
-				sb.Append("\r\n");
+				List<FileInfo> fileInfoList = directory.GetFiles("20*.TransHist.xml").ToList();
+
+				ProcessFileList(directory.Name, fileInfoList, sb);
+
+
+				//sb.Append(directory.Name);
+				//sb.Append('\t');
+				//sb.Append(directory.GetFiles().Count());
+				//sb.Append("\r\n");
 			}
 
 
@@ -154,6 +167,62 @@ namespace TestOMatic2012 {
 				_dataContext.SubmitChanges();
 
 			}
+		}
+		//---------------------------------------------------------------------------------------------------------
+		private void ProcessFileList(string unitNumber, List<FileInfo> fileInfoList, StringBuilder sb) {
+
+			List<DateTime> fileDateList = new List<DateTime>();
+			List<MonthYearCount> mycList = new List<MonthYearCount>();
+
+			foreach (FileInfo file in fileInfoList) {
+
+				if (char.IsDigit(file.Name[0])) {
+
+					string tempDateString = file.Name.Substring(0, 8);
+
+					DateTime tempDate;
+
+					if (DateTime.TryParseExact(tempDateString, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempDate)) {
+						fileDateList.Add(tempDate);
+					}
+				}
+			}
+
+			int yearNum = 2013;
+
+			while (yearNum <= 2014) {
+
+				for (int i = 1; i <= 12; i++) {
+
+					MonthYearCount myc = new MonthYearCount();
+					myc.Month = i;
+					myc.Year = yearNum;
+					myc.Count = fileDateList.Where(f => f.Month == i && f.Year == yearNum).Count();
+
+					mycList.Add(myc);
+
+					if (i == 7 && yearNum == 2014) {
+						break;
+					}
+				}
+
+				yearNum++;
+			}
+
+			foreach (MonthYearCount myc in mycList) {
+				sb.Append(unitNumber);
+				sb.Append("\t");
+				
+				sb.Append(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(myc.Month));
+				sb.Append("-");
+				sb.Append(myc.Year);
+				sb.Append("\t");
+				sb.Append(myc.Count);
+				sb.Append("\r\n");
+			}
+
+
+
 		}
 	}
 }

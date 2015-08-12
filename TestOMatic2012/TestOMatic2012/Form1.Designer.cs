@@ -107,6 +107,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.Ivory;
 			this.ClientSize = new System.Drawing.Size(628, 392);
 			this.Controls.Add(this.button6);
 			this.Controls.Add(this.button5);
@@ -116,6 +117,7 @@
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.textBox1);
 			this.Name = "Form1";
+			this.RightToLeftLayout = true;
 			this.Text = "Form1";
 			this.ResumeLayout(false);
 			this.PerformLayout();

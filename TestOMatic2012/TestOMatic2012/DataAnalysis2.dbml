@@ -1,11 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DataAnalysis" Class="DataAnalysis2DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=DataAnalysis;Integrated Security=True" SettingsObjectName="TestOMatic2012.Properties.Settings" SettingsPropertyName="DataAnalysisConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\sql2012;Initial Catalog=DataAnalysis;Integrated Security=True" SettingsObjectName="TestOMatic2012.Properties.Settings" SettingsPropertyName="DataAnalysisConnectionString4" Provider="System.Data.SqlClient" />
   <Table Name="dbo.BadOrderItems" Member="BadOrderItems">
     <Type Name="BadOrderItem">
       <Column Name="RecordId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="MenuItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="RestaurantNo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MixDestPollItem" Member="MixDestPollItems">
+    <Type Name="MixDestPollItem">
+      <Column Name="MixDestPollItemId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MixDestPollFileId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="MixDestPollFile_MixDestPollItem" Member="MixDestPollFile" ThisKey="MixDestPollFileId" OtherKey="MixDestPollFileId" Type="MixDestPollFile" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MixDestPollFile" Member="MixDestPollFiles">
+    <Type Name="MixDestPollFile">
+      <Column Name="MixDestPollFileId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FileDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="MixDestPollFile_MixDestPollItem" Member="MixDestPollItems" ThisKey="MixDestPollFileId" OtherKey="MixDestPollFileId" Type="MixDestPollItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ItemCategory" Member="ItemCategories">
+    <Type Name="ItemCategory">
+      <Column Name="ItemCategoryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CategoryName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="ItemCategory_MixCategoryItemXref" Member="MixCategoryItemXrefs" ThisKey="ItemCategoryId" OtherKey="ItemCategoryId" Type="MixCategoryItemXref" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MixCategoryItemXref" Member="MixCategoryItemXrefs">
+    <Type Name="MixCategoryItemXref">
+      <Column Name="MixItemCategoryXrefId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ItemCategoryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="ItemCategory_MixCategoryItemXref" Member="ItemCategory" ThisKey="ItemCategoryId" OtherKey="ItemCategoryId" Type="ItemCategory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DataWarehouseGBItem" Member="DataWarehouseGBItems">
+    <Type Name="DataWarehouseGBItem">
+      <Column Name="DataWarehouseGBItemId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ItemNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Category" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CatItemXref" Member="CatItemXrefs">
+    <Type Name="CatItemXref">
+      <Column Name="CatItemXrefId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ItemNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ItemDescription" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HardeesProduct" Member="HardeesProducts">
+    <Type Name="HardeesProduct">
+      <Column Name="HardeesProductId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UnitOfMeasure" Type="System.String" DbType="NVarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="AltUnitOfMeasure" Type="System.String" DbType="NVarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="ActualConversionFactor" Type="System.Decimal" DbType="Decimal(18,8) NOT NULL" CanBeNull="false" />
+      <Column Name="IdealConversionFactor" Type="System.Decimal" DbType="Decimal(18,8) NOT NULL" CanBeNull="false" />
+      <Column Name="StorageCode" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryCode" Type="System.String" DbType="NVarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="ActiveCode" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentProductNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HardeesProductWarehouse" Member="HardeesProductWarehouses">
+    <Type Name="HardeesProductWarehouse">
+      <Column Name="HardeesProductId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HardeesWarehouseId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HardeesWarehouse" Member="HardeesWarehouses">
+    <Type Name="HardeesWarehouse">
+      <Column Name="HardeesWarehouseId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HardeesProductII" Member="HardeesProductIIs">
+    <Type Name="HardeesProductII">
+      <Column Name="HardeesProductId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WarehouseId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UnitOfMeasure" Type="System.String" DbType="NVarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="AltUnitOfMeasure" Type="System.String" DbType="NVarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="ActualConversionFactor" Type="System.Decimal" DbType="Decimal(18,8) NOT NULL" CanBeNull="false" />
+      <Column Name="IdealConversionFactor" Type="System.Decimal" DbType="Decimal(18,8) NOT NULL" CanBeNull="false" />
+      <Column Name="StorageCode" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryCode" Type="System.String" DbType="NVarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="ActiveCode" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentProductNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RecipedItem" Member="RecipedItems">
+    <Type Name="RecipedItem">
+      <Column Name="RecipedItemCode" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

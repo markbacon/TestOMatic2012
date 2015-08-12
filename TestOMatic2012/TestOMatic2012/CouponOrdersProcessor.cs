@@ -15,7 +15,7 @@ namespace TestOMatic2012 {
 			DateTime startRunTime = DateTime.Now;
 			Logger.Write("CouponOrdersProcessor.Run starting...");
 
-			string dataDirectory = "D:\\TLogsII";
+			string dataDirectory = "D:\\CouponOrderFiles";
 
 			DirectoryInfo di = new DirectoryInfo(dataDirectory);
 

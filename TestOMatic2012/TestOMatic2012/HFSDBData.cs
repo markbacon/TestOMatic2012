@@ -10,7 +10,7 @@ namespace TestOMatic2012 {
 	class HFSDBData {
 		public HFSDBData() {
 
-			string connectionString = @"Data Source=localhost\MSSQLSERVER2012;Initial Catalog=HFSDB;Integrated Security=True";
+			string connectionString = @"Data Source=localhost\SQL2012;Initial Catalog=HFSDB;Integrated Security=True";
 			_dac = new DataAccess(connectionString);
 		}
 		//---------------------------------------------------------------------------------------------------------
@@ -43,8 +43,36 @@ namespace TestOMatic2012 {
 
 			return dac.ExecuteQuery(sql);
 		}
+		//---------------------------------------------------------------------------------------------------------
+		public DataTable GetOrderItem(DateTime businessDate) {
 
+			StringBuilder sb = new StringBuilder();
 
+			sb.Append(SqlTemplateBroker.Load(SqlTemplateId.GetOrderItem));
+			sb.Replace("!BUSINESS_DATE", businessDate.ToString());
+
+			return _dac.ExecuteQuery(sb.ToString());
+		}
+		//---------------------------------------------------------------------------------------------------------
+		public DataTable GetOrderItemModifier(DateTime businessDate) {
+
+			StringBuilder sb = new StringBuilder();
+
+			sb.Append(SqlTemplateBroker.Load(SqlTemplateId.GetOrderItemModifier));
+			sb.Replace("!BUSINESS_DATE", businessDate.ToString());
+
+			return _dac.ExecuteQuery(sb.ToString());
+		}
+		//---------------------------------------------------------------------------------------------------------
+		public DataTable GetPosOrder(DateTime businessDate) {
+
+			StringBuilder sb = new StringBuilder();
+
+			sb.Append(SqlTemplateBroker.Load(SqlTemplateId.GetPosOrder));
+			sb.Replace("!BUSINESS_DATE", businessDate.ToString());
+
+			return _dac.ExecuteQuery(sb.ToString());
+		}
 		//---------------------------------------------------------------------------------------------------------
 		//-- Private Members
 		//---------------------------------------------------------------------------------------------------------

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="TimeFileAnalysis">
+  <DataContextMoniker Name="/TimeFileAnalysisDataContext" />
+  <nestedChildShapes>
+    <classShape Id="e08a2ffc-6c0e-473e-8a60-7795b133fafa" absoluteBounds="2.5, 2, 2, 1.9631982421875">
+      <DataClassMoniker Name="/TimeFileAnalysisDataContext/TimeCardRecord" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bf7dac17-52d7-4ef7-bc0f-9fa21f43ec3d" absoluteBounds="2.515, 2.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="62743d66-e57b-4198-b598-2c57eb42882b" absoluteBounds="7.625, 3.125, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/TimeFileAnalysisDataContext/TimeCardWeekEndDate" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a654d2ac-4212-4845-b73a-f82d1f16fc47" absoluteBounds="7.64, 3.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="52fabb26-4491-4f06-8974-d0fc46896157" absoluteBounds="5.375, 4.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/TimeFileAnalysisDataContext/TimeCardDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d0094318-6bae-4928-8f24-73a7626ae09c" absoluteBounds="5.39, 5.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1223f085-a735-4949-8136-5b0fb78bf9fa" absoluteBounds="2.375, 4.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/TimeFileAnalysisDataContext/TimeCardTotal" />
+      <nestedChildShapes>
+        <elementListCompartment Id="33c3b0a7-2612-4927-94f7-4b1d342cf467" absoluteBounds="2.39, 5.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f99f4670-4920-4594-815f-f402f81892d3" absoluteBounds="5.875, 1.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/TimeFileAnalysisDataContext/Employee" />
+      <nestedChildShapes>
+        <elementListCompartment Id="278f16a6-34ac-40cf-a02e-e171b02b2bc1" absoluteBounds="5.89, 2.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
