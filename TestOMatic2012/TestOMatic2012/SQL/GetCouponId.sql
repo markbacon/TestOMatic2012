@@ -1,11 +1,14 @@
 ﻿USE [INFO2000]
 
-DECLARE @CouponId INT
+DECLARE @CouponId INT,
+		@RestaurantNumber INT
+
+SET @RestaurantNumber = CONVERT(INT, '!RESTAURANT_NUMBER')
 
 SELECT @CouponId = [coupon_id]
   FROM [dbo].[coupon_dim]
   WHERE coupon_type = 'SCANNED'
-  AND [restaurant_no] = !RESTAURANT_NUMBER
+  AND [restaurant_no] = @RestaurantNumber
 
 
 IF @CouponId IS NULL
@@ -21,7 +24,7 @@ BEGIN
 			   ,[eff_date]
 			   ,[term_date])
 		 VALUES
-			   (!RESTAURANT_NUMBER
+			   (@RestaurantNumber
 			   ,2
 			   ,'store'
 			   ,'SCANNED'

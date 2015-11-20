@@ -131,5 +131,23 @@
         <elementListCompartment Id="c5755e32-72f2-466e-96cd-91d716feeecd" absoluteBounds="15.64, 7.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="25a7ff90-ffae-4ea8-8c5a-26665395ce6a" absoluteBounds="8.75, 0.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataAnalysisDataContext/HourlyNetSale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="88bf7edb-e9df-48a2-b82b-e74abd60cea9" absoluteBounds="8.765, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="331454c8-4b72-42cb-a3dd-202e88999ef8" absoluteBounds="3.875, 3.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataAnalysisDataContext/HourlyNetSalesII" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a562136e-6c6b-4e5a-86ac-10a9df849500" absoluteBounds="3.89, 3.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2a97ffe0-beaa-4599-80d1-b287ce68aa35" absoluteBounds="6.125, 4.875, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/DataAnalysisDataContext/DailyInvUsage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fe7ba7cb-5fba-46ea-bbb2-5c0b4f86c18b" absoluteBounds="6.14, 5.335, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

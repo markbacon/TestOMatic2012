@@ -84,10 +84,19 @@ namespace TestOMatic2012
     partial void InsertParentChildNumber(ParentChildNumber instance);
     partial void UpdateParentChildNumber(ParentChildNumber instance);
     partial void DeleteParentChildNumber(ParentChildNumber instance);
+    partial void InsertHourlyNetSale(HourlyNetSale instance);
+    partial void UpdateHourlyNetSale(HourlyNetSale instance);
+    partial void DeleteHourlyNetSale(HourlyNetSale instance);
+    partial void InsertHourlyNetSalesII(HourlyNetSalesII instance);
+    partial void UpdateHourlyNetSalesII(HourlyNetSalesII instance);
+    partial void DeleteHourlyNetSalesII(HourlyNetSalesII instance);
+    partial void InsertDailyInvUsage(DailyInvUsage instance);
+    partial void UpdateDailyInvUsage(DailyInvUsage instance);
+    partial void DeleteDailyInvUsage(DailyInvUsage instance);
     #endregion
 		
 		public DataAnalysisDataContext() : 
-				base(global::TestOMatic2012.Properties.Settings.Default.DataAnalysisConnectionString4, mappingSource)
+				base(global::TestOMatic2012.Properties.Settings.Default.DataAnalysisConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -257,6 +266,30 @@ namespace TestOMatic2012
 			get
 			{
 				return this.GetTable<ParentChildNumber>();
+			}
+		}
+		
+		public System.Data.Linq.Table<HourlyNetSale> HourlyNetSales
+		{
+			get
+			{
+				return this.GetTable<HourlyNetSale>();
+			}
+		}
+		
+		public System.Data.Linq.Table<HourlyNetSalesII> HourlyNetSalesIIs
+		{
+			get
+			{
+				return this.GetTable<HourlyNetSalesII>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DailyInvUsage> DailyInvUsages
+		{
+			get
+			{
+				return this.GetTable<DailyInvUsage>();
 			}
 		}
 	}
@@ -3575,6 +3608,648 @@ namespace TestOMatic2012
 					this._ChildDescription = value;
 					this.SendPropertyChanged("ChildDescription");
 					this.OnChildDescriptionChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.HourlyNetSales")]
+	public partial class HourlyNetSale : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _HourlyNetSalesId;
+		
+		private string _UnitNumber;
+		
+		private System.DateTime _SalesDateTime;
+		
+		private decimal _Amount;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnHourlyNetSalesIdChanging(int value);
+    partial void OnHourlyNetSalesIdChanged();
+    partial void OnUnitNumberChanging(string value);
+    partial void OnUnitNumberChanged();
+    partial void OnSalesDateTimeChanging(System.DateTime value);
+    partial void OnSalesDateTimeChanged();
+    partial void OnAmountChanging(decimal value);
+    partial void OnAmountChanged();
+    #endregion
+		
+		public HourlyNetSale()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HourlyNetSalesId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int HourlyNetSalesId
+		{
+			get
+			{
+				return this._HourlyNetSalesId;
+			}
+			set
+			{
+				if ((this._HourlyNetSalesId != value))
+				{
+					this.OnHourlyNetSalesIdChanging(value);
+					this.SendPropertyChanging();
+					this._HourlyNetSalesId = value;
+					this.SendPropertyChanged("HourlyNetSalesId");
+					this.OnHourlyNetSalesIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitNumber", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string UnitNumber
+		{
+			get
+			{
+				return this._UnitNumber;
+			}
+			set
+			{
+				if ((this._UnitNumber != value))
+				{
+					this.OnUnitNumberChanging(value);
+					this.SendPropertyChanging();
+					this._UnitNumber = value;
+					this.SendPropertyChanged("UnitNumber");
+					this.OnUnitNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalesDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime SalesDateTime
+		{
+			get
+			{
+				return this._SalesDateTime;
+			}
+			set
+			{
+				if ((this._SalesDateTime != value))
+				{
+					this.OnSalesDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._SalesDateTime = value;
+					this.SendPropertyChanged("SalesDateTime");
+					this.OnSalesDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Decimal(18,2) NOT NULL")]
+		public decimal Amount
+		{
+			get
+			{
+				return this._Amount;
+			}
+			set
+			{
+				if ((this._Amount != value))
+				{
+					this.OnAmountChanging(value);
+					this.SendPropertyChanging();
+					this._Amount = value;
+					this.SendPropertyChanged("Amount");
+					this.OnAmountChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.HourlyNetSalesII")]
+	public partial class HourlyNetSalesII : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _HourlyNetSalesId;
+		
+		private string _UnitNumber;
+		
+		private System.DateTime _SalesDateTime;
+		
+		private decimal _Amount;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnHourlyNetSalesIdChanging(int value);
+    partial void OnHourlyNetSalesIdChanged();
+    partial void OnUnitNumberChanging(string value);
+    partial void OnUnitNumberChanged();
+    partial void OnSalesDateTimeChanging(System.DateTime value);
+    partial void OnSalesDateTimeChanged();
+    partial void OnAmountChanging(decimal value);
+    partial void OnAmountChanged();
+    #endregion
+		
+		public HourlyNetSalesII()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HourlyNetSalesId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int HourlyNetSalesId
+		{
+			get
+			{
+				return this._HourlyNetSalesId;
+			}
+			set
+			{
+				if ((this._HourlyNetSalesId != value))
+				{
+					this.OnHourlyNetSalesIdChanging(value);
+					this.SendPropertyChanging();
+					this._HourlyNetSalesId = value;
+					this.SendPropertyChanged("HourlyNetSalesId");
+					this.OnHourlyNetSalesIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitNumber", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string UnitNumber
+		{
+			get
+			{
+				return this._UnitNumber;
+			}
+			set
+			{
+				if ((this._UnitNumber != value))
+				{
+					this.OnUnitNumberChanging(value);
+					this.SendPropertyChanging();
+					this._UnitNumber = value;
+					this.SendPropertyChanged("UnitNumber");
+					this.OnUnitNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalesDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime SalesDateTime
+		{
+			get
+			{
+				return this._SalesDateTime;
+			}
+			set
+			{
+				if ((this._SalesDateTime != value))
+				{
+					this.OnSalesDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._SalesDateTime = value;
+					this.SendPropertyChanged("SalesDateTime");
+					this.OnSalesDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Decimal(18,2) NOT NULL")]
+		public decimal Amount
+		{
+			get
+			{
+				return this._Amount;
+			}
+			set
+			{
+				if ((this._Amount != value))
+				{
+					this.OnAmountChanging(value);
+					this.SendPropertyChanging();
+					this._Amount = value;
+					this.SendPropertyChanged("Amount");
+					this.OnAmountChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DailyInvUsage")]
+	public partial class DailyInvUsage : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _DailyInvUsageId;
+		
+		private string _UnitNumber;
+		
+		private System.DateTime _BusinessDate;
+		
+		private string _ItemCode;
+		
+		private string _ItemDescription;
+		
+		private string _CategoryCode;
+		
+		private bool _IsDailyCountItem;
+		
+		private decimal _Cost;
+		
+		private decimal _ActualQuantity;
+		
+		private decimal _ActualAmount;
+		
+		private decimal _IdealQuantity;
+		
+		private decimal _IdealAmount;
+		
+		private decimal _OnHandQuantity;
+		
+		private decimal _OnHandAmount;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnDailyInvUsageIdChanging(int value);
+    partial void OnDailyInvUsageIdChanged();
+    partial void OnUnitNumberChanging(string value);
+    partial void OnUnitNumberChanged();
+    partial void OnBusinessDateChanging(System.DateTime value);
+    partial void OnBusinessDateChanged();
+    partial void OnItemCodeChanging(string value);
+    partial void OnItemCodeChanged();
+    partial void OnItemDescriptionChanging(string value);
+    partial void OnItemDescriptionChanged();
+    partial void OnCategoryCodeChanging(string value);
+    partial void OnCategoryCodeChanged();
+    partial void OnIsDailyCountItemChanging(bool value);
+    partial void OnIsDailyCountItemChanged();
+    partial void OnCostChanging(decimal value);
+    partial void OnCostChanged();
+    partial void OnActualQuantityChanging(decimal value);
+    partial void OnActualQuantityChanged();
+    partial void OnActualAmountChanging(decimal value);
+    partial void OnActualAmountChanged();
+    partial void OnIdealQuantityChanging(decimal value);
+    partial void OnIdealQuantityChanged();
+    partial void OnIdealAmountChanging(decimal value);
+    partial void OnIdealAmountChanged();
+    partial void OnOnHandQuantityChanging(decimal value);
+    partial void OnOnHandQuantityChanged();
+    partial void OnOnHandAmountChanging(decimal value);
+    partial void OnOnHandAmountChanged();
+    #endregion
+		
+		public DailyInvUsage()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DailyInvUsageId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int DailyInvUsageId
+		{
+			get
+			{
+				return this._DailyInvUsageId;
+			}
+			set
+			{
+				if ((this._DailyInvUsageId != value))
+				{
+					this.OnDailyInvUsageIdChanging(value);
+					this.SendPropertyChanging();
+					this._DailyInvUsageId = value;
+					this.SendPropertyChanged("DailyInvUsageId");
+					this.OnDailyInvUsageIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitNumber", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string UnitNumber
+		{
+			get
+			{
+				return this._UnitNumber;
+			}
+			set
+			{
+				if ((this._UnitNumber != value))
+				{
+					this.OnUnitNumberChanging(value);
+					this.SendPropertyChanging();
+					this._UnitNumber = value;
+					this.SendPropertyChanged("UnitNumber");
+					this.OnUnitNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BusinessDate", DbType="DateTime NOT NULL")]
+		public System.DateTime BusinessDate
+		{
+			get
+			{
+				return this._BusinessDate;
+			}
+			set
+			{
+				if ((this._BusinessDate != value))
+				{
+					this.OnBusinessDateChanging(value);
+					this.SendPropertyChanging();
+					this._BusinessDate = value;
+					this.SendPropertyChanged("BusinessDate");
+					this.OnBusinessDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemCode", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string ItemCode
+		{
+			get
+			{
+				return this._ItemCode;
+			}
+			set
+			{
+				if ((this._ItemCode != value))
+				{
+					this.OnItemCodeChanging(value);
+					this.SendPropertyChanging();
+					this._ItemCode = value;
+					this.SendPropertyChanged("ItemCode");
+					this.OnItemCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemDescription", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string ItemDescription
+		{
+			get
+			{
+				return this._ItemDescription;
+			}
+			set
+			{
+				if ((this._ItemDescription != value))
+				{
+					this.OnItemDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._ItemDescription = value;
+					this.SendPropertyChanged("ItemDescription");
+					this.OnItemDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryCode", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string CategoryCode
+		{
+			get
+			{
+				return this._CategoryCode;
+			}
+			set
+			{
+				if ((this._CategoryCode != value))
+				{
+					this.OnCategoryCodeChanging(value);
+					this.SendPropertyChanging();
+					this._CategoryCode = value;
+					this.SendPropertyChanged("CategoryCode");
+					this.OnCategoryCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDailyCountItem", DbType="Bit NOT NULL")]
+		public bool IsDailyCountItem
+		{
+			get
+			{
+				return this._IsDailyCountItem;
+			}
+			set
+			{
+				if ((this._IsDailyCountItem != value))
+				{
+					this.OnIsDailyCountItemChanging(value);
+					this.SendPropertyChanging();
+					this._IsDailyCountItem = value;
+					this.SendPropertyChanged("IsDailyCountItem");
+					this.OnIsDailyCountItemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cost", DbType="Decimal(18,2) NOT NULL")]
+		public decimal Cost
+		{
+			get
+			{
+				return this._Cost;
+			}
+			set
+			{
+				if ((this._Cost != value))
+				{
+					this.OnCostChanging(value);
+					this.SendPropertyChanging();
+					this._Cost = value;
+					this.SendPropertyChanged("Cost");
+					this.OnCostChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActualQuantity", DbType="Decimal(18,2) NOT NULL")]
+		public decimal ActualQuantity
+		{
+			get
+			{
+				return this._ActualQuantity;
+			}
+			set
+			{
+				if ((this._ActualQuantity != value))
+				{
+					this.OnActualQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._ActualQuantity = value;
+					this.SendPropertyChanged("ActualQuantity");
+					this.OnActualQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActualAmount", DbType="Decimal(18,2) NOT NULL")]
+		public decimal ActualAmount
+		{
+			get
+			{
+				return this._ActualAmount;
+			}
+			set
+			{
+				if ((this._ActualAmount != value))
+				{
+					this.OnActualAmountChanging(value);
+					this.SendPropertyChanging();
+					this._ActualAmount = value;
+					this.SendPropertyChanged("ActualAmount");
+					this.OnActualAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdealQuantity", DbType="Decimal(18,2) NOT NULL")]
+		public decimal IdealQuantity
+		{
+			get
+			{
+				return this._IdealQuantity;
+			}
+			set
+			{
+				if ((this._IdealQuantity != value))
+				{
+					this.OnIdealQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._IdealQuantity = value;
+					this.SendPropertyChanged("IdealQuantity");
+					this.OnIdealQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdealAmount", DbType="Decimal(18,2) NOT NULL")]
+		public decimal IdealAmount
+		{
+			get
+			{
+				return this._IdealAmount;
+			}
+			set
+			{
+				if ((this._IdealAmount != value))
+				{
+					this.OnIdealAmountChanging(value);
+					this.SendPropertyChanging();
+					this._IdealAmount = value;
+					this.SendPropertyChanged("IdealAmount");
+					this.OnIdealAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OnHandQuantity", DbType="Decimal(18,2) NOT NULL")]
+		public decimal OnHandQuantity
+		{
+			get
+			{
+				return this._OnHandQuantity;
+			}
+			set
+			{
+				if ((this._OnHandQuantity != value))
+				{
+					this.OnOnHandQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._OnHandQuantity = value;
+					this.SendPropertyChanged("OnHandQuantity");
+					this.OnOnHandQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OnHandAmount", DbType="Decimal(18,2) NOT NULL")]
+		public decimal OnHandAmount
+		{
+			get
+			{
+				return this._OnHandAmount;
+			}
+			set
+			{
+				if ((this._OnHandAmount != value))
+				{
+					this.OnOnHandAmountChanging(value);
+					this.SendPropertyChanging();
+					this._OnHandAmount = value;
+					this.SendPropertyChanged("OnHandAmount");
+					this.OnOnHandAmountChanged();
 				}
 			}
 		}

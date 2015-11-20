@@ -116,7 +116,7 @@ namespace TestOMatic2012 {
 			string destDirPath = Path.Combine("D:\\WkTimeFiles", srcDirectory.Name);
 
 			if (!Directory.Exists(destDirPath)) {
-				DispayText("Creting directory:  " + destDirPath);
+				DispayText("Creating directory:  " + destDirPath);
 				Directory.CreateDirectory(destDirPath);
 			}
 

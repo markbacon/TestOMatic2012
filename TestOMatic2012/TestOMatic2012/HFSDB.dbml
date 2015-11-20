@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HFSDB" Class="HFSDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\SQL2012;Initial Catalog=HFSDB;Integrated Security=True" SettingsObjectName="TestOMatic2012.Properties.Settings" SettingsPropertyName="HFSDBConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="Config.Calendar" Member="Calendars">
+    <Type Name="Calendar">
+      <Column Name="TimeId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CalDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CalWeekEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FsclPerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

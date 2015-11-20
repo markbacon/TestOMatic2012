@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="HFSDB">
+  <DataContextMoniker Name="/HFSDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="779609ba-bc6a-44c3-a6d7-ae5c2bde7f03" absoluteBounds="4.375, 1.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/HFSDBDataContext/Calendar" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a49383b3-67d4-4cb2-ad95-594fb85f7d41" absoluteBounds="4.39, 2.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -13,6 +13,16 @@ namespace TestOMatic2012 {
 		public Form34() {
 			InitializeComponent();
 		}
+		private void button1_Click(object sender, EventArgs e) {
+
+			button1.Enabled = false;
+
+
+
+
+
+			button1.Enabled = true;
+		}
 		private void button2_Click(object sender, EventArgs e) {
 
 			button2.Enabled = false;
@@ -79,5 +89,19 @@ namespace TestOMatic2012 {
 			//}
 		}
 
+		private void textBox1_TextChanged(object sender, EventArgs e) {
+
+			if (textBox1.Text.Length > 2024) {
+				textBox1.Text = "";
+			}
+
+
+			if (textBox1.Text.Length > 0) {
+				textBox1.SelectionStart = textBox1.Text.Length - 1;
+				textBox1.ScrollToCaret();
+				Application.DoEvents();
+			}
+
+		}
 	}
 }

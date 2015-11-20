@@ -26,10 +26,10 @@
         <elementListCompartment Id="33c3b0a7-2612-4927-94f7-4b1d342cf467" absoluteBounds="2.39, 5.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="f99f4670-4920-4594-815f-f402f81892d3" absoluteBounds="5.875, 1.75, 2, 1.7708968098958331">
+    <classShape Id="f99f4670-4920-4594-815f-f402f81892d3" absoluteBounds="5.5, 1, 2, 1.7708968098958331">
       <DataClassMoniker Name="/TimeFileAnalysisDataContext/Employee" />
       <nestedChildShapes>
-        <elementListCompartment Id="278f16a6-34ac-40cf-a02e-e171b02b2bc1" absoluteBounds="5.89, 2.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="278f16a6-34ac-40cf-a02e-e171b02b2bc1" absoluteBounds="5.515, 1.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

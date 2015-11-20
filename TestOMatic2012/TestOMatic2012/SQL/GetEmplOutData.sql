@@ -1,0 +1,56 @@
+﻿SELECT	E.EmployeeNum,
+		E.LocalID,
+		E.Type,
+		E.TransactionStatus,
+		ISNULL(Convert(varchar(20), E.TransactionSequenceNo),'')[TransactionSequenceNo],
+		E.HireSequenceNo,                                    
+		E.LastName,
+		E.FirstName,
+		E.MiddleName,                                   
+		E.Address,                                    
+		E.City,
+		E.County,
+		E.State,
+		E.Zip,
+		ISNULL(E.Phone1,'')[Phone1],
+		ISNULL(Convert(varchar(2), E.Phone1Type),'')[Phone1Type],
+		ISNULL(E.Phone2,'')[Phone2],
+		ISNULL(Convert(varchar(2), E.Phone2Type),'')[Phone2Type],
+		ISNULL(convert(varchar(10),E.BirthDate,101),'')[BirthDate],
+		ISNULL(convert(varchar(10),W.HireDate,101),'')[HireDate],
+		E.SSN,
+		E.Sex,
+		E.EthnicGroup,
+		J.JobCode,
+		J.SalaryCode,
+		J.PayRate,
+		ISNULL(convert(varchar(10),J.EffectiveDate,101),'')[EffectiveDate],
+		J.PreviousJobCode,
+		J.PreviousPayRate,
+		ISNULL(convert(varchar(10),J.PreviousEffectiveDate,101),'')[PreviousEffectiveDate],
+		ISNULL(convert(varchar(10),w.ReviewRating),'')[ReviewRating],
+		ISNULL(convert(varchar(10),T.percentofFederal),'')[percentofFederal],
+		ISNULL(convert(varchar(10),T.AdditionalFederalWithholding),'')[AdditionalFederalWithholding],
+		ISNULL(T.stateExempt,'')[stateExempt],
+		ISNULL(convert(varchar(10),T.StateDependents),'')[StateDependents],
+		ISNULL(convert(varchar(10),T.stateAllowances),'')[stateAllowances],
+		ISNULL(T.stateMaritalStatus,'')[stateMaritalStatus],
+		ISNULL(T.taxState,'')[taxState],
+		ISNULL(convert(varchar(10),T.AdditionalstateWithholding),'')[AdditionalstateWithholding],
+		ISNULL(T.FederalExempt,'')[FederalExempt],
+		ISNULL(convert(varchar(10),T.FederalDependents),'')[FederalDependents],
+		ISNULL(T.FederalMaritalstatus,'')[FederalMaritalstatus],
+		ISNULL(convert(varchar(10),M.PermitExpirationDate,101),'')[PermitExpirationDate],
+		ISNULL(T.TaxCreditNo,'')[TaxCreditNo],
+		ISNULL(convert(varchar(10),T.UNitedWayWithholding),'')[UnitedWayWithholding],
+		ISNULL(T.Disabledvet,'')[Disabledvet],
+		ISNULL(T.Disabled,'')[Disabled]                                    
+ FROM [Employee] E
+ LEFT OUTER JOIN [WorkData] W ON E.EMPLOYEEID = W.EMPLOYEEID
+ LEFT OUTER JOIN [JobData] J ON E.EMPLOYEEID = J.EMPLOYEEID 
+ LEFT OUTER JOIN [TaxData] T ON E.EMPLOYEEID = T.EMPLOYEEID
+ LEFT OUTER JOIN [MinorData] M ON E.EMPLOYEEID = M.EMPLOYEEID
+ INNER JOIN [TransferData] TR ON E.EmployeeId = TR.EmployeeId
+ WHERE  TR.ToUnitNum = '101'
+AND EmployeeNum != '111111111'
+   

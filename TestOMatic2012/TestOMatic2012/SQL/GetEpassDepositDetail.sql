@@ -13,7 +13,7 @@
   FROM [INFO2000].[dbo].[deposit_dtl_fact] dtl
   INNER JOIN [INFO2000].[dbo].[deposit_dim] dim ON dtl.deposit_id = dim.deposit_id
   WHERE dtl.Cal_Date = '!CAL_DATE'
-  AND dtl.Restaurant_no = !RESTAURANT_NO
+  AND dtl.Restaurant_no = CONVERT(INT, '!RESTAURANT_NO')
   AND dim.deposit_descr = 'Cash Deposit'
   
 

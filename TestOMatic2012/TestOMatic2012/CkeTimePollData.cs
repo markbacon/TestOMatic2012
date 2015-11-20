@@ -16,7 +16,7 @@ namespace TestOMatic2012 {
 
 			string sql = SqlTemplateBroker.Load(SqlTemplateId.GetCkeTimePollSsnDataList);
 
-			DataAccess dac= new DataAccess(AppSettings.CkeTimePollDataConnectionString);
+			DataAccess dac = new DataAccess(AppSettings.CkeTimePollDataConnectionString);
 
 			DataTable dt = dac.ExecuteQuery(sql);
 
@@ -47,17 +47,30 @@ namespace TestOMatic2012 {
 				sb.Append('\t');
 				sb.Append(dr["TimeCardCount"].ToString());
 				sb.Append("\r\n");
-
-
-
 			}
-
 
 			return sb.ToString();
 		}
+		//---------------------------------------------------------------------------------------------------------
+		public DataTable GetGMTimeCardHeaderData() {
 
+			string sql = SqlTemplateBroker.Load(SqlTemplateId.GetGMTimeCardHeaderData);
 
+			DataAccess dac = new DataAccess(AppSettings.CkeTimePollDataConnectionString);
 
+			return dac.ExecuteQuery(sql);
 
+		}
+		//---------------------------------------------------------------------------------------------------------
+		public void InsertTimeFileData(string timeFileLine) {
+
+			StringBuilder sb = new StringBuilder();
+
+			sb.Append(SqlTemplateBroker.Load(SqlTemplateId.InsertTimeFileData));
+			sb.Replace("!TIME_CARD_LINE", timeFileLine);
+
+			DataAccess dac = new DataAccess(AppSettings.CkeTimePollDataConnectionString);
+			dac.ExecuteActionQuery(sb.ToString());
+		}
 	}
 }

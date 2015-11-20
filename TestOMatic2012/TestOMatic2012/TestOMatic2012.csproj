@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestOMatic2012</RootNamespace>
     <AssemblyName>TestOMatic2012</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ionic.Zip">
@@ -84,6 +86,7 @@
       <DependentUpon>DataValidation.dbml</DependentUpon>
     </Compile>
     <Compile Include="EpassData.cs" />
+    <Compile Include="ExistingDeposit.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,11 +255,95 @@
     <Compile Include="Form34.Designer.cs">
       <DependentUpon>Form34.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form35.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form35.Designer.cs">
+      <DependentUpon>Form35.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form36.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form36.Designer.cs">
+      <DependentUpon>Form36.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form37.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form37.Designer.cs">
+      <DependentUpon>Form37.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form38.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form38.Designer.cs">
+      <DependentUpon>Form38.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form39.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form39.Designer.cs">
+      <DependentUpon>Form39.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form4.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form4.Designer.cs">
       <DependentUpon>Form4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form40.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form40.Designer.cs">
+      <DependentUpon>Form40.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form41.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form41.Designer.cs">
+      <DependentUpon>Form41.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form42.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form42.Designer.cs">
+      <DependentUpon>Form42.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form43.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form43.Designer.cs">
+      <DependentUpon>Form43.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form44.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form44.Designer.cs">
+      <DependentUpon>Form44.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form45.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form45.Designer.cs">
+      <DependentUpon>Form45.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form46.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form46.Designer.cs">
+      <DependentUpon>Form46.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form47.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form47.Designer.cs">
+      <DependentUpon>Form47.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form48.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form48.Designer.cs">
+      <DependentUpon>Form48.cs</DependentUpon>
     </Compile>
     <Compile Include="Form5.cs">
       <SubType>Form</SubType>
@@ -319,7 +406,13 @@
       <DependentUpon>HardeesRecipes.dbml</DependentUpon>
     </Compile>
     <Compile Include="HashOMatic.cs" />
+    <Compile Include="HFSDB.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HFSDB.dbml</DependentUpon>
+    </Compile>
     <Compile Include="HFSDBData.cs" />
+    <Compile Include="HourlyNetSales.cs" />
     <Compile Include="IdealUsageCalculator.cs" />
     <Compile Include="ImsData.cs" />
     <Compile Include="INFO2000.designer.cs">
@@ -328,7 +421,10 @@
       <DependentUpon>INFO2000.dbml</DependentUpon>
     </Compile>
     <Compile Include="INFO2000Data.cs" />
+    <Compile Include="InventoryCategorySummary.cs" />
     <Compile Include="InventoryItem.cs" />
+    <Compile Include="DailyInventorySummary.cs" />
+    <Compile Include="InventoryDetail.cs" />
     <Compile Include="InventoryUsage.cs" />
     <Compile Include="LaborHoursProcessor.cs" />
     <Compile Include="Logger.cs" />
@@ -336,6 +432,10 @@
     <Compile Include="MenuConfigProcessor.cs" />
     <Compile Include="MenuItemData.cs" />
     <Compile Include="MenuPollData.cs" />
+    <Compile Include="NetworkConnection.cs" />
+    <Compile Include="PCNCommon.cs" />
+    <Compile Include="PCNConstants.cs" />
+    <Compile Include="PCNData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaryDataReader.cs" />
@@ -343,6 +443,7 @@
     <Compile Include="ScannedCouponItem.cs" />
     <Compile Include="SmartReportsProcessor.cs" />
     <Compile Include="SqlTemplateBroker.cs" />
+    <Compile Include="ImsCkeData.cs" />
     <Compile Include="TextEncryption.cs" />
     <Compile Include="TimeFileAnalysis.designer.cs">
       <AutoGen>True</AutoGen>
@@ -355,9 +456,18 @@
       <DependentUpon>TransHist.dbml</DependentUpon>
     </Compile>
     <Compile Include="TransHistCouponProcessor.cs" />
+    <Compile Include="Unit2ferSales.cs" />
+    <Compile Include="UnitManifest.cs" />
+    <Compile Include="UnitBusinessWeek.cs" />
+    <Compile Include="UnitSalesDetail.cs" />
     <Compile Include="Unzipper.cs" />
     <Compile Include="ValidationFileBuilder.cs" />
     <Compile Include="Win7NodeUtility.cs" />
+    <None Include="HFSDB.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>HFSDB.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="TimeFileAnalysis.dbml.layout">
       <DependentUpon>TimeFileAnalysis.dbml</DependentUpon>
     </None>
@@ -486,6 +596,21 @@
     <EmbeddedResource Include="Form34.resx">
       <DependentUpon>Form34.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form35.resx">
+      <DependentUpon>Form35.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form36.resx">
+      <DependentUpon>Form36.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form37.resx">
+      <DependentUpon>Form37.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form38.resx">
+      <DependentUpon>Form38.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form39.resx">
+      <DependentUpon>Form39.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form4.resx">
       <DependentUpon>Form4.cs</DependentUpon>
     </EmbeddedResource>
@@ -497,6 +622,33 @@
     <None Include="INFO2000.dbml.layout">
       <DependentUpon>INFO2000.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="Form40.resx">
+      <DependentUpon>Form40.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form41.resx">
+      <DependentUpon>Form41.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form42.resx">
+      <DependentUpon>Form42.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form43.resx">
+      <DependentUpon>Form43.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form44.resx">
+      <DependentUpon>Form44.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form45.resx">
+      <DependentUpon>Form45.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form46.resx">
+      <DependentUpon>Form46.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form47.resx">
+      <DependentUpon>Form47.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form48.resx">
+      <DependentUpon>Form48.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form5.resx">
       <DependentUpon>Form5.cs</DependentUpon>
     </EmbeddedResource>
@@ -526,6 +678,9 @@
     </EmbeddedResource>
     <None Include="HardeesRecipes.dbml.layout">
       <DependentUpon>HardeesRecipes.dbml</DependentUpon>
+    </None>
+    <None Include="HFSDB.dbml.layout">
+      <DependentUpon>HFSDB.dbml</DependentUpon>
     </None>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -643,9 +798,19 @@
     <EmbeddedResource Include="SQL\GetEmployeeData.sql" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="SQL\GetCarlsStarPosUnitList.sql" />
+    <EmbeddedResource Include="SQL\ExecuteCashOverShortUpdate.sql" />
+    <EmbeddedResource Include="SQL\GetExistingDeposits.sql" />
+    <EmbeddedResource Include="SQL\GetProductionDeposits.sql" />
+    <EmbeddedResource Include="SQL\GetEmplOutData.sql" />
+    <EmbeddedResource Include="SQL\GetGMTimeCardHeaderData.sql" />
+    <EmbeddedResource Include="SQL\InsertTimeFileData.sql" />
+    <EmbeddedResource Include="SQL\GetActiveInventoryItems.sql" />
+    <Content Include="UnitManifestExample.xml" />
     <EmbeddedResource Include="SQL\GetCkeTimePollEmployee.sql" />
     <EmbeddedResource Include="SQL\GetCkeTimePollSsnDataList.sql" />
     <EmbeddedResource Include="SQL\GetCarlsCompanyStores.sql" />
+    <EmbeddedResource Include="SQL\Get2ferSales.sql" />
     <Content Include="SQL\GetEmployeeBySSN.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

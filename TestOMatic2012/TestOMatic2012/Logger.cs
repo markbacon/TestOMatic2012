@@ -166,16 +166,16 @@ namespace TestOMatic2012 {
 
             if (_logFileName == "") {
 
-                _logFileName = Assembly.GetExecutingAssembly().GetName().Name + ".log";
-            }
+				_logFileName = Assembly.GetExecutingAssembly().GetName().Name + ".log";
+			}
 
             return _logFileName;
         }
         //---------------------------------------------------------------------------------------------------
         private static string GetLogFilePath() {
 
-            string logFilePath = AppDomain.CurrentDomain.BaseDirectory + "\\Logs";
-
+			string logFilePath = AppDomain.CurrentDomain.BaseDirectory + "\\Logs";
+	
             //Create directory if it doesn't exist
             if (!Directory.Exists(logFilePath)) {
                 Directory.CreateDirectory(logFilePath);

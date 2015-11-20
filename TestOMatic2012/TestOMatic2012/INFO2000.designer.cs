@@ -22,7 +22,7 @@ namespace TestOMatic2012
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="INFO2000")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="INFO2000_test")]
 	public partial class INFO2000DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -51,10 +51,13 @@ namespace TestOMatic2012
     partial void Insertinv_item_dim(inv_item_dim instance);
     partial void Updateinv_item_dim(inv_item_dim instance);
     partial void Deleteinv_item_dim(inv_item_dim instance);
+    partial void Insertpos_fact(pos_fact instance);
+    partial void Updatepos_fact(pos_fact instance);
+    partial void Deletepos_fact(pos_fact instance);
     #endregion
 		
 		public INFO2000DataContext() : 
-				base(global::TestOMatic2012.Properties.Settings.Default.INFO2000ConnectionString1, mappingSource)
+				base(global::TestOMatic2012.Properties.Settings.Default.INFO2000_testConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -146,6 +149,30 @@ namespace TestOMatic2012
 				return this.GetTable<inv_item_dim>();
 			}
 		}
+		
+		public System.Data.Linq.Table<pos_fact> pos_facts
+		{
+			get
+			{
+				return this.GetTable<pos_fact>();
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.usp_cash_os_upd_xpient")]
+		public int usp_cash_os_upd_xpient([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pos_fact_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(300)")] ref string err_msg)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pos_fact_id, err_msg);
+			err_msg = ((string)(result.GetParameterValue(1)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.usp_cash_os_upd")]
+		public int usp_cash_os_upd([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pos_fact_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(300)")] ref string err_msg)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pos_fact_id, err_msg);
+			err_msg = ((string)(result.GetParameterValue(1)));
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.deposit_dtl_fact")]
@@ -180,6 +207,8 @@ namespace TestOMatic2012
 		
 		private EntityRef<deposit_dim> _deposit_dim;
 		
+		private EntityRef<pos_fact> _pos_fact;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -213,6 +242,7 @@ namespace TestOMatic2012
 		public deposit_dtl_fact()
 		{
 			this._deposit_dim = default(EntityRef<deposit_dim>);
+			this._pos_fact = default(EntityRef<pos_fact>);
 			OnCreated();
 		}
 		
@@ -271,6 +301,10 @@ namespace TestOMatic2012
 			{
 				if ((this._POS_fact_id != value))
 				{
+					if (this._pos_fact.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnPOS_fact_idChanging(value);
 					this.SendPropertyChanging();
 					this._POS_fact_id = value;
@@ -291,6 +325,10 @@ namespace TestOMatic2012
 			{
 				if ((this._System_id != value))
 				{
+					if (this._pos_fact.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnSystem_idChanging(value);
 					this.SendPropertyChanging();
 					this._System_id = value;
@@ -311,6 +349,10 @@ namespace TestOMatic2012
 			{
 				if ((this._Restaurant_no != value))
 				{
+					if (this._pos_fact.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnRestaurant_noChanging(value);
 					this.SendPropertyChanging();
 					this._Restaurant_no = value;
@@ -331,6 +373,10 @@ namespace TestOMatic2012
 			{
 				if ((this._Cal_Date != value))
 				{
+					if (this._pos_fact.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnCal_DateChanging(value);
 					this.SendPropertyChanging();
 					this._Cal_Date = value;
@@ -490,6 +536,46 @@ namespace TestOMatic2012
 						this._deposit_id = default(int);
 					}
 					this.SendPropertyChanged("deposit_dim");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="pos_fact_deposit_dtl_fact", Storage="_pos_fact", ThisKey="POS_fact_id,Cal_Date,Restaurant_no,System_id", OtherKey="pos_fact_id,cal_date,Restaurant_no,System_id", IsForeignKey=true)]
+		public pos_fact pos_fact
+		{
+			get
+			{
+				return this._pos_fact.Entity;
+			}
+			set
+			{
+				pos_fact previousValue = this._pos_fact.Entity;
+				if (((previousValue != value) 
+							|| (this._pos_fact.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._pos_fact.Entity = null;
+						previousValue.deposit_dtl_facts.Remove(this);
+					}
+					this._pos_fact.Entity = value;
+					if ((value != null))
+					{
+						value.deposit_dtl_facts.Add(this);
+						this._POS_fact_id = value.pos_fact_id;
+						this._Cal_Date = value.cal_date;
+						this._Restaurant_no = value.Restaurant_no;
+						this._System_id = value.System_id;
+					}
+					else
+					{
+						this._POS_fact_id = default(int);
+						this._Cal_Date = default(System.DateTime);
+						this._Restaurant_no = default(int);
+						this._System_id = default(int);
+					}
+					this.SendPropertyChanged("pos_fact");
 				}
 			}
 		}
@@ -3666,6 +3752,8 @@ namespace TestOMatic2012
 		
 		private string _XP_PSNum_Prj;
 		
+		private EntitySet<pos_fact> _pos_facts;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3730,6 +3818,7 @@ namespace TestOMatic2012
 		
 		public restaurant_dim()
 		{
+			this._pos_facts = new EntitySet<pos_fact>(new Action<pos_fact>(this.attach_pos_facts), new Action<pos_fact>(this.detach_pos_facts));
 			OnCreated();
 		}
 		
@@ -4293,6 +4382,19 @@ namespace TestOMatic2012
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="restaurant_dim_pos_fact", Storage="_pos_facts", ThisKey="restaurant_no,system_id", OtherKey="Restaurant_no,System_id")]
+		public EntitySet<pos_fact> pos_facts
+		{
+			get
+			{
+				return this._pos_facts;
+			}
+			set
+			{
+				this._pos_facts.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -4311,6 +4413,18 @@ namespace TestOMatic2012
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_pos_facts(pos_fact entity)
+		{
+			this.SendPropertyChanging();
+			entity.restaurant_dim = this;
+		}
+		
+		private void detach_pos_facts(pos_fact entity)
+		{
+			this.SendPropertyChanging();
+			entity.restaurant_dim = null;
 		}
 	}
 	
@@ -5553,6 +5667,1463 @@ namespace TestOMatic2012
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.pos_fact")]
+	public partial class pos_fact : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _pos_fact_id;
+		
+		private System.DateTime _cal_date;
+		
+		private int _Restaurant_no;
+		
+		private int _System_id;
+		
+		private System.Nullable<decimal> _total_net_sales_amt;
+		
+		private System.Nullable<decimal> _total_net_sales_cnt;
+		
+		private System.Nullable<decimal> _total_nf_amt;
+		
+		private System.Nullable<decimal> _total_nf_cnt;
+		
+		private System.Nullable<decimal> _total_voids_amt;
+		
+		private System.Nullable<decimal> _total_voids_cnt;
+		
+		private System.Nullable<decimal> _total_free_amt;
+		
+		private System.Nullable<decimal> _total_free_cnt;
+		
+		private System.Nullable<decimal> _total_cleared_amt;
+		
+		private System.Nullable<decimal> _total_cleared_cnt;
+		
+		private System.Nullable<decimal> _total_paid_i_amt;
+		
+		private System.Nullable<decimal> _total_paid_i_cnt;
+		
+		private System.Nullable<decimal> _total_paid_o_amt;
+		
+		private System.Nullable<decimal> _total_paid_o_cnt;
+		
+		private System.Nullable<decimal> _total_centsoff_amt;
+		
+		private System.Nullable<decimal> _total_centsoff_cnt;
+		
+		private System.Nullable<decimal> _total_nrs;
+		
+		private System.Nullable<decimal> _total_taxable_sales_amt;
+		
+		private System.Nullable<decimal> _total_taxable_sales_cnt;
+		
+		private System.Nullable<decimal> _total_tax_amt;
+		
+		private System.Nullable<decimal> _total_tax_cnt;
+		
+		private System.Nullable<decimal> _total_promo_amt;
+		
+		private System.Nullable<decimal> _total_promo_cnt;
+		
+		private System.Nullable<decimal> _total_gftcrt_sls_amt;
+		
+		private System.Nullable<decimal> _total_gftcrt_sls_cnt;
+		
+		private System.Nullable<decimal> _total_cpn_amt;
+		
+		private System.Nullable<decimal> _total_cpn_cnt;
+		
+		private System.Nullable<decimal> _total_disc_amt;
+		
+		private System.Nullable<decimal> _total_disc_cnt;
+		
+		private System.Nullable<decimal> _total_deposit_amt;
+		
+		private System.Nullable<decimal> _total_cashos_amt;
+		
+		private System.Nullable<decimal> _total_gs_amt;
+		
+		private System.Nullable<decimal> _total_gs_cnt;
+		
+		private System.Nullable<System.DateTime> _create_date;
+		
+		private string _create_by;
+		
+		private System.Nullable<System.DateTime> _last_chg_date;
+		
+		private string _last_chg_by;
+		
+		private string _source;
+		
+		private System.Nullable<decimal> _total_alcohol_amt;
+		
+		private System.Nullable<decimal> _total_alcohol_cnt;
+		
+		private System.Nullable<decimal> _total_beverage_amt;
+		
+		private System.Nullable<decimal> _total_beverage_cnt;
+		
+		private System.Nullable<decimal> _total_food_amt;
+		
+		private System.Nullable<decimal> _total_food_cnt;
+		
+		private System.Nullable<decimal> _total_giftcard_sales_amt;
+		
+		private System.Nullable<decimal> _total_giftcard_sales_cnt;
+		
+		private System.Nullable<decimal> _total_donations_amt;
+		
+		private System.Nullable<decimal> _total_donations_cnt;
+		
+		private System.Nullable<decimal> _total_food_exempt_amt;
+		
+		private System.Nullable<decimal> _total_food_exempt_cnt;
+		
+		private System.Nullable<decimal> _total_nontaxable_nf_amt;
+		
+		private System.Nullable<decimal> _total_nontaxable_nf_cnt;
+		
+		private EntitySet<deposit_dtl_fact> _deposit_dtl_facts;
+		
+		private EntityRef<restaurant_dim> _restaurant_dim;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onpos_fact_idChanging(int value);
+    partial void Onpos_fact_idChanged();
+    partial void Oncal_dateChanging(System.DateTime value);
+    partial void Oncal_dateChanged();
+    partial void OnRestaurant_noChanging(int value);
+    partial void OnRestaurant_noChanged();
+    partial void OnSystem_idChanging(int value);
+    partial void OnSystem_idChanged();
+    partial void Ontotal_net_sales_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_net_sales_amtChanged();
+    partial void Ontotal_net_sales_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_net_sales_cntChanged();
+    partial void Ontotal_nf_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_nf_amtChanged();
+    partial void Ontotal_nf_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_nf_cntChanged();
+    partial void Ontotal_voids_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_voids_amtChanged();
+    partial void Ontotal_voids_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_voids_cntChanged();
+    partial void Ontotal_free_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_free_amtChanged();
+    partial void Ontotal_free_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_free_cntChanged();
+    partial void Ontotal_cleared_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_cleared_amtChanged();
+    partial void Ontotal_cleared_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_cleared_cntChanged();
+    partial void Ontotal_paid_i_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_paid_i_amtChanged();
+    partial void Ontotal_paid_i_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_paid_i_cntChanged();
+    partial void Ontotal_paid_o_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_paid_o_amtChanged();
+    partial void Ontotal_paid_o_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_paid_o_cntChanged();
+    partial void Ontotal_centsoff_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_centsoff_amtChanged();
+    partial void Ontotal_centsoff_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_centsoff_cntChanged();
+    partial void Ontotal_nrsChanging(System.Nullable<decimal> value);
+    partial void Ontotal_nrsChanged();
+    partial void Ontotal_taxable_sales_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_taxable_sales_amtChanged();
+    partial void Ontotal_taxable_sales_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_taxable_sales_cntChanged();
+    partial void Ontotal_tax_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_tax_amtChanged();
+    partial void Ontotal_tax_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_tax_cntChanged();
+    partial void Ontotal_promo_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_promo_amtChanged();
+    partial void Ontotal_promo_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_promo_cntChanged();
+    partial void Ontotal_gftcrt_sls_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_gftcrt_sls_amtChanged();
+    partial void Ontotal_gftcrt_sls_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_gftcrt_sls_cntChanged();
+    partial void Ontotal_cpn_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_cpn_amtChanged();
+    partial void Ontotal_cpn_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_cpn_cntChanged();
+    partial void Ontotal_disc_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_disc_amtChanged();
+    partial void Ontotal_disc_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_disc_cntChanged();
+    partial void Ontotal_deposit_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_deposit_amtChanged();
+    partial void Ontotal_cashos_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_cashos_amtChanged();
+    partial void Ontotal_gs_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_gs_amtChanged();
+    partial void Ontotal_gs_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_gs_cntChanged();
+    partial void Oncreate_dateChanging(System.Nullable<System.DateTime> value);
+    partial void Oncreate_dateChanged();
+    partial void Oncreate_byChanging(string value);
+    partial void Oncreate_byChanged();
+    partial void Onlast_chg_dateChanging(System.Nullable<System.DateTime> value);
+    partial void Onlast_chg_dateChanged();
+    partial void Onlast_chg_byChanging(string value);
+    partial void Onlast_chg_byChanged();
+    partial void OnsourceChanging(string value);
+    partial void OnsourceChanged();
+    partial void Ontotal_alcohol_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_alcohol_amtChanged();
+    partial void Ontotal_alcohol_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_alcohol_cntChanged();
+    partial void Ontotal_beverage_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_beverage_amtChanged();
+    partial void Ontotal_beverage_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_beverage_cntChanged();
+    partial void Ontotal_food_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_food_amtChanged();
+    partial void Ontotal_food_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_food_cntChanged();
+    partial void Ontotal_giftcard_sales_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_giftcard_sales_amtChanged();
+    partial void Ontotal_giftcard_sales_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_giftcard_sales_cntChanged();
+    partial void Ontotal_donations_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_donations_amtChanged();
+    partial void Ontotal_donations_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_donations_cntChanged();
+    partial void Ontotal_food_exempt_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_food_exempt_amtChanged();
+    partial void Ontotal_food_exempt_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_food_exempt_cntChanged();
+    partial void Ontotal_nontaxable_nf_amtChanging(System.Nullable<decimal> value);
+    partial void Ontotal_nontaxable_nf_amtChanged();
+    partial void Ontotal_nontaxable_nf_cntChanging(System.Nullable<decimal> value);
+    partial void Ontotal_nontaxable_nf_cntChanged();
+    #endregion
+		
+		public pos_fact()
+		{
+			this._deposit_dtl_facts = new EntitySet<deposit_dtl_fact>(new Action<deposit_dtl_fact>(this.attach_deposit_dtl_facts), new Action<deposit_dtl_fact>(this.detach_deposit_dtl_facts));
+			this._restaurant_dim = default(EntityRef<restaurant_dim>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pos_fact_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int pos_fact_id
+		{
+			get
+			{
+				return this._pos_fact_id;
+			}
+			set
+			{
+				if ((this._pos_fact_id != value))
+				{
+					this.Onpos_fact_idChanging(value);
+					this.SendPropertyChanging();
+					this._pos_fact_id = value;
+					this.SendPropertyChanged("pos_fact_id");
+					this.Onpos_fact_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cal_date", DbType="DateTime NOT NULL", IsPrimaryKey=true)]
+		public System.DateTime cal_date
+		{
+			get
+			{
+				return this._cal_date;
+			}
+			set
+			{
+				if ((this._cal_date != value))
+				{
+					this.Oncal_dateChanging(value);
+					this.SendPropertyChanging();
+					this._cal_date = value;
+					this.SendPropertyChanged("cal_date");
+					this.Oncal_dateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Restaurant_no", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Restaurant_no
+		{
+			get
+			{
+				return this._Restaurant_no;
+			}
+			set
+			{
+				if ((this._Restaurant_no != value))
+				{
+					if (this._restaurant_dim.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRestaurant_noChanging(value);
+					this.SendPropertyChanging();
+					this._Restaurant_no = value;
+					this.SendPropertyChanged("Restaurant_no");
+					this.OnRestaurant_noChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_System_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int System_id
+		{
+			get
+			{
+				return this._System_id;
+			}
+			set
+			{
+				if ((this._System_id != value))
+				{
+					if (this._restaurant_dim.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSystem_idChanging(value);
+					this.SendPropertyChanging();
+					this._System_id = value;
+					this.SendPropertyChanged("System_id");
+					this.OnSystem_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_net_sales_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_net_sales_amt
+		{
+			get
+			{
+				return this._total_net_sales_amt;
+			}
+			set
+			{
+				if ((this._total_net_sales_amt != value))
+				{
+					this.Ontotal_net_sales_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_net_sales_amt = value;
+					this.SendPropertyChanged("total_net_sales_amt");
+					this.Ontotal_net_sales_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_net_sales_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_net_sales_cnt
+		{
+			get
+			{
+				return this._total_net_sales_cnt;
+			}
+			set
+			{
+				if ((this._total_net_sales_cnt != value))
+				{
+					this.Ontotal_net_sales_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_net_sales_cnt = value;
+					this.SendPropertyChanged("total_net_sales_cnt");
+					this.Ontotal_net_sales_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_nf_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_nf_amt
+		{
+			get
+			{
+				return this._total_nf_amt;
+			}
+			set
+			{
+				if ((this._total_nf_amt != value))
+				{
+					this.Ontotal_nf_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_nf_amt = value;
+					this.SendPropertyChanged("total_nf_amt");
+					this.Ontotal_nf_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_nf_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_nf_cnt
+		{
+			get
+			{
+				return this._total_nf_cnt;
+			}
+			set
+			{
+				if ((this._total_nf_cnt != value))
+				{
+					this.Ontotal_nf_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_nf_cnt = value;
+					this.SendPropertyChanged("total_nf_cnt");
+					this.Ontotal_nf_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_voids_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_voids_amt
+		{
+			get
+			{
+				return this._total_voids_amt;
+			}
+			set
+			{
+				if ((this._total_voids_amt != value))
+				{
+					this.Ontotal_voids_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_voids_amt = value;
+					this.SendPropertyChanged("total_voids_amt");
+					this.Ontotal_voids_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_voids_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_voids_cnt
+		{
+			get
+			{
+				return this._total_voids_cnt;
+			}
+			set
+			{
+				if ((this._total_voids_cnt != value))
+				{
+					this.Ontotal_voids_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_voids_cnt = value;
+					this.SendPropertyChanged("total_voids_cnt");
+					this.Ontotal_voids_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_free_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_free_amt
+		{
+			get
+			{
+				return this._total_free_amt;
+			}
+			set
+			{
+				if ((this._total_free_amt != value))
+				{
+					this.Ontotal_free_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_free_amt = value;
+					this.SendPropertyChanged("total_free_amt");
+					this.Ontotal_free_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_free_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_free_cnt
+		{
+			get
+			{
+				return this._total_free_cnt;
+			}
+			set
+			{
+				if ((this._total_free_cnt != value))
+				{
+					this.Ontotal_free_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_free_cnt = value;
+					this.SendPropertyChanged("total_free_cnt");
+					this.Ontotal_free_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_cleared_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_cleared_amt
+		{
+			get
+			{
+				return this._total_cleared_amt;
+			}
+			set
+			{
+				if ((this._total_cleared_amt != value))
+				{
+					this.Ontotal_cleared_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_cleared_amt = value;
+					this.SendPropertyChanged("total_cleared_amt");
+					this.Ontotal_cleared_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_cleared_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_cleared_cnt
+		{
+			get
+			{
+				return this._total_cleared_cnt;
+			}
+			set
+			{
+				if ((this._total_cleared_cnt != value))
+				{
+					this.Ontotal_cleared_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_cleared_cnt = value;
+					this.SendPropertyChanged("total_cleared_cnt");
+					this.Ontotal_cleared_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_paid_i_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_paid_i_amt
+		{
+			get
+			{
+				return this._total_paid_i_amt;
+			}
+			set
+			{
+				if ((this._total_paid_i_amt != value))
+				{
+					this.Ontotal_paid_i_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_paid_i_amt = value;
+					this.SendPropertyChanged("total_paid_i_amt");
+					this.Ontotal_paid_i_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_paid_i_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_paid_i_cnt
+		{
+			get
+			{
+				return this._total_paid_i_cnt;
+			}
+			set
+			{
+				if ((this._total_paid_i_cnt != value))
+				{
+					this.Ontotal_paid_i_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_paid_i_cnt = value;
+					this.SendPropertyChanged("total_paid_i_cnt");
+					this.Ontotal_paid_i_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_paid_o_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_paid_o_amt
+		{
+			get
+			{
+				return this._total_paid_o_amt;
+			}
+			set
+			{
+				if ((this._total_paid_o_amt != value))
+				{
+					this.Ontotal_paid_o_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_paid_o_amt = value;
+					this.SendPropertyChanged("total_paid_o_amt");
+					this.Ontotal_paid_o_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_paid_o_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_paid_o_cnt
+		{
+			get
+			{
+				return this._total_paid_o_cnt;
+			}
+			set
+			{
+				if ((this._total_paid_o_cnt != value))
+				{
+					this.Ontotal_paid_o_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_paid_o_cnt = value;
+					this.SendPropertyChanged("total_paid_o_cnt");
+					this.Ontotal_paid_o_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_centsoff_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_centsoff_amt
+		{
+			get
+			{
+				return this._total_centsoff_amt;
+			}
+			set
+			{
+				if ((this._total_centsoff_amt != value))
+				{
+					this.Ontotal_centsoff_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_centsoff_amt = value;
+					this.SendPropertyChanged("total_centsoff_amt");
+					this.Ontotal_centsoff_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_centsoff_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_centsoff_cnt
+		{
+			get
+			{
+				return this._total_centsoff_cnt;
+			}
+			set
+			{
+				if ((this._total_centsoff_cnt != value))
+				{
+					this.Ontotal_centsoff_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_centsoff_cnt = value;
+					this.SendPropertyChanged("total_centsoff_cnt");
+					this.Ontotal_centsoff_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_nrs", DbType="Decimal(15,0)")]
+		public System.Nullable<decimal> total_nrs
+		{
+			get
+			{
+				return this._total_nrs;
+			}
+			set
+			{
+				if ((this._total_nrs != value))
+				{
+					this.Ontotal_nrsChanging(value);
+					this.SendPropertyChanging();
+					this._total_nrs = value;
+					this.SendPropertyChanged("total_nrs");
+					this.Ontotal_nrsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_taxable_sales_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_taxable_sales_amt
+		{
+			get
+			{
+				return this._total_taxable_sales_amt;
+			}
+			set
+			{
+				if ((this._total_taxable_sales_amt != value))
+				{
+					this.Ontotal_taxable_sales_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_taxable_sales_amt = value;
+					this.SendPropertyChanged("total_taxable_sales_amt");
+					this.Ontotal_taxable_sales_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_taxable_sales_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_taxable_sales_cnt
+		{
+			get
+			{
+				return this._total_taxable_sales_cnt;
+			}
+			set
+			{
+				if ((this._total_taxable_sales_cnt != value))
+				{
+					this.Ontotal_taxable_sales_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_taxable_sales_cnt = value;
+					this.SendPropertyChanged("total_taxable_sales_cnt");
+					this.Ontotal_taxable_sales_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_tax_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_tax_amt
+		{
+			get
+			{
+				return this._total_tax_amt;
+			}
+			set
+			{
+				if ((this._total_tax_amt != value))
+				{
+					this.Ontotal_tax_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_tax_amt = value;
+					this.SendPropertyChanged("total_tax_amt");
+					this.Ontotal_tax_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_tax_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_tax_cnt
+		{
+			get
+			{
+				return this._total_tax_cnt;
+			}
+			set
+			{
+				if ((this._total_tax_cnt != value))
+				{
+					this.Ontotal_tax_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_tax_cnt = value;
+					this.SendPropertyChanged("total_tax_cnt");
+					this.Ontotal_tax_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_promo_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_promo_amt
+		{
+			get
+			{
+				return this._total_promo_amt;
+			}
+			set
+			{
+				if ((this._total_promo_amt != value))
+				{
+					this.Ontotal_promo_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_promo_amt = value;
+					this.SendPropertyChanged("total_promo_amt");
+					this.Ontotal_promo_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_promo_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_promo_cnt
+		{
+			get
+			{
+				return this._total_promo_cnt;
+			}
+			set
+			{
+				if ((this._total_promo_cnt != value))
+				{
+					this.Ontotal_promo_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_promo_cnt = value;
+					this.SendPropertyChanged("total_promo_cnt");
+					this.Ontotal_promo_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_gftcrt_sls_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_gftcrt_sls_amt
+		{
+			get
+			{
+				return this._total_gftcrt_sls_amt;
+			}
+			set
+			{
+				if ((this._total_gftcrt_sls_amt != value))
+				{
+					this.Ontotal_gftcrt_sls_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_gftcrt_sls_amt = value;
+					this.SendPropertyChanged("total_gftcrt_sls_amt");
+					this.Ontotal_gftcrt_sls_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_gftcrt_sls_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_gftcrt_sls_cnt
+		{
+			get
+			{
+				return this._total_gftcrt_sls_cnt;
+			}
+			set
+			{
+				if ((this._total_gftcrt_sls_cnt != value))
+				{
+					this.Ontotal_gftcrt_sls_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_gftcrt_sls_cnt = value;
+					this.SendPropertyChanged("total_gftcrt_sls_cnt");
+					this.Ontotal_gftcrt_sls_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_cpn_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_cpn_amt
+		{
+			get
+			{
+				return this._total_cpn_amt;
+			}
+			set
+			{
+				if ((this._total_cpn_amt != value))
+				{
+					this.Ontotal_cpn_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_cpn_amt = value;
+					this.SendPropertyChanged("total_cpn_amt");
+					this.Ontotal_cpn_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_cpn_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_cpn_cnt
+		{
+			get
+			{
+				return this._total_cpn_cnt;
+			}
+			set
+			{
+				if ((this._total_cpn_cnt != value))
+				{
+					this.Ontotal_cpn_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_cpn_cnt = value;
+					this.SendPropertyChanged("total_cpn_cnt");
+					this.Ontotal_cpn_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_disc_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_disc_amt
+		{
+			get
+			{
+				return this._total_disc_amt;
+			}
+			set
+			{
+				if ((this._total_disc_amt != value))
+				{
+					this.Ontotal_disc_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_disc_amt = value;
+					this.SendPropertyChanged("total_disc_amt");
+					this.Ontotal_disc_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_disc_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_disc_cnt
+		{
+			get
+			{
+				return this._total_disc_cnt;
+			}
+			set
+			{
+				if ((this._total_disc_cnt != value))
+				{
+					this.Ontotal_disc_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_disc_cnt = value;
+					this.SendPropertyChanged("total_disc_cnt");
+					this.Ontotal_disc_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_deposit_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_deposit_amt
+		{
+			get
+			{
+				return this._total_deposit_amt;
+			}
+			set
+			{
+				if ((this._total_deposit_amt != value))
+				{
+					this.Ontotal_deposit_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_deposit_amt = value;
+					this.SendPropertyChanged("total_deposit_amt");
+					this.Ontotal_deposit_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_cashos_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_cashos_amt
+		{
+			get
+			{
+				return this._total_cashos_amt;
+			}
+			set
+			{
+				if ((this._total_cashos_amt != value))
+				{
+					this.Ontotal_cashos_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_cashos_amt = value;
+					this.SendPropertyChanged("total_cashos_amt");
+					this.Ontotal_cashos_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_gs_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_gs_amt
+		{
+			get
+			{
+				return this._total_gs_amt;
+			}
+			set
+			{
+				if ((this._total_gs_amt != value))
+				{
+					this.Ontotal_gs_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_gs_amt = value;
+					this.SendPropertyChanged("total_gs_amt");
+					this.Ontotal_gs_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_gs_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_gs_cnt
+		{
+			get
+			{
+				return this._total_gs_cnt;
+			}
+			set
+			{
+				if ((this._total_gs_cnt != value))
+				{
+					this.Ontotal_gs_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_gs_cnt = value;
+					this.SendPropertyChanged("total_gs_cnt");
+					this.Ontotal_gs_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_create_date", DbType="DateTime")]
+		public System.Nullable<System.DateTime> create_date
+		{
+			get
+			{
+				return this._create_date;
+			}
+			set
+			{
+				if ((this._create_date != value))
+				{
+					this.Oncreate_dateChanging(value);
+					this.SendPropertyChanging();
+					this._create_date = value;
+					this.SendPropertyChanged("create_date");
+					this.Oncreate_dateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_create_by", DbType="VarChar(20)")]
+		public string create_by
+		{
+			get
+			{
+				return this._create_by;
+			}
+			set
+			{
+				if ((this._create_by != value))
+				{
+					this.Oncreate_byChanging(value);
+					this.SendPropertyChanging();
+					this._create_by = value;
+					this.SendPropertyChanged("create_by");
+					this.Oncreate_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_chg_date", DbType="DateTime")]
+		public System.Nullable<System.DateTime> last_chg_date
+		{
+			get
+			{
+				return this._last_chg_date;
+			}
+			set
+			{
+				if ((this._last_chg_date != value))
+				{
+					this.Onlast_chg_dateChanging(value);
+					this.SendPropertyChanging();
+					this._last_chg_date = value;
+					this.SendPropertyChanged("last_chg_date");
+					this.Onlast_chg_dateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_chg_by", DbType="VarChar(20)")]
+		public string last_chg_by
+		{
+			get
+			{
+				return this._last_chg_by;
+			}
+			set
+			{
+				if ((this._last_chg_by != value))
+				{
+					this.Onlast_chg_byChanging(value);
+					this.SendPropertyChanging();
+					this._last_chg_by = value;
+					this.SendPropertyChanged("last_chg_by");
+					this.Onlast_chg_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_source", DbType="VarChar(2)")]
+		public string source
+		{
+			get
+			{
+				return this._source;
+			}
+			set
+			{
+				if ((this._source != value))
+				{
+					this.OnsourceChanging(value);
+					this.SendPropertyChanging();
+					this._source = value;
+					this.SendPropertyChanged("source");
+					this.OnsourceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_alcohol_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_alcohol_amt
+		{
+			get
+			{
+				return this._total_alcohol_amt;
+			}
+			set
+			{
+				if ((this._total_alcohol_amt != value))
+				{
+					this.Ontotal_alcohol_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_alcohol_amt = value;
+					this.SendPropertyChanged("total_alcohol_amt");
+					this.Ontotal_alcohol_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_alcohol_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_alcohol_cnt
+		{
+			get
+			{
+				return this._total_alcohol_cnt;
+			}
+			set
+			{
+				if ((this._total_alcohol_cnt != value))
+				{
+					this.Ontotal_alcohol_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_alcohol_cnt = value;
+					this.SendPropertyChanged("total_alcohol_cnt");
+					this.Ontotal_alcohol_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_beverage_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_beverage_amt
+		{
+			get
+			{
+				return this._total_beverage_amt;
+			}
+			set
+			{
+				if ((this._total_beverage_amt != value))
+				{
+					this.Ontotal_beverage_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_beverage_amt = value;
+					this.SendPropertyChanged("total_beverage_amt");
+					this.Ontotal_beverage_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_beverage_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_beverage_cnt
+		{
+			get
+			{
+				return this._total_beverage_cnt;
+			}
+			set
+			{
+				if ((this._total_beverage_cnt != value))
+				{
+					this.Ontotal_beverage_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_beverage_cnt = value;
+					this.SendPropertyChanged("total_beverage_cnt");
+					this.Ontotal_beverage_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_food_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_food_amt
+		{
+			get
+			{
+				return this._total_food_amt;
+			}
+			set
+			{
+				if ((this._total_food_amt != value))
+				{
+					this.Ontotal_food_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_food_amt = value;
+					this.SendPropertyChanged("total_food_amt");
+					this.Ontotal_food_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_food_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_food_cnt
+		{
+			get
+			{
+				return this._total_food_cnt;
+			}
+			set
+			{
+				if ((this._total_food_cnt != value))
+				{
+					this.Ontotal_food_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_food_cnt = value;
+					this.SendPropertyChanged("total_food_cnt");
+					this.Ontotal_food_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_giftcard_sales_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_giftcard_sales_amt
+		{
+			get
+			{
+				return this._total_giftcard_sales_amt;
+			}
+			set
+			{
+				if ((this._total_giftcard_sales_amt != value))
+				{
+					this.Ontotal_giftcard_sales_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_giftcard_sales_amt = value;
+					this.SendPropertyChanged("total_giftcard_sales_amt");
+					this.Ontotal_giftcard_sales_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_giftcard_sales_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_giftcard_sales_cnt
+		{
+			get
+			{
+				return this._total_giftcard_sales_cnt;
+			}
+			set
+			{
+				if ((this._total_giftcard_sales_cnt != value))
+				{
+					this.Ontotal_giftcard_sales_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_giftcard_sales_cnt = value;
+					this.SendPropertyChanged("total_giftcard_sales_cnt");
+					this.Ontotal_giftcard_sales_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_donations_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_donations_amt
+		{
+			get
+			{
+				return this._total_donations_amt;
+			}
+			set
+			{
+				if ((this._total_donations_amt != value))
+				{
+					this.Ontotal_donations_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_donations_amt = value;
+					this.SendPropertyChanged("total_donations_amt");
+					this.Ontotal_donations_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_donations_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_donations_cnt
+		{
+			get
+			{
+				return this._total_donations_cnt;
+			}
+			set
+			{
+				if ((this._total_donations_cnt != value))
+				{
+					this.Ontotal_donations_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_donations_cnt = value;
+					this.SendPropertyChanged("total_donations_cnt");
+					this.Ontotal_donations_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_food_exempt_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_food_exempt_amt
+		{
+			get
+			{
+				return this._total_food_exempt_amt;
+			}
+			set
+			{
+				if ((this._total_food_exempt_amt != value))
+				{
+					this.Ontotal_food_exempt_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_food_exempt_amt = value;
+					this.SendPropertyChanged("total_food_exempt_amt");
+					this.Ontotal_food_exempt_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_food_exempt_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_food_exempt_cnt
+		{
+			get
+			{
+				return this._total_food_exempt_cnt;
+			}
+			set
+			{
+				if ((this._total_food_exempt_cnt != value))
+				{
+					this.Ontotal_food_exempt_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_food_exempt_cnt = value;
+					this.SendPropertyChanged("total_food_exempt_cnt");
+					this.Ontotal_food_exempt_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_nontaxable_nf_amt", DbType="Decimal(9,2)")]
+		public System.Nullable<decimal> total_nontaxable_nf_amt
+		{
+			get
+			{
+				return this._total_nontaxable_nf_amt;
+			}
+			set
+			{
+				if ((this._total_nontaxable_nf_amt != value))
+				{
+					this.Ontotal_nontaxable_nf_amtChanging(value);
+					this.SendPropertyChanging();
+					this._total_nontaxable_nf_amt = value;
+					this.SendPropertyChanged("total_nontaxable_nf_amt");
+					this.Ontotal_nontaxable_nf_amtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_nontaxable_nf_cnt", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> total_nontaxable_nf_cnt
+		{
+			get
+			{
+				return this._total_nontaxable_nf_cnt;
+			}
+			set
+			{
+				if ((this._total_nontaxable_nf_cnt != value))
+				{
+					this.Ontotal_nontaxable_nf_cntChanging(value);
+					this.SendPropertyChanging();
+					this._total_nontaxable_nf_cnt = value;
+					this.SendPropertyChanged("total_nontaxable_nf_cnt");
+					this.Ontotal_nontaxable_nf_cntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="pos_fact_deposit_dtl_fact", Storage="_deposit_dtl_facts", ThisKey="pos_fact_id,cal_date,Restaurant_no,System_id", OtherKey="POS_fact_id,Cal_Date,Restaurant_no,System_id")]
+		public EntitySet<deposit_dtl_fact> deposit_dtl_facts
+		{
+			get
+			{
+				return this._deposit_dtl_facts;
+			}
+			set
+			{
+				this._deposit_dtl_facts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="restaurant_dim_pos_fact", Storage="_restaurant_dim", ThisKey="Restaurant_no,System_id", OtherKey="restaurant_no,system_id", IsForeignKey=true)]
+		public restaurant_dim restaurant_dim
+		{
+			get
+			{
+				return this._restaurant_dim.Entity;
+			}
+			set
+			{
+				restaurant_dim previousValue = this._restaurant_dim.Entity;
+				if (((previousValue != value) 
+							|| (this._restaurant_dim.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._restaurant_dim.Entity = null;
+						previousValue.pos_facts.Remove(this);
+					}
+					this._restaurant_dim.Entity = value;
+					if ((value != null))
+					{
+						value.pos_facts.Add(this);
+						this._Restaurant_no = value.restaurant_no;
+						this._System_id = value.system_id;
+					}
+					else
+					{
+						this._Restaurant_no = default(int);
+						this._System_id = default(int);
+					}
+					this.SendPropertyChanged("restaurant_dim");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_deposit_dtl_facts(deposit_dtl_fact entity)
+		{
+			this.SendPropertyChanging();
+			entity.pos_fact = this;
+		}
+		
+		private void detach_deposit_dtl_facts(deposit_dtl_fact entity)
+		{
+			this.SendPropertyChanging();
+			entity.pos_fact = null;
 		}
 	}
 }

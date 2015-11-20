@@ -90,18 +90,7 @@ namespace TestOMatic2012.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\sql2012;Initial Catalog=INFO2000;Integrated Security=True")]
-        public string INFO2000ConnectionString1 {
-            get {
-                return ((string)(this["INFO2000ConnectionString1"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\SQL2012;Initial Catalog=DataAnalysis;Integrated Security=Tr" +
-            "ue")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=DataAnalysis;Integrated Security=True")]
         public string DataAnalysisConnectionString3 {
             get {
                 return ((string)(this["DataAnalysisConnectionString3"]));
@@ -111,8 +100,17 @@ namespace TestOMatic2012.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\sql2012;Initial Catalog=GiftCardProd;Integrated Security=Tr" +
-            "ue")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=INFO2000;Integrated Security=True")]
+        public string INFO2000ConnectionString1 {
+            get {
+                return ((string)(this["INFO2000ConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=GiftCardProd;Integrated Security=True")]
         public string GiftCardProdConnectionString {
             get {
                 return ((string)(this["GiftCardProdConnectionString"]));
@@ -122,7 +120,7 @@ namespace TestOMatic2012.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\SQL2012;Initial Catalog=TransHist;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=TransHist;Integrated Security=True")]
         public string TransHistConnectionString {
             get {
                 return ((string)(this["TransHistConnectionString"]));
@@ -132,8 +130,7 @@ namespace TestOMatic2012.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\sql2012;Initial Catalog=DataAnalysis;Integrated Security=Tr" +
-            "ue")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=DataAnalysis;Integrated Security=True")]
         public string DataAnalysisConnectionString4 {
             get {
                 return ((string)(this["DataAnalysisConnectionString4"]));
@@ -143,8 +140,7 @@ namespace TestOMatic2012.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\sql2012;Initial Catalog=HardeesRecipes;Integrated Security=" +
-            "True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=HardeesRecipes;Integrated Security=True")]
         public string HardeesRecipesConnectionString {
             get {
                 return ((string)(this["HardeesRecipesConnectionString"]));
@@ -154,8 +150,7 @@ namespace TestOMatic2012.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\sql2012;Initial Catalog=TimeFileAnalysis;Integrated Securit" +
-            "y=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=TimeFileAnalysis;Integrated Security=True")]
         public string TimeFileAnalysisConnectionString {
             get {
                 return ((string)(this["TimeFileAnalysisConnectionString"]));
@@ -165,11 +160,30 @@ namespace TestOMatic2012.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\sql2012;Initial Catalog=CkeTimePollData;Integrated Security" +
-            "=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=CkeTimePollData;Integrated Security=True")]
         public string CkeTimePollDataConnectionString {
             get {
                 return ((string)(this["CkeTimePollDataConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=HFSDB;Integrated Security=True")]
+        public string HFSDBConnectionString1 {
+            get {
+                return ((string)(this["HFSDBConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ANADEVSQL05;Initial Catalog=INFO2000_test;Integrated Security=True")]
+        public string INFO2000_testConnectionString {
+            get {
+                return ((string)(this["INFO2000_testConnectionString"]));
             }
         }
     }

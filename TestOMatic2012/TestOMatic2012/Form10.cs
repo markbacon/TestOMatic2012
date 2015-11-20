@@ -22,15 +22,15 @@ namespace TestOMatic2012 {
 
 			DirectoryInfo di = new DirectoryInfo(@"\\xdata1\remoteware\StoreArchive");
 
-			List<string> directoryList = GetDirectoryList();
+			//List<string> directoryList = GetDirectoryList();
 
 
-			foreach (string directoryName in directoryList) {
+			//foreach (string directoryName in directoryList) {
 
-				DirectoryInfo[] directories = di.GetDirectories(directoryName);
+				//DirectoryInfo[] directories = di.GetDirectories(directoryName);
 
 
-				//DirectoryInfo[] directories = di.GetDirectories("X155952");
+				DirectoryInfo[] directories = di.GetDirectories("X11*");
 
 
 				foreach (DirectoryInfo directory in directories) {
@@ -40,7 +40,7 @@ namespace TestOMatic2012 {
 
 					ProcessDirectory(directory);
 				}
-			}
+			//}
 
 			button1.Enabled = true;
 		}
@@ -100,17 +100,23 @@ namespace TestOMatic2012 {
 			//DirectoryInfo di = new DirectoryInfo(@"\\anadevbatch\prod\testing\ckenode");
 
 
-			List<string> directoryList = GetDirectoryList();
+			//List<string> directoryList = GetDirectoryList();
+			//List<string> directoryList = di.GetDirectories("X11*").Select(d => d.FullName).ToList();
 
 
-			foreach (string directoryName in directoryList) {
+			//foreach (string directoryName in directoryList) {
 
 
-				DirectoryInfo[] directories = di.GetDirectories(directoryName);
+			//DirectoryInfo[] directories = di.GetDirectories(directoryName);
+			DirectoryInfo[] directories = di.GetDirectories("X11*");
 
 				//DirectoryInfo[] directories = di.GetDirectories("X1*");
 
 				foreach (DirectoryInfo directory in directories) {
+
+					if (directory.Name == "X1100000") {
+						continue;
+					}
 
 					textBox1.Text += "Processing directory:  " + directory.Name + "\r\n";
 					Application.DoEvents();
@@ -121,12 +127,7 @@ namespace TestOMatic2012 {
 						Directory.CreateDirectory(targetDirectory);
 					}
 
-					FileInfo[] files = directory.GetFiles("0304Time.pol");
-
-					if (files.Length == 0) {
-						Logger.Write("Time.pol file not found for directory:  " + directory.Name);
-					}
-
+					FileInfo[] files = directory.GetFiles("*.pol");
 
 					foreach (FileInfo file in files) {
 
@@ -136,7 +137,18 @@ namespace TestOMatic2012 {
 
 						file.CopyTo(targetPath, true);
 					}
-				}
+					
+					files = directory.GetFiles("*.fin");
+
+					foreach (FileInfo file in files) {
+
+						string targetPath = Path.Combine(targetDirectory, file.Name);
+						textBox1.Text += "Copying file:  " + targetPath + "\r\n";
+						Application.DoEvents();
+
+						file.CopyTo(targetPath, true);
+					}
+					//}
 			}
 
 			button3.Enabled = true;
@@ -176,8 +188,18 @@ namespace TestOMatic2012 {
 				Directory.CreateDirectory(targetDirectory);
 			}
 
+			FileInfo[] files = directory.GetFiles("0901.zip");
+
+			foreach (FileInfo file in files) {
+
+				//int fileNum = Convert.ToInt32(Path.GetFileNameWithoutExtension(file.Name));
+
+				//if (fileNum >= 623) {
 
 
+				ProcessFile(file);
+				//}
+			}
 
 			//DirectoryInfo di = new DirectoryInfo(targetDirectory);
 
@@ -235,18 +257,18 @@ namespace TestOMatic2012 {
 
 
 
-			FileInfo[] files = directory.GetFiles("0707.zip");
+			//FileInfo[] files = directory.GetFiles("0901.zip");
 
-			foreach (FileInfo file in files) {
+			//foreach (FileInfo file in files) {
 
-				//int fileNum = Convert.ToInt32(Path.GetFileNameWithoutExtension(file.Name));
+			//	//int fileNum = Convert.ToInt32(Path.GetFileNameWithoutExtension(file.Name));
 
-				//if (fileNum >= 623) {
+			//	//if (fileNum >= 623) {
 
 
-					ProcessFile(file);
-				//}
-			}
+			//		ProcessFile(file);
+			//	//}
+			//}
 		}
 		//---------------------------------------------------------------------------------------------------------
 		private void ProcessFile(FileInfo file) {

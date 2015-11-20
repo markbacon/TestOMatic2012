@@ -707,6 +707,29 @@ namespace TestOMatic2012 {
 			}
 		}
 		//---------------------------------------------------------------------------------------------------------
+		private void ProcessDirectoryV(DirectoryInfo di) {
+
+			textBox1.Text += "Processing Directory: " + di.FullName + "\r\n";
+			Application.DoEvents();
+
+			string copyDirectoryName = @"mtier\saleslabor";
+			
+			FileInfo[] files = di.GetFiles("X11*paid.pol");
+
+			foreach (FileInfo file in files) {
+
+				string copyPath = Path.Combine(di.FullName, copyDirectoryName, file.Name);
+
+				if (!File.Exists(copyPath)) {
+
+					textBox1.Text += "Copying file: " + copyPath + "\r\n";
+					Application.DoEvents();
+
+					file.CopyTo(copyPath, true);
+				}
+			}
+		}
+		//---------------------------------------------------------------------------------------------------------
 		private void ProcessErrorEmail() {
 
 			DataAnalysisDataContext dataContext = new DataAnalysisDataContext();
@@ -752,18 +775,18 @@ namespace TestOMatic2012 {
 		private void ProcessCkeNodeirectory() {
 
 			//string filePath = "L:\\Ckenode";
-			//string filePath = @"C:\xdata1\cmsos2\ckenode";
-			string filePath = "C:\\Store Data\\x1500025";
+			string filePath = @"\\xdata1\cmsos2\ckenode";
+			//string filePath = "C:\\Store Data\\x1500025";
 
 
 			DirectoryInfo di = new DirectoryInfo(filePath);
 
-			DirectoryInfo[] directories = di.GetDirectories("09*");
+			DirectoryInfo[] directories = di.GetDirectories("x11*");
 
 			foreach (DirectoryInfo directory in directories) {
 
 
-				ProcessDirectoryIV(directory);
+				ProcessDirectoryV(directory);
 			}
 
 		}
@@ -1021,11 +1044,18 @@ namespace TestOMatic2012 {
 
 			button4.Enabled = false;
 
-			MenuConfigProcessor processor = new MenuConfigProcessor();
-			processor.Load("C:\\StarPos\\StarPosConfig\\MenuConfig.xml");
+			//MenuConfigProcessor processor = new MenuConfigProcessor();
+			//processor.Load("C:\\StarPos\\StarPosConfig\\MenuConfig.xml");
 
+			string foo = "foo.bat";
 
+			string dirName = Path.GetDirectoryName(foo);
 
+			bool fooby = string.IsNullOrEmpty(dirName);
+
+			Console.WriteLine("Hi Fred!");
+
+			//ProcessCkeNodeirectory();
 
 			//string foo = @"C:\BackOffice\CKE\NextGenFileGenerator\NextGenFileGenerator.exe /BusinessDate=!BUSINESS_DATE /ReportType=MixDestPoll";
 

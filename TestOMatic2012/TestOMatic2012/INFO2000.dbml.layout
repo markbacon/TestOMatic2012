@@ -57,5 +57,25 @@
         <elementListCompartment Id="6462dec2-a865-4cf2-829a-148cc34b778e" absoluteBounds="9.39, 17.085, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="f348adff-b502-40cd-860e-8ec9abac4af8" absoluteBounds="8, 4, 2, 11.578269856770833">
+      <DataClassMoniker Name="/INFO2000DataContext/pos_fact" />
+      <nestedChildShapes>
+        <elementListCompartment Id="26282f34-31d3-4beb-ac6a-a9e3442dcfb6" absoluteBounds="8.015, 4.46, 1.9700000000000002, 11.018269856770832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9 : 4); (9 : 3.2901025390625); (6.375 : 3.2901025390625); (6.375 : 1.625); (3.25 : 1.625); (3.25 : 2.51163041796875); (2.875 : 2.51163041796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/INFO2000DataContext/pos_fact/pos_fact_deposit_dtl_fact" />
+      <nodes>
+        <classShapeMoniker Id="f348adff-b502-40cd-860e-8ec9abac4af8" />
+        <classShapeMoniker Id="03c5df47-451d-498b-bfc4-a4677f8158c3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.5 : 16.0688297526042); (7.5 : 16.3188297526042); (9 : 16.3188297526042); (9 : 15.5782698567708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/INFO2000DataContext/restaurant_dim/restaurant_dim_pos_fact" />
+      <nodes>
+        <classShapeMoniker Id="4f89ade8-3691-4219-90e2-c2579736d3dc" />
+        <classShapeMoniker Id="f348adff-b502-40cd-860e-8ec9abac4af8" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
