@@ -21,38 +21,14 @@ namespace TestOMatic2012 {
 
 			button2.Enabled = false;
 
-			ProcessCkeNodeirectoryX();
+			ProcessCkeNodeirectory();
 
 			button2.Enabled = true;
 		}
 		//---------------------------------------------------------------------------------------------------------
-		private List<string> GetStarPosUnitList() {
-
-			//List<string> starPosUnitList = new List<string>();
-
-			//starPosUnitList.Add("X1100104");
-			//starPosUnitList.Add("X1100106");
-			//starPosUnitList.Add("X1100132");
-			//starPosUnitList.Add("X1100194");
-			//starPosUnitList.Add("X1100140");
-			//starPosUnitList.Add("X1100280");
-
-
-			//return starPosUnitList;
-
-			INFO2000Data data = new INFO2000Data();
-			return data.GetCarlsStarPosUnitList();
-
-
-		}
-		//---------------------------------------------------------------------------------------------------------
 		private void ProcessCkeNodeirectory() {
 
-			List<string> starPosUnitList = GetStarPosUnitList();
-
-			string filePath = @"\\xdata1\cmsos2\ckenode\";
-
-
+			string filePath = "L:\\Ckenode";
 
 
 			DirectoryInfo di = new DirectoryInfo(filePath);
@@ -62,60 +38,12 @@ namespace TestOMatic2012 {
 			foreach (DirectoryInfo directory in directories) {
 
 				textBox1.Text += "Processing Directory:  " + directory.Name + "\r\n";
-				
-				//ProcessDirectory(directory);
 
-				//////if (String.Compare(directory.Name, "X1501610") > 0) {
-				//if (starPosUnitList.Contains(directory.Name)) {
+				//if (String.Compare(directory.Name, "X1501610") > 0) {
 
-					ProcessDirectoryHardees(directory);
-				//}
-				//else {
-				//	ProcessDirectory(directory);
-				//}
-
-
+					ProcessDirectory(directory);
 				//}
 			}
-
-		}
-		//---------------------------------------------------------------------------------------------------------
-		private void ProcessCkeNodeirectoryX() {
-
-			List<string> starPosUnitList = GetStarPosUnitList();
-
-			//string filePath = @"\\xdata1\cmsos2\ckenode\";
-			string filePath = @"D:\xdata1\cmsos2\ckenode\";
-			
-			DirectoryInfo di = new DirectoryInfo(filePath);
-
-
-
-
-			DirectoryInfo[] directories = di.GetDirectories("X15*");
-
-			foreach (DirectoryInfo directory in directories) {
-
-				textBox1.Text += "Processing Directory:  " + directory.Name + "\r\n";
-
-				//if (starPosUnitList.Contains(directory.Name)) {
-					ProcessDirectoryHardees(directory);
-				//}
-				//else {
-					//ProcessDirectory(directory);
-				//}
-			}
-			//foreach (string starPosUnit in starPosUnitList) {
-
-			//	DirectoryInfo[] directories = di.GetDirectories(starPosUnit);
-
-			//	foreach (DirectoryInfo directory in directories) {
-
-			//		textBox1.Text += "Processing Directory:  " + directory.Name + "\r\n";
-
-			//		ProcessDirectoryHardees(directory);
-			//	}
-			//}
 
 		}
 		//---------------------------------------------------------------------------------------------------------
@@ -137,214 +65,14 @@ namespace TestOMatic2012 {
 				string copyPath = copyDirectory + "\\" + file.Name;
 
 				//if (!File.Exists(copyPath)) {
-				textBox1.Text += "Copying file: " + copyPath + "\r\n";
-				Application.DoEvents();
-
-				//file.CopyTo(copyPath, true);
-
-				if (file.Name.IndexOf(".fin", StringComparison.InvariantCultureIgnoreCase) > -1
-					|| file.Name.IndexOf(".pol", StringComparison.InvariantCultureIgnoreCase) > -1
-					|| file.Name.IndexOf(".fcp", StringComparison.InvariantCultureIgnoreCase) > -1) {
-
-					//string mtierDirectory = copyDirectory + "\\mtier\\SalesLabor";
-					string mtierDirectory = copyDirectory + "\\mtier";
-
-					if (!Directory.Exists(mtierDirectory)) {
-						Directory.CreateDirectory(mtierDirectory);
-					}
-
-					string mtierPath = mtierDirectory + "\\" + file.Name;
-					file.CopyTo(mtierPath, true);
-
-					if (file.Name.IndexOf("wktime.pol", StringComparison.InvariantCultureIgnoreCase) > -1) {
-
-						string timeDirectory = copyDirectory + "\\Time";
-
-						if (!Directory.Exists(timeDirectory)) {
-							Directory.CreateDirectory(timeDirectory);
-						}
-
-
-
-						file.CopyTo(Path.Combine(timeDirectory, file.Name), true);
-
-					}
-
-
-
-				}
-			}
-			//}
-		}
-		//---------------------------------------------------------------------------------------------------------
-		private void ProcessDirectoryX(DirectoryInfo di) {
-
-			textBox1.Text += "Processing Directory: " + di.FullName + "\r\n";
-			Application.DoEvents();
-
-			FileInfo[] files = di.GetFiles("X15*.pol");
-
-			foreach (FileInfo file in files) {
-
-				string copyPath = Path.Combine(di.FullName, "mtier\\saleslabor");
-
-				if (!Directory.Exists(copyPath)) {
-					Directory.CreateDirectory(copyPath);
-				}
-
-				copyPath = Path.Combine(copyPath, file.Name);
-
-				//if (!File.Exists(copyPath)) {
-				textBox1.Text += "Copying file: " + copyPath + "\r\n";
-				Application.DoEvents();
-
-				file.CopyTo(copyPath, true);
-			}
-
-			files = di.GetFiles("X15*.fin");
-
-			foreach (FileInfo file in files) {
-
-				string copyPath = Path.Combine(di.FullName, "mtier\\saleslabor");
-
-				if (!Directory.Exists(copyPath)) {
-					Directory.CreateDirectory(copyPath);
-				}
-
-				copyPath = Path.Combine(copyPath, file.Name);
-
-				//if (!File.Exists(copyPath)) {
-				textBox1.Text += "Copying file: " + copyPath + "\r\n";
-				Application.DoEvents();
-
-				file.CopyTo(copyPath, true);
-			}
-
-
-			//files = di.GetFiles("????Mix.pol");
-
-			//foreach (FileInfo file in files) {
-
-			//	string copyPath = Path.Combine(di.FullName, "mtier");
-
-			//	if (!Directory.Exists(copyPath)) {
-			//		Directory.CreateDirectory(copyPath);
-			//	}
-
-			//	copyPath = Path.Combine(copyPath, file.Name);
-
-			//	//if (!File.Exists(copyPath)) {
-			//	textBox1.Text += "Copying file: " + copyPath + "\r\n";
-			//	Application.DoEvents();
-
-			//	file.CopyTo(copyPath, true);
-			//}
-
-			//files = di.GetFiles("PD*.fin");
-
-			//foreach (FileInfo file in files) {
-
-			//	string copyPath = Path.Combine(di.FullName, "mtier");
-
-			//	if (!Directory.Exists(copyPath)) {
-			//		Directory.CreateDirectory(copyPath);
-			//	}
-
-			//	copyPath = Path.Combine(copyPath, file.Name);
-
-			//	//if (!File.Exists(copyPath)) {
-			//	textBox1.Text += "Copying file: " + copyPath + "\r\n";
-			//	Application.DoEvents();
-
-			//	file.CopyTo(copyPath, true);
-			//}
-
-
-			//files = di.GetFiles("????wktime.pol");
-
-			//foreach (FileInfo file in files) {
-
-			//	string copyPath = Path.Combine(di.FullName, "mtier");
-
-			//	if (!Directory.Exists(copyPath)) {
-			//		Directory.CreateDirectory(copyPath);
-			//	}
-
-			//	copyPath = Path.Combine(copyPath, file.Name);
-
-			//	//if (!File.Exists(copyPath)) {
-			//	textBox1.Text += "Copying file: " + copyPath + "\r\n";
-			//	Application.DoEvents();
-
-			//	file.CopyTo(copyPath, true);
-			//}
-
-
-			files = di.GetFiles("*.fcp");
-
-			foreach (FileInfo file in files) {
-
-				string copyPath = Path.Combine(di.FullName, "mtier");
-
-				if (!Directory.Exists(copyPath)) {
-					Directory.CreateDirectory(copyPath);
-				}
-
-				copyPath = Path.Combine(copyPath, file.Name);
-
-				//if (!File.Exists(copyPath)) {
-				textBox1.Text += "Copying file: " + copyPath + "\r\n";
-				Application.DoEvents();
-
-				file.CopyTo(copyPath, true);
-			}
-
-
-		
-		
-		}
-		//---------------------------------------------------------------------------------------------------------
-		private void ProcessDirectoryHardees(DirectoryInfo di) {
-
-			textBox1.Text += "Processing Directory: " + di.FullName + "\r\n";
-			Application.DoEvents();
-
-			string copyDirectory = @"D:\xdata1\cmsos2\ckenode\" + di.Name;
-
-			if (!Directory.Exists(copyDirectory)) {
-				Directory.CreateDirectory(copyDirectory);
-			}
-
-			FileInfo[] files = di.GetFiles("*");
-
-			foreach (FileInfo file in files) {
-
-				string copyPath = copyDirectory + "\\" + file.Name;
-
-				//if (!File.Exists(copyPath)) {
-
-				//file.CopyTo(copyPath, true);
-
-				if (file.Name.IndexOf(".fin", StringComparison.InvariantCultureIgnoreCase) > -1
-					|| file.Name.IndexOf(".pol", StringComparison.InvariantCultureIgnoreCase) > -1) {
-
 					textBox1.Text += "Copying file: " + copyPath + "\r\n";
 					Application.DoEvents();
 
+					file.CopyTo(copyPath, true);
 
-					string mtierDirectory = copyDirectory + "\\mtier\\SalesLabor";
+					if (file.Name.IndexOf(".fin",StringComparison.InvariantCultureIgnoreCase) > -1 || file.Name.IndexOf(".pol") > -1) {
 
-					if (!Directory.Exists(mtierDirectory)) {
-						Directory.CreateDirectory(mtierDirectory);
-					}
-
-					string mtierPath = mtierDirectory + "\\" + file.Name;
-					file.CopyTo(mtierPath, true);
-				}
-
-					if (file.Name.IndexOf(".fcp", StringComparison.InvariantCultureIgnoreCase) > -1) {
-	
-						string mtierDirectory = copyDirectory + "\\mtier";
+						string mtierDirectory = copyDirectory + "\\mtier\\SalesLabor";
 
 						if (!Directory.Exists(mtierDirectory)) {
 							Directory.CreateDirectory(mtierDirectory);
@@ -353,8 +81,8 @@ namespace TestOMatic2012 {
 						string mtierPath = mtierDirectory + "\\" + file.Name;
 						file.CopyTo(mtierPath, true);
 					}
-				}
-			//}
+				//}
+			}
 		}
 		//---------------------------------------------------------------------------------------------------------
 		private void ProcessDirectoryII(DirectoryInfo di) {

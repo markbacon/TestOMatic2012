@@ -61,41 +61,6 @@ namespace TestOMatic2012 {
 			button1.Enabled = true;
 		}
 		//---------------------------------------------------------------------------------------------------
-		private void button2_Click(object sender, EventArgs e) {
-
-			button2.Enabled = false;
-
-
-			string sql = @"SELECT Ir_unit_number
-							FROM [INFO2000].[dbo].[IR_Paid_In_Out]
-							WHERE IR_Sales_Date = '2015-07-27'
-							AND process_flag <> 'Y'
-							GROUP BY IR_Unit_Number";
-
-
-			DataAccess dac = new DataAccess(AppSettings.INFO2000ConnectionStringProd);
-
-			DataTable dt = dac.ExecuteQuery(sql);
-
-			foreach (DataRow dr in dt.Rows) {
-
-				sql = "EXEC usp_i_paid_in_out_load_hfs_carls 2, ";
-				sql += dr["IR_UNIT_NUMBER"].ToString();
-				sql += ", '";
-				sql += dr["IR_UNIT_NUMBER"].ToString();
-				sql += "', '2015-07-27'";
-
-				dac.ExecuteActionQuery(sql);
-
-			}
-
-
-
-
-
-			button2.Enabled = true;
-		}
-		//---------------------------------------------------------------------------------------------------
 		private void ProcessFileDirectory(DirectoryInfo di) {
 
 			FileInfo[] files = di.GetFiles("2014*.xml");
@@ -189,5 +154,6 @@ namespace TestOMatic2012 {
 				sw.WriteLine(sb.ToString());
 			}
 		}
+
 	}
 }

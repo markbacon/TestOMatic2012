@@ -69,47 +69,6 @@ namespace TestOMatic2012 {
 			button1.Enabled = true;
 		}
 		//---------------------------------------------------------------------------------------------------
-		private void button2_Click(object sender, EventArgs e) {
-
-			button2.Enabled = false;
-
-			string dirName = @"\\ckecldfnp02\HFSCO_RO";
-			//string dirName = @"\\ckecldfnp02\CJRCO_RO";
-
-			string destDirName = "D:\\Tlogs";
-
-			DirectoryInfo di = new DirectoryInfo(dirName);
-
-			//DirectoryInfo[] directories = di.GetDirectories("X11*");
-			DirectoryInfo[] directories = di.GetDirectories("X15*");
-
-			foreach (DirectoryInfo directory in directories) {
-
-				DirectoryInfo srcDirInfo = directory.GetDirectories("20150928").FirstOrDefault();
-
-				if (srcDirInfo != null) {
-
-					FileInfo[] files = srcDirInfo.GetFiles("*TransHist.xml");
-
-					foreach (FileInfo file in files) {
-
-						string destDirPath = Path.Combine(destDirName, directory.Name);
-
-						if (!Directory.Exists(destDirPath)) {
-							Directory.CreateDirectory(destDirPath);
-						}
-
-						destDirPath = Path.Combine(destDirPath, file.Name);
-						Logger.Write( "Copying file: " + destDirPath);
-						
-						file.CopyTo(destDirPath, true);
-					}
-				}
-			}
-
-			button2.Enabled = true;
-		}
-		//---------------------------------------------------------------------------------------------------
 		private void CopyTLogFileFromHFSCO_RO(DirectoryInfo localTLogUnitDirectory, DateTime businessDate, string fileName) {
 
 			DirectoryInfo di = new DirectoryInfo(@"\\ckeanafnp01\HFSCO_RO\" + localTLogUnitDirectory.Name + "\\" + businessDate.ToString("yyyyMMdd"));

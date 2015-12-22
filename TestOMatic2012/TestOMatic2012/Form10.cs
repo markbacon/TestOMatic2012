@@ -22,15 +22,15 @@ namespace TestOMatic2012 {
 
 			DirectoryInfo di = new DirectoryInfo(@"\\xdata1\remoteware\StoreArchive");
 
-			//List<string> directoryList = GetDirectoryList();
+			List<string> directoryList = GetDirectoryList();
 
 
-			//foreach (string directoryName in directoryList) {
+			foreach (string directoryName in directoryList) {
 
-				//DirectoryInfo[] directories = di.GetDirectories(directoryName);
+				DirectoryInfo[] directories = di.GetDirectories(directoryName);
 
 
-				DirectoryInfo[] directories = di.GetDirectories("X11*");
+				//DirectoryInfo[] directories = di.GetDirectories("X1*");
 
 
 				foreach (DirectoryInfo directory in directories) {
@@ -40,7 +40,7 @@ namespace TestOMatic2012 {
 
 					ProcessDirectory(directory);
 				}
-			//}
+			}
 
 			button1.Enabled = true;
 		}
@@ -100,34 +100,33 @@ namespace TestOMatic2012 {
 			//DirectoryInfo di = new DirectoryInfo(@"\\anadevbatch\prod\testing\ckenode");
 
 
-			//List<string> directoryList = GetDirectoryList();
-			//List<string> directoryList = di.GetDirectories("X11*").Select(d => d.FullName).ToList();
+			List<string> directoryList = GetDirectoryList();
 
 
-			//foreach (string directoryName in directoryList) {
+			foreach (string directoryName in directoryList) {
 
 
-			//DirectoryInfo[] directories = di.GetDirectories(directoryName);
-			DirectoryInfo[] directories = di.GetDirectories("X11*");
+				DirectoryInfo[] directories = di.GetDirectories(directoryName);
 
 				//DirectoryInfo[] directories = di.GetDirectories("X1*");
 
 				foreach (DirectoryInfo directory in directories) {
 
-					if (directory.Name == "X1100000") {
-						continue;
-					}
-
 					textBox1.Text += "Processing directory:  " + directory.Name + "\r\n";
 					Application.DoEvents();
 
-					string targetDirectory = Path.Combine("D:\\xdata1\\cmsos2\\ckenode", directory.Name);
+					string targetDirectory = Path.Combine("C:\\xdata1\\cmsos2\\ckenode", directory.Name);
 
 					if (!Directory.Exists(targetDirectory)) {
 						Directory.CreateDirectory(targetDirectory);
 					}
 
-					FileInfo[] files = directory.GetFiles("*.pol");
+					FileInfo[] files = directory.GetFiles("0309Time.pol");
+
+					if (files.Length == 0) {
+						Logger.WriteError("Time.pol file not found for directory:  " + directory.Name);
+					}
+
 
 					foreach (FileInfo file in files) {
 
@@ -137,18 +136,7 @@ namespace TestOMatic2012 {
 
 						file.CopyTo(targetPath, true);
 					}
-					
-					files = directory.GetFiles("*.fin");
-
-					foreach (FileInfo file in files) {
-
-						string targetPath = Path.Combine(targetDirectory, file.Name);
-						textBox1.Text += "Copying file:  " + targetPath + "\r\n";
-						Application.DoEvents();
-
-						file.CopyTo(targetPath, true);
-					}
-					//}
+				}
 			}
 
 			button3.Enabled = true;
@@ -181,94 +169,12 @@ namespace TestOMatic2012 {
 			textBox1.Text += "Processing directory:  " + directory.Name + "\r\n";
 			Application.DoEvents();
 
-
-			string targetDirectory = @"D:\xdata1\cmsos2\ckenode\" + directory.Name; // +"\\mtier\\SalesLabor";
-
-			if (!Directory.Exists(targetDirectory)) {
-				Directory.CreateDirectory(targetDirectory);
-			}
-
-			FileInfo[] files = directory.GetFiles("0901.zip");
+			FileInfo[] files = directory.GetFiles("0303.zip");
 
 			foreach (FileInfo file in files) {
 
-				//int fileNum = Convert.ToInt32(Path.GetFileNameWithoutExtension(file.Name));
-
-				//if (fileNum >= 623) {
-
-
 				ProcessFile(file);
-				//}
 			}
-
-			//DirectoryInfo di = new DirectoryInfo(targetDirectory);
-
-			//targetDirectory = Path.Combine(targetDirectory, "Mtier");
-
-			//if (!Directory.Exists(targetDirectory)) {
-			//	Directory.CreateDirectory(targetDirectory);
-			//}
-
-
-			//FileInfo[] files = di.GetFiles("*.fcp");
-
-			//foreach (FileInfo efile in files) {
-
-			//	string targetPath = Path.Combine(targetDirectory, efile.Name);
-			//	efile.CopyTo(targetPath, true);
-			//}
-
-
-
-			////targetDirectory = Path.Combine(targetDirectory, "Mtier\\SalesLabor");
-
-			//targetDirectory = Path.Combine(targetDirectory, "SalesLabor");
-
-			//if (!Directory.Exists(targetDirectory)) {
-			//	Directory.CreateDirectory(targetDirectory);
-			//}
-
-
-			//if (!Directory.Exists(targetDirectory)) {
-			//	Directory.CreateDirectory(targetDirectory);
-			//}
-
-			//files = di.GetFiles("*.fin");
-
-			//foreach (FileInfo efile in files) {
-
-			//	string targetPath = Path.Combine(targetDirectory, efile.Name);
-			//	efile.CopyTo(targetPath, true);
-			//}
-
-
-			//files = di.GetFiles("*.pol");
-
-			//foreach (FileInfo efile in files) {
-
-			//	string targetPath = Path.Combine(targetDirectory, efile.Name);
-			//	efile.CopyTo(targetPath, true);
-			//}
-
-
-
-
-
-
-
-
-			//FileInfo[] files = directory.GetFiles("0901.zip");
-
-			//foreach (FileInfo file in files) {
-
-			//	//int fileNum = Convert.ToInt32(Path.GetFileNameWithoutExtension(file.Name));
-
-			//	//if (fileNum >= 623) {
-
-
-			//		ProcessFile(file);
-			//	//}
-			//}
 		}
 		//---------------------------------------------------------------------------------------------------------
 		private void ProcessFile(FileInfo file) {
@@ -289,37 +195,14 @@ namespace TestOMatic2012 {
 
 				//DirectoryInfo di = new DirectoryInfo(targetDirectory);
 
+				////targetDirectory = Path.Combine(targetDirectory, "Mtier\\SalesLabor");
 				//targetDirectory = Path.Combine(targetDirectory, "Mtier");
 
 				//if (!Directory.Exists(targetDirectory)) {
 				//	Directory.CreateDirectory(targetDirectory);
 				//}
 
-
-				//FileInfo[] files = di.GetFiles("*.fcp");
-
-				//foreach (FileInfo efile in files) {
-
-				//	string targetPath = Path.Combine(targetDirectory, efile.Name);
-				//	efile.CopyTo(targetPath, true);
-				//}
-
-
-
-				////targetDirectory = Path.Combine(targetDirectory, "Mtier\\SalesLabor");
-
-				//targetDirectory = Path.Combine(targetDirectory, "SalesLabor");
-
-				//if (!Directory.Exists(targetDirectory)) {
-				//	Directory.CreateDirectory(targetDirectory);
-				//}
-
-
-				//if (!Directory.Exists(targetDirectory)) {
-				//	Directory.CreateDirectory(targetDirectory);
-				//}
-
-				//files = di.GetFiles("*.fin");
+				//FileInfo[] files = di.GetFiles("*.fin");
 
 				//foreach (FileInfo efile in files) {
 
@@ -337,6 +220,13 @@ namespace TestOMatic2012 {
 				//}
 
 
+				//files = di.GetFiles("*.fcp");
+
+				//foreach (FileInfo efile in files) {
+
+				//	string targetPath = Path.Combine(targetDirectory, efile.Name);
+				//	efile.CopyTo(targetPath, true);
+				//}
 			}
 		}
 
@@ -356,7 +246,7 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------
 		private List<string>	GetDirectoryList() {
 
-			string filePath = @"C:\TestData\CarlsJuly13DivestedUnits.txt";
+			string filePath = @"C:\TestData\DivestedPayroll\CarlsSacramentoDivestiture.txt";
 
 
 			List<string> directoryList = new List<string>();

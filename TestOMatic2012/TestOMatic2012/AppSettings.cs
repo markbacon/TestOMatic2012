@@ -16,24 +16,10 @@ namespace TestOMatic2012 {
 			}
 		}
 		//---------------------------------------------------------------------------------------------------
-		public static string CkeTimePollDataConnectionString {
-
-			get {
-				return ConfigurationManager.ConnectionStrings["CkeTimePollDataConnectionString"].ConnectionString;
-			}
-		}
-		//---------------------------------------------------------------------------------------------------
 		public static string DataAnalysisConnectionString {
 
 			get {
 				return ConfigurationManager.ConnectionStrings["DataAnalysisConnectionString"].ConnectionString;
-			}
-		}
-		//---------------------------------------------------------------------------------------------------
-		public static string HardeesTransactionDataConnectionString {
-
-			get {
-				return ConfigurationManager.ConnectionStrings["HardeesTransactionDataConnectionString"].ConnectionString;
 			}
 		}
 		//---------------------------------------------------------------------------------------------------
@@ -58,13 +44,6 @@ namespace TestOMatic2012 {
 			}
 		}
 		//---------------------------------------------------------------------------------------------------
-		public static string INFO2000_testConnectionString {
-
-			get {
-				return ConfigurationManager.ConnectionStrings["TestOMatic2012.Properties.Settings.INFO2000_testConnectionString"].ConnectionString;
-			}
-		}
-		//---------------------------------------------------------------------------------------------------
 		public static string IRISConnectionString {
 
 			get {
@@ -76,13 +55,6 @@ namespace TestOMatic2012 {
 
 			get {
 				return ConfigurationManager.AppSettings["LocalLaborHfsDirectory"];
-			}
-		}
-		//---------------------------------------------------------------------------------------------------
-		public static string PCNConnectionString {
-
-			get {
-				return ConfigurationManager.ConnectionStrings["PCNConnectionString"].ConnectionString;
 			}
 		}
 		//---------------------------------------------------------------------------------------------------

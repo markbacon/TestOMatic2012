@@ -31,8 +31,7 @@ namespace TestOMatic2012 {
 
 				textBox1.Text += "Processing Directory:  " + directory.Name + "\r\n";
 
-				//string mtierPath = Path.Combine(directory.FullName, "mtier\\SalesLabor");
-				string mtierPath = Path.Combine(directory.FullName, "mtier");
+				string mtierPath = Path.Combine(directory.FullName, "mtier\\SalesLabor");
 
 				DirectoryInfo mtierDirectory = new DirectoryInfo(mtierPath);
 
