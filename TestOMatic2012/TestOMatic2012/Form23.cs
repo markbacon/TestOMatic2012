@@ -69,5 +69,31 @@ namespace TestOMatic2012 {
 
 		}
 
+		private void button1_Click(object sender, EventArgs e) {
+			
+			button1.Enabled = false;
+
+			string dirPath = @"C:\Projects\FTPUnits\FTPUnits\bin\Debug\Xpient\Wednesday";
+
+			DirectoryInfo di = new DirectoryInfo(dirPath);
+
+			FileInfo[] files = di.GetFiles("*.zip.zip");
+
+			foreach (FileInfo file in files) {
+
+				string destFilePath = Path.Combine(file.Directory.FullName, Path.GetFileNameWithoutExtension(file.FullName));
+
+				file.CopyTo(destFilePath, true);
+				file.Delete();
+
+			}
+
+
+
+			button1.Enabled = true;
+			
+
+		}
+
 	}
 }

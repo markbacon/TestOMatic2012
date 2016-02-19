@@ -109,5 +109,66 @@ namespace TestOMatic2012 {
 
 			button3.Enabled = true;
 		}
+
+		private void button4_Click(object sender, EventArgs e) {
+
+			button4.Enabled = false;
+
+			string fileDirectory = "D:\\xdata1\\cmsos2\\ckenode";
+
+			DirectoryInfo di = new DirectoryInfo(fileDirectory);
+
+			DirectoryInfo[] directories = di.GetDirectories("X11*");
+
+			foreach (DirectoryInfo directory in directories) {
+
+				string srcPath = Path.Combine(@"\\xdata1\cmsos2\ckenode" , directory.Name);
+
+				DirectoryInfo srcDirectory = new DirectoryInfo(srcPath);
+
+				FileInfo[] files = srcDirectory.GetFiles("*.pol");
+
+				foreach (FileInfo file in files) {
+					string destPath = Path.Combine(directory.FullName, file.Name);
+					file.CopyTo(destPath, true);
+				}
+
+				files = srcDirectory.GetFiles("*.fin");
+
+				foreach (FileInfo file in files) {
+					string destPath = Path.Combine(directory.FullName, file.Name);
+					file.CopyTo(destPath, true);
+				}
+	
+			}
+
+			button4.Enabled = false;
+		}
+
+		private void button5_Click(object sender, EventArgs e) {
+
+			button5.Enabled = false;
+
+			INFO2000DataContext dataContext = new INFO2000DataContext();
+
+			List<FranchiseRestaurant> frList = dataContext.FranchiseRestaurants.ToList();
+
+			StringBuilder sb = new StringBuilder();
+
+			string template = "INSERT INTO [dbo].[FranchiseRestaurant] ([Franchisee], [RestaurantNumber]) VALUES('!FRANCHISEE', !RESTAURANT_NUMBER)\r\n\r\n";
+
+			foreach (FranchiseRestaurant fr in frList) {
+
+				sb.Append(template);
+				sb.Replace("!FRANCHISEE", fr.Franchisee);
+				sb.Replace("!RESTAURANT_NUMBER", fr.RestaurantNumber.ToString());
+
+
+			}
+
+
+			textBox1.Text = sb.ToString();
+			button5.Enabled = true;
+		}
 	}
 }

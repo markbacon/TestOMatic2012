@@ -1,5 +1,5 @@
 ﻿namespace TestOMatic2012 {
-	partial class Form40 {
+	partial class Form49 {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -25,49 +25,38 @@
 		private void InitializeComponent() {
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(22, 25);
+			this.textBox1.Location = new System.Drawing.Point(29, 24);
 			this.textBox1.MaxLength = 1000000;
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.textBox1.Size = new System.Drawing.Size(624, 321);
-			this.textBox1.TabIndex = 22;
+			this.textBox1.TabIndex = 20;
+			this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(22, 367);
+			this.button1.Location = new System.Drawing.Point(29, 364);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(95, 23);
-			this.button1.TabIndex = 21;
+			this.button1.TabIndex = 19;
 			this.button1.Text = "Test";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
-			// button2
-			// 
-			this.button2.Location = new System.Drawing.Point(571, 367);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 23;
-			this.button2.Text = "button2";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// Form40
+			// Form49
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(673, 409);
-			this.Controls.Add(this.button2);
+			this.ClientSize = new System.Drawing.Size(677, 408);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.button1);
-			this.Name = "Form40";
-			this.Text = "Form40";
+			this.Name = "Form49";
+			this.Text = "Form49";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -77,6 +66,5 @@
 
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button button2;
 	}
 }

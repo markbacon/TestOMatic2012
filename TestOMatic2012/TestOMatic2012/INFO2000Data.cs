@@ -14,8 +14,8 @@ namespace TestOMatic2012 {
 
 			string errMessage = "";
 
-			INFO2000DataContext dataContext = new INFO2000DataContext(AppSettings.INFO2000_testConnectionString);
-			dataContext.usp_cash_os_upd(posFactId, ref errMessage);
+			//INFO2000DataContext dataContext = new INFO2000DataContext(AppSettings.INFO2000_testConnectionString);
+			//dataContext.usp_cash_os_upd(posFactId, ref errMessage);
 
 			return errMessage;
 		}

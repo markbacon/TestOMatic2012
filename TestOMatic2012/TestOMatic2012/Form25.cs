@@ -20,15 +20,15 @@ namespace TestOMatic2012 {
 		//--------------------------------------------------------------------------------------------------
 		private INFO2000DataContext _dataContext = new INFO2000DataContext(AppSettings.INFO2000ConnectionString);
 		private DataAccess _dac = new DataAccess(AppSettings.INFO2000ConnectionString);
-		
+
 		//--------------------------------------------------------------------------------------------------
 		private void button1_Click(object sender, EventArgs e) {
 
 			button1.Enabled = false;
-			
+
 			DateTime startTime = DateTime.Now;
 			Logger.Write("Begin recalculating costs...");
-			
+
 
 			DataTable dt = GetMbmRcptDetailWithNegativeCost();
 
@@ -38,7 +38,7 @@ namespace TestOMatic2012 {
 				ProcessRcptDetail(dr);
 			}
 
-			Logger.Write("Recalculating costs completed. Elapsed time:  " + (DateTime.Now -startTime).ToString());
+			Logger.Write("Recalculating costs completed. Elapsed time:  " + (DateTime.Now - startTime).ToString());
 
 			button1.Enabled = true;
 		}

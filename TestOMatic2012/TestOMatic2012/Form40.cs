@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Management;
 using System.Management.Instrumentation;
@@ -105,6 +106,40 @@ namespace TestOMatic2012 {
 			}
 		}
 
+		INFO2000DataContext _dataContext = new INFO2000DataContext();
+
+		//---------------------------------------------------------------------------------------------------
+		private void button2_Click(object sender, EventArgs e) {
+
+			button2.Enabled = false;
+
+			DirectoryInfo di = new DirectoryInfo("C:\\ToyReports");
+
+			DirectoryInfo[] directories = di.GetDirectories();
+
+			foreach (DirectoryInfo directory in directories) {
+
+				ProcessDirectory(directory);
+			}
+
+			button2.Enabled = true;
+		}
+		//---------------------------------------------------------------------------------------------------
+		private void ProcessDirectory(DirectoryInfo di) {
+
+			DirectoryInfo[] directories = di.GetDirectories("Pollfiles\\X11*");
+
+			foreach (DirectoryInfo directory in directories) {
+
+				FranchiseRestaurant fr = new FranchiseRestaurant();
+
+				fr.Franchisee = di.Name;
+				fr.RestaurantNumber = Convert.ToInt32(directory.Name.Substring(1));
+
+				_dataContext.FranchiseRestaurants.InsertOnSubmit(fr);
+				_dataContext.SubmitChanges();
+			}
+		}
 	}
 
 }

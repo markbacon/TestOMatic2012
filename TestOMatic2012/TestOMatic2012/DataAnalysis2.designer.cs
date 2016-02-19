@@ -69,7 +69,7 @@ namespace TestOMatic2012
     #endregion
 		
 		public DataAnalysis2DataContext() : 
-				base(global::TestOMatic2012.Properties.Settings.Default.DataAnalysisConnectionString4, mappingSource)
+				base(global::TestOMatic2012.Properties.Settings.Default.DataAnalysisConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

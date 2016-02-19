@@ -22,7 +22,7 @@ namespace TestOMatic2012
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="INFO2000_test")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="INFO2000")]
 	public partial class INFO2000DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -54,10 +54,16 @@ namespace TestOMatic2012
     partial void Insertpos_fact(pos_fact instance);
     partial void Updatepos_fact(pos_fact instance);
     partial void Deletepos_fact(pos_fact instance);
+    partial void Insertmbminvs_load1(mbminvs_load1 instance);
+    partial void Updatembminvs_load1(mbminvs_load1 instance);
+    partial void Deletembminvs_load1(mbminvs_load1 instance);
+    partial void InsertFranchiseRestaurant(FranchiseRestaurant instance);
+    partial void UpdateFranchiseRestaurant(FranchiseRestaurant instance);
+    partial void DeleteFranchiseRestaurant(FranchiseRestaurant instance);
     #endregion
 		
 		public INFO2000DataContext() : 
-				base(global::TestOMatic2012.Properties.Settings.Default.INFO2000_testConnectionString, mappingSource)
+				base(global::TestOMatic2012.Properties.Settings.Default.INFO2000ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -155,6 +161,22 @@ namespace TestOMatic2012
 			get
 			{
 				return this.GetTable<pos_fact>();
+			}
+		}
+		
+		public System.Data.Linq.Table<mbminvs_load1> mbminvs_load1s
+		{
+			get
+			{
+				return this.GetTable<mbminvs_load1>();
+			}
+		}
+		
+		public System.Data.Linq.Table<FranchiseRestaurant> FranchiseRestaurants
+		{
+			get
+			{
+				return this.GetTable<FranchiseRestaurant>();
 			}
 		}
 		
@@ -4952,6 +4974,8 @@ namespace TestOMatic2012
 		
 		private string _mbm_code;
 		
+		private EntitySet<mbminvs_load1> _mbminvs_load1s;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -4984,6 +5008,7 @@ namespace TestOMatic2012
 		
 		public inv_item_xref()
 		{
+			this._mbminvs_load1s = new EntitySet<mbminvs_load1>(new Action<mbminvs_load1>(this.attach_mbminvs_load1s), new Action<mbminvs_load1>(this.detach_mbminvs_load1s));
 			OnCreated();
 		}
 		
@@ -5227,6 +5252,19 @@ namespace TestOMatic2012
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="inv_item_xref_mbminvs_load1", Storage="_mbminvs_load1s", ThisKey="inv_xref_id", OtherKey="inv_xref_id")]
+		public EntitySet<mbminvs_load1> mbminvs_load1s
+		{
+			get
+			{
+				return this._mbminvs_load1s;
+			}
+			set
+			{
+				this._mbminvs_load1s.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -5245,6 +5283,18 @@ namespace TestOMatic2012
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_mbminvs_load1s(mbminvs_load1 entity)
+		{
+			this.SendPropertyChanging();
+			entity.inv_item_xref = this;
+		}
+		
+		private void detach_mbminvs_load1s(mbminvs_load1 entity)
+		{
+			this.SendPropertyChanging();
+			entity.inv_item_xref = null;
 		}
 	}
 	
@@ -7124,6 +7174,555 @@ namespace TestOMatic2012
 		{
 			this.SendPropertyChanging();
 			entity.pos_fact = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.mbminvs_load")]
+	public partial class mbminvs_load1 : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _mbm_line_id;
+		
+		private System.Nullable<int> _system_id;
+		
+		private string _hfs_unit_no;
+		
+		private string _hfs_inv_item;
+		
+		private string _mbm_qty;
+		
+		private string _mbm_sales;
+		
+		private string _mbm_order_no;
+		
+		private string _mbm_invoice_no;
+		
+		private string _mbm_inv_date;
+		
+		private string _mbm_inv_total;
+		
+		private string _mbm_ref_no;
+		
+		private System.DateTime _process_date;
+		
+		private char _process_flag;
+		
+		private System.Nullable<int> _inv_item_id;
+		
+		private System.Nullable<int> _inv_xref_id;
+		
+		private string _item_number_type;
+		
+		private EntityRef<inv_item_xref> _inv_item_xref;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onmbm_line_idChanging(int value);
+    partial void Onmbm_line_idChanged();
+    partial void Onsystem_idChanging(System.Nullable<int> value);
+    partial void Onsystem_idChanged();
+    partial void Onhfs_unit_noChanging(string value);
+    partial void Onhfs_unit_noChanged();
+    partial void Onhfs_inv_itemChanging(string value);
+    partial void Onhfs_inv_itemChanged();
+    partial void Onmbm_qtyChanging(string value);
+    partial void Onmbm_qtyChanged();
+    partial void Onmbm_salesChanging(string value);
+    partial void Onmbm_salesChanged();
+    partial void Onmbm_order_noChanging(string value);
+    partial void Onmbm_order_noChanged();
+    partial void Onmbm_invoice_noChanging(string value);
+    partial void Onmbm_invoice_noChanged();
+    partial void Onmbm_inv_dateChanging(string value);
+    partial void Onmbm_inv_dateChanged();
+    partial void Onmbm_inv_totalChanging(string value);
+    partial void Onmbm_inv_totalChanged();
+    partial void Onmbm_ref_noChanging(string value);
+    partial void Onmbm_ref_noChanged();
+    partial void Onprocess_dateChanging(System.DateTime value);
+    partial void Onprocess_dateChanged();
+    partial void Onprocess_flagChanging(char value);
+    partial void Onprocess_flagChanged();
+    partial void Oninv_item_idChanging(System.Nullable<int> value);
+    partial void Oninv_item_idChanged();
+    partial void Oninv_xref_idChanging(System.Nullable<int> value);
+    partial void Oninv_xref_idChanged();
+    partial void Onitem_number_typeChanging(string value);
+    partial void Onitem_number_typeChanged();
+    #endregion
+		
+		public mbminvs_load1()
+		{
+			this._inv_item_xref = default(EntityRef<inv_item_xref>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mbm_line_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int mbm_line_id
+		{
+			get
+			{
+				return this._mbm_line_id;
+			}
+			set
+			{
+				if ((this._mbm_line_id != value))
+				{
+					this.Onmbm_line_idChanging(value);
+					this.SendPropertyChanging();
+					this._mbm_line_id = value;
+					this.SendPropertyChanged("mbm_line_id");
+					this.Onmbm_line_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_system_id", DbType="Int")]
+		public System.Nullable<int> system_id
+		{
+			get
+			{
+				return this._system_id;
+			}
+			set
+			{
+				if ((this._system_id != value))
+				{
+					this.Onsystem_idChanging(value);
+					this.SendPropertyChanging();
+					this._system_id = value;
+					this.SendPropertyChanged("system_id");
+					this.Onsystem_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hfs_unit_no", DbType="Char(7)")]
+		public string hfs_unit_no
+		{
+			get
+			{
+				return this._hfs_unit_no;
+			}
+			set
+			{
+				if ((this._hfs_unit_no != value))
+				{
+					this.Onhfs_unit_noChanging(value);
+					this.SendPropertyChanging();
+					this._hfs_unit_no = value;
+					this.SendPropertyChanged("hfs_unit_no");
+					this.Onhfs_unit_noChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hfs_inv_item", DbType="VarChar(10)")]
+		public string hfs_inv_item
+		{
+			get
+			{
+				return this._hfs_inv_item;
+			}
+			set
+			{
+				if ((this._hfs_inv_item != value))
+				{
+					this.Onhfs_inv_itemChanging(value);
+					this.SendPropertyChanging();
+					this._hfs_inv_item = value;
+					this.SendPropertyChanged("hfs_inv_item");
+					this.Onhfs_inv_itemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mbm_qty", DbType="Char(10)")]
+		public string mbm_qty
+		{
+			get
+			{
+				return this._mbm_qty;
+			}
+			set
+			{
+				if ((this._mbm_qty != value))
+				{
+					this.Onmbm_qtyChanging(value);
+					this.SendPropertyChanging();
+					this._mbm_qty = value;
+					this.SendPropertyChanged("mbm_qty");
+					this.Onmbm_qtyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mbm_sales", DbType="Char(10)")]
+		public string mbm_sales
+		{
+			get
+			{
+				return this._mbm_sales;
+			}
+			set
+			{
+				if ((this._mbm_sales != value))
+				{
+					this.Onmbm_salesChanging(value);
+					this.SendPropertyChanging();
+					this._mbm_sales = value;
+					this.SendPropertyChanged("mbm_sales");
+					this.Onmbm_salesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mbm_order_no", DbType="Char(6)")]
+		public string mbm_order_no
+		{
+			get
+			{
+				return this._mbm_order_no;
+			}
+			set
+			{
+				if ((this._mbm_order_no != value))
+				{
+					this.Onmbm_order_noChanging(value);
+					this.SendPropertyChanging();
+					this._mbm_order_no = value;
+					this.SendPropertyChanged("mbm_order_no");
+					this.Onmbm_order_noChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mbm_invoice_no", DbType="Char(11)")]
+		public string mbm_invoice_no
+		{
+			get
+			{
+				return this._mbm_invoice_no;
+			}
+			set
+			{
+				if ((this._mbm_invoice_no != value))
+				{
+					this.Onmbm_invoice_noChanging(value);
+					this.SendPropertyChanging();
+					this._mbm_invoice_no = value;
+					this.SendPropertyChanged("mbm_invoice_no");
+					this.Onmbm_invoice_noChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mbm_inv_date", DbType="Char(8)")]
+		public string mbm_inv_date
+		{
+			get
+			{
+				return this._mbm_inv_date;
+			}
+			set
+			{
+				if ((this._mbm_inv_date != value))
+				{
+					this.Onmbm_inv_dateChanging(value);
+					this.SendPropertyChanging();
+					this._mbm_inv_date = value;
+					this.SendPropertyChanged("mbm_inv_date");
+					this.Onmbm_inv_dateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mbm_inv_total", DbType="Char(10)")]
+		public string mbm_inv_total
+		{
+			get
+			{
+				return this._mbm_inv_total;
+			}
+			set
+			{
+				if ((this._mbm_inv_total != value))
+				{
+					this.Onmbm_inv_totalChanging(value);
+					this.SendPropertyChanging();
+					this._mbm_inv_total = value;
+					this.SendPropertyChanged("mbm_inv_total");
+					this.Onmbm_inv_totalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mbm_ref_no", DbType="Char(11)")]
+		public string mbm_ref_no
+		{
+			get
+			{
+				return this._mbm_ref_no;
+			}
+			set
+			{
+				if ((this._mbm_ref_no != value))
+				{
+					this.Onmbm_ref_noChanging(value);
+					this.SendPropertyChanging();
+					this._mbm_ref_no = value;
+					this.SendPropertyChanged("mbm_ref_no");
+					this.Onmbm_ref_noChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_process_date", DbType="DateTime NOT NULL")]
+		public System.DateTime process_date
+		{
+			get
+			{
+				return this._process_date;
+			}
+			set
+			{
+				if ((this._process_date != value))
+				{
+					this.Onprocess_dateChanging(value);
+					this.SendPropertyChanging();
+					this._process_date = value;
+					this.SendPropertyChanged("process_date");
+					this.Onprocess_dateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_process_flag", DbType="Char(1) NOT NULL")]
+		public char process_flag
+		{
+			get
+			{
+				return this._process_flag;
+			}
+			set
+			{
+				if ((this._process_flag != value))
+				{
+					this.Onprocess_flagChanging(value);
+					this.SendPropertyChanging();
+					this._process_flag = value;
+					this.SendPropertyChanged("process_flag");
+					this.Onprocess_flagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_inv_item_id", DbType="Int")]
+		public System.Nullable<int> inv_item_id
+		{
+			get
+			{
+				return this._inv_item_id;
+			}
+			set
+			{
+				if ((this._inv_item_id != value))
+				{
+					this.Oninv_item_idChanging(value);
+					this.SendPropertyChanging();
+					this._inv_item_id = value;
+					this.SendPropertyChanged("inv_item_id");
+					this.Oninv_item_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_inv_xref_id", DbType="Int")]
+		public System.Nullable<int> inv_xref_id
+		{
+			get
+			{
+				return this._inv_xref_id;
+			}
+			set
+			{
+				if ((this._inv_xref_id != value))
+				{
+					if (this._inv_item_xref.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Oninv_xref_idChanging(value);
+					this.SendPropertyChanging();
+					this._inv_xref_id = value;
+					this.SendPropertyChanged("inv_xref_id");
+					this.Oninv_xref_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_item_number_type", DbType="VarChar(1)")]
+		public string item_number_type
+		{
+			get
+			{
+				return this._item_number_type;
+			}
+			set
+			{
+				if ((this._item_number_type != value))
+				{
+					this.Onitem_number_typeChanging(value);
+					this.SendPropertyChanging();
+					this._item_number_type = value;
+					this.SendPropertyChanged("item_number_type");
+					this.Onitem_number_typeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="inv_item_xref_mbminvs_load1", Storage="_inv_item_xref", ThisKey="inv_xref_id", OtherKey="inv_xref_id", IsForeignKey=true)]
+		public inv_item_xref inv_item_xref
+		{
+			get
+			{
+				return this._inv_item_xref.Entity;
+			}
+			set
+			{
+				inv_item_xref previousValue = this._inv_item_xref.Entity;
+				if (((previousValue != value) 
+							|| (this._inv_item_xref.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._inv_item_xref.Entity = null;
+						previousValue.mbminvs_load1s.Remove(this);
+					}
+					this._inv_item_xref.Entity = value;
+					if ((value != null))
+					{
+						value.mbminvs_load1s.Add(this);
+						this._inv_xref_id = value.inv_xref_id;
+					}
+					else
+					{
+						this._inv_xref_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("inv_item_xref");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FranchiseRestaurant")]
+	public partial class FranchiseRestaurant : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Franchisee;
+		
+		private int _RestaurantNumber;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnFranchiseeChanging(string value);
+    partial void OnFranchiseeChanged();
+    partial void OnRestaurantNumberChanging(int value);
+    partial void OnRestaurantNumberChanged();
+    #endregion
+		
+		public FranchiseRestaurant()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Franchisee", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Franchisee
+		{
+			get
+			{
+				return this._Franchisee;
+			}
+			set
+			{
+				if ((this._Franchisee != value))
+				{
+					this.OnFranchiseeChanging(value);
+					this.SendPropertyChanging();
+					this._Franchisee = value;
+					this.SendPropertyChanged("Franchisee");
+					this.OnFranchiseeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RestaurantNumber", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int RestaurantNumber
+		{
+			get
+			{
+				return this._RestaurantNumber;
+			}
+			set
+			{
+				if ((this._RestaurantNumber != value))
+				{
+					this.OnRestaurantNumberChanging(value);
+					this.SendPropertyChanging();
+					this._RestaurantNumber = value;
+					this.SendPropertyChanged("RestaurantNumber");
+					this.OnRestaurantNumberChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

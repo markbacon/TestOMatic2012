@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace TestOMatic2012 {
 	public partial class Form47 : Form {
@@ -24,13 +25,13 @@ namespace TestOMatic2012 {
 
 			//string pollFilePath = "U:\\PollFile\\PollFiles";
 			//string pollFilePath = "W:\\Ckenode";
-			string pollFilePath = "C:\\Temp357";
+			string pollFilePath = "C:\\Temp308";
 
 			Logger.Write("Begin processing " + pollFilePath);
 
 			DirectoryInfo di = new DirectoryInfo(pollFilePath);
 
-			DirectoryInfo[] directories = di.GetDirectories("new*");
+			DirectoryInfo[] directories = di.GetDirectories("x15*");
 
 			foreach (DirectoryInfo directory in directories) {
 				Logger.Write("Processing directory:  " + directory.Name);
@@ -39,6 +40,34 @@ namespace TestOMatic2012 {
 			}
 
 			button1.Enabled = true;
+
+		}
+		//---------------------------------------------------------------------------------------------------
+		private void button2_Click(object sender, EventArgs e) {
+
+			button2.Enabled = false;
+
+			Logger.StartLogSession();
+
+			//string pollFilePath = "U:\\PollFile\\PollFiles";
+			//string pollFilePath = "W:\\Ckenode";
+			string pollFilePath = "C:\\Temp308";
+
+			Logger.Write("Begin processing " + pollFilePath);
+
+			DirectoryInfo di = new DirectoryInfo(pollFilePath);
+
+			DirectoryInfo[] directories = di.GetDirectories("x1*");
+
+			foreach (DirectoryInfo directory in directories) {
+				Logger.Write("Processing directory:  " + directory.Name);
+
+				ProcessDirectory(directory);
+			}
+
+
+
+			button2.Enabled = true;
 
 		}
 		//---------------------------------------------------------------------------------------------------
@@ -53,13 +82,14 @@ namespace TestOMatic2012 {
 		private void ProcessDirectory(DirectoryInfo di) {
 
 
-			FileInfo[] files = di.GetFiles("INVU*.fcp");
+			//FileInfo[] files = di.GetFiles("INVU*.fcp");
+			FileInfo[] files = di.GetFiles("*.xml");
 
 			foreach (FileInfo file in files) {
 
 				Logger.Write("Processing file:  " + file.Name);
 
-				ProcessFile(file);
+				ProcessXmlFile(file);
 			}
 		}
 		//---------------------------------------------------------------------------------------------------
@@ -104,6 +134,96 @@ namespace TestOMatic2012 {
 						dataContext.SubmitChanges();
 					}
 				}
+			}
+		}
+		//---------------------------------------------------------------------------------------------------
+		private void ProcessXmlFile(FileInfo file) {
+
+			DateTime businessDate;
+
+			DataAnalysisDataContext dataContext = new DataAnalysisDataContext();
+
+			XmlDocument xmlDoc = new XmlDocument();
+
+			xmlDoc.Load(file.OpenRead());
+
+			businessDate = Convert.ToDateTime(xmlDoc.DocumentElement.GetAttribute("BusinessDate"));
+
+			foreach (XmlNode node in xmlDoc.DocumentElement.ChildNodes) {
+
+				InvSummaryItem summaryItem = new InvSummaryItem();
+				summaryItem.BusinessDate = businessDate;
+
+				foreach (XmlNode childNode in node.ChildNodes) {
+
+					switch (childNode.Name) {
+
+						case "UnitNumber":
+							summaryItem.UnitNumber = childNode.InnerText;
+							break;
+
+						case "ItemNumber":
+							summaryItem.ItemCode = childNode.InnerText;
+							break;
+
+						case "Daily":
+							if (childNode.InnerText == "1") {
+								summaryItem.IsDailyCountItem = true;
+							}
+							else {
+								summaryItem.IsDailyCountItem = false;
+							}
+							break;
+
+						case "CatName":
+							summaryItem.CategoryName = childNode.InnerText;
+							break;
+
+						case "CatCode":
+							summaryItem.CategoryCode = childNode.InnerText;
+							break;
+
+						case "BeginAmt":
+							summaryItem.BeginningAmount = Convert.ToDecimal(childNode.InnerText);
+							break;
+
+						case "Purchase":
+							summaryItem.Purchases = Convert.ToDecimal(childNode.InnerText);
+							break;
+
+						case "TransferIn":
+							summaryItem.TransferIn = Convert.ToDecimal(childNode.InnerText);
+							break;
+
+						case "TransferOut":
+							summaryItem.TransferOut = Convert.ToDecimal(childNode.InnerText);
+							break;
+
+						case "MenuWaste":
+							summaryItem.MenuWaste = Convert.ToDecimal(childNode.InnerText);
+							break;
+
+						case "ProductWaste":
+							summaryItem.ProductWaste = Convert.ToDecimal(childNode.InnerText);
+							break;
+
+						case "OnHand":
+							summaryItem.OnHandAmount = Convert.ToDecimal(childNode.InnerText);
+							break;
+
+						case "ActualUsage":
+							summaryItem.ActualAmount =   Convert.ToDecimal(childNode.InnerText);
+							break;
+
+						case "IdealUsage":
+							summaryItem.IdealAmount = Convert.ToDecimal(childNode.InnerText);
+							break;
+
+					}
+				}
+
+				dataContext.InvSummaryItems.InsertOnSubmit(summaryItem);
+				dataContext.SubmitChanges();
 			}
 		}
 		//---------------------------------------------------------------------------------------------------

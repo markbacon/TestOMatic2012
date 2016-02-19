@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using Ionic.Zip;
 
 namespace TestOMatic2012 {
@@ -100,28 +101,28 @@ namespace TestOMatic2012 {
 			//DirectoryInfo di = new DirectoryInfo(@"\\anadevbatch\prod\testing\ckenode");
 
 
-			List<string> directoryList = GetDirectoryList();
+			//List<string> directoryList = GetDirectoryList();
 
 
-			foreach (string directoryName in directoryList) {
+			//foreach (string directoryName in directoryList) {
 
 
-				DirectoryInfo[] directories = di.GetDirectories(directoryName);
+				//DirectoryInfo[] directories = di.GetDirectories(directoryName);
 
-				//DirectoryInfo[] directories = di.GetDirectories("X1*");
+				DirectoryInfo[] directories = di.GetDirectories("X11*");
 
 				foreach (DirectoryInfo directory in directories) {
 
 					textBox1.Text += "Processing directory:  " + directory.Name + "\r\n";
 					Application.DoEvents();
 
-					string targetDirectory = Path.Combine("C:\\xdata1\\cmsos2\\ckenode", directory.Name);
+					string targetDirectory = Path.Combine("D:\\xdata1\\cmsos2\\ckenode", directory.Name);
 
 					if (!Directory.Exists(targetDirectory)) {
 						Directory.CreateDirectory(targetDirectory);
 					}
 
-					FileInfo[] files = directory.GetFiles("0309Time.pol");
+					FileInfo[] files = directory.GetFiles("*WKTime.pol");
 
 					if (files.Length == 0) {
 						Logger.WriteError("Time.pol file not found for directory:  " + directory.Name);
@@ -137,7 +138,7 @@ namespace TestOMatic2012 {
 						file.CopyTo(targetPath, true);
 					}
 				}
-			}
+			//}
 
 			button3.Enabled = true;
 		}
@@ -231,16 +232,16 @@ namespace TestOMatic2012 {
 		}
 
 		private void textBox1_TextChanged(object sender, EventArgs e) {
-			if (textBox1.Text.Length > 2024) {
-				textBox1.Text = "";
-			}
+			//if (textBox1.Text.Length > 2024) {
+			//	textBox1.Text = "";
+			//}
 
 
-			if (textBox1.Text.Length > 0) {
-				textBox1.SelectionStart = textBox1.Text.Length - 1;
-				textBox1.ScrollToCaret();
-				Application.DoEvents();
-			}
+			//if (textBox1.Text.Length > 0) {
+			//	textBox1.SelectionStart = textBox1.Text.Length - 1;
+			//	textBox1.ScrollToCaret();
+			//	Application.DoEvents();
+			//}
 
 		}
 		//---------------------------------------------------------------------------------------------------
@@ -264,5 +265,47 @@ namespace TestOMatic2012 {
 
 		}
 
+		private void Form10_Load(object sender, EventArgs e) {
+
+		}
+
+		private void button4_Click(object sender, EventArgs e) {
+
+			button4.Enabled = false;
+
+			XmlDocument xmlDoc = new XmlDocument();
+			xmlDoc.LoadXml("<Network/>");
+
+			XmlElement element = null;
+
+			string[] lines = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+			foreach (string line in lines) {
+
+				if (!string.IsNullOrEmpty(line.Trim())) {
+
+					if (char.IsDigit(line[0])) {
+						element = xmlDoc.CreateElement("NetworkStatusMessage");
+						xmlDoc.DocumentElement.AppendChild(element);
+
+						element.SetAttribute("StatusCode", line.Trim());
+					}
+					else {
+						element.SetAttribute("Message", line.Trim());
+					}
+				}
+			}
+
+			textBox1.Text = xmlDoc.OuterXml;
+
+
+
+
+
+
+
+
+			button4.Enabled = true;
+		}
 	}
 }

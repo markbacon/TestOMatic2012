@@ -2,110 +2,122 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TestOMatic2012 {
-	public partial class Form48 : Form {
-		public Form48() {
+	public partial class Form50 : Form {
+		public Form50() {
 			InitializeComponent();
+
+			Logger.LoggerWrite += form8_onLoggerWrite;
 		}
+		//---------------------------------------------------------------------------------------------------
+		//-- Private
+		//---------------------------------------------------------------------------------------------------
+		DataAnalysisDataContext _dataContext = new DataAnalysisDataContext();
 
-		private System.Diagnostics.EventLog eventLog2;
+		//---------------------------------------------------------------------------------------------------
+		private void button1_Click(object sender, EventArgs e) {
 
+			button1.Enabled = false;
+
+			DirectoryInfo di = new DirectoryInfo(@"D:\xdata1\cmsos2\ckenode\X1100919");
+
+			FileInfo[] files = di.GetFiles("PD*.fin");
+
+			foreach (FileInfo file in files) {
+
+				Logger.Write("Processing file:  " + file.Name);
+
+				ProcessFile(file);
+			}
+
+
+			button1.Enabled = true;
+
+		}
+		//---------------------------------------------------------------------------------------------------
 		private void button2_Click(object sender, EventArgs e) {
 
 			button2.Enabled = false;
 
-			Unzipit("C:\\Inbox");
+			Unzipit("C:\\Pollfile2\\");
 
 			button2.Enabled = true;
 
 		}
+		//---------------------------------------------------------------------------------------------------
+		private void form8_onLoggerWrite(object sender, LoggerEventArgs e) {
 
-		//**********************************************************************************
-		//MenuMix Summary of Red/Green Burrito and Drinks for Franchise royalty calculation
-		//**********************************************************************************
-		private void SummarizeMenu(string pollFilename, string Archivename, string ConsolidationfilePath) {
-			bool exists;
-			StreamWriter ConsolidateOutfile;
+			textBox1.Text += e.Message + "\r\n";
+			Application.DoEvents();
+		}
+		//---------------------------------------------------------------------------------------------------
+		private void ProcessFile(FileInfo file) {
 
-			try {
-				string filePath = @Archivename;
-				StreamReader sr = new StreamReader(filePath);
-				List<string[]> data = new List<string[]>();
-				string Header_row = "Unit,Date,RedGreen Burrito Sales,Drink Sales";
-				string Outrow = "";
-				int Row = 0;
-				int x;
-				double BurritoValue = 0, DrinkValue = 0;
+			BasicStoreSale bss = new BasicStoreSale();
 
-				while (!sr.EndOfStream) {
-					string[] Line = sr.ReadLine().Split(',');
-					data.Add(Line);
-					Row++;
-				}
-				sr.Close();
+			using (StreamReader sr = file.OpenText()) {
 
-				//strip quotes off of store number
-				string store_nbr = data[2][1];
-				store_nbr = store_nbr.Replace("\"", "");
+				int counter = 1;
 
-				//If "Consolidations" path doesn't exist, create them
-				exists = System.IO.Directory.Exists(ConsolidationfilePath);
-				if (!exists) System.IO.Directory.CreateDirectory(ConsolidationfilePath);
+				while (sr.Peek() != -1) {
 
-				//Now check to see if the consolidation file already exist for the business date.  If not, create it and write header records.  Otherwise, just open it.
-				if (data.Count == 0)
-					return;
-				string ConsolidationFilename = data[1][1] + "MNU.csv";
-				string ConsolidationFile = Path.Combine(ConsolidationfilePath, ConsolidationFilename);
-				if (!File.Exists(ConsolidationFile)) {
-					ConsolidateOutfile = File.AppendText(ConsolidationFile);
-					ConsolidateOutfile.WriteLine(Header_row);
-				}
-				else {
-					//File already exists
-					//Before we proceed to write the store record, we will first make sure it doesn't already exist.
-					//If the store already exists in the file, we will not add it again
-					StreamReader mn = new StreamReader(ConsolidationFile);
-					while (!mn.EndOfStream) {
-						string[] mnLine = mn.ReadLine().Split(',');
-						if (mnLine[0] == store_nbr) {
-							mn.Close();
-							return;
-						}
+					string[] items = sr.ReadLine().Split(new char[] {','});
+
+					if (counter++ == 1) {
+						bss.BusinessDate = DateTime.ParseExact(items[0], "MMddyy", System.Globalization.CultureInfo.InvariantCulture);
+						bss.RestaurantNumber = 1100000 + Convert.ToInt32(items[3]);
 					}
-					mn.Close();
-					ConsolidateOutfile = File.AppendText(ConsolidationFile);
+
+
+					switch (items[4]) {
+
+						case "2":
+							bss.GrossSales = Convert.ToDecimal(items[11]) / 100M;
+							break;
+
+						case "3":
+							bss.NetSales = Convert.ToDecimal(items[11]) / 100M;
+							break;
+
+						case "8":
+							bss.TaxableSales = Convert.ToDecimal(items[11]) / 100M;
+							break;
+
+						case "9":
+							bss.SalesTax = Convert.ToDecimal(items[11]) / 100M;
+							break;
+
+						case "49":
+							bss.NonFoodSales = Convert.ToDecimal(items[11]) / 100M;
+							break;
+
+					}
 				}
 
-				//Reformat data as decimal and consolidate
-				Outrow = store_nbr + "," + data[1][1];  //Restaurant_no and Date
-
-				for (x = 4; x < Row; x++) {
-					if (data[x][1].ToLower().Contains("beverages") || data[x][1].ToLower().Contains("drinks"))
-						DrinkValue += System.Convert.ToDouble(data[x][5]);
-					else
-						if (data[x][1].ToLower().Contains("red burrito") || data[x][1].ToLower().Contains("green burrito"))
-							BurritoValue += System.Convert.ToDouble(data[x][5]);
-				}
-
-				Outrow = Outrow + "," + BurritoValue.ToString("###0.00");
-				Outrow = Outrow + "," + DrinkValue.ToString("###0.00");
-				ConsolidateOutfile.WriteLine(Outrow);
-				ConsolidateOutfile.Close();
+				_dataContext.BasicStoreSales.InsertOnSubmit(bss);
+				_dataContext.SubmitChanges();
 			}
-			catch (Exception ex) {
-				eventLog2.Source = "FTPFranchise";
-				eventLog2.WriteEntry("Error summarizing Menu for royalties " + Archivename + " - " + ex.Message);
+		}
+		//---------------------------------------------------------------------------------------------------
+		private void textBox1_TextChanged(object sender, EventArgs e) {
+
+			if (textBox1.Text.Length > 2024) {
+				textBox1.Text = "";
 			}
 
+			if (textBox1.Text.Length > 0) {
+				textBox1.SelectionStart = textBox1.Text.Length - 1;
+				textBox1.ScrollToCaret();
+				Application.DoEvents();
+			}
 		}
 		//---------------------------------------------------------------------------------------------------
 		private void Unzipit(string LocalFolder) {
@@ -147,23 +159,21 @@ namespace TestOMatic2012 {
 				}
 			}
 			catch (Exception ex) {
-				eventLog2.Source = "FTPFranchise";
-				eventLog2.WriteEntry("Error unzipping from " + LocalFolder + " - " + ex.Message);
-			}
 
+				Logger.Write("An exception occurred in Unzipit.  Please see error log for details.");
+				Logger.WriteError(ex);
+			}
 		}
-		//---------------------------------------------------------------------------------------------------
 		private void Unzipzips(string ZIPname, string subPath, string pollPath) {
 			bool exists;
 			string Archivename, Store_name, Store_date, Prior_Store_date = "";
 
 			try {
 				//Refresh the path for Reports, TLogs and Pollfiles
-				string ReportPath = "C:\\PollFile\\Reports";
-				string TLogPath = "C:\\PollFile\\TLogs";
-				string PollfilePath = "C:\\PollFile\\PollFiles";
+				string ReportPath = "C:\\PollFile2\\Reports";
+				string TLogPath = "C:\\PollFile2\\TLogs";
+				string PollfilePath = "C:\\PollFile2\\Pollfiles";
 				string ConsolidationfilePath = Path.Combine(PollfilePath, "Consolidations");
-
 				//If "Reports", "TLog" or "Pollfile" paths don't exist, create them
 				exists = System.IO.Directory.Exists(ReportPath);
 				if (!exists) System.IO.Directory.CreateDirectory(ReportPath);
@@ -187,7 +197,8 @@ namespace TestOMatic2012 {
 						string[] array1 = Directory.GetFiles(pollPath, "*.*"); // <-- Case-insensitive
 						foreach (string pollFilename in array1) {
 							if (pollFilename.Contains("\\X1") || pollFilename.ToLower().Contains(".pol") || pollFilename.ToLower().Contains(".fin") ||
-								pollFilename.ToLower().Contains(".fcp") || pollFilename.ToLower().Contains(".csv") || pollFilename.ToLower().Contains("hourlynetsales")) {
+								pollFilename.ToLower().Contains(".fcp") || pollFilename.ToLower().Contains(".csv") ||
+								pollFilename.ToLower().Contains("invsummary") || pollFilename.ToLower().Contains("hourlynetsales")) {
 								string Pollfile_Store_Path = Path.Combine(PollfilePath, Store_name);
 								exists = System.IO.Directory.Exists(Pollfile_Store_Path);
 								if (!exists) System.IO.Directory.CreateDirectory(Pollfile_Store_Path);
@@ -195,22 +206,20 @@ namespace TestOMatic2012 {
 								File.Delete(Archivename);
 								File.Move(pollFilename, Archivename);
 
-								// Consolidate Financials and Timekeeping data for subsequent above-store processin g
+								//// Consolidate Financials and Timekeeping data for subsequent above-store processin g
 								//if (pollFilename.ToLower().Contains(".fin"))
-									//ConsolidateFin(pollFilename, Archivename, ConsolidationfilePath);
+								//	ConsolidateFin(pollFilename, Archivename, ConsolidationfilePath);
 								//if (pollFilename.ToLower().Contains("laborhours.pol"))
-									//ConsolidateTime(pollFilename, Archivename, ConsolidationfilePath);
-									//if (pollFilename.ToLower().Contains("wktime.pol")) {
-										//ConsolidateWkTimePol(pollFilename, Archivename, ConsolidationfilePath);
-									
-									//else
-										//if (pollFilename.ToLower().Contains("time.pol"))
-											//ConsolidateTimePol(pollFilename, Archivename, ConsolidationfilePath);
-											//if (pollFilename.ToLower().Contains("selfauthtracking"))
-												//ConsolidateSelfAuth(pollFilename, Archivename, ConsolidationfilePath);
-								if (pollFilename.ToLower().Contains("mix.pol")) {
-									SummarizeMenu(pollFilename, Archivename, ConsolidationfilePath);
-								}
+								//	ConsolidateTime(pollFilename, Archivename, ConsolidationfilePath);
+								//if (pollFilename.ToLower().Contains("wktime.pol"))
+								//	ConsolidateWkTimePol(pollFilename, Archivename, ConsolidationfilePath);
+								//else
+								//	if (pollFilename.ToLower().Contains("time.pol"))
+								//		ConsolidateTimePol(pollFilename, Archivename, ConsolidationfilePath);
+								//if (pollFilename.ToLower().Contains("selfauthtracking"))
+								//	ConsolidateSelfAuth(pollFilename, Archivename, ConsolidationfilePath);
+								//if (pollFilename.ToLower().Contains("mix.pol"))
+								//	SummarizeMenu(pollFilename, Archivename, ConsolidationfilePath);
 							}
 							else
 								if (pollFilename.ToLower().Contains("transhist.xml")) {
@@ -251,10 +260,9 @@ namespace TestOMatic2012 {
 				}
 			}
 			catch (Exception ex) {
-				eventLog2.Source = "FTPFranchise";
-				eventLog2.WriteEntry("Error unzipping " + ZIPname + " - " + ex.Message);
 			}
 
 		}
+
 	}
 }

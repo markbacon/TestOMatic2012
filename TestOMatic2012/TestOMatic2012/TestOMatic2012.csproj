@@ -44,9 +44,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -345,11 +348,35 @@
     <Compile Include="Form48.Designer.cs">
       <DependentUpon>Form48.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form49.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form49.Designer.cs">
+      <DependentUpon>Form49.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form5.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form5.Designer.cs">
       <DependentUpon>Form5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form50.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form50.Designer.cs">
+      <DependentUpon>Form50.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form51.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form51.Designer.cs">
+      <DependentUpon>Form51.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form52.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form52.Designer.cs">
+      <DependentUpon>Form52.cs</DependentUpon>
     </Compile>
     <Compile Include="Form6.cs">
       <SubType>Form</SubType>
@@ -649,8 +676,20 @@
     <EmbeddedResource Include="Form48.resx">
       <DependentUpon>Form48.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form49.resx">
+      <DependentUpon>Form49.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form5.resx">
       <DependentUpon>Form5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form50.resx">
+      <DependentUpon>Form50.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form51.resx">
+      <DependentUpon>Form51.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form52.resx">
+      <DependentUpon>Form52.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form6.resx">
       <DependentUpon>Form6.cs</DependentUpon>

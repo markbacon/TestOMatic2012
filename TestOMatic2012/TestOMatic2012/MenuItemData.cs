@@ -12,21 +12,6 @@ namespace TestOMatic2012 {
 
 		public void InsertMenuConfigItem(int menuItemId, string description, string type, decimal price, string financialDepartment) {
 
-			MenuConfigItem mci = new MenuConfigItem();
-
-			mci.Description = description;
-
-			mci.FinancialDepartment = financialDepartment;
-
-			mci.MenuItemId = menuItemId;
-			//mci.PLU = plu;
-			mci.Price = price;
-			mci.Type = type;
-
-
-
-			_dataContext.MenuConfigItems.InsertOnSubmit(mci);
-			_dataContext.SubmitChanges();
 		}
 		//---------------------------------------------------------------------------------------------------------
 		//-- Private Members

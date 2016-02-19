@@ -109,7 +109,7 @@ namespace TestOMatic2012 {
 
 				DateTime businessDate = new DateTime(2015, 10, 1);
 
-				int counter = 1;
+				//int counter = 1;
 
 				while (businessDate < DateTime.Today.AddDays(-5)) {
 
