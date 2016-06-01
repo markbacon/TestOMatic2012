@@ -159,5 +159,9 @@ namespace TestOMatic2012 {
 			}
 
 		}
+
+		private void Form45_Load(object sender, EventArgs e) {
+
+		}
 	}
 }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 21.875, 14" name="DataAnalysis">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 25.5, 17.125" name="DataAnalysis">
   <DataContextMoniker Name="/DataAnalysisDataContext" />
   <nestedChildShapes>
     <classShape Id="fab1e429-955e-4b47-9550-c95a9571d4ee" absoluteBounds="5, 2.25, 2, 1.7708968098958331">
@@ -32,14 +32,14 @@
         <elementListCompartment Id="5a8ebbc9-8d61-4a26-8222-74b2c8dadcde" absoluteBounds="3.515, 5.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(0.75 : 6.16429768880208); (0.641333333333333 : 6.16429768880208 : JumpStart); (0.474666666666667 : 6.16429768880208 : JumpEnd); (0.375 : 6.16429768880208); (0.375 : 7.57470540364583); (4.5 : 7.57470540364583); (4.5 : 7.34780110677083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(0.75 : 6.16429768880208); (0.679733333333333 : 6.16429768880208 : JumpStart); (0.513066666666667 : 6.16429768880208 : JumpEnd); (0.375 : 6.16429768880208); (0.375 : 7.57470540364583); (4.5 : 7.57470540364583); (4.5 : 7.34780110677083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataAnalysisDataContext/MenuMixFile/MenuMixFile_MenuMixPollItem" />
       <nodes>
         <classShapeMoniker Id="cebed0c1-8cf3-4b14-9dca-42fed9bf661e" />
         <classShapeMoniker Id="4cad8258-329a-42f8-bea0-5a46d698c934" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 2.375); (1.75 : 2.183); (0.558 : 2.183); (0.558 : 7.53980110677083); (3.968748 : 7.53980110677083); (3.968748 : 7.34780110677083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.75 : 2.375); (1.75 : 2.2214); (0.5964 : 2.2214); (0.5964 : 7.52710540364583); (3.968748 : 7.52710540364583); (3.968748 : 7.34780110677083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataAnalysisDataContext/MenuMixItem/MenuMixItem_MenuMixPollItem" />
       <nodes>
         <classShapeMoniker Id="d2a9dff0-ce2f-4969-afd2-42068733b579" />
@@ -195,6 +195,49 @@
       <DataClassMoniker Name="/DataAnalysisDataContext/StarPosJournalAnalysi" />
       <nestedChildShapes>
         <elementListCompartment Id="37619d89-75be-421c-860e-31185760e264" absoluteBounds="3.14, 4.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="30e8808c-f861-434e-ae60-73fdb056dbac" absoluteBounds="4.75, 14.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/DataAnalysisDataContext/MixPollItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="28854ff4-1122-44da-aae9-3cd7239c446b" absoluteBounds="4.765, 15.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4d8299af-40e5-4b35-8a09-cb7716461061" absoluteBounds="1.625, 13.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataAnalysisDataContext/MixPollFile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e2bc755a-9c41-4d79-a632-2b0a49981283" absoluteBounds="1.6400000000000001, 13.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.625 : 13.9142976888021); (5.75 : 13.9142976888021); (5.75 : 14.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataAnalysisDataContext/MixPollFile/MixPollFile_MixPollItem" />
+      <nodes>
+        <classShapeMoniker Id="4d8299af-40e5-4b35-8a09-cb7716461061" />
+        <classShapeMoniker Id="30e8808c-f861-434e-ae60-73fdb056dbac" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ab8de57a-4f50-447d-a506-cf2b3010db55" absoluteBounds="22.625, 2, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/DataAnalysisDataContext/LaborAdjustmentFile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="96b1d7ba-3c39-4d70-b24b-721b6c2ecddf" absoluteBounds="22.64, 2.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9fbe8b7e-f5ba-4c8b-bc8f-53a0032b9f74" absoluteBounds="23.25, 4.625, 2, 3.6939111328124996">
+      <DataClassMoniker Name="/DataAnalysisDataContext/LaborAdjustmentRecord" />
+      <nestedChildShapes>
+        <elementListCompartment Id="027560cf-4de7-4f0c-8b35-fbb3f63abe92" absoluteBounds="23.265, 5.085, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="341374a8-e159-4e57-b0e1-456fd7d99a0f" absoluteBounds="9.375, 7.125, 2, 1.9631982421875">
+      <DataClassMoniker Name="/DataAnalysisDataContext/FinData" />
+      <nestedChildShapes>
+        <elementListCompartment Id="043215b3-b381-45ee-8d8c-0eb5a5162dff" absoluteBounds="9.39, 7.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9407d174-6c15-4ceb-ad98-ef8281423070" absoluteBounds="4.75, 8, 2, 1.0016910807291668">
+      <DataClassMoniker Name="/DataAnalysisDataContext/Unit" />
+      <nestedChildShapes>
+        <elementListCompartment Id="de9dbce7-19f5-4de2-80df-1a5d289b8b9e" absoluteBounds="4.765, 8.46, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

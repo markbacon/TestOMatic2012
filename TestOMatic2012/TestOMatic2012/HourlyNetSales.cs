@@ -7,8 +7,8 @@ namespace TestOMatic2012 {
 	
 	class HourlyNetSales {
 
-		public DateTime SalesDateTime;
-		public decimal Amount;
+		public DateTime SalesDateTime = DateTime.MinValue;
+		public decimal Amount = 0;
 
 
 	}

@@ -25,7 +25,7 @@ namespace TestOMatic2012 {
 
 			//string pollFilePath = "U:\\PollFile\\PollFiles";
 			//string pollFilePath = "W:\\Ckenode";
-			string pollFilePath = "C:\\Temp308";
+			string pollFilePath = "C:\\Temp.44";
 
 			Logger.Write("Begin processing " + pollFilePath);
 

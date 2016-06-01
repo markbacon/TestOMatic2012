@@ -16,7 +16,7 @@ namespace TestOMatic2012 {
 			InitializeComponent();
 		}
 
-		private System.Diagnostics.EventLog eventLog2;
+		private System.Diagnostics.EventLog eventLog2 = new EventLog();
 
 		private void button2_Click(object sender, EventArgs e) {
 
@@ -155,7 +155,7 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------
 		private void Unzipzips(string ZIPname, string subPath, string pollPath) {
 			bool exists;
-			string Archivename, Store_name, Store_date, Prior_Store_date = "";
+			string Archivename, Store_name, Store_date;//, Prior_Store_date = "";
 
 			try {
 				//Refresh the path for Reports, TLogs and Pollfiles
@@ -230,13 +230,16 @@ namespace TestOMatic2012 {
 										Store_date = pollFilename.Substring(pollFilename.Length - 12, 8);
 										string Reports_Store_Path = Path.Combine(ReportPath, Store_name);
 										exists = System.IO.Directory.Exists(Reports_Store_Path);
-										if (!exists) System.IO.Directory.CreateDirectory(Reports_Store_Path);
-										if (1 == 0 && pollFilename.ToLower().Contains("weekly") && Prior_Store_date.Length > 0)
-											Reports_Store_Path = Path.Combine(Reports_Store_Path, Prior_Store_date);
-										else {
-											Reports_Store_Path = Path.Combine(Reports_Store_Path, Store_date);
-											Prior_Store_date = Store_date;
+										if (!exists) {
+											System.IO.Directory.CreateDirectory(Reports_Store_Path);
 										}
+
+										//if (1 == 0 && pollFilename.ToLower().Contains("weekly") && Prior_Store_date.Length > 0)
+										//	Reports_Store_Path = Path.Combine(Reports_Store_Path, Prior_Store_date);
+										//else {
+										//	Reports_Store_Path = Path.Combine(Reports_Store_Path, Store_date);
+										//	Prior_Store_date = Store_date;
+										//}
 										exists = System.IO.Directory.Exists(Reports_Store_Path);
 										if (!exists) System.IO.Directory.CreateDirectory(Reports_Store_Path);
 										Archivename = Path.Combine(Reports_Store_Path, Path.GetFileName(pollFilename));

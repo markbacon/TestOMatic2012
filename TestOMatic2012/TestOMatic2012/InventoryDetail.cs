@@ -31,7 +31,7 @@ namespace TestOMatic2012 {
 			}
 		}
 		//---------------------------------------------------------------------------------------------------
-		private decimal _varianceAmount = 0;
+		//private decimal _varianceAmount = 0;
 		
 
 

@@ -12,6 +12,9 @@ namespace TestOMatic2012 {
 	public partial class Form24 : Form {
 		public Form24() {
 			InitializeComponent();
+
+			Logger.LoggerWrite += form8_onLoggerWrite;
+
 		}
 		//---------------------------------------------------------------------------------------------------------
 		//-- Private Members
@@ -28,11 +31,12 @@ namespace TestOMatic2012 {
 			FreeIndicator = 4,
 			SpecialPaymentypeId = 5,
 			MenuItemId = 6,
-			DestinationId = 7,
-			DayPartId = 8,
-			Amount = 9,
-			Quantity = 10,
-			ComboSizeIndicator = 11
+			MenuItemName = 7,
+			DestinationId = 8,
+			DayPartId = 9,
+			Amount = 10,
+			Quantity = 11,
+			ComboSizeIndicator = 12
 		}
 		//---------------------------------------------------------------------------------------------------------
 		private void button1_Click(object sender, EventArgs e) {
@@ -148,12 +152,22 @@ namespace TestOMatic2012 {
 			button4.Enabled = true;
 
 		}
+		//---------------------------------------------------------------------------------------------------
+		private void form8_onLoggerWrite(object sender, LoggerEventArgs e) {
+
+			textBox1.Text += e.Message + "\r\n";
+			Application.DoEvents();
+
+
+		}
 		//---------------------------------------------------------------------------------------------------------
 		private void ProcessFile(FileInfo file) {
 
 			DateTime businessDate = DateTime.MinValue;
 			string unitNumber;
 			int mixDestPollFileId = -1;
+
+			DataAnalysis2DataContext dataContext = new DataAnalysis2DataContext();
 
 			using (StreamReader sr = file.OpenText()) {
 
@@ -184,17 +198,23 @@ namespace TestOMatic2012 {
 						//-- Detail records have more than 4 fields 
 						if (items.Length > 4) {
 
-							if (items[(int)MenuDestLineCsvPosition.FreeIndicator] != "Y") {
+							if (items[(int)MenuDestLineCsvPosition.DestItemTypeId] == "1") {
 
-								MixDestPollItem pollItem = new MixDestPollItem();
 
-								pollItem.ItemNumber = items[(int)MenuDestLineCsvPosition.MenuItemId];
-								pollItem.MixDestPollFileId = mixDestPollFileId;
-								pollItem.Price = Convert.ToDecimal(items[(int)MenuDestLineCsvPosition.Amount]);
-								pollItem.Quantity = Convert.ToDecimal(items[(int)MenuDestLineCsvPosition.Quantity]);
+								if (items[(int)MenuDestLineCsvPosition.FreeIndicator] != "Y") {
 
-								_dataContext.MixDestPollItems.InsertOnSubmit(pollItem);
-								_dataContext.SubmitChanges();
+									MixDestPollItem pollItem = new MixDestPollItem();
+
+									pollItem.ItemNumber = items[(int)MenuDestLineCsvPosition.MenuItemId];
+									pollItem.MixDestPollFileId = mixDestPollFileId;
+									pollItem.Price = Convert.ToDecimal(items[(int)MenuDestLineCsvPosition.Amount]);
+									pollItem.Quantity = Convert.ToDecimal(items[(int)MenuDestLineCsvPosition.Quantity]);
+									pollItem.DaypartId = Convert.ToInt32(items[(int)MenuDestLineCsvPosition.DayPartId]);
+									pollItem.Description = items[(int)MenuDestLineCsvPosition.MenuItemName];
+
+									dataContext.MixDestPollItems.InsertOnSubmit(pollItem);
+									dataContext.SubmitChanges();
+								}
 							}
 						}
 					}
@@ -204,11 +224,13 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------------
 		private void ProcessFiles() {
 
-			DirectoryInfo di = new DirectoryInfo("C:\\Temp2.0");
+			DirectoryInfo di = new DirectoryInfo(@"C:\Store Data\X1100004\X1100004\temp");
 
-			FileInfo[] files = di.GetFiles("????MixDest.pol");
+			FileInfo[] files = di.GetFiles("*_MixDest.pol");
 
 			foreach (FileInfo file in files) {
+
+				Logger.Write("Processing file: " + file.Name);
 
 				ProcessFile(file);
 
@@ -231,6 +253,19 @@ namespace TestOMatic2012 {
 
 			return pollFile.MixDestPollFileId;
 
+		}
+		//---------------------------------------------------------------------------------------------------------
+		private void textBox1_TextChanged(object sender, EventArgs e) {
+			if (textBox1.Text.Length > 2024) {
+				textBox1.Text = "";
+			}
+
+
+			if (textBox1.Text.Length > 0) {
+				textBox1.SelectionStart = textBox1.Text.Length - 1;
+				textBox1.ScrollToCaret();
+				Application.DoEvents();
+			}
 		}
 	}
 }

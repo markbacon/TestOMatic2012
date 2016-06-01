@@ -36,14 +36,15 @@ namespace TestOMatic2012 {
 
 			button2.Enabled = false;
 
-			DirectoryInfo di = new DirectoryInfo("C:\\Temp\\TLogs");
+			DirectoryInfo di = new DirectoryInfo("D:\\xdata1\\ckenode2");
+			//DirectoryInfo di = new DirectoryInfo("C:\\ckenode2");
 
 			DirectoryInfo[] directories = di.GetDirectories("X15*");
 
 			foreach (DirectoryInfo directory in directories) {
 
-
-				ProcessDirectory(directory);
+				ProcessTLogDirectory(directory);
+				//ProcessDirectory(directory);
 			}
 
 
@@ -62,23 +63,53 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------------
 		private void ProcessTLogDirectory(DirectoryInfo di) {
 
-			FileInfo file = di.GetFiles().FirstOrDefault();
+			FileInfo[] files = di.GetFiles();
 
-			if (file != null) {
+			int existingFileCount = 0;
+			int copyCount = 0;
 
-				string targetDirectoryName = Path.Combine("\\\\ckecldfnp02\\HFSCO_RO\\", di.Parent.Name, di.Name);
 
-				if (!Directory.Exists(targetDirectoryName)) {
-					Directory.CreateDirectory(targetDirectoryName);
+			foreach (FileInfo file in files) {
+
+				if (file != null) {
+
+					string subDirName = file.Name.Substring(0, 8);
+
+					//string targetDirectoryName = Path.Combine("\\\\ckecldfnp02\\HFSCO_RO\\", di.Parent.Name, di.Name);
+					string targetDirectoryName = Path.Combine("\\\\ckecldfnp02\\HFSCO_RO\\", di.Name, subDirName);
+
+					if (!Directory.Exists(targetDirectoryName)) {
+						Directory.CreateDirectory(targetDirectoryName);
+					}
+
+					string targetPath = Path.Combine(targetDirectoryName, file.Name);
+
+
+					if (!File.Exists(targetPath)) {
+
+						textBox1.Text += "Copying file to:  " + targetPath + "\r\n";
+						Application.DoEvents();
+						Logger.Write("Copying file to:  " + targetPath);
+						//file.CopyTo(targetPath, true);
+
+						copyCount++;
+
+					}
+					else {
+						textBox1.Text += "File already exists: " + targetPath + "\r\n";
+						Application.DoEvents();
+						Logger.Write("File already exists: " + targetPath);
+
+						existingFileCount++;
+					}
+
+
 				}
 
-				string targetPath = Path.Combine(targetDirectoryName, file.Name);
-
-				textBox1.Text += "Copying file to:  " + targetPath + "\r\n";
-				Application.DoEvents();
-
-				file.CopyTo(targetPath, true);
 			}
+
+			Logger.Write("Existing file count: " + existingFileCount.ToString());
+			Logger.Write("Copied file count: " + copyCount.ToString());
 		}
 		//---------------------------------------------------------------------------------------------------------
 		private void textBox1_TextChanged(object sender, EventArgs e) {

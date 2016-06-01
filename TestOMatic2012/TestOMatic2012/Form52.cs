@@ -112,8 +112,8 @@ namespace TestOMatic2012 {
 
 			button4.Enabled = false;
 
-			string filePath = "C:\\Temp.44\\CarlsStarPos.dat";
-			//string filePath = "C:\\Temp.44\\HardeStarPos.dat";
+			//string filePath = "C:\\Temp.44\\CarlsStarPos.dat";
+			string filePath = "C:\\Temp.44\\HardeStarPos.dat";
 
 			using (StreamReader sr = new StreamReader(filePath)) {
 

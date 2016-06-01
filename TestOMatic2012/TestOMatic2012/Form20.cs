@@ -110,6 +110,42 @@ namespace TestOMatic2012 {
 			button2.Enabled = true;
 		}
 		//---------------------------------------------------------------------------------------------------
+		private void button3_Click(object sender, EventArgs e) {
+
+			button3.Enabled = false;
+
+			string rootDirName = @"\\xdata1\cmsos2\ckenode";
+
+			DirectoryInfo di = new DirectoryInfo(rootDirName);
+
+			DirectoryInfo[] directories = di.GetDirectories("X15*");
+
+			foreach (DirectoryInfo directory in directories) {
+
+				Logger.Write("Processing directory: " + directory.Name);
+
+				FileInfo[] files = directory.GetFiles("X15*MixDest.pol");
+
+				string destFilePath = @"C:\MixDestPollFiles";
+
+				if (!Directory.Exists(destFilePath)) {
+					Directory.CreateDirectory(destFilePath);
+				}
+
+
+				foreach (FileInfo file in files) {
+
+					Logger.Write("Copying file: " + file.Name);
+
+					destFilePath = Path.Combine(@"C:\MixDestPollFiles", file.Name) ;
+
+					file.CopyTo(destFilePath, true);
+				}
+			}
+
+			button3.Enabled = true;
+		}
+		//---------------------------------------------------------------------------------------------------
 		private void form20_onLoggerWrite(object sender, LoggerEventArgs e) {
 
 			textBox1.Text += e.Message + "\r\n";
@@ -216,6 +252,5 @@ namespace TestOMatic2012 {
 				Application.DoEvents();
 			}
 		}
-
 	}
 }

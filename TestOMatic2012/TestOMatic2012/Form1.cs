@@ -27,119 +27,161 @@ namespace TestOMatic2012 {
 	public partial class Form1 : Form {
 		public Form1() {
 			InitializeComponent();
+
+			Logger.LoggerWrite += form8_onLoggerWrite;
+
+			Logger.StartLogSession();
+
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
 
 			button1.Enabled = false;
 
-			//string sql = textBox1.Text;
 
-			//DataAccess dac = new DataAccess(@"Data Source=localhost;Initial Catalog=Recipes;Integrated Security=True");
-			//DataTable dt = dac.ExecuteQuery(sql);
+			string dirName = "C:\\xdata1\\cmsos2\\ckenode";
 
-			//dt.TableName = "JrWarehouse";
+			DirectoryInfo di = new DirectoryInfo(dirName);
 
-			//dt.WriteXmlSchema("C:\\Temp\\JrWarehouse.xsd");
+			DirectoryInfo[] directories = di.GetDirectories();
 
+			foreach (DirectoryInfo directory in directories) {
 
+				FileInfo[] files = directory.GetFiles("X1*_wktime.pol");
 
+				foreach (FileInfo file in files) {
+					Logger.Write("Copying file: " + file.Name);
+					string copyPath = Path.Combine(directory.FullName, "inbox", "inbox", file.Name);
+					file.CopyTo(copyPath, true);
 
-//			ProcessPromoItems();//
-
-			//MenuPollData pollData = new MenuPollData();
-			//pollData.Run();
-
-			//LaborHoursProcessor processor = new LaborHoursProcessor();
-			//processor.Run();
-			//textBox1.Text = processor.BuildUpdateSQL();
-
-			StringBuilder sb = new StringBuilder();
-
-			string[] lines = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-
-
-			int counter = 1;
-
-			foreach (string line in lines) {
-
-
-				string jrCode = line.Trim();
-
-				if (jrCode.Length > 0) {
-
-					switch (jrCode.Length) {
-
-						case 1:
-							jrCode = "JR00" + jrCode;
-							break;
-
-						case 2:
-							jrCode = "JR0" + jrCode;
-							break;
-
-						case 3:
-							jrCode = "JR" + jrCode;
-
-							break;
-
-						case 4:
-							jrCode = "J" + jrCode;
-
-							break;
-					}
-
-					sb.Append("'");
-					sb.Append(jrCode);
-					sb.Append("', ");
-					//sb.Append(", ");
-					if (++counter % 10 == 0) {
-
-						sb.Append("\r\n");
-
-					}
-
+					file.Delete();
 				}
 			}
 
-			textBox1.Text = sb.ToString();
+			//StringBuilder sb = new StringBuilder();
+			
+			//DateTime businessDate = new DateTime(2016, 3, 21);
 
-			//	//sb.Append(line.Replace("  ", " "));
-			//	//sb.Replace("  ", " ");
-			//	//sb.Replace("  ", " ");
-			//	//sb.Replace("  ", " ");
-			//	//sb.Replace("  ", " ");
-			//	//sb.Replace("  ", " ");
-			//	//sb.Replace(" ", "\t");
+			//while (businessDate < DateTime.Today) {
 
-			//	if (line.Length > 0) {
+			//	//sb.Append("NextGenFileGenerator /ReportType=MixDestPoll /BusinessDate=");
+			//	sb.Append("CkeFileTransfer /SendZipFile=true /BusinessDate=");
+			//	sb.Append(businessDate.ToString("MM/dd/yyyy"));
+			//	sb.Append("\r\n");
 
-			//		//sb.Append(line.Substring(16, 20).Trim());
-			//		//sb.Append("\t");
-			//		//sb.Append(line.Substring(0, 4).Trim());
-			//		//sb.Append("\t");
-			//		//sb.Append(line.Substring(37, 9).Trim());
-
-
-			//		//sb.Append(line.Substring(0, 7).Trim());
-			//		//sb.Append("\t");
-			//		//sb.Append(line.Substring(8, 20).Trim());
-			//		//sb.Append("\t");
-			//		//sb.Append(line.Substring(32, 7).Trim());
-
-			//		sb.Append(line.Substring(0, 18).Trim());
-			//		sb.Append("\t");
-			//		sb.Append(line.Substring(19, 20).Trim());
-			//		sb.Append("\t");
-			//		sb.Append(line.Substring(43, 7).Trim());
-
-
-			//		sb.Append("\r\n");
-			//	}
+			//	businessDate = businessDate.AddDays(1);
 
 			//}
 
 			//textBox1.Text = sb.ToString();
+
+//			//string sql = textBox1.Text;
+
+//			//DataAccess dac = new DataAccess(@"Data Source=localhost;Initial Catalog=Recipes;Integrated Security=True");
+//			//DataTable dt = dac.ExecuteQuery(sql);
+
+//			//dt.TableName = "JrWarehouse";
+
+//			//dt.WriteXmlSchema("C:\\Temp\\JrWarehouse.xsd");
+
+
+
+
+////			ProcessPromoItems();//
+
+//			//MenuPollData pollData = new MenuPollData();
+//			//pollData.Run();
+
+//			//LaborHoursProcessor processor = new LaborHoursProcessor();
+//			//processor.Run();
+//			//textBox1.Text = processor.BuildUpdateSQL();
+
+//			StringBuilder sb = new StringBuilder();
+
+//			string[] lines = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+
+//			int counter = 1;
+
+//			foreach (string line in lines) {
+
+
+//				string jrCode = line.Trim();
+
+//				if (jrCode.Length > 0) {
+
+//					switch (jrCode.Length) {
+
+//						case 1:
+//							jrCode = "JR00" + jrCode;
+//							break;
+
+//						case 2:
+//							jrCode = "JR0" + jrCode;
+//							break;
+
+//						case 3:
+//							jrCode = "JR" + jrCode;
+
+//							break;
+
+//						case 4:
+//							jrCode = "J" + jrCode;
+
+//							break;
+//					}
+
+//					sb.Append("'");
+//					sb.Append(jrCode);
+//					sb.Append("', ");
+//					//sb.Append(", ");
+//					if (++counter % 10 == 0) {
+
+//						sb.Append("\r\n");
+
+//					}
+
+//				}
+//			}
+
+//			textBox1.Text = sb.ToString();
+
+//			//	//sb.Append(line.Replace("  ", " "));
+//			//	//sb.Replace("  ", " ");
+//			//	//sb.Replace("  ", " ");
+//			//	//sb.Replace("  ", " ");
+//			//	//sb.Replace("  ", " ");
+//			//	//sb.Replace("  ", " ");
+//			//	//sb.Replace(" ", "\t");
+
+//			//	if (line.Length > 0) {
+
+//			//		//sb.Append(line.Substring(16, 20).Trim());
+//			//		//sb.Append("\t");
+//			//		//sb.Append(line.Substring(0, 4).Trim());
+//			//		//sb.Append("\t");
+//			//		//sb.Append(line.Substring(37, 9).Trim());
+
+
+//			//		//sb.Append(line.Substring(0, 7).Trim());
+//			//		//sb.Append("\t");
+//			//		//sb.Append(line.Substring(8, 20).Trim());
+//			//		//sb.Append("\t");
+//			//		//sb.Append(line.Substring(32, 7).Trim());
+
+//			//		sb.Append(line.Substring(0, 18).Trim());
+//			//		sb.Append("\t");
+//			//		sb.Append(line.Substring(19, 20).Trim());
+//			//		sb.Append("\t");
+//			//		sb.Append(line.Substring(43, 7).Trim());
+
+
+//			//		sb.Append("\r\n");
+//			//	}
+
+//			//}
+
+//			//textBox1.Text = sb.ToString();
 
 			button1.Enabled = true;
 
@@ -307,6 +349,14 @@ namespace TestOMatic2012 {
 				}
 			}
 		}
+		//---------------------------------------------------------------------------------------------------
+		private void form8_onLoggerWrite(object sender, LoggerEventArgs e) {
+
+			textBox1.Text += e.Message + "\r\n";
+			Application.DoEvents();
+
+
+		}
 		//---------------------------------------------------------------------------------------------------------
 		private string MapNumericString(string numString) {
 
@@ -368,15 +418,17 @@ namespace TestOMatic2012 {
 
 			StringBuilder sb = new StringBuilder();
 
+			//string[] items = textBox1.Text.Split(new char[] { ',' });
 			string[] items = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
 			int counter = 0;
 
 			foreach (string item in items) {
 
-				sb.Append("'");
-				sb.Append(item.Trim());
-				sb.Append("',");
+				//sb.Append("'");
+				sb.Append(item.Trim().Substring(0));
+				//sb.Append("'");
+				sb.Append(",");
 
 				if ((++counter) % 10 == 0) {
 					sb.Append("\r\n");
@@ -958,11 +1010,11 @@ namespace TestOMatic2012 {
 			//}
 
 
-			//if (textBox1.Text.Length > 0) {
-			//	textBox1.SelectionStart = textBox1.Text.Length - 1;
-			//	textBox1.ScrollToCaret();
-			//	Application.DoEvents();
-			//}
+			if (textBox1.Text.Length > 0) {
+				textBox1.SelectionStart = textBox1.Text.Length - 1;
+				textBox1.ScrollToCaret();
+				Application.DoEvents();
+			}
 
 		}
 		//---------------------------------------------------------------------------------------------------------
@@ -1203,5 +1255,60 @@ namespace TestOMatic2012 {
 
             textBox1.Text  = sb.ToString();
         }
+
+		private void button8_Click(object sender, EventArgs e) {
+
+			button8.Enabled = false;
+
+			DirectoryInfo di = new DirectoryInfo("C:\\MixDestPollFiles");
+
+			FileInfo[] files = di.GetFiles();
+
+			foreach (FileInfo file in files) {
+
+				string temp = file.Name.Substring(8, 8);
+
+				int foo = Convert.ToInt32(temp);
+
+				if (foo >= 20160331 && foo <= 20160417) {
+
+					string copyPath = Path.Combine("C:\\CarlsMixDestPollFiles", file.Name);
+					file.CopyTo(copyPath, true);
+
+				}
+
+
+
+
+			}
+
+
+
+			button8.Enabled = true;
+
+		}
+
+		private void button9_Click(object sender, EventArgs e) {
+
+			StringBuilder sb = new StringBuilder();
+
+			DateTime startDate = new DateTime(2016, 04, 18);
+
+			while (startDate < DateTime.Today) {
+
+				sb.Append(@"C:\BackOffice\CKE\NextGenFileGenerator\NextGetFileGenerator.exe /ReportType=MixDestPoll /BusinessDate=");
+				sb.Append(startDate.ToString("MM/dd/yyyy"));
+				sb.Append("\r\n");
+
+				startDate = startDate.AddDays(1);
+
+			}
+
+			textBox1.Text = sb.ToString();
+		}
+
+		private void Form1_Load(object sender, EventArgs e) {
+
+		}
 	}
 }

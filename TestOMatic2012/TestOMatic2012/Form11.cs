@@ -14,6 +14,7 @@ namespace TestOMatic2012 {
 	public partial class Form11 : Form {
 		public Form11() {
 			InitializeComponent();
+			Logger.LoggerWrite += form8_onLoggerWrite;
 		}
 
 
@@ -21,10 +22,20 @@ namespace TestOMatic2012 {
 
 			button2.Enabled = false;
 
-			ProcessCkeNodeirectoryX();
+			ProcessCkeNodeirectory();
 
 			button2.Enabled = true;
 		}
+
+		//---------------------------------------------------------------------------------------------------
+		private void form8_onLoggerWrite(object sender, LoggerEventArgs e) {
+
+			textBox1.Text += e.Message + "\r\n";
+			Application.DoEvents();
+
+
+		}
+
 		//---------------------------------------------------------------------------------------------------------
 		private List<string> GetStarPosUnitList() {
 
@@ -48,7 +59,7 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------------
 		private void ProcessCkeNodeirectory() {
 
-			List<string> starPosUnitList = GetStarPosUnitList();
+			//List<string> starPosUnitList = GetStarPosUnitList();
 
 			string filePath = @"\\xdata1\cmsos2\ckenode\";
 
@@ -61,14 +72,16 @@ namespace TestOMatic2012 {
 
 			foreach (DirectoryInfo directory in directories) {
 
-				textBox1.Text += "Processing Directory:  " + directory.Name + "\r\n";
+				Logger.Write("Processing Directory:  " + directory.Name);
 				
-				//ProcessDirectory(directory);
+				ProcessDirectory(directory);
 
 				//////if (String.Compare(directory.Name, "X1501610") > 0) {
 				//if (starPosUnitList.Contains(directory.Name)) {
 
-					ProcessDirectoryHardees(directory);
+					//ProcessDirectoryHardees(directory);
+				//ProcessDirectoryX(directory);
+				//ProcessTransHistDirectory(directory);
 				//}
 				//else {
 				//	ProcessDirectory(directory);
@@ -130,7 +143,7 @@ namespace TestOMatic2012 {
 				Directory.CreateDirectory(copyDirectory);
 			}
 
-			FileInfo[] files = di.GetFiles("*");
+			FileInfo[] files = di.GetFiles("*SystemData.xml");
 
 			foreach (FileInfo file in files) {
 
@@ -140,41 +153,72 @@ namespace TestOMatic2012 {
 				textBox1.Text += "Copying file: " + copyPath + "\r\n";
 				Application.DoEvents();
 
-				//file.CopyTo(copyPath, true);
+				file.CopyTo(copyPath, true);
 
-				if (file.Name.IndexOf(".fin", StringComparison.InvariantCultureIgnoreCase) > -1
-					|| file.Name.IndexOf(".pol", StringComparison.InvariantCultureIgnoreCase) > -1
-					|| file.Name.IndexOf(".fcp", StringComparison.InvariantCultureIgnoreCase) > -1) {
+				////if (file.Name.IndexOf("", StringComparison.InvariantCultureIgnoreCase) > -1 ) {
+				//	//|| file.Name.IndexOf(".pol", StringComparison.InvariantCultureIgnoreCase) > -1
+				//	//|| file.Name.IndexOf("SystemData.xml", StringComparison.InvariantCultureIgnoreCase) > -1) {
 
-					//string mtierDirectory = copyDirectory + "\\mtier\\SalesLabor";
-					string mtierDirectory = copyDirectory + "\\mtier";
+				//	//string mtierDirectory = copyDirectory + "\\mtier\\SalesLabor";
+				//	string mtierDirectory = copyDirectory + "\\mtier";
 
-					if (!Directory.Exists(mtierDirectory)) {
-						Directory.CreateDirectory(mtierDirectory);
-					}
+				//	if (!Directory.Exists(mtierDirectory)) {
+				//		Directory.CreateDirectory(mtierDirectory);
+				//	}
 
-					string mtierPath = mtierDirectory + "\\" + file.Name;
-					file.CopyTo(mtierPath, true);
+				//	string mtierPath = mtierDirectory + "\\" + file.Name;
+				//	file.CopyTo(mtierPath, true);
 
-					if (file.Name.IndexOf("wktime.pol", StringComparison.InvariantCultureIgnoreCase) > -1) {
+				//	if (file.Name.IndexOf("wktime.pol", StringComparison.InvariantCultureIgnoreCase) > -1) {
 
-						string timeDirectory = copyDirectory + "\\Time";
+				//		string timeDirectory = copyDirectory + "\\Time";
 
-						if (!Directory.Exists(timeDirectory)) {
-							Directory.CreateDirectory(timeDirectory);
-						}
+				//		if (!Directory.Exists(timeDirectory)) {
+				//			Directory.CreateDirectory(timeDirectory);
+				//		}
 
 
 
-						file.CopyTo(Path.Combine(timeDirectory, file.Name), true);
+				//		file.CopyTo(Path.Combine(timeDirectory, file.Name), true);
 
-					}
+				//}
 
 
 
 				}
-			}
 			//}
+			//}
+		}
+		//---------------------------------------------------------------------------------------------------------
+		private void ProcessTransHistDirectory(DirectoryInfo srcDirectory) {
+
+			FileInfo[] files = srcDirectory.GetFiles();
+
+			string rootDirPath = @"\\ckecldfnp02\CJRCO_RO\" + srcDirectory.Name;
+
+
+			foreach (FileInfo file in files) {
+
+				Logger.Write("Processing file: " + file.FullName);
+
+				string destDirPath = Path.Combine(rootDirPath, file.Name.Substring(0, 8));
+				string destFilePath = Path.Combine(destDirPath, file.Name);
+
+
+				DirectoryInfo destDirectory = new DirectoryInfo(destDirPath);
+				FileInfo existingFile = destDirectory.GetFiles(file.Name).FirstOrDefault();
+
+				if (existingFile != null) {
+
+					if (existingFile.CreationTime < file.CreationTime) {
+						existingFile.Delete();
+						file.CopyTo(destFilePath);
+					}
+				}
+				else {
+					file.CopyTo(destFilePath);
+				}
+			}
 		}
 		//---------------------------------------------------------------------------------------------------------
 		private void ProcessDirectoryX(DirectoryInfo di) {
@@ -182,7 +226,7 @@ namespace TestOMatic2012 {
 			textBox1.Text += "Processing Directory: " + di.FullName + "\r\n";
 			Application.DoEvents();
 
-			FileInfo[] files = di.GetFiles("X15*.pol");
+			FileInfo[] files = di.GetFiles("X1*.pol");
 
 			foreach (FileInfo file in files) {
 
@@ -201,7 +245,7 @@ namespace TestOMatic2012 {
 				file.CopyTo(copyPath, true);
 			}
 
-			files = di.GetFiles("X15*.fin");
+			files = di.GetFiles("X1*.fin");
 
 			foreach (FileInfo file in files) {
 
@@ -370,7 +414,20 @@ namespace TestOMatic2012 {
 
 
 
-			FileInfo[] files = di.GetFiles("coupon_orders.csv");
+			//FileInfo[] files = di.GetFiles("coupon_orders.csv");
+
+			//foreach (FileInfo file in files) {
+
+			//	string copyPath = copyDirectory + "\\" + file.Name;
+
+			//	if (!File.Exists(copyPath)) {
+			//		textBox1.Text += "Copying file: " + copyPath + "\r\n";
+			//		Application.DoEvents();
+
+			//		file.CopyTo(copyPath, true);
+			//	}
+			//}
+			FileInfo[] files = di.GetFiles("*pd*.fin");
 
 			foreach (FileInfo file in files) {
 
@@ -383,21 +440,8 @@ namespace TestOMatic2012 {
 					file.CopyTo(copyPath, true);
 				}
 			}
-			files = di.GetFiles("*pd*.fin");
 
-			foreach (FileInfo file in files) {
-
-				string copyPath = copyDirectory + "\\" + file.Name;
-
-				if (!File.Exists(copyPath)) {
-					textBox1.Text += "Copying file: " + copyPath + "\r\n";
-					Application.DoEvents();
-
-					file.CopyTo(copyPath, true);
-				}
-			}
-
-			files = di.GetFiles("*MixDest.pol");
+			files = di.GetFiles("*.pol");
 
 			foreach (FileInfo file in files) {
 

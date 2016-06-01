@@ -117,6 +117,24 @@ namespace TestOMatic2012
     partial void InsertStarPosJournalAnalysi(StarPosJournalAnalysi instance);
     partial void UpdateStarPosJournalAnalysi(StarPosJournalAnalysi instance);
     partial void DeleteStarPosJournalAnalysi(StarPosJournalAnalysi instance);
+    partial void InsertMixPollItem(MixPollItem instance);
+    partial void UpdateMixPollItem(MixPollItem instance);
+    partial void DeleteMixPollItem(MixPollItem instance);
+    partial void InsertMixPollFile(MixPollFile instance);
+    partial void UpdateMixPollFile(MixPollFile instance);
+    partial void DeleteMixPollFile(MixPollFile instance);
+    partial void InsertLaborAdjustmentFile(LaborAdjustmentFile instance);
+    partial void UpdateLaborAdjustmentFile(LaborAdjustmentFile instance);
+    partial void DeleteLaborAdjustmentFile(LaborAdjustmentFile instance);
+    partial void InsertLaborAdjustmentRecord(LaborAdjustmentRecord instance);
+    partial void UpdateLaborAdjustmentRecord(LaborAdjustmentRecord instance);
+    partial void DeleteLaborAdjustmentRecord(LaborAdjustmentRecord instance);
+    partial void InsertFinData(FinData instance);
+    partial void UpdateFinData(FinData instance);
+    partial void DeleteFinData(FinData instance);
+    partial void InsertUnit(Unit instance);
+    partial void UpdateUnit(Unit instance);
+    partial void DeleteUnit(Unit instance);
     #endregion
 		
 		public DataAnalysisDataContext() : 
@@ -378,6 +396,54 @@ namespace TestOMatic2012
 			get
 			{
 				return this.GetTable<StarPosJournalAnalysi>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MixPollItem> MixPollItems
+		{
+			get
+			{
+				return this.GetTable<MixPollItem>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MixPollFile> MixPollFiles
+		{
+			get
+			{
+				return this.GetTable<MixPollFile>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LaborAdjustmentFile> LaborAdjustmentFiles
+		{
+			get
+			{
+				return this.GetTable<LaborAdjustmentFile>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LaborAdjustmentRecord> LaborAdjustmentRecords
+		{
+			get
+			{
+				return this.GetTable<LaborAdjustmentRecord>();
+			}
+		}
+		
+		public System.Data.Linq.Table<FinData> FinDatas
+		{
+			get
+			{
+				return this.GetTable<FinData>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Unit> Units
+		{
+			get
+			{
+				return this.GetTable<Unit>();
 			}
 		}
 	}
@@ -6634,6 +6700,1215 @@ namespace TestOMatic2012
 					this._DebitCredit = value;
 					this.SendPropertyChanged("DebitCredit");
 					this.OnDebitCreditChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MixPollItem")]
+	public partial class MixPollItem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MixPollItemId;
+		
+		private int _MenuPollFileId;
+		
+		private string _MenuItemId;
+		
+		private string _ItemDescription;
+		
+		private string _Department;
+		
+		private int _QuantitySold;
+		
+		private decimal _Price;
+		
+		private EntityRef<MixPollFile> _MixPollFile;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMixPollItemIdChanging(int value);
+    partial void OnMixPollItemIdChanged();
+    partial void OnMenuPollFileIdChanging(int value);
+    partial void OnMenuPollFileIdChanged();
+    partial void OnMenuItemIdChanging(string value);
+    partial void OnMenuItemIdChanged();
+    partial void OnItemDescriptionChanging(string value);
+    partial void OnItemDescriptionChanged();
+    partial void OnDepartmentChanging(string value);
+    partial void OnDepartmentChanged();
+    partial void OnQuantitySoldChanging(int value);
+    partial void OnQuantitySoldChanged();
+    partial void OnPriceChanging(decimal value);
+    partial void OnPriceChanged();
+    #endregion
+		
+		public MixPollItem()
+		{
+			this._MixPollFile = default(EntityRef<MixPollFile>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MixPollItemId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MixPollItemId
+		{
+			get
+			{
+				return this._MixPollItemId;
+			}
+			set
+			{
+				if ((this._MixPollItemId != value))
+				{
+					this.OnMixPollItemIdChanging(value);
+					this.SendPropertyChanging();
+					this._MixPollItemId = value;
+					this.SendPropertyChanged("MixPollItemId");
+					this.OnMixPollItemIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuPollFileId", DbType="Int NOT NULL")]
+		public int MenuPollFileId
+		{
+			get
+			{
+				return this._MenuPollFileId;
+			}
+			set
+			{
+				if ((this._MenuPollFileId != value))
+				{
+					if (this._MixPollFile.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMenuPollFileIdChanging(value);
+					this.SendPropertyChanging();
+					this._MenuPollFileId = value;
+					this.SendPropertyChanged("MenuPollFileId");
+					this.OnMenuPollFileIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string MenuItemId
+		{
+			get
+			{
+				return this._MenuItemId;
+			}
+			set
+			{
+				if ((this._MenuItemId != value))
+				{
+					this.OnMenuItemIdChanging(value);
+					this.SendPropertyChanging();
+					this._MenuItemId = value;
+					this.SendPropertyChanged("MenuItemId");
+					this.OnMenuItemIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemDescription", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string ItemDescription
+		{
+			get
+			{
+				return this._ItemDescription;
+			}
+			set
+			{
+				if ((this._ItemDescription != value))
+				{
+					this.OnItemDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._ItemDescription = value;
+					this.SendPropertyChanged("ItemDescription");
+					this.OnItemDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Department", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Department
+		{
+			get
+			{
+				return this._Department;
+			}
+			set
+			{
+				if ((this._Department != value))
+				{
+					this.OnDepartmentChanging(value);
+					this.SendPropertyChanging();
+					this._Department = value;
+					this.SendPropertyChanged("Department");
+					this.OnDepartmentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuantitySold", DbType="Int NOT NULL")]
+		public int QuantitySold
+		{
+			get
+			{
+				return this._QuantitySold;
+			}
+			set
+			{
+				if ((this._QuantitySold != value))
+				{
+					this.OnQuantitySoldChanging(value);
+					this.SendPropertyChanging();
+					this._QuantitySold = value;
+					this.SendPropertyChanged("QuantitySold");
+					this.OnQuantitySoldChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(18,2) NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MixPollFile_MixPollItem", Storage="_MixPollFile", ThisKey="MenuPollFileId", OtherKey="MixPollFileId", IsForeignKey=true)]
+		public MixPollFile MixPollFile
+		{
+			get
+			{
+				return this._MixPollFile.Entity;
+			}
+			set
+			{
+				MixPollFile previousValue = this._MixPollFile.Entity;
+				if (((previousValue != value) 
+							|| (this._MixPollFile.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MixPollFile.Entity = null;
+						previousValue.MixPollItems.Remove(this);
+					}
+					this._MixPollFile.Entity = value;
+					if ((value != null))
+					{
+						value.MixPollItems.Add(this);
+						this._MenuPollFileId = value.MixPollFileId;
+					}
+					else
+					{
+						this._MenuPollFileId = default(int);
+					}
+					this.SendPropertyChanged("MixPollFile");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MixPollFile")]
+	public partial class MixPollFile : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MixPollFileId;
+		
+		private string _FileName;
+		
+		private string _UnitNumber;
+		
+		private System.Nullable<System.DateTime> _BusinessDate;
+		
+		private EntitySet<MixPollItem> _MixPollItems;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMixPollFileIdChanging(int value);
+    partial void OnMixPollFileIdChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
+    partial void OnUnitNumberChanging(string value);
+    partial void OnUnitNumberChanged();
+    partial void OnBusinessDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnBusinessDateChanged();
+    #endregion
+		
+		public MixPollFile()
+		{
+			this._MixPollItems = new EntitySet<MixPollItem>(new Action<MixPollItem>(this.attach_MixPollItems), new Action<MixPollItem>(this.detach_MixPollItems));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MixPollFileId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MixPollFileId
+		{
+			get
+			{
+				return this._MixPollFileId;
+			}
+			set
+			{
+				if ((this._MixPollFileId != value))
+				{
+					this.OnMixPollFileIdChanging(value);
+					this.SendPropertyChanging();
+					this._MixPollFileId = value;
+					this.SendPropertyChanged("MixPollFileId");
+					this.OnMixPollFileIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FileName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string FileName
+		{
+			get
+			{
+				return this._FileName;
+			}
+			set
+			{
+				if ((this._FileName != value))
+				{
+					this.OnFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitNumber", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string UnitNumber
+		{
+			get
+			{
+				return this._UnitNumber;
+			}
+			set
+			{
+				if ((this._UnitNumber != value))
+				{
+					this.OnUnitNumberChanging(value);
+					this.SendPropertyChanging();
+					this._UnitNumber = value;
+					this.SendPropertyChanged("UnitNumber");
+					this.OnUnitNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BusinessDate", DbType="Date")]
+		public System.Nullable<System.DateTime> BusinessDate
+		{
+			get
+			{
+				return this._BusinessDate;
+			}
+			set
+			{
+				if ((this._BusinessDate != value))
+				{
+					this.OnBusinessDateChanging(value);
+					this.SendPropertyChanging();
+					this._BusinessDate = value;
+					this.SendPropertyChanged("BusinessDate");
+					this.OnBusinessDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MixPollFile_MixPollItem", Storage="_MixPollItems", ThisKey="MixPollFileId", OtherKey="MenuPollFileId")]
+		public EntitySet<MixPollItem> MixPollItems
+		{
+			get
+			{
+				return this._MixPollItems;
+			}
+			set
+			{
+				this._MixPollItems.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_MixPollItems(MixPollItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.MixPollFile = this;
+		}
+		
+		private void detach_MixPollItems(MixPollItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.MixPollFile = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LaborAdjustmentFile")]
+	public partial class LaborAdjustmentFile : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _LaborAdjustmentFileId;
+		
+		private string _UnitNumber;
+		
+		private System.DateTime _FileDate;
+		
+		private string _FileName;
+		
+		private int _RecordCount;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnLaborAdjustmentFileIdChanging(int value);
+    partial void OnLaborAdjustmentFileIdChanged();
+    partial void OnUnitNumberChanging(string value);
+    partial void OnUnitNumberChanged();
+    partial void OnFileDateChanging(System.DateTime value);
+    partial void OnFileDateChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
+    partial void OnRecordCountChanging(int value);
+    partial void OnRecordCountChanged();
+    #endregion
+		
+		public LaborAdjustmentFile()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LaborAdjustmentFileId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int LaborAdjustmentFileId
+		{
+			get
+			{
+				return this._LaborAdjustmentFileId;
+			}
+			set
+			{
+				if ((this._LaborAdjustmentFileId != value))
+				{
+					this.OnLaborAdjustmentFileIdChanging(value);
+					this.SendPropertyChanging();
+					this._LaborAdjustmentFileId = value;
+					this.SendPropertyChanged("LaborAdjustmentFileId");
+					this.OnLaborAdjustmentFileIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitNumber", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string UnitNumber
+		{
+			get
+			{
+				return this._UnitNumber;
+			}
+			set
+			{
+				if ((this._UnitNumber != value))
+				{
+					this.OnUnitNumberChanging(value);
+					this.SendPropertyChanging();
+					this._UnitNumber = value;
+					this.SendPropertyChanged("UnitNumber");
+					this.OnUnitNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FileDate", DbType="Date NOT NULL")]
+		public System.DateTime FileDate
+		{
+			get
+			{
+				return this._FileDate;
+			}
+			set
+			{
+				if ((this._FileDate != value))
+				{
+					this.OnFileDateChanging(value);
+					this.SendPropertyChanging();
+					this._FileDate = value;
+					this.SendPropertyChanged("FileDate");
+					this.OnFileDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FileName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string FileName
+		{
+			get
+			{
+				return this._FileName;
+			}
+			set
+			{
+				if ((this._FileName != value))
+				{
+					this.OnFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordCount", DbType="Int NOT NULL")]
+		public int RecordCount
+		{
+			get
+			{
+				return this._RecordCount;
+			}
+			set
+			{
+				if ((this._RecordCount != value))
+				{
+					this.OnRecordCountChanging(value);
+					this.SendPropertyChanging();
+					this._RecordCount = value;
+					this.SendPropertyChanged("RecordCount");
+					this.OnRecordCountChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LaborAdjustmentRecord")]
+	public partial class LaborAdjustmentRecord : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _LaborAdjustmentRecordId;
+		
+		private int _LaborAdjustmentFileId;
+		
+		private string _RecordId;
+		
+		private string _EmployeeId;
+		
+		private string _LastName;
+		
+		private string _FirstName;
+		
+		private string _AdjustmentTime;
+		
+		private string _AdjustmentType;
+		
+		private string _HoursMins;
+		
+		private string _Adjustment;
+		
+		private string _Deleted;
+		
+		private string _AuditDate;
+		
+		private string _CreatedBy;
+		
+		private string _ModifiedBy;
+		
+		private string _AuditType;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnLaborAdjustmentRecordIdChanging(int value);
+    partial void OnLaborAdjustmentRecordIdChanged();
+    partial void OnLaborAdjustmentFileIdChanging(int value);
+    partial void OnLaborAdjustmentFileIdChanged();
+    partial void OnRecordIdChanging(string value);
+    partial void OnRecordIdChanged();
+    partial void OnEmployeeIdChanging(string value);
+    partial void OnEmployeeIdChanged();
+    partial void OnLastNameChanging(string value);
+    partial void OnLastNameChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnAdjustmentTimeChanging(string value);
+    partial void OnAdjustmentTimeChanged();
+    partial void OnAdjustmentTypeChanging(string value);
+    partial void OnAdjustmentTypeChanged();
+    partial void OnHoursMinsChanging(string value);
+    partial void OnHoursMinsChanged();
+    partial void OnAdjustmentChanging(string value);
+    partial void OnAdjustmentChanged();
+    partial void OnDeletedChanging(string value);
+    partial void OnDeletedChanged();
+    partial void OnAuditDateChanging(string value);
+    partial void OnAuditDateChanged();
+    partial void OnCreatedByChanging(string value);
+    partial void OnCreatedByChanged();
+    partial void OnModifiedByChanging(string value);
+    partial void OnModifiedByChanged();
+    partial void OnAuditTypeChanging(string value);
+    partial void OnAuditTypeChanged();
+    #endregion
+		
+		public LaborAdjustmentRecord()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LaborAdjustmentRecordId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int LaborAdjustmentRecordId
+		{
+			get
+			{
+				return this._LaborAdjustmentRecordId;
+			}
+			set
+			{
+				if ((this._LaborAdjustmentRecordId != value))
+				{
+					this.OnLaborAdjustmentRecordIdChanging(value);
+					this.SendPropertyChanging();
+					this._LaborAdjustmentRecordId = value;
+					this.SendPropertyChanged("LaborAdjustmentRecordId");
+					this.OnLaborAdjustmentRecordIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LaborAdjustmentFileId", DbType="Int NOT NULL")]
+		public int LaborAdjustmentFileId
+		{
+			get
+			{
+				return this._LaborAdjustmentFileId;
+			}
+			set
+			{
+				if ((this._LaborAdjustmentFileId != value))
+				{
+					this.OnLaborAdjustmentFileIdChanging(value);
+					this.SendPropertyChanging();
+					this._LaborAdjustmentFileId = value;
+					this.SendPropertyChanged("LaborAdjustmentFileId");
+					this.OnLaborAdjustmentFileIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string RecordId
+		{
+			get
+			{
+				return this._RecordId;
+			}
+			set
+			{
+				if ((this._RecordId != value))
+				{
+					this.OnRecordIdChanging(value);
+					this.SendPropertyChanging();
+					this._RecordId = value;
+					this.SendPropertyChanged("RecordId");
+					this.OnRecordIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmployeeId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string EmployeeId
+		{
+			get
+			{
+				return this._EmployeeId;
+			}
+			set
+			{
+				if ((this._EmployeeId != value))
+				{
+					this.OnEmployeeIdChanging(value);
+					this.SendPropertyChanging();
+					this._EmployeeId = value;
+					this.SendPropertyChanged("EmployeeId");
+					this.OnEmployeeIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this.OnLastNameChanging(value);
+					this.SendPropertyChanging();
+					this._LastName = value;
+					this.SendPropertyChanged("LastName");
+					this.OnLastNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this.OnFirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._FirstName = value;
+					this.SendPropertyChanged("FirstName");
+					this.OnFirstNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdjustmentTime", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string AdjustmentTime
+		{
+			get
+			{
+				return this._AdjustmentTime;
+			}
+			set
+			{
+				if ((this._AdjustmentTime != value))
+				{
+					this.OnAdjustmentTimeChanging(value);
+					this.SendPropertyChanging();
+					this._AdjustmentTime = value;
+					this.SendPropertyChanged("AdjustmentTime");
+					this.OnAdjustmentTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdjustmentType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string AdjustmentType
+		{
+			get
+			{
+				return this._AdjustmentType;
+			}
+			set
+			{
+				if ((this._AdjustmentType != value))
+				{
+					this.OnAdjustmentTypeChanging(value);
+					this.SendPropertyChanging();
+					this._AdjustmentType = value;
+					this.SendPropertyChanged("AdjustmentType");
+					this.OnAdjustmentTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoursMins", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string HoursMins
+		{
+			get
+			{
+				return this._HoursMins;
+			}
+			set
+			{
+				if ((this._HoursMins != value))
+				{
+					this.OnHoursMinsChanging(value);
+					this.SendPropertyChanging();
+					this._HoursMins = value;
+					this.SendPropertyChanged("HoursMins");
+					this.OnHoursMinsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Adjustment", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Adjustment
+		{
+			get
+			{
+				return this._Adjustment;
+			}
+			set
+			{
+				if ((this._Adjustment != value))
+				{
+					this.OnAdjustmentChanging(value);
+					this.SendPropertyChanging();
+					this._Adjustment = value;
+					this.SendPropertyChanged("Adjustment");
+					this.OnAdjustmentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Deleted
+		{
+			get
+			{
+				return this._Deleted;
+			}
+			set
+			{
+				if ((this._Deleted != value))
+				{
+					this.OnDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._Deleted = value;
+					this.SendPropertyChanged("Deleted");
+					this.OnDeletedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuditDate", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string AuditDate
+		{
+			get
+			{
+				return this._AuditDate;
+			}
+			set
+			{
+				if ((this._AuditDate != value))
+				{
+					this.OnAuditDateChanging(value);
+					this.SendPropertyChanging();
+					this._AuditDate = value;
+					this.SendPropertyChanged("AuditDate");
+					this.OnAuditDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedBy", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string ModifiedBy
+		{
+			get
+			{
+				return this._ModifiedBy;
+			}
+			set
+			{
+				if ((this._ModifiedBy != value))
+				{
+					this.OnModifiedByChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedBy = value;
+					this.SendPropertyChanged("ModifiedBy");
+					this.OnModifiedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuditType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string AuditType
+		{
+			get
+			{
+				return this._AuditType;
+			}
+			set
+			{
+				if ((this._AuditType != value))
+				{
+					this.OnAuditTypeChanging(value);
+					this.SendPropertyChanging();
+					this._AuditType = value;
+					this.SendPropertyChanged("AuditType");
+					this.OnAuditTypeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FinData")]
+	public partial class FinData : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _FinDataId;
+		
+		private string _UnitNumber;
+		
+		private System.DateTime _BusinessDate;
+		
+		private decimal _NetSales;
+		
+		private decimal _CashDeposits;
+		
+		private decimal _CreditCardDeposits;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnFinDataIdChanging(int value);
+    partial void OnFinDataIdChanged();
+    partial void OnUnitNumberChanging(string value);
+    partial void OnUnitNumberChanged();
+    partial void OnBusinessDateChanging(System.DateTime value);
+    partial void OnBusinessDateChanged();
+    partial void OnNetSalesChanging(decimal value);
+    partial void OnNetSalesChanged();
+    partial void OnCashDepositsChanging(decimal value);
+    partial void OnCashDepositsChanged();
+    partial void OnCreditCardDepositsChanging(decimal value);
+    partial void OnCreditCardDepositsChanged();
+    #endregion
+		
+		public FinData()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinDataId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int FinDataId
+		{
+			get
+			{
+				return this._FinDataId;
+			}
+			set
+			{
+				if ((this._FinDataId != value))
+				{
+					this.OnFinDataIdChanging(value);
+					this.SendPropertyChanging();
+					this._FinDataId = value;
+					this.SendPropertyChanged("FinDataId");
+					this.OnFinDataIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitNumber", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string UnitNumber
+		{
+			get
+			{
+				return this._UnitNumber;
+			}
+			set
+			{
+				if ((this._UnitNumber != value))
+				{
+					this.OnUnitNumberChanging(value);
+					this.SendPropertyChanging();
+					this._UnitNumber = value;
+					this.SendPropertyChanged("UnitNumber");
+					this.OnUnitNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BusinessDate", DbType="Date NOT NULL")]
+		public System.DateTime BusinessDate
+		{
+			get
+			{
+				return this._BusinessDate;
+			}
+			set
+			{
+				if ((this._BusinessDate != value))
+				{
+					this.OnBusinessDateChanging(value);
+					this.SendPropertyChanging();
+					this._BusinessDate = value;
+					this.SendPropertyChanged("BusinessDate");
+					this.OnBusinessDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NetSales", DbType="Decimal(18,2) NOT NULL")]
+		public decimal NetSales
+		{
+			get
+			{
+				return this._NetSales;
+			}
+			set
+			{
+				if ((this._NetSales != value))
+				{
+					this.OnNetSalesChanging(value);
+					this.SendPropertyChanging();
+					this._NetSales = value;
+					this.SendPropertyChanged("NetSales");
+					this.OnNetSalesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CashDeposits", DbType="Decimal(18,2) NOT NULL")]
+		public decimal CashDeposits
+		{
+			get
+			{
+				return this._CashDeposits;
+			}
+			set
+			{
+				if ((this._CashDeposits != value))
+				{
+					this.OnCashDepositsChanging(value);
+					this.SendPropertyChanging();
+					this._CashDeposits = value;
+					this.SendPropertyChanged("CashDeposits");
+					this.OnCashDepositsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreditCardDeposits", DbType="Decimal(18,2) NOT NULL")]
+		public decimal CreditCardDeposits
+		{
+			get
+			{
+				return this._CreditCardDeposits;
+			}
+			set
+			{
+				if ((this._CreditCardDeposits != value))
+				{
+					this.OnCreditCardDepositsChanging(value);
+					this.SendPropertyChanging();
+					this._CreditCardDeposits = value;
+					this.SendPropertyChanged("CreditCardDeposits");
+					this.OnCreditCardDepositsChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Unit")]
+	public partial class Unit : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _UnitNumber;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUnitNumberChanging(string value);
+    partial void OnUnitNumberChanged();
+    #endregion
+		
+		public Unit()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitNumber", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string UnitNumber
+		{
+			get
+			{
+				return this._UnitNumber;
+			}
+			set
+			{
+				if ((this._UnitNumber != value))
+				{
+					this.OnUnitNumberChanging(value);
+					this.SendPropertyChanging();
+					this._UnitNumber = value;
+					this.SendPropertyChanged("UnitNumber");
+					this.OnUnitNumberChanged();
 				}
 			}
 		}

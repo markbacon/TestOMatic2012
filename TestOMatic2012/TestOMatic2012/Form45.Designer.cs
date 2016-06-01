@@ -57,6 +57,7 @@
 			this.Controls.Add(this.textBox1);
 			this.Name = "Form45";
 			this.Text = "Form45";
+			this.Load += new System.EventHandler(this.Form45_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

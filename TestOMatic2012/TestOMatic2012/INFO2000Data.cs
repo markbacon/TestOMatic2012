@@ -54,7 +54,7 @@ namespace TestOMatic2012 {
 
 			string sql = SqlTemplateBroker.Load(SqlTemplateId.GetExistingDeposits);
 
-			DataAccess dac = new DataAccess(AppSettings.INFO2000_testConnectionString);
+			DataAccess dac = new DataAccess(AppSettings.INFO2000ConnectionString);
 			DataTable dt = dac.ExecuteQuery(sql);
 
 			foreach (DataRow dr in dt.Rows) {
@@ -84,7 +84,7 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------------
 		public List<int> GetPosFactIdList() {
 
-			INFO2000DataContext dataContext = new INFO2000DataContext(AppSettings.INFO2000_testConnectionString);
+			INFO2000DataContext dataContext = new INFO2000DataContext(AppSettings.INFO2000ConnectionString);
 
 
 			List<int> posFactIdList =
@@ -103,7 +103,7 @@ namespace TestOMatic2012 {
 
 			string sql = SqlTemplateBroker.Load(SqlTemplateId.GetProductionDeposits);
 
-			DataAccess dac = new DataAccess(AppSettings.INFO2000_testConnectionString);
+			DataAccess dac = new DataAccess(AppSettings.INFO2000ConnectionString);
 			DataTable dt = dac.ExecuteQuery(sql);
 
 			foreach (DataRow dr in dt.Rows) {
@@ -153,7 +153,7 @@ namespace TestOMatic2012 {
 		public void SaveDepositDetail(deposit_dtl_fact depositDtl) {
 
 
-			INFO2000DataContext dataContext = new INFO2000DataContext(AppSettings.INFO2000_testConnectionString);
+			INFO2000DataContext dataContext = new INFO2000DataContext(AppSettings.INFO2000ConnectionString);
 			dataContext.deposit_dtl_facts.InsertOnSubmit(depositDtl);
 			dataContext.SubmitChanges();
 

@@ -13,6 +13,20 @@ namespace TestOMatic2012 {
 			string connectionString = @"Data Source=localhost\SQL2012;Initial Catalog=HFSDB;Integrated Security=True";
 			_dac = new DataAccess(connectionString);
 		}
+		//---------------------------------------------------------------------------------------------------
+		public short GetBusinessWeekStartDay() {
+
+			HFSDBDataContext dataContext = new HFSDBDataContext(ServiceSettings.HFSDBConnectionString);
+
+			short? dayNum = dataContext.StoreInfos.Select(s => s.WeekStartDaySystem).FirstOrDefault();
+
+			if (dayNum == null) {
+				return DEFAULT_DAY_NUM;
+			}
+			else {
+				return Convert.ToInt16(dayNum);
+			}
+		}
 		//---------------------------------------------------------------------------------------------------------
 		public int GetDuplicateOrderId(int orderNumber, DateTime businessDate) {
 
@@ -77,6 +91,7 @@ namespace TestOMatic2012 {
 		//-- Private Members
 		//---------------------------------------------------------------------------------------------------------
 		private DataAccess _dac;
+		private const short DEFAULT_DAY_NUM = 3;
 
 	}
 }

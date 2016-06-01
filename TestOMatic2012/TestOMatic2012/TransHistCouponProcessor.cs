@@ -23,7 +23,7 @@ namespace TestOMatic2012 {
 
 
 			_dataContext.Dispose();
-			_dataContext = new CouponDataContext();
+			_dataContext = new CouponDataContext(AppSettings.DataAnalysisConnectionString);
 
 			foreach (XmlNode node in nodes) {
 
@@ -33,12 +33,12 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------------
 		public void Run() {
 
-			string tlogDirectory = "D:\\TLogsIII";
+			string tlogDirectory = "D:\\xdata1\\cmsos2\\ckenode";
 
 			DirectoryInfo di = new DirectoryInfo(tlogDirectory);
 
 
-			DirectoryInfo[] directories = di.GetDirectories("X1500671");
+			DirectoryInfo[] directories = di.GetDirectories("X15*");
 
 			foreach (DirectoryInfo directory in directories) {
 

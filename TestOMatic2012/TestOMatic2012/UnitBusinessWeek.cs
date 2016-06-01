@@ -7,7 +7,7 @@ namespace TestOMatic2012 {
 	
 	class UnitBusinessWeek {
 
-		string UnitNumber = "";
-		DayOfWeek WeekEndDayOfWeek = DayOfWeek.Monday;
+		public string UnitNumber = "";
+		public DayOfWeek WeekEndDayOfWeek = DayOfWeek.Monday;
 	}
 }

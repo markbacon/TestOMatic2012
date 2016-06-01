@@ -307,5 +307,55 @@ namespace TestOMatic2012 {
 
 			button4.Enabled = true;
 		}
+
+		private void button5_Click(object sender, EventArgs e) {
+
+			button5.Enabled = false;
+
+
+			List<string> unitList = new List<string>();
+
+			string filePath = "C:\\Temp357\\LTNUnits.txt";
+
+			using (StreamReader sr = new StreamReader(filePath)) {
+
+				while (sr.Peek() != -1) {
+
+					string line = sr.ReadLine();
+					unitList.Add(line);
+					//string[] items = line.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+
+					//foreach (string item in items) {
+					//	unitList.Add("X" + item.Trim());
+					//}
+				}
+			}
+
+
+			string dirPath = "\\\\xdata1\\cmsos2\\ckenode";
+
+			foreach (string unit in unitList) {
+
+				filePath = Path.Combine(dirPath, unit);
+
+				DirectoryInfo di = new DirectoryInfo(filePath);
+
+				if (di.Exists) {
+
+					FileInfo[] files = di.GetFiles("*.pol");
+
+					foreach (FileInfo file in files) {
+
+						string copyPath = Path.Combine("C:\\xdata1\\cmsos2\\ckenode", unit, file.Name);
+
+						file.CopyTo(copyPath, true);
+					}
+				}
+			}
+
+
+			button5.Enabled = true;
+
+		}
 	}
 }

@@ -13,7 +13,7 @@ namespace TestOMatic2012 {
 		static void Main() {
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form52());
+			Application.Run(new Form63());
 			
 			//Application.Run(new frmScannedCouponEpassUpdate());
 			//Application.Run(new frmUsageTest());

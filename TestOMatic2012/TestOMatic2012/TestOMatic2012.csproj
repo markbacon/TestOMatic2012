@@ -63,7 +63,9 @@
   <ItemGroup>
     <Compile Include="AccessCardNumber.cs" />
     <Compile Include="AppSettings.cs" />
+    <Compile Include="BusinessDateUtility.cs" />
     <Compile Include="CkeTimePollData.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Coupon.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -90,6 +92,7 @@
     </Compile>
     <Compile Include="EpassData.cs" />
     <Compile Include="ExistingDeposit.cs" />
+    <Compile Include="FileCreationLog.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -300,12 +303,6 @@
     <Compile Include="Form40.Designer.cs">
       <DependentUpon>Form40.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form41.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form41.Designer.cs">
-      <DependentUpon>Form41.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form42.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -378,11 +375,77 @@
     <Compile Include="Form52.Designer.cs">
       <DependentUpon>Form52.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form53.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form53.Designer.cs">
+      <DependentUpon>Form53.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form54.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form54.Designer.cs">
+      <DependentUpon>Form54.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form55.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form55.Designer.cs">
+      <DependentUpon>Form55.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form56.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form56.Designer.cs">
+      <DependentUpon>Form56.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form57.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form57.Designer.cs">
+      <DependentUpon>Form57.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form58.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form58.Designer.cs">
+      <DependentUpon>Form58.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form59.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form59.Designer.cs">
+      <DependentUpon>Form59.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form6.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form6.Designer.cs">
       <DependentUpon>Form6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form60.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form60.Designer.cs">
+      <DependentUpon>Form60.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form61.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form61.Designer.cs">
+      <DependentUpon>Form61.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form62.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form62.Designer.cs">
+      <DependentUpon>Form62.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form63.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form63.Designer.cs">
+      <DependentUpon>Form63.cs</DependentUpon>
     </Compile>
     <Compile Include="Form7.cs">
       <SubType>Form</SubType>
@@ -468,21 +531,30 @@
     <Compile Include="SalaryDataReader.cs" />
     <Compile Include="ScannCouponProcessor.cs" />
     <Compile Include="ScannedCouponItem.cs" />
+    <Compile Include="ServiceSettings.cs" />
     <Compile Include="SmartReportsProcessor.cs" />
     <Compile Include="SqlTemplateBroker.cs" />
     <Compile Include="ImsCkeData.cs" />
+    <Compile Include="TaskProcessor.cs" />
     <Compile Include="TextEncryption.cs" />
     <Compile Include="TimeFileAnalysis.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TimeFileAnalysis.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Transaction.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Transaction.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionData.cs" />
     <Compile Include="TransHist.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TransHist.dbml</DependentUpon>
     </Compile>
     <Compile Include="TransHistCouponProcessor.cs" />
+    <Compile Include="TransHistFileProcessor.cs" />
     <Compile Include="Unit2ferSales.cs" />
     <Compile Include="UnitManifest.cs" />
     <Compile Include="UnitBusinessWeek.cs" />
@@ -490,6 +562,9 @@
     <Compile Include="Unzipper.cs" />
     <Compile Include="ValidationFileBuilder.cs" />
     <Compile Include="Win7NodeUtility.cs" />
+    <None Include="Transaction.dbml.layout">
+      <DependentUpon>Transaction.dbml</DependentUpon>
+    </None>
     <None Include="HFSDB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>HFSDB.designer.cs</LastGenOutput>
@@ -506,6 +581,11 @@
     <None Include="TimeFileAnalysis.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>TimeFileAnalysis.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Transaction.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Transaction.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="TransHist.dbml.layout">
@@ -652,9 +732,6 @@
     <EmbeddedResource Include="Form40.resx">
       <DependentUpon>Form40.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form41.resx">
-      <DependentUpon>Form41.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form42.resx">
       <DependentUpon>Form42.cs</DependentUpon>
     </EmbeddedResource>
@@ -691,8 +768,41 @@
     <EmbeddedResource Include="Form52.resx">
       <DependentUpon>Form52.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form53.resx">
+      <DependentUpon>Form53.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form54.resx">
+      <DependentUpon>Form54.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form55.resx">
+      <DependentUpon>Form55.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form56.resx">
+      <DependentUpon>Form56.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form57.resx">
+      <DependentUpon>Form57.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form58.resx">
+      <DependentUpon>Form58.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form59.resx">
+      <DependentUpon>Form59.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form6.resx">
       <DependentUpon>Form6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form60.resx">
+      <DependentUpon>Form60.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form61.resx">
+      <DependentUpon>Form61.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form62.resx">
+      <DependentUpon>Form62.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form63.resx">
+      <DependentUpon>Form63.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form7.resx">
       <DependentUpon>Form7.cs</DependentUpon>

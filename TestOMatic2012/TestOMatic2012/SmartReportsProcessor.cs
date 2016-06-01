@@ -63,6 +63,51 @@ namespace TestOMatic2012 {
 			}
 		}
 		//---------------------------------------------------------------------------------------------------
+		//public void ProcessDirectories() {
+
+		//	try {
+		//		DateTime businessDate = new DateTime(2016, 4, 19);
+		//		DateTime weekEndDate = new DateTime(2016, 4, 25);
+				
+		//		DirectoryInfo di = new DirectoryInfo("C:\\SmartReportFiles");
+		//		DirectoryInfo[] directories = di.GetDirectories();
+
+		//		foreach (DirectoryInfo directory in directories) {
+
+		//			businessDate = new DateTime(2016, 4, 19);
+		//			string unitNumber = directory.Name;
+
+		//			string searchPattern = "WeeklyLaborSummary" + weekEndDate.ToString("yyyyMMdd") + ".xml";
+
+		//			FileInfo weeklyLaborSummary = directory.GetFiles(searchPattern).FirstOrDefault();
+
+
+		//			while (businessDate <= weekEndDate) {
+
+		//				searchPattern = "WeeklyLaborSummary" + weekEndDate.ToString("yyyyMMdd") + ".xml";
+		//				FileInfo ringoutLaborSuumary = directory.GetFiles(searchPattern).FirstOrDefault();
+
+
+		//			}
+
+
+		//		}
+
+		//		FileInfo[] files = di.GetFiles(AppSettings.SmartReportsZipFileName);
+
+		//		if (files.Length > 0) {
+
+		//			DateTime businessDate = DateTime.Today.AddDays(-1);
+
+		//			ProcessSmartReportsZipFile(unitNumber, businessDate, files[0]);
+		//		}
+		//	}
+		//	catch (Exception ex) {
+		//		Logger.Write("An exception occurred in SmartReportsProcessor.ProcessNode for directory: " + di.FullName + ". Please see error log for details.");
+		//		Logger.WriteError(ex);
+		//	}
+		//}
+		//---------------------------------------------------------------------------------------------------
 		public void ProcessNode(DirectoryInfo di) {
 
 			try {

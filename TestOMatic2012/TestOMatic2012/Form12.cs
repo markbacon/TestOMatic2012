@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -198,6 +199,75 @@ namespace TestOMatic2012 {
 			}
 
 			button4.Enabled = true;
+		}
+
+		private void button5_Click(object sender, EventArgs e) {
+
+			button5.Enabled = false;
+
+			string filePath1 = "C:\\Temp357\\CJFDMS_20160305Old.dat";
+			string filePath2 = "C:\\Temp357\\CJFDMS_20160305.dat";
+			string filePath3 = "C:\\Temp357\\CJFDMS_20160305Test.dat";
+
+			List<string> oldFileList = new List<string>();
+			List<string> newFileList = new List<string>();
+
+
+			using (StreamReader sr = new StreamReader(filePath1)) {
+
+				while (sr.Peek() != -1) {
+					oldFileList.Add(sr.ReadLine());
+				}
+			}
+
+			using (StreamReader sr = new StreamReader(filePath2)) {
+
+				while (sr.Peek() != -1) {
+					newFileList.Add(sr.ReadLine());
+				}
+			}
+
+			List<int> deleteList = new List<int>();
+
+			for (int i = 0; i < newFileList.Count; i++) {
+
+				string line = newFileList[i];
+
+				if (line.StartsWith("16")) {
+
+					if (oldFileList.Where(f => f == line).Count() > 0) {
+						deleteList.Add(i);
+					}
+				}
+			}
+
+			for (int i = deleteList.Count - 1; i >= 0; i--) {
+				newFileList.RemoveAt(deleteList[i]);
+			}
+
+
+			using (StreamWriter sw = new StreamWriter(filePath3)) {
+
+				foreach (string line in newFileList) {
+					sw.WriteLine(line);
+				}
+			}
+
+
+
+			button5.Enabled = true;
+
+		}
+
+		private void button6_Click(object sender, EventArgs e) {
+
+			Process[] ps = Process.GetProcesses();
+
+			foreach (Process p in ps) {
+				textBox1.Text += p.ProcessName + "\r\n";
+			}
+
+
 		}
 	}
 }
