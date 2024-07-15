@@ -68,7 +68,7 @@ namespace TestOMatic2012 {
 
             string logEntry = FormatLogEntry(message);
 
-            string logFilePath = Path.Combine(GetLogFilePath(), GetErrorLogFileName());
+			string logFilePath = Path.Combine(GetLogFilePath(), GetErrorLogFileName());
 
             using (StreamWriter sw = File.AppendText(logFilePath)) {
                 sw.WriteLine(logEntry);
@@ -79,17 +79,17 @@ namespace TestOMatic2012 {
         //---------------------------------------------------------------------------------------------------
         public static void WriteError(Exception ex) {
 
-            try {
+			try {
 
                 string logEntry = FormatErrorLogEntry(ex);
 
                 string logFilePath = Path.Combine(GetLogFilePath(), GetErrorLogFileName());
 
-                using (StreamWriter sw = File.AppendText(logFilePath)) {
-                    sw.WriteLine(logEntry);
-                }
+				using (StreamWriter sw = File.AppendText(logFilePath)) {
+					sw.WriteLine(logEntry);
+				}
 
-                _errorCount++;
+				_errorCount++;
             }
             catch { } //If error log fails do nothing
         }
@@ -166,7 +166,7 @@ namespace TestOMatic2012 {
 
             if (_logFileName == "") {
 
-				_logFileName = Assembly.GetExecutingAssembly().GetName().Name + ".log";
+				_logFileName = Assembly.GetExecutingAssembly().GetName().Name + DateTime.Now.ToString("yyyyMMdd_HHmmssfff") + ".log";
 			}
 
             return _logFileName;

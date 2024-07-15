@@ -224,7 +224,7 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------------
 		private void ProcessFiles() {
 
-			DirectoryInfo di = new DirectoryInfo(@"C:\Store Data\X1100004\X1100004\temp");
+			DirectoryInfo di = new DirectoryInfo(@"C:\CkeMixTest\X1506095");
 
 			FileInfo[] files = di.GetFiles("*_MixDest.pol");
 
@@ -235,9 +235,6 @@ namespace TestOMatic2012 {
 				ProcessFile(file);
 
 			}
-
-
-
 		}
 		//---------------------------------------------------------------------------------------------------------
 		private int SaveMixDestPollFile(string unitNumber, DateTime businessDate, string fileName) {

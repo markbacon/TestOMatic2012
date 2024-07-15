@@ -1,12 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="HardeesRecipes">
   <DataContextMoniker Name="/HardeesRecipesDataContext" />
-  <nestedChildShapes>
-    <classShape Id="8b8bf149-7d65-40cf-a2f6-ce67adc23511" absoluteBounds="0.875, 0.75, 2, 4.4631168619791666">
-      <DataClassMoniker Name="/HardeesRecipesDataContext/TBL_Inv_ItemMaster" />
-      <nestedChildShapes>
-        <elementListCompartment Id="0c768e17-52e8-402e-b63b-0925670ec25b" absoluteBounds="0.89000000000000012, 1.21, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-  </nestedChildShapes>
 </ordesignerObjectsDiagram>

@@ -40,7 +40,7 @@ namespace TestOMatic2012 {
 			DateTime startTime = DateTime.Now;
 			Logger.Write("Begin processing directory:  " + di.Name);
 
-			FileInfo[] files = di.GetFiles();
+			FileInfo[] files = di.GetFiles("*HourlyNetSales.txt");
 
 			foreach (FileInfo file in files) {
 
@@ -118,15 +118,15 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------
 		private void ProcessNetSales() {
 
-			DirectoryInfo di = new DirectoryInfo("D:\\NetSalesFiles");
+			DirectoryInfo di = new DirectoryInfo("C:\\ElPaso");
 
 			DirectoryInfo[] directories = di.GetDirectories();
 
 			foreach (DirectoryInfo directory in directories) {
 
-				if (string.Compare(directory.Name, "X1500254", true) > 0) {
+				//if (string.Compare(directory.Name, "X1500254", true) > 0) {
 					ProcessDirectory(directory);
-				}
+				//}
 
 			}
 		}

@@ -15,26 +15,23 @@ namespace TestOMatic2012 {
             _connectionString = connectionString;
         }
         //---------------------------------------------------------------------------------------------------
-        public void ExecuteActionQuery(string sql) {
+        public int ExecuteActionQuery(string sql) {
 
-            try {
+			int numRowsAffected = 0;
 
-                using (SqlConnection dataConn = new SqlConnection(_connectionString)) {
+			using (SqlConnection dataConn = new SqlConnection(_connectionString)) {
 
-                    SqlCommand comm = new SqlCommand();
-                    comm.CommandType = CommandType.Text;
-                    comm.CommandText = sql;
-                    comm.CommandTimeout = 240;
-                    comm.Connection = dataConn;
-                    comm.Connection.Open();
-                    comm.ExecuteNonQuery();
-                }
+				SqlCommand comm = new SqlCommand();
+				comm.CommandType = CommandType.Text;
+				comm.CommandText = sql;
+				comm.CommandTimeout = 240;
+				comm.Connection = dataConn;
+				comm.Connection.Open();
+				numRowsAffected = comm.ExecuteNonQuery();
+			}
 
-            }
-            catch (Exception ex) {
-                Logger.WriteError(ex);
-            }
-        }
+			return numRowsAffected;
+		}
         //-----------------------------------------------------------------------------------------
         public DataTable ExecuteQuery(string sql) {
 

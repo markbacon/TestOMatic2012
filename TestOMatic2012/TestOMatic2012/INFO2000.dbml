@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="INFO2000" Class="INFO2000DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=INFO2000;Integrated Security=True" SettingsObjectName="TestOMatic2012.Properties.Settings" SettingsPropertyName="INFO2000ConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=skydevsql04;Initial Catalog=INFO2000;Integrated Security=True" SettingsObjectName="TestOMatic2012.Properties.Settings" SettingsPropertyName="INFO2000ConnectionString6" Provider="System.Data.SqlClient" />
   <Table Name="dbo.deposit_dtl_fact" Member="deposit_dtl_facts">
     <Type Name="deposit_dtl_fact">
       <Column Name="deposit_dtl_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -229,7 +229,6 @@
       <Column Name="ffm_nonffm_flag" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
       <Column Name="inv_type_code" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
       <Column Name="mbm_code" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Association Name="inv_item_xref_mbminvs_load1" Member="mbminvs_load1s" ThisKey="inv_xref_id" OtherKey="inv_xref_id" Type="mbminvs_load1" />
     </Type>
   </Table>
   <Table Name="dbo.inv_item_dim" Member="inv_item_dims">
@@ -311,34 +310,455 @@
       <Column Name="total_nontaxable_nf_amt" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
       <Column Name="total_nontaxable_nf_cnt" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
       <Association Name="pos_fact_deposit_dtl_fact" Member="deposit_dtl_facts" ThisKey="pos_fact_id,cal_date,Restaurant_no,System_id" OtherKey="POS_fact_id,Cal_Date,Restaurant_no,System_id" Type="deposit_dtl_fact" />
+      <Association Name="pos_fact_paid_dtl_fact" Member="paid_dtl_facts" ThisKey="pos_fact_id,cal_date,Restaurant_no,System_id" OtherKey="pos_fact_id,cal_date,restaurant_no,system_id" Type="paid_dtl_fact" />
       <Association Name="restaurant_dim_pos_fact" Member="restaurant_dim" ThisKey="Restaurant_no,System_id" OtherKey="restaurant_no,system_id" Type="restaurant_dim" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.mbminvs_load" Member="mbminvs_load1s">
-    <Type Name="mbminvs_load1">
-      <Column Name="mbm_line_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="system_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="hfs_unit_no" Type="System.String" DbType="Char(7)" CanBeNull="true" />
-      <Column Name="hfs_inv_item" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="mbm_qty" Type="System.String" DbType="Char(10)" CanBeNull="true" />
-      <Column Name="mbm_sales" Type="System.String" DbType="Char(10)" CanBeNull="true" />
-      <Column Name="mbm_order_no" Type="System.String" DbType="Char(6)" CanBeNull="true" />
-      <Column Name="mbm_invoice_no" Type="System.String" DbType="Char(11)" CanBeNull="true" />
-      <Column Name="mbm_inv_date" Type="System.String" DbType="Char(8)" CanBeNull="true" />
-      <Column Name="mbm_inv_total" Type="System.String" DbType="Char(10)" CanBeNull="true" />
-      <Column Name="mbm_ref_no" Type="System.String" DbType="Char(11)" CanBeNull="true" />
-      <Column Name="process_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="process_flag" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
-      <Column Name="inv_item_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="inv_xref_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="item_number_type" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
-      <Association Name="inv_item_xref_mbminvs_load1" Member="inv_item_xref" ThisKey="inv_xref_id" OtherKey="inv_xref_id" Type="inv_item_xref" IsForeignKey="true" />
+      <Association Name="Time_Dim_pos_fact" Member="Time_Dim" ThisKey="cal_date" OtherKey="CAL_DATE" Type="Time_Dim" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.FranchiseRestaurant" Member="FranchiseRestaurants">
     <Type Name="FranchiseRestaurant">
       <Column Name="Franchisee" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="RestaurantNumber" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PS_EMPLOYEE_DATA" Member="PS_EMPLOYEE_DATAs">
+    <Type Name="PS_EMPLOYEE_DATA">
+      <Column Name="PS_EMPLOYEE_DATA_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EMPLID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="COMPANY" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DEPTID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EMPL_TYPE" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PAY_END_DT" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="HOURLY_RATE" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="JOBCODE" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EFFDT" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EFFSEQ" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ACTION" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EMPL_STATUS" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UnitMasterExtract" Member="UnitMasterExtracts">
+    <Type Name="UnitMasterExtract">
+      <Column Name="UnitMasterExtractId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DailyTimeCardDetail" Member="DailyTimeCardDetails">
+    <Type Name="DailyTimeCardDetail">
+      <Column Name="DailyTimeCardDetailId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DailyTimeCardHeaderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="PunchIn" Type="System.Decimal" DbType="Decimal(10,6) NOT NULL" CanBeNull="false" />
+      <Column Name="PunchOut" Type="System.Decimal" DbType="Decimal(10,6) NOT NULL" CanBeNull="false" />
+      <Column Name="Hours" Type="System.Decimal" DbType="Decimal(10,6) NOT NULL" CanBeNull="false" />
+      <Column Name="PunchType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="DailyTimeCardHeader_DailyTimeCardDetail" Member="DailyTimeCardHeader" ThisKey="DailyTimeCardHeaderId" OtherKey="DailyTimeCardHeaderId" Type="DailyTimeCardHeader" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DailyTimeCardHeader" Member="DailyTimeCardHeaders">
+    <Type Name="DailyTimeCardHeader">
+      <Column Name="DailyTimeCardHeaderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="WeekEndDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="DailyTimeCardHeader_DailyTimeCardDetail" Member="DailyTimeCardDetails" ThisKey="DailyTimeCardHeaderId" OtherKey="DailyTimeCardHeaderId" Type="DailyTimeCardDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DailyTimeFileProcessLog" Member="DailyTimeFileProcessLogs">
+    <Type Name="DailyTimeFileProcessLog">
+      <Column Name="DailyTimeFileProcessLogId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="HashValue" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employee" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ConceptId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EmployeeNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SSN" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsCorporate" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsValid" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="StatusId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EffectiveDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="JobCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PayRate" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="HireDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TerminationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastChangeDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Distributor" Member="Distributors">
+    <Type Name="Distributor">
+      <Column Name="DistributorId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UnitWarehouse" Member="UnitWarehouses">
+    <Type Name="UnitWarehouse">
+      <Column Name="UnitNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="WarehouseName" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TimeCardFile" Member="TimeCardFiles">
+    <Type Name="TimeCardFile">
+      <Column Name="TimeCardFileId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="WeekEndingDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LegacyProcessingIndicator" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="TimeCardFile_TimeCardDetail" Member="TimeCardDetails" ThisKey="TimeCardFileId" OtherKey="TimeCardFileId" Type="TimeCardDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TimeCardDetail" Member="TimeCardDetails">
+    <Type Name="TimeCardDetail">
+      <Column Name="TimeCardDetailId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TimeCardFileId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="PunchIn" Type="System.Decimal" DbType="Decimal(10,6) NOT NULL" CanBeNull="false" />
+      <Column Name="PunchOut" Type="System.Decimal" DbType="Decimal(10,6) NOT NULL" CanBeNull="false" />
+      <Column Name="Hours" Type="System.Decimal" DbType="Decimal(10,6) NOT NULL" CanBeNull="false" />
+      <Column Name="PunchType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="TimeCardFile_TimeCardDetail" Member="TimeCardFile" ThisKey="TimeCardFileId" OtherKey="TimeCardFileId" Type="TimeCardFile" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.memo_item_fact" Member="memo_item_facts">
+    <Type Name="memo_item_fact">
+      <Column Name="memo_item_fact_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pos_fact_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="restaurant_no" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cal_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="cleared_orders_count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cleared_orders_amount" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="item_cancels_count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="item_cancels_amount" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="voided_orders_count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="voided_orders_amount" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="overrings_count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="overrings_amount" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="refunds_count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="refunds_amount" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="employee_meals_count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="employee_meals_amount" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="open_dollar_count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="open_dollar_amount" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="open_percent_count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="open_percent_amount" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="coupons_count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="coupons_amount" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="police_meals_count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="police_meals_amount" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mp_item_fact" Member="mp_item_facts">
+    <Type Name="mp_item_fact">
+      <Column Name="mp_item_fact_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="system_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="restaurant_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cal_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="mp_item_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dol_amt" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="qty_sold" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="qty_free" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="qty_fin_waste" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="papercost_amt" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="foodcost_amt" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="price" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="create_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="create_by" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="last_chg_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="last_chg_by" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="source" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.paid_dtl_fact" Member="paid_dtl_facts">
+    <Type Name="paid_dtl_fact">
+      <Column Name="paid_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pos_fact_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="system_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="restaurant_no" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cal_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="account_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="category_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="paid_in_out" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="paid_reason" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="paid_amt" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="paid_qty" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="create_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="create_by" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="last_chg_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="last_chg_by" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="source" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Association Name="pos_fact_paid_dtl_fact" Member="pos_fact" ThisKey="pos_fact_id,cal_date,restaurant_no,system_id" OtherKey="pos_fact_id,cal_date,Restaurant_no,System_id" Type="pos_fact" IsForeignKey="true" />
+      <Association Name="account_dim_paid_dtl_fact" Member="account_dim" ThisKey="account_id" OtherKey="Account_id" Type="account_dim" IsForeignKey="true" />
+      <Association Name="category_dim_paid_dtl_fact" Member="category_dim" ThisKey="category_id" OtherKey="Category_id" Type="category_dim" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Time_Dim" Member="Time_Dims">
+    <Type Name="Time_Dim">
+      <Column Name="CAL_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CAL_MONTH_DESC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CAL_MONTH_ID" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="CAL_QTR_DESC" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="CAL_QTR_ID" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="CAL_WEEK_DESC" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="CAL_WEEK_ID" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="CAL_YEAR" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="CKE_WEEK_ENDDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HFS_WEEK_ENDDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CUR_PERIOD" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="DAY_OF_WEEK" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="WEST_FSCL_PER_DESC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="WEST_FSCL_PER_ID" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="WEST_FSCL_QTR_DESC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="WEST_FSCL_QTR_ID" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="WEST_FSCL_WK_DESC" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
+      <Column Name="WEST_FSCL_WK_ID" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="WEST_FSCL_YR_DESC" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="WEST_FSCL_YR_ID" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="EAST_FSCL_PER_DESC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="EAST_FSCL_PER_ID" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="EAST_FSCL_QTR_DESC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="EAST_FSCL_QTR_ID" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="EAST_FSCL_WK_DESC" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
+      <Column Name="EAST_FSCL_WK_ID" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="EAST_FSCL_YR_DESC" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="EAST_FSCL_YR_ID" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="MEDIA_QTR_DESC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MEDIA_QTR_ID" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="MEDIA_WEEK_DESC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MEDIA_WEEK_ID" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="SPLIT_WEEK" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="AGG_LEVEL" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Association Name="Time_Dim_pos_fact" Member="pos_facts" ThisKey="CAL_DATE" OtherKey="cal_date" Type="pos_fact" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IR_Paid_In_Out" Member="IR_Paid_In_Outs">
+    <Type Name="IR_Paid_In_Out">
+      <Column Name="IR_Unit_Number" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="IR_Sales_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Paid_IO_Acct" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Column Name="Paid_IO_Reason" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="Paid_IO_Amt" Type="System.Decimal" DbType="Decimal(7,2)" CanBeNull="true" />
+      <Column Name="process_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="process_flag" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.account_dim" Member="account_dims">
+    <Type Name="account_dim">
+      <Column Name="Account_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Imp_acct_code" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="descr" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="shortdescr" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Exp_Acct_Code" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Paid_IO_ind" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="paid_exp_acct_code" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NF_ind" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="Create_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Create_by" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Term_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Term_by" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="hfs_state" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Association Name="account_dim_paid_dtl_fact" Member="paid_dtl_facts" ThisKey="Account_id" OtherKey="account_id" Type="paid_dtl_fact" />
+    </Type>
+  </Table>
+  <Table Name="dbo.category_dim" Member="category_dims">
+    <Type Name="category_dim">
+      <Column Name="Category_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="system_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="category_code" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="category_descr" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="category_type" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="eff_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="term_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="restaurant_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="category_dim_paid_dtl_fact" Member="paid_dtl_facts" ThisKey="Category_id" OtherKey="category_id" Type="paid_dtl_fact" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ps_c_unit_master" Member="ps_c_unit_masters">
+    <Type Name="ps_c_unit_master">
+      <Column Name="setid" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="c_unit_no" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="effdt" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="eff_status" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="c_um_status" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="name1" Type="System.String" DbType="Char(40)" CanBeNull="true" />
+      <Column Name="name2" Type="System.String" DbType="Char(40)" CanBeNull="true" />
+      <Column Name="name3" Type="System.String" DbType="Char(40)" CanBeNull="true" />
+      <Column Name="c_concept_cd" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="c_old_company_no" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="c_old_unit_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="business_unit" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="c_area" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="c_region" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="c_district" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="deptid" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="cust_id" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="c_owner" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="c_um_dma_cd" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="bank_cd" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="bank_acct_key" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="c_parcelno" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="c_tgbook" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="c_tgpage" Type="System.String" DbType="Char(7)" CanBeNull="true" />
+      <Column Name="c_salestaxpercent" Type="System.Decimal" DbType="Decimal(8,6)" CanBeNull="true" />
+      <Column Name="c_taxloccd" Type="System.Decimal" DbType="Decimal(12,0)" CanBeNull="true" />
+      <Column Name="c_depositdelay" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="c_financialprclvl" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="c_currentprclvl" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="c_projectiveprclvl" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="c_adipercent" Type="System.Decimal" DbType="Decimal(6,4)" CanBeNull="true" />
+      <Column Name="c_nationalpercent" Type="System.Decimal" DbType="Decimal(6,4)" CanBeNull="true" />
+      <Column Name="c_lsmpercent" Type="System.Decimal" DbType="Decimal(6,4)" CanBeNull="true" />
+      <Column Name="c_royaltypercent" Type="System.Decimal" DbType="Decimal(6,4)" CanBeNull="true" />
+      <Column Name="c_priorunitnos" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="c_deliveryloccd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="c_deliveriesweek" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="c_warehouseloc" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="c_feeownorlease" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="c_sameunitflag" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="c_recyclecd" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="c_doorkeycd" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="c_alarmkeycd" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="c_noofpayphones" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="c_payphone1" Type="System.String" DbType="Char(14)" CanBeNull="true" />
+      <Column Name="bu_desc" Type="System.String" DbType="Char(30)" CanBeNull="true" />
+      <Column Name="dma_desc" Type="System.String" DbType="Char(30)" CanBeNull="true" />
+      <Column Name="c_firstperoper" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="c_firstyroper" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="c_dailyslsreport" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="c_territory" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="c_prev_rrunit" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="c_geograp_mkt" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="c_umclasscd_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="c_umbookkeep_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="c_umadvagy_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="c_geograph_area" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="c_taxgroup" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="c_localtaxpercent" Type="System.Decimal" DbType="Decimal(9,3)" CanBeNull="true" />
+      <Column Name="c_billto_unitno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="c_umfranch_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="c_statetaxpercent" Type="System.Decimal" DbType="Decimal(8,6)" CanBeNull="true" />
+      <Column Name="c_licenseephone" Type="System.Decimal" DbType="Decimal(10,0)" CanBeNull="true" />
+      <Column Name="c_ffmcontrflag" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="c_prunitflag" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="c_prstate_taxcd" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="c_countytaxpercent" Type="System.Decimal" DbType="Decimal(8,6)" CanBeNull="true" />
+      <Column Name="c_citytaxpercent" Type="System.Decimal" DbType="Decimal(8,6)" CanBeNull="true" />
+      <Column Name="c_timezone" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="c_wattsline" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="c_referenceno" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="c_royaltysplitpct" Type="System.Decimal" DbType="Decimal(6,2)" CanBeNull="true" />
+      <Column Name="c_origroyaltypct" Type="System.Decimal" DbType="Decimal(6,2)" CanBeNull="true" />
+      <Column Name="c_ap_chkvalidflag" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="c_umwhse_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="oprid" Type="System.String" DbType="Char(30)" CanBeNull="true" />
+      <Column Name="dt_timestamp" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="c_psumtrecsno" Type="System.String" DbType="Char(7)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.cat_acct_xref" Member="cat_acct_xrefs">
+    <Type Name="cat_acct_xref">
+      <Column Name="cat_acct_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Account_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Category_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ps_account" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="eff_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="term_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DmaInvoiceHeader" Member="DmaInvoiceHeaders">
+    <Type Name="DmaInvoiceHeader">
+      <Column Name="DmaInvoiceHeaderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SystemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="RefInvoiceNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalTax" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="DmaInvoiceHeader_DmaInvoiceDetail" Member="DmaInvoiceDetails" ThisKey="DmaInvoiceHeaderId" OtherKey="DmaInvoiceHeaderId" Type="DmaInvoiceDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DmaInvoiceDetail" Member="DmaInvoiceDetails">
+    <Type Name="DmaInvoiceDetail">
+      <Column Name="DmaInvoiceDetailId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DmaInvoiceHeaderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ItemDescription" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="UnitPrice" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Tax" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ExtendedPrice" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="GLAccountNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InventoryItemId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ProcessFlag" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="DmaInvoiceHeader_DmaInvoiceDetail" Member="DmaInvoiceHeader" ThisKey="DmaInvoiceHeaderId" OtherKey="DmaInvoiceHeaderId" Type="DmaInvoiceHeader" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VCHR3Header" Member="VCHR3Headers">
+    <Type Name="VCHR3Header">
+      <Column Name="VCHR3HeaderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BusinessUnit" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceTotal" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="LoadDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ProcessFlag" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="VCHR3Header_VCHR3Detail" Member="VCHR3Details" ThisKey="VCHR3HeaderId" OtherKey="VCHR3HeaderId" Type="VCHR3Detail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VCHR3Detail" Member="VCHR3Details">
+    <Type Name="VCHR3Detail">
+      <Column Name="VCHRDetailId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VCHR3HeaderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="GlAccountNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ItemAmount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="LineDescription" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="VCHR3Header_VCHR3Detail" Member="VCHR3Header" ThisKey="VCHR3HeaderId" OtherKey="VCHR3HeaderId" Type="VCHR3Header" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShamrockInvoice" Member="ShamrockInvoices">
+    <Type Name="ShamrockInvoice">
+      <Column Name="ShamrockInvoiceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="Char(7) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="RefInvoiceNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SettledAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="RemainingAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="DueDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Memo" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.usp_cash_os_upd_xpient" Method="usp_cash_os_upd_xpient">

@@ -46,7 +46,7 @@ namespace TestOMatic2012 {
 		private decimal GetDecimalValue(string elementValue) {
 
 			decimal tempValue;
-			decimal returnValue = -1;
+			decimal returnValue = 0;
 
 			if (decimal.TryParse(elementValue, out tempValue)) {
 				returnValue = tempValue;
@@ -58,7 +58,7 @@ namespace TestOMatic2012 {
 		private int GetIntegerValue(string elementValue) {
 
 			int tempValue;
-			int returnValue = -1;
+			int returnValue = 0;
 
 			if (int.TryParse(elementValue, out tempValue)) {
 				returnValue = tempValue;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace TestOMatic2012 {
@@ -12,7 +13,7 @@ namespace TestOMatic2012 {
 
 		public void Run() {
 
-			string directoryName = "D:\\MenuMixFiles\\x1500717";
+			string directoryName = "C:\\CkeMixTest\\X1506095";
 
 			DirectoryInfo di = new DirectoryInfo(directoryName);
 
@@ -40,6 +41,9 @@ namespace TestOMatic2012 {
 			FillerLiteral,
 			MenuItemCode
 		}
+
+		private const string PATTERN = @",(?!(?<=(?:^|,)\s*\x22(?:[^\x22]|\x22\x22|\\\x22)*,)(?:[^\x22]|\x22\x22|\\\x22)*\x22\s*(?:,|$))";
+		private Regex _regex = new Regex(PATTERN);
 
 
 		private DataAnalysisDataContext _dataContext = new DataAnalysisDataContext();
@@ -101,7 +105,11 @@ namespace TestOMatic2012 {
 
 			int menuItemId = 0;
 
-			string[] items = line.Split(new char[] { ',' });
+			string[] items = _regex.Split(line);
+
+			for (int i = 0; i < items.Length; i++) {
+				items[i] = items[i].Replace("\"", "").Trim();
+			}
 
 			string menuItemCode = items[(int)MenuMixCvsPosition.MenuItemCode].Trim();
 

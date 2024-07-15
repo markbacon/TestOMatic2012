@@ -61,20 +61,21 @@ namespace TestOMatic2012 {
 
 			//List<string> starPosUnitList = GetStarPosUnitList();
 
-			string filePath = @"\\xdata1\cmsos2\ckenode\";
-
+			//string filePath = @"D:\xdata1\cmsos2\ckenode\";
+			string filePath = @"C:\ckenode";
+			//string filePath = @"\\\xdata1\cmsos2\ckenode";
 
 
 
 			DirectoryInfo di = new DirectoryInfo(filePath);
 
-			DirectoryInfo[] directories = di.GetDirectories("X15*");
+			DirectoryInfo[] directories = di.GetDirectories("X1*");
 
 			foreach (DirectoryInfo directory in directories) {
 
 				Logger.Write("Processing Directory:  " + directory.Name);
 				
-				ProcessDirectory(directory);
+				ProcessDirectoryX(directory);
 
 				//////if (String.Compare(directory.Name, "X1501610") > 0) {
 				//if (starPosUnitList.Contains(directory.Name)) {
@@ -406,7 +407,7 @@ namespace TestOMatic2012 {
 			textBox1.Text += "Processing Directory: " + di.FullName + "\r\n";
 			Application.DoEvents();
 
-			string copyDirectory = @"D:\xdata1\cmsos2\ckenode\" + di.Name;
+			string copyDirectory = @"c:\ckenode\" + di.Name;
 
 			if (!Directory.Exists(copyDirectory)) {
 				Directory.CreateDirectory(copyDirectory);
@@ -427,7 +428,7 @@ namespace TestOMatic2012 {
 			//		file.CopyTo(copyPath, true);
 			//	}
 			//}
-			FileInfo[] files = di.GetFiles("*pd*.fin");
+			FileInfo[] files = di.GetFiles("SmartRpts.zip");
 
 			foreach (FileInfo file in files) {
 
@@ -441,19 +442,19 @@ namespace TestOMatic2012 {
 				}
 			}
 
-			files = di.GetFiles("*.pol");
+			//files = di.GetFiles("*.pol");
 
-			foreach (FileInfo file in files) {
+			//foreach (FileInfo file in files) {
 
-				string copyPath = copyDirectory + "\\" + file.Name;
+			//	string copyPath = copyDirectory + "\\" + file.Name;
 
-				if (!File.Exists(copyPath)) {
-					textBox1.Text += "Copying file: " + copyPath + "\r\n";
-					Application.DoEvents();
+			//	if (!File.Exists(copyPath)) {
+			//		textBox1.Text += "Copying file: " + copyPath + "\r\n";
+			//		Application.DoEvents();
 
-					file.CopyTo(copyPath, true);
-				}
-			}
+			//		file.CopyTo(copyPath, true);
+			//	}
+			//}
 		}
 		//---------------------------------------------------------------------------------------------------------
 		private void ProcessDirectoryIII(DirectoryInfo di) {
@@ -579,7 +580,7 @@ namespace TestOMatic2012 {
 
 			button4.Enabled = false;
 
-			string filePath = @"D:\xdata1\cmsos2\ckenode";
+			string filePath = @"C:\ckenode40mm";
 
 			DirectoryInfo di = new DirectoryInfo(filePath);
 

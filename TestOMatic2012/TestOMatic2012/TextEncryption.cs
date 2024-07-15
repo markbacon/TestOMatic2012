@@ -35,7 +35,6 @@ namespace TestOMatic2012 {
             csDecrypt.Close();
             msDecrypt.Close();
 
-            //string decryptedTextString = (new UnicodeEncoding()).GetString(decryptedTextBytes);
             string decryptedTextString = System.Text.UnicodeEncoding.Unicode.GetString(decryptedTextBytes);
 
             return decryptedTextString;

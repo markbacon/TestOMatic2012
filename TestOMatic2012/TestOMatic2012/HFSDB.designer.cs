@@ -36,6 +36,9 @@ namespace TestOMatic2012
     partial void InsertStoreInfo(StoreInfo instance);
     partial void UpdateStoreInfo(StoreInfo instance);
     partial void DeleteStoreInfo(StoreInfo instance);
+    partial void InsertRingInOut(RingInOut instance);
+    partial void UpdateRingInOut(RingInOut instance);
+    partial void DeleteRingInOut(RingInOut instance);
     #endregion
 		
 		public HFSDBDataContext() : 
@@ -81,6 +84,14 @@ namespace TestOMatic2012
 			get
 			{
 				return this.GetTable<StoreInfo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RingInOut> RingInOuts
+		{
+			get
+			{
+				return this.GetTable<RingInOut>();
 			}
 		}
 	}
@@ -620,6 +631,260 @@ namespace TestOMatic2012
 					this._ConceptId = value;
 					this.SendPropertyChanged("ConceptId");
 					this.OnConceptIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RowNumber", AutoSync=AutoSync.Always, DbType="rowversion NOT NULL", CanBeNull=false, IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary RowNumber
+		{
+			get
+			{
+				return this._RowNumber;
+			}
+			set
+			{
+				if ((this._RowNumber != value))
+				{
+					this.OnRowNumberChanging(value);
+					this.SendPropertyChanging();
+					this._RowNumber = value;
+					this.SendPropertyChanged("RowNumber");
+					this.OnRowNumberChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="Detail.RingInOut")]
+	public partial class RingInOut : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RingInOutID;
+		
+		private byte _RingType;
+		
+		private int _EmployeeID;
+		
+		private System.Nullable<byte> _TerminalID;
+		
+		private System.Nullable<decimal> _BeginingCash;
+		
+		private System.DateTime _RingInOutDate;
+		
+		private System.Nullable<int> _FCTTranID;
+		
+		private System.Nullable<int> _CashDrawerId;
+		
+		private System.Data.Linq.Binary _RowNumber;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRingInOutIDChanging(int value);
+    partial void OnRingInOutIDChanged();
+    partial void OnRingTypeChanging(byte value);
+    partial void OnRingTypeChanged();
+    partial void OnEmployeeIDChanging(int value);
+    partial void OnEmployeeIDChanged();
+    partial void OnTerminalIDChanging(System.Nullable<byte> value);
+    partial void OnTerminalIDChanged();
+    partial void OnBeginingCashChanging(System.Nullable<decimal> value);
+    partial void OnBeginingCashChanged();
+    partial void OnRingInOutDateChanging(System.DateTime value);
+    partial void OnRingInOutDateChanged();
+    partial void OnFCTTranIDChanging(System.Nullable<int> value);
+    partial void OnFCTTranIDChanged();
+    partial void OnCashDrawerIdChanging(System.Nullable<int> value);
+    partial void OnCashDrawerIdChanged();
+    partial void OnRowNumberChanging(System.Data.Linq.Binary value);
+    partial void OnRowNumberChanged();
+    #endregion
+		
+		public RingInOut()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RingInOutID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
+		public int RingInOutID
+		{
+			get
+			{
+				return this._RingInOutID;
+			}
+			set
+			{
+				if ((this._RingInOutID != value))
+				{
+					this.OnRingInOutIDChanging(value);
+					this.SendPropertyChanging();
+					this._RingInOutID = value;
+					this.SendPropertyChanged("RingInOutID");
+					this.OnRingInOutIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RingType", DbType="TinyInt NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public byte RingType
+		{
+			get
+			{
+				return this._RingType;
+			}
+			set
+			{
+				if ((this._RingType != value))
+				{
+					this.OnRingTypeChanging(value);
+					this.SendPropertyChanging();
+					this._RingType = value;
+					this.SendPropertyChanged("RingType");
+					this.OnRingTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmployeeID", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public int EmployeeID
+		{
+			get
+			{
+				return this._EmployeeID;
+			}
+			set
+			{
+				if ((this._EmployeeID != value))
+				{
+					this.OnEmployeeIDChanging(value);
+					this.SendPropertyChanging();
+					this._EmployeeID = value;
+					this.SendPropertyChanged("EmployeeID");
+					this.OnEmployeeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TerminalID", DbType="TinyInt", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<byte> TerminalID
+		{
+			get
+			{
+				return this._TerminalID;
+			}
+			set
+			{
+				if ((this._TerminalID != value))
+				{
+					this.OnTerminalIDChanging(value);
+					this.SendPropertyChanging();
+					this._TerminalID = value;
+					this.SendPropertyChanged("TerminalID");
+					this.OnTerminalIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BeginingCash", DbType="Money", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<decimal> BeginingCash
+		{
+			get
+			{
+				return this._BeginingCash;
+			}
+			set
+			{
+				if ((this._BeginingCash != value))
+				{
+					this.OnBeginingCashChanging(value);
+					this.SendPropertyChanging();
+					this._BeginingCash = value;
+					this.SendPropertyChanged("BeginingCash");
+					this.OnBeginingCashChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RingInOutDate", DbType="DateTime NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public System.DateTime RingInOutDate
+		{
+			get
+			{
+				return this._RingInOutDate;
+			}
+			set
+			{
+				if ((this._RingInOutDate != value))
+				{
+					this.OnRingInOutDateChanging(value);
+					this.SendPropertyChanging();
+					this._RingInOutDate = value;
+					this.SendPropertyChanged("RingInOutDate");
+					this.OnRingInOutDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FCTTranID", DbType="Int", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<int> FCTTranID
+		{
+			get
+			{
+				return this._FCTTranID;
+			}
+			set
+			{
+				if ((this._FCTTranID != value))
+				{
+					this.OnFCTTranIDChanging(value);
+					this.SendPropertyChanging();
+					this._FCTTranID = value;
+					this.SendPropertyChanged("FCTTranID");
+					this.OnFCTTranIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CashDrawerId", DbType="Int", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<int> CashDrawerId
+		{
+			get
+			{
+				return this._CashDrawerId;
+			}
+			set
+			{
+				if ((this._CashDrawerId != value))
+				{
+					this.OnCashDrawerIdChanging(value);
+					this.SendPropertyChanging();
+					this._CashDrawerId = value;
+					this.SendPropertyChanged("CashDrawerId");
+					this.OnCashDrawerIdChanged();
 				}
 			}
 		}

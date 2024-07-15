@@ -14,5 +14,11 @@
         <elementListCompartment Id="e53c806e-25a5-487c-91f6-01160db10043" absoluteBounds="3.39, 5.335, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="e81a8bc3-a757-417d-a5fb-15e1e2174c80" absoluteBounds="8.375, 1.25, 2, 2.5401025390625">
+      <DataClassMoniker Name="/HFSDBDataContext/RingInOut" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8a5b2453-dd86-4d38-a58f-3e119d0bc325" absoluteBounds="8.39, 1.71, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

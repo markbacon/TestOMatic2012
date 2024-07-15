@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -112,45 +113,61 @@ namespace TestOMatic2012 {
 
 			button4.Enabled = false;
 
-			//string filePath = "C:\\Temp.44\\CarlsStarPos.dat";
-			string filePath = "C:\\Temp.44\\HardeStarPos.dat";
+			//string filePath = "C:\\T5\\SaveJournal\\CarlsStarPos.dat";
+			string filePath = "C:\\T5\\SaveJournal\\HardeStarPos.dat";
 
-			using (StreamReader sr = new StreamReader(filePath)) {
+			string dirName = "C:\\T5\\SaveJournal2";
 
-				while (sr.Peek() != -1) {
+			DirectoryInfo di = new DirectoryInfo(dirName);
 
-					string line = sr.ReadLine();
-
-					StarPosJournalAnalysi spja = new StarPosJournalAnalysi();
-
-					spja.Account = line.Substring(30, 12);
-					spja.Amount = Convert.ToDecimal(line.Substring(49, 13)) / 100;
-					spja.DebitCredit = line.Substring(62, 1);
-					spja.Unit = "110" +  line.Substring(42, 7).Trim();
-					spja.WeekEndDate = DateTime.ParseExact(line.Substring(22, 8), "MMddyyyy", System.Globalization.CultureInfo.InvariantCulture);
+			FileInfo[] files = di.GetFiles("*StarPos.dat*");
 
 
-					_dataContext.StarPosJournalAnalysis.InsertOnSubmit(spja);
-					_dataContext.SubmitChanges();
+			foreach (FileInfo file in files) {
 
-					//JournalAnalysi ja = new JournalAnalysi();
+				Stopwatch sw1 = new Stopwatch();
+				sw1.Start();
+				Logger.Write("Begin processing file: " + file.Name);
 
-					//ja.Account = line.Substring(26, 9);
-					//ja.Amount = Convert.ToDecimal(line.Substring(40, 13)) / 100;
-					//ja.Company = line.Substring(0, 3);
-					//ja.CreditAmount = Convert.ToDecimal(line.Substring(66, 13)) / 100;
-					//ja.DebitAmount = Convert.ToDecimal(line.Substring(53, 13)) / 100;
-					//ja.DebitCredit = line.Substring(92, 2);
-					//ja.LineNumber = line.Substring(11, 5);
-					//ja.StatementAmount = Convert.ToDecimal(line.Substring(79, 13)) / 100;
-					//ja.Unit = "11" + line.Substring(35, 5);
-					//ja.WeekEndDate = Convert.ToDateTime(line.Substring(16, 10));
 
-					//_dataContext.JournalAnalysis.InsertOnSubmit(ja);
-					//_dataContext.SubmitChanges();
+				using (StreamReader sr = file.OpenText()) {
+
+					while (sr.Peek() != -1) {
+
+						string line = sr.ReadLine();
+
+						StarPosJournalAnalysi spja = new StarPosJournalAnalysi();
+
+						spja.Account = line.Substring(30, 12);
+						spja.Amount = Convert.ToDecimal(line.Substring(49, 13)) / 100;
+						spja.DebitCredit = line.Substring(62, 1);
+						spja.Unit = "110" + line.Substring(42, 7).Trim();
+						spja.WeekEndDate = DateTime.ParseExact(line.Substring(22, 8), "MMddyyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+
+						using (_dataContext = new DataAnalysisDataContext()) {
+							_dataContext.StarPosJournalAnalysis.InsertOnSubmit(spja);
+							_dataContext.SubmitChanges();
+						}
+						//JournalAnalysi ja = new JournalAnalysi();
+
+						//ja.Account = line.Substring(26, 9);
+						//ja.Amount = Convert.ToDecimal(line.Substring(40, 13)) / 100;
+						//ja.Company = line.Substring(0, 3);
+						//ja.CreditAmount = Convert.ToDecimal(line.Substring(66, 13)) / 100;
+						//ja.DebitAmount = Convert.ToDecimal(line.Substring(53, 13)) / 100;
+						//ja.DebitCredit = line.Substring(92, 2);
+						//ja.LineNumber = line.Substring(11, 5);
+						//ja.StatementAmount = Convert.ToDecimal(line.Substring(79, 13)) / 100;
+						//ja.Unit = "11" + line.Substring(35, 5);
+						//ja.WeekEndDate = Convert.ToDateTime(line.Substring(16, 10));
+
+						//_dataContext.JournalAnalysis.InsertOnSubmit(ja);
+						//_dataContext.SubmitChanges();
+					}
+					Logger.Write("Finished processing file: " + file.Name + ". Elapsed time: " + sw1.Elapsed.ToString());
 				}
 			}
-
 
 
 			button4.Enabled = true;

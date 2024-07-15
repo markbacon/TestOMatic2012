@@ -23,6 +23,7 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
 		private const string PATTERN = @",(?!(?<=(?:^|,)\s*\x22(?:[^\x22]|\x22\x22|\\\x22)*,)(?:[^\x22]|\x22\x22|\\\x22)*\x22\s*(?:,|$))";
+		private Regex _regex = new Regex(PATTERN);
 
 		private enum FinFileLineCsvPosition {
 			BusinessDate = 0,
@@ -32,23 +33,23 @@ namespace TestOMatic2012 {
 			Amount = 11
 		}
 
-		private class FinFileData {
+        private class FinFileData {
 
-			public string UnitNumber = "";
-			public DateTime BusinessDate;
-			public decimal NetSales = 0;
-			public decimal CashDeposit = 0;
-			public decimal CreditCardDeposits = 0;
-			public decimal ToySales = 0;
-			public decimal GiftCardSales = 0;
-			public decimal Donations = 0;
-			public decimal Exempt = 0;
+            public string UnitNumber = "";
+            public DateTime BusinessDate;
+            public decimal NetSales = 0;
+            public decimal CashDeposit = 0;
+            public decimal CreditCardDeposits = 0;
+            public decimal ToySales = 0;
+            public decimal GiftCardSales = 0;
+            public decimal Donations = 0;
+            public decimal Exempt = 0;
+            public decimal SalesTax = 0;
 
-		}
+        }
 
 
 
-		private Regex _regex = new Regex(PATTERN);
 
 		//---------------------------------------------------------------------------------------------------
 		private void button1_Click(object sender, EventArgs e) {
@@ -99,7 +100,7 @@ namespace TestOMatic2012 {
 
 			DirectoryInfo di = new DirectoryInfo(sourceDirName);
 
-			DirectoryInfo[] directories = di.GetDirectories("X11*");
+			DirectoryInfo[] directories = di.GetDirectories("X1100512");
 
 			foreach (DirectoryInfo directory in directories) {
 
@@ -108,11 +109,11 @@ namespace TestOMatic2012 {
 				}
 
 
-				DateTime businessDate = new DateTime(2016, 4, 25);
+				DateTime businessDate = new DateTime(2015, 12, 1);
 	
 				Logger.Write("Processing directory: " + directory.Name);
 
-				while (businessDate < new DateTime(2016, 5, 1)) {
+				while (businessDate < new DateTime(2016, 1, 1)) {
 
 					if (directory.GetDirectories(businessDate.ToString("yyyyMMdd")).Count() > 0) {
 
@@ -122,7 +123,7 @@ namespace TestOMatic2012 {
 
 						if (file != null) {
 
-							string copyPath = Path.Combine("C:\\RmsFiles", businessDate.ToString("yyyyMMdd"), directory.Name);
+							string copyPath = "C:\\ckenode3";
 
 							if (!Directory.Exists(copyPath)) {
 								Directory.CreateDirectory(copyPath);
@@ -149,7 +150,7 @@ namespace TestOMatic2012 {
 
 			button3.Enabled = false;
 
-			string sourceDirName = "D:\\xdata1\\ckenodex16";
+			string sourceDirName = "C:\\CreditCardRecovery";
 
 			DirectoryInfo di = new DirectoryInfo(sourceDirName);
 
@@ -177,22 +178,34 @@ namespace TestOMatic2012 {
 
 			button5.Enabled = false;
 
+            DirectoryInfo di = new DirectoryInfo(@"C:\Store Data\X1500523");
 
-			string sourceDirName = "C:\\Store Data\\X1100207";
+            FileInfo[] files = di.GetFiles("*.fin");
 
-			DirectoryInfo di = new DirectoryInfo(sourceDirName);
+            	foreach (FileInfo finFile in files) {
 
-
-			FileInfo[] files = di.GetFiles("*.fin");
-
-			foreach (FileInfo finFile in files) {
-
-				ProcessFinFile(finFile);
-			}
+            		ProcessFinFile(finFile);
+            }
 
 
+            //string sourceDirName = "C:\\CkeNodeSales";
 
-			button5.Enabled = true;
+            //DirectoryInfo di = new DirectoryInfo(sourceDirName);
+
+            //DirectoryInfo[] directories = di.GetDirectories();
+
+            //foreach (DirectoryInfo directory in directories) {
+
+            //	FileInfo[] files = directory.GetFiles("*.fin");
+
+            //	foreach (FileInfo finFile in files) {
+
+            //		ProcessFinFile(finFile);
+            //	}
+
+            //}
+
+            button5.Enabled = true;
 		}
 		//---------------------------------------------------------------------------------------------------
 		private void form8_onLoggerWrite(object sender, LoggerEventArgs e) {
@@ -207,7 +220,7 @@ namespace TestOMatic2012 {
 
 			List<string> unitList = new List<string>();
 
-			string filePath = "D:\\xdata1\\ckenodeX16\\unitlist.txt";
+			string filePath = "C:\\Temp308\\MoreMissingUnits.txt";
 
 			using (StreamReader sr = new StreamReader(filePath)) {
 
@@ -249,6 +262,10 @@ namespace TestOMatic2012 {
 							fd.BusinessDate = DateTime.ParseExact(items[(int)FinFileLineCsvPosition.BusinessDate], "MMddyy", System.Globalization.CultureInfo.CurrentCulture);
 							fd.UnitNumber = items[(int)FinFileLineCsvPosition.UnitNumber];
 							fd.NetSales = Convert.ToDecimal(items[(int)FinFileLineCsvPosition.Amount]) / 100;
+							break;
+
+						case "9":
+							fd.SalesTax = Convert.ToDecimal(items[(int)FinFileLineCsvPosition.Amount]) / 100;
 							break;
 
 						case "11":
@@ -327,7 +344,7 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------
 		private void WriteFinData(FinFileData fd) {
 
-			string filePath = "C:\\temp\\FinFileTaxData.csv";
+			string filePath = "C:\\temp\\FinFileTaxDataX.csv";
 
 			StringBuilder sb = new StringBuilder();
 
@@ -335,18 +352,20 @@ namespace TestOMatic2012 {
 			sb.Append(",");
 			sb.Append(fd.UnitNumber);
 			sb.Append(",");
-			//sb.Append(fd.NetSales.ToString("0.00"));
-			//sb.Append(",");
-			//sb.Append(fd.CashDeposit.ToString("0.00"));
-			//sb.Append(",");
-			//sb.Append(fd.CreditCardDeposits.ToString("0.00"));
-			sb.Append(fd.Exempt.ToString("0.00"));
+			sb.Append(fd.NetSales.ToString("0.00"));
 			sb.Append(",");
-
-			sb.Append(fd.GiftCardSales.ToString("0.00"));
+			sb.Append(fd.SalesTax.ToString("0.00"));
 			sb.Append(",");
+			sb.Append(fd.CashDeposit.ToString("0.00"));
+			sb.Append(",");
+			sb.Append(fd.CreditCardDeposits.ToString("0.00"));
+			//sb.Append(fd.Exempt.ToString("0.00"));
+			//sb.Append(",");
 
-			sb.Append(fd.Donations.ToString("0.00"));
+			//sb.Append(fd.GiftCardSales.ToString("0.00"));
+			//sb.Append(",");
+
+			//sb.Append(fd.Donations.ToString("0.00"));
 			//sb.Append(",");
 
 
@@ -359,8 +378,10 @@ namespace TestOMatic2012 {
 
 			fin.BusinessDate = fd.BusinessDate;
 			fin.CashDeposits = fd.CashDeposit;
+			fin.CreateDate = DateTime.Now;
 			fin.CreditCardDeposits = fd.CreditCardDeposits;
 			fin.NetSales = fd.NetSales;
+			fin.SalesTax = fd.SalesTax;
 			fin.UnitNumber = fd.UnitNumber;
 
 
@@ -393,6 +414,28 @@ namespace TestOMatic2012 {
 
 
 			button4.Enabled = true;
+
+		}
+
+		private void button6_Click(object sender, EventArgs e) {
+
+			button6.Enabled = false;
+
+			string dirPath = "C:\\CkeNodeX\\X1501873";
+
+			DirectoryInfo di = new DirectoryInfo(dirPath);
+
+			FileInfo[] files =di.GetFiles("*PD.fin");
+
+			foreach (FileInfo file in files) {
+
+				ProcessFinFile(file);
+			}
+
+
+
+			button6.Enabled = true;
+
 
 		}
 	}

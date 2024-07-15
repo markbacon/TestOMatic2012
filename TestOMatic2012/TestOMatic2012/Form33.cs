@@ -29,6 +29,37 @@ namespace TestOMatic2012 {
 			button1.Enabled = true;
 		}
 		//---------------------------------------------------------------------------------------------------------
+		private void button2_Click(object sender, EventArgs e) {
+
+			button2.Enabled = false;
+
+			DirectoryInfo di = new DirectoryInfo(@"D:\xdata1\cmsos2\cke");
+
+			DirectoryInfo[] direcories = di.GetDirectories();
+
+			foreach (DirectoryInfo directory in direcories) {
+
+				FileInfo file = directory.GetFiles("Empl.sav").SingleOrDefault();
+
+				if (file.Exists) {
+					string targetPath = Path.Combine(file.DirectoryName, "Empl.out");
+
+					file.CopyTo(targetPath, true);
+
+					targetPath = Path.Combine(file.DirectoryName, "Empl.bak");
+
+					file.CopyTo(targetPath, true);
+
+				}
+
+
+
+
+			}
+
+			button2.Enabled = true;
+		}
+		//---------------------------------------------------------------------------------------------------------
 		private void CheckCarlsTLogDirectories() {
 
 			DirectoryInfo di = new DirectoryInfo(@"\\ckeanafnp01\cjrco_ro");
@@ -124,5 +155,6 @@ namespace TestOMatic2012 {
 
 			return companyStores;
 		}
+
 	}
 }

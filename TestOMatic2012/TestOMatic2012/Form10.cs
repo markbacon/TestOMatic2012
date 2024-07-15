@@ -116,13 +116,13 @@ namespace TestOMatic2012 {
 					textBox1.Text += "Processing directory:  " + directory.Name + "\r\n";
 					Application.DoEvents();
 
-					string targetDirectory = Path.Combine("D:\\xdata1\\cmsos2\\ckenode", directory.Name);
+					string targetDirectory = Path.Combine("C:\\xdata1\\cmsos2\\ckenode", directory.Name);
 
 					if (!Directory.Exists(targetDirectory)) {
 						Directory.CreateDirectory(targetDirectory);
 					}
 
-					FileInfo[] files = directory.GetFiles("*WKTime.pol");
+					FileInfo[] files = directory.GetFiles("*.*");
 
 					if (files.Length == 0) {
 						Logger.WriteError("Time.pol file not found for directory:  " + directory.Name);
@@ -137,6 +137,17 @@ namespace TestOMatic2012 {
 
 						file.CopyTo(targetPath, true);
 					}
+
+					//files = directory.GetFiles("*.fin");
+
+					//foreach (FileInfo file in files) {
+
+					//	string targetPath = Path.Combine(targetDirectory, file.Name);
+					//	textBox1.Text += "Copying file:  " + targetPath + "\r\n";
+					//	Application.DoEvents();
+
+					//	file.CopyTo(targetPath, true);
+					//}
 				}
 			//}
 
@@ -232,16 +243,17 @@ namespace TestOMatic2012 {
 		}
 
 		private void textBox1_TextChanged(object sender, EventArgs e) {
-			//if (textBox1.Text.Length > 2024) {
-			//	textBox1.Text = "";
-			//}
+
+			if (textBox1.Text.Length > 2024) {
+				textBox1.Text = "";
+			}
 
 
-			//if (textBox1.Text.Length > 0) {
-			//	textBox1.SelectionStart = textBox1.Text.Length - 1;
-			//	textBox1.ScrollToCaret();
-			//	Application.DoEvents();
-			//}
+			if (textBox1.Text.Length > 0) {
+				textBox1.SelectionStart = textBox1.Text.Length - 1;
+				textBox1.ScrollToCaret();
+				Application.DoEvents();
+			}
 
 		}
 		//---------------------------------------------------------------------------------------------------
@@ -355,6 +367,12 @@ namespace TestOMatic2012 {
 
 
 			button5.Enabled = true;
+
+		}
+
+		private void button6_Click(object sender, EventArgs e) {
+
+			button6.Enabled = false;
 
 		}
 	}

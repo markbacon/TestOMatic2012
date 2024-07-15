@@ -15,6 +15,7 @@ namespace TestOMatic2012 {
             SHA256Managed shaMan = new SHA256Managed();
             byte[] hashedTextBytes = shaMan.ComputeHash(plainTextBytes);
 
+
             StringBuilder sb = new StringBuilder();
 
             for (int i = 0; i < hashedTextBytes.Length; i++) {

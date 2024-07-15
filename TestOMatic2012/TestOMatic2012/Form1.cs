@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace TestOMatic2012 {
 
@@ -38,317 +40,30 @@ namespace TestOMatic2012 {
 
 			button1.Enabled = false;
 
+			decimal rate1 = 0;
+			decimal rate2 = 0.00M;
 
-			string dirName = "C:\\xdata1\\cmsos2\\ckenode";
+			textBox1.Text = (rate1 == rate2).ToString();
 
-			DirectoryInfo di = new DirectoryInfo(dirName);
+			//DateTime theDate = new DateTime(2024, 02, 22);
+			//textBox1.Text = theDate.AddDays(12 * 7).ToString();
 
-			DirectoryInfo[] directories = di.GetDirectories();
+			//DateTime startDate = new DateTime(2022, 01, 01, 12, 24, 48, 665);
+			//DateTime endDate = new DateTime(2022, 01, 01, 12, 24, 48, 6653412);
 
-			foreach (DirectoryInfo directory in directories) {
+			//bool fred = startDate == endDate;
+			//bool barney = fred;
 
-				FileInfo[] files = directory.GetFiles("X1*_wktime.pol");
+			//startDate = startDate.AddMonths(1);
+			//endDate = endDate.AddMonths(1);
 
-				foreach (FileInfo file in files) {
-					Logger.Write("Copying file: " + file.Name);
-					string copyPath = Path.Combine(directory.FullName, "inbox", "inbox", file.Name);
-					file.CopyTo(copyPath, true);
+			//startDate = startDate.AddMonths(1);
+			//int daysInMonth = DateTime.DaysInMonth(startDate.Year, startDate.Month);
+			//endDate = startDate.AddDays(daysInMonth);
 
-					file.Delete();
-				}
-			}
-
-			//StringBuilder sb = new StringBuilder();
-			
-			//DateTime businessDate = new DateTime(2016, 3, 21);
-
-			//while (businessDate < DateTime.Today) {
-
-			//	//sb.Append("NextGenFileGenerator /ReportType=MixDestPoll /BusinessDate=");
-			//	sb.Append("CkeFileTransfer /SendZipFile=true /BusinessDate=");
-			//	sb.Append(businessDate.ToString("MM/dd/yyyy"));
-			//	sb.Append("\r\n");
-
-			//	businessDate = businessDate.AddDays(1);
-
-			//}
-
-			//textBox1.Text = sb.ToString();
-
-//			//string sql = textBox1.Text;
-
-//			//DataAccess dac = new DataAccess(@"Data Source=localhost;Initial Catalog=Recipes;Integrated Security=True");
-//			//DataTable dt = dac.ExecuteQuery(sql);
-
-//			//dt.TableName = "JrWarehouse";
-
-//			//dt.WriteXmlSchema("C:\\Temp\\JrWarehouse.xsd");
-
-
-
-
-////			ProcessPromoItems();//
-
-//			//MenuPollData pollData = new MenuPollData();
-//			//pollData.Run();
-
-//			//LaborHoursProcessor processor = new LaborHoursProcessor();
-//			//processor.Run();
-//			//textBox1.Text = processor.BuildUpdateSQL();
-
-//			StringBuilder sb = new StringBuilder();
-
-//			string[] lines = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-
-
-//			int counter = 1;
-
-//			foreach (string line in lines) {
-
-
-//				string jrCode = line.Trim();
-
-//				if (jrCode.Length > 0) {
-
-//					switch (jrCode.Length) {
-
-//						case 1:
-//							jrCode = "JR00" + jrCode;
-//							break;
-
-//						case 2:
-//							jrCode = "JR0" + jrCode;
-//							break;
-
-//						case 3:
-//							jrCode = "JR" + jrCode;
-
-//							break;
-
-//						case 4:
-//							jrCode = "J" + jrCode;
-
-//							break;
-//					}
-
-//					sb.Append("'");
-//					sb.Append(jrCode);
-//					sb.Append("', ");
-//					//sb.Append(", ");
-//					if (++counter % 10 == 0) {
-
-//						sb.Append("\r\n");
-
-//					}
-
-//				}
-//			}
-
-//			textBox1.Text = sb.ToString();
-
-//			//	//sb.Append(line.Replace("  ", " "));
-//			//	//sb.Replace("  ", " ");
-//			//	//sb.Replace("  ", " ");
-//			//	//sb.Replace("  ", " ");
-//			//	//sb.Replace("  ", " ");
-//			//	//sb.Replace("  ", " ");
-//			//	//sb.Replace(" ", "\t");
-
-//			//	if (line.Length > 0) {
-
-//			//		//sb.Append(line.Substring(16, 20).Trim());
-//			//		//sb.Append("\t");
-//			//		//sb.Append(line.Substring(0, 4).Trim());
-//			//		//sb.Append("\t");
-//			//		//sb.Append(line.Substring(37, 9).Trim());
-
-
-//			//		//sb.Append(line.Substring(0, 7).Trim());
-//			//		//sb.Append("\t");
-//			//		//sb.Append(line.Substring(8, 20).Trim());
-//			//		//sb.Append("\t");
-//			//		//sb.Append(line.Substring(32, 7).Trim());
-
-//			//		sb.Append(line.Substring(0, 18).Trim());
-//			//		sb.Append("\t");
-//			//		sb.Append(line.Substring(19, 20).Trim());
-//			//		sb.Append("\t");
-//			//		sb.Append(line.Substring(43, 7).Trim());
-
-
-//			//		sb.Append("\r\n");
-//			//	}
-
-//			//}
-
-//			//textBox1.Text = sb.ToString();
-
-			button1.Enabled = true;
-
-			//CopyLaborHoursFiles();
-
-			//DateTime start = Convert.ToDateTime("2014-02-11 08:48:17");
-			//DateTime end = Convert.ToDateTime("2014-02-11 08:49:45");
-
-			//textBox1.Text = (end - start).ToString();
-
-			//DateTime then = new DateTime(2013, 01, 01);
-			//DateTime fred = new DateTime(2013, 12, 31);
-
-
-			////textBox1.Text = (DateTime.Now - then).TotalMinutes.ToString();
-			////textBox1.Text = (fred - then).TotalSeconds.ToString();
-
-			////-- Get "Then". Then needs to be at least 1 year in past but not more than 21 months
-			//DateTime utcNow = DateTime.UtcNow;
-
-			//int subtrahend = 0;
-
-
-			//if (utcNow.Month < 10 || (utcNow.Month == 9 && utcNow.Day == 30 && utcNow.Hour < 23)) {
-			//	subtrahend = 1;
-			//}
-			
-			//then = new DateTime(utcNow.Year - subtrahend, 2, 2, 2, 2, 2);
-
-			//int numericValue = (int)(utcNow - then).TotalMinutes;
-
-			//string numString = numericValue.ToString("000000");
-
-			//textBox1.Text += numString + "\r\n";
-
-			//numString = new string(numString.Reverse().ToArray());
-
-			//List<char> theCharList = new List<char>();
-
-			//for (int i = 0; i < numString.Length; i++) {
-
-			//	char numChar = numString[i];
-
-			//	if (numChar == '8') {
-			//		numChar = '0';
-			//	}
-
-			//	else if (numChar == '9') {
-			//		numChar = '1';
-			//	}
-
-			//	else {
-
-			//		int charVal = (int)numChar;
-			//		charVal += 2;
-
-			//		numChar = (char)charVal;
-			//	}
-
-			//	theCharList.Add(numChar);
-			//}
-
-			//textBox1.Text += numString + "\r\n";
-
-			//StringBuilder sb = new StringBuilder();
-
-			//foreach (char theChar in theCharList) {
-			//	sb.Append(theChar);
-			//}
-
-			//textBox1.Text += sb.ToString() + "\r\n";
-
-
-			////DateTime synchDate = DateTime.UtcNow;
-
-			////string dateString = synchDate.ToString("yyyy-MM-dd");
-
-			////string hashedDate = HashOMatic.ComputeHash(dateString);
-
-			////textBox1.Text = hashedDate + "\r\n";
-
-
-			////synchDate = synchDate.AddMinutes(10);
-
-			////textBox1.Text += synchDate.ToString("yyyy-MM-dd HH:mm:ss") + "\r\n"; 
-
-			////int totMins = (int)new TimeSpan(synchDate.Hour, synchDate.Minute, synchDate.Second).TotalMinutes;
-
-			////textBox1.Text += totMins.ToString() + "\r\n"; ;
-
-			////totMins *= 7;
-
-			////totMins += synchDate.DayOfYear;
-
-			//textBox1.Text += totMins.ToString() + "\r\n"; ;
-
-			//DateTime unDate = DateTime.UtcNow.Date;
-
-			//int hours = totMins / 60;
-			//int mins = totMins % 60;
-
-
-			//totMins /= 7;
-
-			//totMins -= unDate.DayOfYear;
-
-			//unDate = unDate.AddMinutes(totMins);
-
-			//textBox1.Text += unDate.ToString("yyyy-MM-dd HH:mm:ss") + "\r\n";
-
-
-			//string testString = synchDate.ToString("MMddHHmm");
-
-			//textBox1.Text += testString + "\r\n";
-
-			//textBox1.Text +=MapNumericString(testString) + "\r\n";
-
-
-			//string encryptedText = TextEncryption.EncryptText(testString);
-
-
-			//textBox1.Text += encryptedText + "\r\n";
-
-
-
-
+			//Console.WriteLine("Hi Fred!");
 		}
 		//---------------------------------------------------------------------------------------------------------
-		private void CopyLaborHoursFile(string node) {
-
-			if (node.Trim().Length > 0) {
-
-				string filePath = @"\\xdata1\cmsos2\ckenode\" + "X" + node.Trim();
-
-				DirectoryInfo di = new DirectoryInfo(filePath);
-
-				FileInfo[] files = di.GetFiles("X*LaborHours.pol");
-
-				foreach (FileInfo file in files) {
-
-					filePath = @"C:\Temp62\" + file.Name;
-
-					file.CopyTo(filePath, true);
-				}
-			}
-		}
-		//---------------------------------------------------------------------------------------------------------
-		private void CopyLaborHoursFiles() {
-
-			string filePath = "C:\\Temp\\Win7_2.txt";
-
-			using (StreamReader sr = new StreamReader(filePath)) {
-
-				while (sr.Peek() != -1) {
-
-					string line = sr.ReadLine();
-
-					string[] nodes = line.Split(new char[] { ',' });
-
-					foreach (string node in nodes) {
-
-						CopyLaborHoursFile(node);
-					}
-
-				}
-			}
-		}
 		//---------------------------------------------------------------------------------------------------
 		private void form8_onLoggerWrite(object sender, LoggerEventArgs e) {
 
@@ -416,30 +131,138 @@ namespace TestOMatic2012 {
 
 			button2.Enabled = false;
 
+
 			StringBuilder sb = new StringBuilder();
 
-			//string[] items = textBox1.Text.Split(new char[] { ',' });
-			string[] items = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-			int counter = 0;
+			//sb.Append(textBox1.Text);
+			//sb.Replace('\t', '|');
+			//textBox1.Text = sb.ToString();
 
-			foreach (string item in items) {
+			//DateTime businessDate = Convert.ToDateTime("2017-02-17");
 
-				//sb.Append("'");
-				sb.Append(item.Trim().Substring(0));
-				//sb.Append("'");
-				sb.Append(",");
+			//while (businessDate < DateTime.Today) {
+			//	sb.Append("RedReporting.exe /ReportType=CarlsBeverage /BusinessDate=");
+			//	sb.Append(businessDate.ToString("MM/dd/yyyy"));
+			//	sb.Append("\r\n");
+
+			//	sb.Append("RedReporting.exe /ReportType=HardeesBeverage /BusinessDate=");
+			//	sb.Append(businessDate.ToString("MM/dd/yyyy"));
+			//	sb.Append("\r\n\r\n");
+
+			//	businessDate = businessDate.AddDays(1);
+			//}
+
+			//string[] items = textBox1.Text.Split(new string[] { "\r\n", "," }, StringSplitOptions.RemoveEmptyEntries);
+
+
+			//string[] items = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+
+			//foreach (string item in items) {
+
+			//	sb.Append("dtl.");
+			//	sb.Append(item);
+			//	sb.Append(" = items[(int)ElavonFileCsvPosition.");
+			//	sb.Append(item);
+			//	sb.Append("];\r\n");
+
+			//}
+
+			//TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+
+			//string[] lines = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+
+			//foreach (string line in lines) {
+
+			//	int pos = line.IndexOf("]");
+
+			//	string item = line.Substring(0, pos + 1).Trim();
+
+			//	string[] parts = item.Split('_');
+
+			//	foreach (string part in parts) {
+
+			//		sb.Append(textInfo.ToTitleCase(part.ToLower()));
+			//	}
+
+			//	sb.Append(line.Substring(pos + 2));
+
+
+			//	sb.Append("\r\n");
+
+
+			//}
+
+
+
+            //TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+
+            string[] items = textBox1.Text.Split(new string[] { "\r\n", "\t", ",", " " }, StringSplitOptions.RemoveEmptyEntries);
+            //string[] items = textBox1.Text.Split(new string[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
+
+
+            //int counter = 0;
+
+
+            //foreach (string item in items) {
+
+            //    string[] parts = item.Split('_');
+
+            //    foreach (string part in parts) {
+
+            //        sb.Append(textInfo.ToTitleCase(part.ToLower()));
+            //    }
+
+            //    sb.Append(" = ");
+            //    sb.Append(counter++);
+            //    sb.Append(",\r\n");
+
+
+            //}
+
+
+
+
+
+
+			////foreach (string line in lines) {
+
+			////	string[] items = line.Split(new char[] { '\t' });
+
+			////	sb.Append("<JrNumber OldJr=\"");
+			////	sb.Append(items[0].Trim());
+			////	sb.Append("\" NewJr=\"");
+			////	sb.Append(items[1].Trim());
+			////	sb.Append("\" />\r\n");
+			////}
+
+
+            int counter = 0;
+
+            foreach (string item in items) {
+
+				//sb.Append("X");
+				////sb.Append(item.Trim().Substring(1, 7));
+				sb.Append("'");
+				//sb.Append(item.Trim());
+				//sb.Append("\"");
+				//sb.Append("X");
+				sb.Append(item.Substring(0).Trim());
+				//sb.Append(item.Substring(0, 7).Trim());
+				//sb.Append("_20220920_TransHist.xml\r\n,");
+				sb.Append("',");
+				//sb.Append(",");
+				//sb.Append("\r\n");
 
 				if ((++counter) % 10 == 0) {
 					sb.Append("\r\n");
 				}
-
-
 			}
 
-
-			textBox1.Text = sb.ToString();
-			//ProcessErrorEmail();
+			//textBox1.Text = sb.ToString();
+			////ProcessErrorEmail();
 
 			//ProcessUnitList();
 
@@ -501,27 +324,30 @@ namespace TestOMatic2012 {
 			//textBox1.Text = sdr.GetGeneralManagerJobCode();
 
 
-			//string[] lines = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+			//string[] lines = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
 			//StringBuilder sb = new StringBuilder();
 			//int counter = 0;
 
 
-			//foreach (string line in lines) {
+			//foreach (string item in items) {
+			////foreach (string line in lines) {
 
-			//	sb.Append("'");
-			//	sb.Append(line);
-			//	sb.Append("', ");
+			//	//sb.Append(line.Split(' ')[0]);
 
-			//	counter++;
+			//	//sb.Append("'");
+			//	sb.Append(item);
+			//	//sb.Append(", ");
 
-			//	if (counter % 10 == 0) {
+			//	//counter++;
+
+			//	//if (counter % 10 == 0) {
 			//		sb.Append("\r\n");
-			//	}
+			//	//}
 			//}
 
 
-			//textBox1.Text = sb.ToString();
+			textBox1.Text = sb.ToString();
 
 
 
@@ -604,7 +430,7 @@ namespace TestOMatic2012 {
 			if (!Directory.Exists(copyDirectory)) {
 				Directory.CreateDirectory(copyDirectory);
 			}
-			
+
 			foreach (DirectoryInfo directory in directories) {
 
 				int dirNum = Convert.ToInt32(directory.Name);
@@ -636,7 +462,7 @@ namespace TestOMatic2012 {
 			textBox1.Text += "Processing Directory: " + di.FullName + "\r\n";
 			Application.DoEvents();
 
-			string copyDirectory = @"D:\LaborHFS";
+			string copyDirectory = Path.Combine(@"C:\ckenodetime", di.Name);
 
 			if (!Directory.Exists(copyDirectory)) {
 				Directory.CreateDirectory(copyDirectory);
@@ -644,7 +470,7 @@ namespace TestOMatic2012 {
 
 
 
-			FileInfo[] files = di.GetFiles("*laborhfs.csv");
+			FileInfo[] files = di.GetFiles("*laborhours.pol");
 
 			foreach (FileInfo file in files) {
 
@@ -657,14 +483,14 @@ namespace TestOMatic2012 {
 
 					file.CopyTo(copyPath, true);
 
-					//string mtierDirectory = copyDirectory + "\\mtier";
+					string mtierDirectory = copyDirectory + "\\mtier\\SalesLabor";
 
-					//if (!Directory.Exists(mtierDirectory)) {
-					//	Directory.CreateDirectory(mtierDirectory);
-					//}
+					if (!Directory.Exists(mtierDirectory)) {
+						Directory.CreateDirectory(mtierDirectory);
+					}
 
-					//string mtierPath = mtierDirectory + "\\" + file.Name;
-					//file.CopyTo(mtierPath, true);
+					string mtierPath = mtierDirectory + "\\" + file.Name;
+					file.CopyTo(mtierPath, true);
 
 				}
 			}
@@ -749,6 +575,46 @@ namespace TestOMatic2012 {
 					}
 				}
 			}
+		}
+		//---------------------------------------------------------------------------------------------------------
+		private void ProcessDirectoryV(DirectoryInfo di) {
+
+			textBox1.Text += "Processing Directory: " + di.FullName + "\r\n";
+			Application.DoEvents();
+
+			DirectoryInfo[] directories = di.GetDirectories();
+
+			string copyDirectory = "D:\\TLogFiles3.0\\" + di.Name;
+
+			if (!Directory.Exists(copyDirectory)) {
+				Directory.CreateDirectory(copyDirectory);
+			}
+
+
+			DateTime businessDate = Convert.ToDateTime("3/23/2015");
+			DateTime endDate = Convert.ToDateTime("2015-3-29");
+
+
+			while (businessDate <= endDate) {
+
+				DirectoryInfo dirInfo = di.GetDirectories(businessDate.ToString("yyyyMMdd")).SingleOrDefault();
+
+					FileInfo[] files = dirInfo.GetFiles("*transhist*");
+
+					foreach (FileInfo file in files) {
+
+						string copyPath = copyDirectory + "\\" + file.Name;
+
+						if (!File.Exists(copyPath)) {
+
+							textBox1.Text += "Copying file: " + copyPath + "\r\n";
+							Application.DoEvents();
+
+							file.CopyTo(copyPath, true);
+						}
+					}
+			}
+
 		}
 		//---------------------------------------------------------------------------------------------------------
 		private void ProcessErrorEmail() {
@@ -874,15 +740,36 @@ namespace TestOMatic2012 {
 			string filePath = @"\\ckeanafnp01\CJRCO_RO";
 
 
+			List<string> unitList = new List<string>();
+
 			DirectoryInfo di = new DirectoryInfo(filePath);
 
-			DirectoryInfo[] directories = di.GetDirectories("X11*");
 
-			foreach (DirectoryInfo directory in directories) {
+			using (StreamReader sr = new StreamReader("C:\\Temp308\\MoreMissingUnits.txt")) {
 
+				string buffer = sr.ReadToEnd();
 
-				ProcessDirectory(directory);
+				string[] items = buffer.Split(new string[] { ",", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+				foreach (string item in items) {
+					unitList.Add("X" + item.Trim());
+				}
 			}
+
+
+			foreach (string unit in unitList) {
+
+				DirectoryInfo unitDirectory = di.GetDirectories(unit).Single();
+				ProcessDirectoryV(unitDirectory);
+			}
+
+
+			//DirectoryInfo[] directories = di.GetDirectories("X11*");
+
+			//foreach (DirectoryInfo directory in directories) {
+
+			//	ProcessDirectory(directory);
+			//}
 
 		}
 		//---------------------------------------------------------------------------------------------------------
@@ -961,7 +848,7 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------------
 		private void ReformatTest() {
 
-			string[] lines = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+			string[] lines = textBox1.Text.Split(new string[] { "\r\n", " " }, StringSplitOptions.None);
 
 			StringBuilder sb = new StringBuilder();
 
@@ -1022,51 +909,115 @@ namespace TestOMatic2012 {
 
 			button3.Enabled = false;
 
-			StringBuilder sb1223 = new StringBuilder();
-			StringBuilder sb1224_25 = new StringBuilder();
 
-			string filePath = "C:\\Temp2.1\\posdata_original.dat";
+			TimeSpan tsFoo = new TimeSpan(0, 44, 47);
+
+			TimeSpan tsBar = new TimeSpan(tsFoo.Ticks / 190);
+
+			textBox1.Text = tsBar.ToString();
+
+			//DateTime dt1 = new DateTime(2022, 10, 12);
+			//DateTime dt2 = new DateTime(2023,08,14);
+			//DateTime dt3 = new DateTime(2023, 6, 13);
 
 
-			using (StreamReader sr = new StreamReader(filePath)) {
+			//string foo1 = (dt2 - dt1).TotalDays.ToString();
+			//string foo2 = (dt3 - dt2).TotalDays.ToString();
 
-				while (sr.Peek() != -1) {
 
-					string line = sr.ReadLine();
+			//StringBuilder sb = new StringBuilder();
 
-					if (string.Compare(line.Substring(50, 2),  "23") <= 0) {
-						sb1223.Append(line);
-						sb1223.Append("\r\n");
-					}
-					else {
-						sb1224_25.Append(line);
-						sb1224_25.Append("\r\n");
-					}
-				}
-			}
 
-			filePath = "C:\\Temp2.1\\posdata_20131223.dat";
+			//int val = 11000;
 
-			using (StreamWriter sw = new StreamWriter(filePath)) {
-				sw.Write(sb1223.ToString());
-			}
+			//int counter = 0;
+			//while (val < 11050) {
 
-			filePath = "C:\\Temp2.1\\posdata_20131224&25.dat";
+			//	string searchVal = "X" + val.ToString() + "*";
 
-			using (StreamWriter sw = new StreamWriter(filePath)) {
-				sw.Write(sb1224_25.ToString());
-			}
+			//	sb.Append("\"");
+			//	sb.Append(searchVal);
+			//	sb.Append("\", ");
 
+			//	if (++counter % 10 == 0) {
+
+			//		sb.Append("\r\n");
+			//	}
+
+			//	val++;
+			//}
+
+			//textBox1.Text = sb.ToString();
+
+
+
+
+			//int fooby = -322949101;
+			//long foo = fooby; // -322949101;
+			//				  //ulong bar = (ulong)(foo);
+			//ulong bar = Convert.ToUInt64(fooby);
+
+			//List<byte> fred = BitConverter.GetBytes(bar).ToList();
+
+			////for (int i = 0; i < 4; i++) {
+			////	fred.Insert(i, 0);
+
+			////}
+
+
+
+
+			//ulong barney = BitConverter.ToUInt64(fred.ToArray(), 0);
+
+			//int foo = -322949101;
+			//uint bar = (uint)(foo);
 
 			button3.Enabled = true;
+
+			//StringBuilder sb1223 = new StringBuilder();
+			//StringBuilder sb1224_25 = new StringBuilder();
+
+			//string filePath = "C:\\Temp2.1\\posdata_original.dat";
+
+
+			//using (StreamReader sr = new StreamReader(filePath)) {
+
+			//	while (sr.Peek() != -1) {
+
+			//		string line = sr.ReadLine();
+
+			//		if (string.Compare(line.Substring(50, 2),  "23") <= 0) {
+			//			sb1223.Append(line);
+			//			sb1223.Append("\r\n");
+			//		}
+			//		else {
+			//			sb1224_25.Append(line);
+			//			sb1224_25.Append("\r\n");
+			//		}
+			//	}
+			//}
+
+			//filePath = "C:\\Temp2.1\\posdata_20131223.dat";
+
+			//using (StreamWriter sw = new StreamWriter(filePath)) {
+			//	sw.Write(sb1223.ToString());
+			//}
+
+			//filePath = "C:\\Temp2.1\\posdata_20131224&25.dat";
+
+			//using (StreamWriter sw = new StreamWriter(filePath)) {
+			//	sw.Write(sb1224_25.ToString());
+			//}
+
+
 		}
 		//---------------------------------------------------------------------------------------------------------
 		private void button4_Click(object sender, EventArgs e) {
 
 			button4.Enabled = false;
 
-			MenuConfigProcessor processor = new MenuConfigProcessor();
-			processor.Load("C:\\StarPos\\StarPosConfig\\MenuConfig.xml");
+			//MenuConfigProcessor processor = new MenuConfigProcessor();
+			//processor.Load("C:\\StarPos\\StarPosConfig\\MenuConfig.xml");
 
 
 
@@ -1091,9 +1042,9 @@ namespace TestOMatic2012 {
 			//textBox1.Text = sb.ToString();
 
 
-			//string temp = textBox1.Text;
+			string temp = textBox1.Text;
 
-			//textBox1.Text = TextEncryption.EncryptText("Wmc9AD00");
+			textBox1.Text = TextEncryption.DecryptText(temp);
 
 			//StringBuilder sb = new StringBuilder();
 
@@ -1219,39 +1170,62 @@ namespace TestOMatic2012 {
         {
             StringBuilder sb = new StringBuilder();
 
-			string[] lines = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+			sb.Append(textBox1.Text);
+
+			for (int i = 0; i < 200; i++) {
+
+				sb.Replace("  ", " ");
+				sb.Replace("\t\t", "\t");
+			}
+
+			string[] lines = sb.ToString().Split(new string[] { "\r\n", "\\", "/", " ", "\t", "&", "," }, StringSplitOptions.RemoveEmptyEntries);
+			//string[] lines = textBox1.Text.Split(new string[] { "\r\n", "\\", "/" }, StringSplitOptions.None);
+
+			sb = new StringBuilder();
 
 
 			
             foreach (string line in lines)
             {
-                if (line.Trim().StartsWith(","))
-                {
-                    sb.Append(",SUM(");
-                    sb.Append(line.Trim().Substring(1));
-                    sb.Append(") AS ");
-                    sb.Append(line.Trim().Substring(1).Trim());
-                    sb.Append("\r\n");
+				//string[] items = line.Split(new char[] { '\t', '\\', ' ' });
 
-  
+				//sb.Append("'");
+				//sb.Append(items[0].Trim());
 
-
-                }
-
-                else
-                {
-                    sb.Append("SUM(");
-                    sb.Append(line);
-                    sb.Append(") AS ");
-                    sb.Append(line);
-                    sb.Append("\r\n");
-
-                }
+				//if (line.StartsWith("11") || line.StartsWith("15")) {
+					sb.Append(line.Trim());
+					//sb.Append("', ");
+					sb.Append("\r\n");
+				//}
 
 
 
 
             }
+
+
+
+			//if (line.Trim().StartsWith(",")) {
+			//	sb.Append(",SUM(");
+			//	sb.Append(line.Trim().Substring(1));
+			//	sb.Append(") AS ");
+			//	sb.Append(line.Trim().Substring(1).Trim());
+			//	sb.Append("\r\n");
+
+
+
+
+			//}
+
+			//else {
+			//	sb.Append("SUM(");
+			//	sb.Append(line);
+			//	sb.Append(") AS ");
+			//	sb.Append(line);
+			//	sb.Append("\r\n");
+
+			//}
+
 
             textBox1.Text  = sb.ToString();
         }
@@ -1288,26 +1262,362 @@ namespace TestOMatic2012 {
 
 		}
 
+
 		private void button9_Click(object sender, EventArgs e) {
+
+			DateTime startDate = new DateTime(2016, 03, 31);
+			DateTime endDate = new DateTime(2016, 04, 25);
 
 			StringBuilder sb = new StringBuilder();
 
-			DateTime startDate = new DateTime(2016, 04, 18);
+			DirectoryInfo di = new DirectoryInfo("C:\\MixDestPollFiles");
 
-			while (startDate < DateTime.Today) {
+			FileInfo[] files = di.GetFiles();
 
-				sb.Append(@"C:\BackOffice\CKE\NextGenFileGenerator\NextGetFileGenerator.exe /ReportType=MixDestPoll /BusinessDate=");
-				sb.Append(startDate.ToString("MM/dd/yyyy"));
-				sb.Append("\r\n");
+			string prevUnitNumber = "";
 
-				startDate = startDate.AddDays(1);
+			int fileCount = 0;
 
+			foreach (FileInfo file in files) {
+
+				fileCount++;
+
+				string unitNumber = file.Name.Substring(0, 8);
+
+				if (prevUnitNumber == "") {
+					prevUnitNumber = unitNumber;
+				}
+
+				if (prevUnitNumber != unitNumber) {
+					sb.Append(prevUnitNumber);
+					sb.Append("\t");
+					sb.Append(fileCount);
+					sb.Append("\r\n");
+
+					prevUnitNumber = unitNumber;
+					fileCount = 0;
+
+				}
 			}
 
 			textBox1.Text = sb.ToString();
+
+
+
+			//string temp = file.Name.Substring(9, 8);
+
+			//DateTime checkDate = DateTime.ParseExact(temp, "yyyyMMdd", System.Globalization.CultureInfo.CurrentCulture);
+
+			//if (checkDate < startDate || checkDate > endDate) {
+			//	file.Delete();
+			//}
+
+
+			//StringBuilder sb = new StringBuilder();
+
+			//DateTime startDate = new DateTime(2016, 04, 18);
+
+			//while (startDate < DateTime.Today) {
+
+			//	sb.Append(@"C:\BackOffice\CKE\NextGenFileGenerator\NextGetFileGenerator.exe /ReportType=MixDestPoll /BusinessDate=");
+			//	sb.Append(startDate.ToString("MM/dd/yyyy"));
+			//	sb.Append("\r\n");
+
+			//	startDate = startDate.AddDays(1);
+
+			//}
+
 		}
 
 		private void Form1_Load(object sender, EventArgs e) {
+
+		}
+
+		private void button10_Click(object sender, EventArgs e) {
+
+			
+			button10.Enabled = false;
+
+			
+			//string buffer;
+
+			////using (StreamReader sr = new StreamReader("C:\\Temp308\\LocalStoreConfigTest.txt")) {
+
+			////	buffer = sr.ReadToEnd();
+			////}
+			
+			////string[] items = buffer.Split(new string[] {"\r\n", ","}, StringSplitOptions.RemoveEmptyEntries);
+
+
+			//List<string> items = new List<string>();
+
+			//DirectoryInfo di = new DirectoryInfo("C:\\ckenode");
+
+			//foreach (DirectoryInfo directory in di.GetDirectories()) {
+			//	items.Add(directory.Name);
+			//}
+
+
+
+
+			//StringBuilder sb = new StringBuilder();
+
+			//di = new DirectoryInfo("\\\\xdata1\\cmsos2\\ckenode");
+			////DirectoryInfo di = new DirectoryInfo("C:\\ckenode");
+
+			//foreach (string item in items) {
+
+			//	string configFilePath = Path.Combine(di.FullName, item.Trim(), "Control", "LocalStoreConfig.xml");
+
+			//	XmlDocument xmlDoc = new XmlDocument();
+
+			//	xmlDoc.Load(configFilePath);
+
+			//	XmlNode node = xmlDoc.SelectSingleNode("//ConfigurationParameter[Category='Day Start Time']");
+
+			//	XmlNode childNode = node.SelectSingleNode("./KeyValue/Value");
+
+			//	sb.Append(item.Trim());
+			//	sb.Append('\t');
+			//	sb.Append(childNode.InnerText);
+			//	sb.Append("\r\n");
+				
+
+
+			//}
+
+
+			//extBox1.Text = sb.ToString();
+
+			button10.Enabled = true;
+
+		}
+
+		private void button11_Click(object sender, EventArgs e) {
+
+			button11.Enabled = false;
+
+			List<string> unitList = new List<string>();
+
+			string[] items = textBox1.Text.Split(new string[] { ",", "\r\n" }, StringSplitOptions.None);
+
+			for (int i = 0; i < items.Length; i++) {
+
+				string item = items[i].Trim();
+
+				if (unitList.Where(u => u == item).Count() == 0) {
+					unitList.Add(item);
+				}
+			}
+
+			unitList.Sort();
+			StringBuilder sb = new StringBuilder();
+
+			foreach (string unit in unitList) {
+
+				sb.Append(unit);
+				sb.Append("\r\n");
+			}
+
+			textBox1.Text = sb.ToString();
+
+			button11.Enabled = true;
+		}
+
+		private void button12_Click(object sender, EventArgs e) {
+
+			DirectoryInfo di = new DirectoryInfo(@"\\xdata1\cmsos2\ckenode");
+			//DirectoryInfo di = new DirectoryInfo(@"C:\ckenode25mm");
+
+			DirectoryInfo[] directories = di.GetDirectories("X11*");
+
+			foreach (DirectoryInfo directory in directories) {
+
+				DateTime businessDate = Convert.ToDateTime("2016-10-24");
+
+				while (businessDate < DateTime.Today) {
+
+					string searchPattern = "X1*_" + businessDate.ToString("yyyyMMdd") + "_WKTime.pol";
+
+					FileInfo wkTimeFile = directory.GetFiles(searchPattern).FirstOrDefault();
+
+					if (wkTimeFile != null) {
+
+						string copyPath = Path.Combine(directory.FullName, "Mtier", "SalesLabor");
+
+						if (!Directory.Exists(copyPath)) {
+
+							Directory.CreateDirectory(copyPath);
+						}
+						copyPath = Path.Combine(copyPath, wkTimeFile.Name);
+						Logger.Write("Copying file: " + copyPath);
+
+						wkTimeFile.CopyTo(copyPath, true);
+
+					}
+
+					businessDate = businessDate.AddDays(7);
+				}
+			}
+		}
+
+		private void button13_Click(object sender, EventArgs e) {
+
+			button13.Enabled = false;
+
+			DirectoryInfo di = new DirectoryInfo(@"\\xdata1\cmsos2\ckenode");
+
+			DirectoryInfo[] directories = di.GetDirectories(@"X11*");
+
+			foreach (DirectoryInfo directory in directories) {
+
+				DateTime businessDate = Convert.ToDateTime("2016-10-27");
+
+				string dirPath = Path.Combine(directory.FullName, "mtier", "SalesLabor");
+
+				if (Directory.Exists(dirPath)) {
+
+					DirectoryInfo subDirectory = directory.GetDirectories("mtier\\SalesLabor").FirstOrDefault();
+
+					string searchPattern = "X1*_" + businessDate.ToString("yyyyMMdd") + "_Time.pol";
+
+					FileInfo timeFile = subDirectory.GetFiles(searchPattern).FirstOrDefault();
+
+					if (timeFile != null) {
+
+
+						string copyPath = Path.Combine(directory.FullName, timeFile.Name);
+						Logger.Write("Copying file: " + copyPath);
+
+						timeFile.CopyTo(copyPath, true);
+
+					}
+				}
+			}
+			button13.Enabled = true;
+
+		}
+
+		private void button14_Click(object sender, EventArgs e) {
+
+			button14.Enabled = false;
+
+
+			List<string> jrNumberList = new List<string>();
+
+			string[] lines = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+
+			foreach (string line in lines) {
+
+				string[] items = line.Split(new char[] { ',' });
+
+				foreach (string item in items) {
+
+					if (jrNumberList.Where(jr => jr == item.Trim()).Count() == 0) {
+
+						jrNumberList.Add(item.Trim());
+					}
+				}
+			}
+
+			jrNumberList = jrNumberList.OrderBy(jr => jr).ToList();
+
+			StringBuilder sb = new StringBuilder();
+
+			int counter = 0;
+
+			foreach (string jr in jrNumberList) {
+
+				sb.Append("'");
+				sb.Append(jr);
+				sb.Append("',");
+
+
+				counter++;
+
+				if (counter % 10 == 0) {
+
+					sb.Append("\r\n");
+				}
+			}
+
+
+
+			textBox1.Text = sb.ToString();
+
+
+
+			button14.Enabled = true;
+
+		}
+
+		private void button15_Click(object sender, EventArgs e) {
+
+			button15.Enabled = false;
+
+			DateTime foo = DateTime.ParseExact("04002017", "MMddyyyy", System.Globalization.CultureInfo.CurrentCulture);
+
+			Console.WriteLine("Hi Fred!");
+
+			//string template = "<Table TableName=\"!TABLE_NAME\" DateColumnName=\"!DATE_COLUMN_NAME\" DatabaseName=\"IMSCKE\"/>";
+
+			//StringBuilder sb = new StringBuilder();
+
+
+			//string[] lines = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+
+
+			//foreach (string line in lines) {
+
+			//	string[] items = line.Split(new char[] { ',' });
+
+			//	sb.Append(template);
+			//	sb.Replace("!TABLE_NAME", items[0].Trim());
+			//	sb.Replace("!DATE_COLUMN_NAME", items[1].Trim());
+
+			//	sb.Append("\r\n");
+			//}
+
+
+
+
+			//textBox1.Text = sb.ToString();
+
+
+
+			button15.Enabled = true;
+
+		}
+
+		private void button16_Click(object sender, EventArgs e) {
+
+			StringBuilder sb = new StringBuilder();
+
+			sb.Append(textBox1.Text);
+
+			sb.Replace(",", "\r\n");
+
+			textBox1.Text = sb.ToString();
+
+		}
+
+		private void button17_Click(object sender, EventArgs e) {
+
+			DirectoryInfo di = new DirectoryInfo("F:\\FinFileArchiveIII");
+
+			DirectoryInfo[] directories = di.GetDirectories("R*");
+
+			foreach (DirectoryInfo directory in directories) {
+
+				string newDirName = "F:\\FinFileArchiveX\\X" + directory.Name.Substring(1);
+				Logger.Write("Moving directory: " + newDirName);
+				directory.MoveTo(newDirName);
+
+
+			}
+
 
 		}
 	}

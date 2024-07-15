@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestOMatic2012</RootNamespace>
     <AssemblyName>TestOMatic2012</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -39,18 +39,88 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ionic.Zip">
-      <HintPath>..\..\NextGenDataBackup\NextGenDataBackup\bin\Ionic.Zip.dll</HintPath>
+    <Reference Include="BouncyCastle, Version=1.8.2.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\BouncyCastle.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.5\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=2.9.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.2.9.0\lib\net45\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=2.9.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.2.9.2\lib\net45\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\..\..\..\..\..\..\Projects\NPOI binary 2.1.3.1\dotnet4\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\..\..\..\..\..\..\Projects\NPOI binary 2.1.3.1\dotnet4\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\..\..\..\..\..\..\Projects\NPOI binary 2.1.3.1\dotnet4\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\..\..\..\..\..\..\Projects\NPOI binary 2.1.3.1\dotnet4\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.21.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.21.4.0\lib\net462\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,10 +132,69 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessCardNumber.cs" />
+    <Compile Include="ApFileProcessor.cs" />
     <Compile Include="AppSettings.cs" />
+    <Compile Include="AppUtility.cs" />
+    <Compile Include="BrinkApi.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrinkApi.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BrinkApi.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrinkApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BrinkApi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrinkApi.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="BrinkApiData.cs" />
+    <Compile Include="BrinkDestination.cs">
+      <DependentUpon>BrinkApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BrinkOrder.cs">
+      <DependentUpon>BrinkApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BrinkOrderPayment.cs">
+      <DependentUpon>BrinkApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BrinkPromo.cs">
+      <DependentUpon>BrinkApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BrinkTender.cs">
+      <DependentUpon>BrinkApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BrinkUnit.cs">
+      <DependentUpon>BrinkApi.tt</DependentUpon>
+    </Compile>
     <Compile Include="BusinessDateUtility.cs" />
+    <Compile Include="CalendarDayNetSales.cs" />
+    <Compile Include="CkeFileProcessing.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CkeFileProcessing.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="CkePeriod.cs">
+      <DependentUpon>BrinkApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CkePollFile.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CkePollFile.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="CkePollFileData.cs" />
     <Compile Include="CkeTimePollData.cs" />
+    <Compile Include="Configurator.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Configurator.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="ConfiguratorData.cs" />
+    <Compile Include="ConfiguratorDataImport.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Controller.cs" />
     <Compile Include="Coupon.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -73,7 +202,21 @@
     </Compile>
     <Compile Include="CouponConfigProcessor.cs" />
     <Compile Include="CouponOrdersProcessor.cs" />
+    <Compile Include="CreditCardPaymentDetail.cs">
+      <DependentUpon>RedStorage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CreditCardPaymentFile.cs">
+      <DependentUpon>RedStorage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CrunchTimeData.cs" />
+    <Compile Include="CrunchTimeSalesDataDetail.cs" />
+    <Compile Include="CsvParser.cs" />
+    <Compile Include="CT_EmployeePunchData.cs" />
+    <Compile Include="DailySalesData.cs" />
     <Compile Include="DataAccess.cs" />
+    <Compile Include="DataAnalysis.cs">
+      <DependentUpon>DataAnalysis.dbml</DependentUpon>
+    </Compile>
     <Compile Include="DataAnalysis.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,14 +228,77 @@
       <DependentUpon>DataAnalysis2.dbml</DependentUpon>
     </Compile>
     <Compile Include="DataAnalysisData.cs" />
+    <Compile Include="DataComparison.cs">
+      <DependentUpon>ElavonTest.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLoader.cs" />
     <Compile Include="DataValidation.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataValidation.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DateDimension.cs">
+      <DependentUpon>BrinkApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteOMatic.cs" />
+    <Compile Include="DepositDetail.cs" />
+    <Compile Include="DepositFileProcessor.cs" />
+    <Compile Include="DirectoryWatcher.cs" />
+    <Compile Include="DriveThruTimer.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DriveThruTimer.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DriveThruTimer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DriveThruTimer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DriveThruTimer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DriveThruTimer.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EcfFileCopy.cs" />
+    <Compile Include="ElavonTest.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ElavonTest.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElavonTest.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ElavonTest.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElavonTest.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ElavonTest.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Email.cs" />
+    <Compile Include="EmployeeData.cs" />
+    <Compile Include="EmployeeLoader.cs" />
+    <Compile Include="EmpPunchData.cs" />
+    <Compile Include="EntityFileBuilder.cs" />
     <Compile Include="EpassData.cs" />
+    <Compile Include="EpassDepositReportDetail.cs" />
+    <Compile Include="EpassVsCrunchTimeReport.cs" />
+    <Compile Include="ESDM.cs">
+      <DependentUpon>ESDM.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="ESDM.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ESDM.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="ESDM_Data.cs" />
     <Compile Include="ExistingDeposit.cs" />
     <Compile Include="FileCreationLog.cs" />
+    <Compile Include="FileDefinitionManifest.cs" />
+    <Compile Include="FileUtility.cs" />
+    <Compile Include="FileValidator.cs" />
+    <Compile Include="FinFileProcessor.cs" />
+    <Compile Include="FixedLengthFileParser.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,23 +413,11 @@
     <Compile Include="Form26.Designer.cs">
       <DependentUpon>Form26.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form27.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form27.Designer.cs">
-      <DependentUpon>Form27.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form28.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form28.Designer.cs">
       <DependentUpon>Form28.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form29.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form29.Designer.cs">
-      <DependentUpon>Form29.cs</DependentUpon>
     </Compile>
     <Compile Include="Form3.cs">
       <SubType>Form</SubType>
@@ -447,11 +641,107 @@
     <Compile Include="Form63.Designer.cs">
       <DependentUpon>Form63.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form64.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form64.Designer.cs">
+      <DependentUpon>Form64.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form65.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form65.Designer.cs">
+      <DependentUpon>Form65.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form66.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form66.Designer.cs">
+      <DependentUpon>Form66.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form67.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form67.Designer.cs">
+      <DependentUpon>Form67.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form68.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form68.Designer.cs">
+      <DependentUpon>Form68.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form69.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form69.Designer.cs">
+      <DependentUpon>Form69.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form7.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form7.Designer.cs">
       <DependentUpon>Form7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form70.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form70.Designer.cs">
+      <DependentUpon>Form70.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form71.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form71.Designer.cs">
+      <DependentUpon>Form71.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form72.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form72.Designer.cs">
+      <DependentUpon>Form72.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form73.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form73.Designer.cs">
+      <DependentUpon>Form73.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form74.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form74.Designer.cs">
+      <DependentUpon>Form74.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form75.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form75.Designer.cs">
+      <DependentUpon>Form75.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form76.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form76.Designer.cs">
+      <DependentUpon>Form76.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form77.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form77.Designer.cs">
+      <DependentUpon>Form77.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form78.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form78.Designer.cs">
+      <DependentUpon>Form78.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form79.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form79.Designer.cs">
+      <DependentUpon>Form79.cs</DependentUpon>
     </Compile>
     <Compile Include="Form8.cs">
       <SubType>Form</SubType>
@@ -459,11 +749,161 @@
     <Compile Include="Form8.Designer.cs">
       <DependentUpon>Form8.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form80.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form80.Designer.cs">
+      <DependentUpon>Form80.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form81.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form81.Designer.cs">
+      <DependentUpon>Form81.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form82.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form82.Designer.cs">
+      <DependentUpon>Form82.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form83.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form83.Designer.cs">
+      <DependentUpon>Form83.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form84.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form84.Designer.cs">
+      <DependentUpon>Form84.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form85.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form85.Designer.cs">
+      <DependentUpon>Form85.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form86.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form86.Designer.cs">
+      <DependentUpon>Form86.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form87.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form87.Designer.cs">
+      <DependentUpon>Form87.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form88.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form88.Designer.cs">
+      <DependentUpon>Form88.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form89.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form89.Designer.cs">
+      <DependentUpon>Form89.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form9.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form9.Designer.cs">
       <DependentUpon>Form9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form90.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form90.Designer.cs">
+      <DependentUpon>Form90.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form91.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form91.Designer.cs">
+      <DependentUpon>Form91.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form92.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form92.Designer.cs">
+      <DependentUpon>Form92.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form93.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form93.Designer.cs">
+      <DependentUpon>Form93.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form94.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form94.Designer.cs">
+      <DependentUpon>Form94.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form95.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form95.Designer.cs">
+      <DependentUpon>Form95.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormX.Designer.cs">
+      <DependentUpon>FormX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBrinkFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBrinkFile.Designer.cs">
+      <DependentUpon>frmBrinkFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBrinkUnitSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBrinkUnitSetup.Designer.cs">
+      <DependentUpon>frmBrinkUnitSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmConfiguratorUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConfiguratorUpdate.Designer.cs">
+      <DependentUpon>frmConfiguratorUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmConvergeTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConvergeTest.Designer.cs">
+      <DependentUpon>frmConvergeTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNetSalesComparison.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNetSalesComparison.Designer.cs">
+      <DependentUpon>frmNetSalesComparison.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPollFileRecovery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPollFileRecovery.Designer.cs">
+      <DependentUpon>frmPollFileRecovery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRecoverMissingFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRecoverMissingFiles.Designer.cs">
+      <DependentUpon>frmRecoverMissingFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSalesAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSalesAnalysis.Designer.cs">
+      <DependentUpon>frmSalesAnalysis.cs</DependentUpon>
     </Compile>
     <Compile Include="frmScannedCouponEpassUpdate.cs">
       <SubType>Form</SubType>
@@ -477,11 +917,41 @@
     <Compile Include="frmSmartReportsFix.Designer.cs">
       <DependentUpon>frmSmartReportsFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSqlBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSqlBuilder.Designer.cs">
+      <DependentUpon>frmSqlBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTLogProcessor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTLogProcessor.Designer.cs">
+      <DependentUpon>frmTLogProcessor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTLogViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTLogViewer.Designer.cs">
+      <DependentUpon>frmTLogViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUsageTest.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmUsageTest.Designer.cs">
       <DependentUpon>frmUsageTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmXmlToJson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmXmlToJson.Designer.cs">
+      <DependentUpon>frmXmlToJson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmZipArchiveRepair.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmZipArchiveRepair.Designer.cs">
+      <DependentUpon>frmZipArchiveRepair.cs</DependentUpon>
     </Compile>
     <Compile Include="GiftCard.designer.cs">
       <AutoGen>True</AutoGen>
@@ -489,6 +959,7 @@
       <DependentUpon>GiftCard.dbml</DependentUpon>
     </Compile>
     <Compile Include="GiftCardTrans.cs" />
+    <Compile Include="GiftCardTransactionProcessor.cs" />
     <Compile Include="HardeesRecipeData.cs" />
     <Compile Include="HardeesRecipes.designer.cs">
       <AutoGen>True</AutoGen>
@@ -502,6 +973,15 @@
       <DependentUpon>HFSDB.dbml</DependentUpon>
     </Compile>
     <Compile Include="HFSDBData.cs" />
+    <Compile Include="HmeData.cs" />
+    <Compile Include="HmeDataTest.cs" />
+    <Compile Include="HmeDetail.cs">
+      <DependentUpon>DriveThruTimer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HmeFile.cs">
+      <DependentUpon>DriveThruTimer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HmeFileProcessor.cs" />
     <Compile Include="HourlyNetSales.cs" />
     <Compile Include="IdealUsageCalculator.cs" />
     <Compile Include="ImsData.cs" />
@@ -516,38 +996,194 @@
     <Compile Include="DailyInventorySummary.cs" />
     <Compile Include="InventoryDetail.cs" />
     <Compile Include="InventoryUsage.cs" />
+    <Compile Include="InvoiceProcessor.cs" />
     <Compile Include="LaborHoursProcessor.cs" />
+    <Compile Include="LinkIdLookupProcessor.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="LoggerEventArgs.cs" />
     <Compile Include="MenuConfigProcessor.cs" />
     <Compile Include="MenuItemData.cs" />
+    <Compile Include="MenuItemPricing.cs">
+      <DependentUpon>BrinkApi.tt</DependentUpon>
+    </Compile>
     <Compile Include="MenuPollData.cs" />
+    <Compile Include="MissingBrinkDataLocator.cs" />
+    <Compile Include="MonthlyFeeDetail.cs">
+      <DependentUpon>OloPayEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MonthlyFeeFile.cs">
+      <DependentUpon>OloPayEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="NetworkConnection.cs" />
+    <Compile Include="OdsData.cs" />
+    <Compile Include="OdsPosIntegration.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OdsPosIntegration.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="OloPayEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OloPayEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OloPayEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OloPayEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OloPayEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OloPayEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="OracleDataAccess.cs" />
+    <Compile Include="OutlookTest.cs" />
+    <Compile Include="PayoutDetail.cs">
+      <DependentUpon>OloPayEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PayoutFile.cs">
+      <DependentUpon>OloPayEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="PCNCommon.cs" />
     <Compile Include="PCNConstants.cs" />
     <Compile Include="PCNData.cs" />
+    <Compile Include="PollFile.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PollFile.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="PollFileCopier.cs" />
+    <Compile Include="PollFileLogger.cs" />
+    <Compile Include="PollFileProcessor.cs" />
+    <Compile Include="PollFileReporting.cs" />
+    <Compile Include="PollFileTypeManifest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RBI.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RBI.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="RBIData.cs" />
+    <Compile Include="RecipeData.cs" />
+    <Compile Include="RecipeDataCopier.cs" />
+    <Compile Include="Recipes.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Recipes.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="RED.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RED.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="RedData.cs" />
+    <Compile Include="RedStorage.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RedStorage.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RedStorage.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RedStorage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RedStorage.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RedStorage.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="RedStorage1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RedStorage.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="RedStorageData.cs" />
+    <Compile Include="RED_AnalsysisData.cs" />
+    <Compile Include="RED_Analysis.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RED_Analysis.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEntity.cs" />
+    <Compile Include="RoyaltyEntity.cs">
+      <DependentUpon>BrinkApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RoyaltyUnit.cs">
+      <DependentUpon>BrinkApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RsUnits.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RsUnits.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="RsUnitsData.cs" />
     <Compile Include="SalaryDataReader.cs" />
+    <Compile Include="SalesDateComparison.cs">
+      <DependentUpon>SnowflakeTesting.tt</DependentUpon>
+    </Compile>
     <Compile Include="ScannCouponProcessor.cs" />
     <Compile Include="ScannedCouponItem.cs" />
     <Compile Include="ServiceSettings.cs" />
+    <Compile Include="SettingsWebService2.cs" />
+    <Compile Include="ShamrockDataWriter.cs" />
+    <Compile Include="ShamrockXmlFileProcessor.cs" />
+    <Compile Include="SmartReportsFileProcessing.cs" />
     <Compile Include="SmartReportsProcessor.cs" />
-    <Compile Include="SqlTemplateBroker.cs" />
-    <Compile Include="ImsCkeData.cs" />
-    <Compile Include="TaskProcessor.cs" />
-    <Compile Include="TextEncryption.cs" />
-    <Compile Include="TimeFileAnalysis.designer.cs">
+    <Compile Include="SnowflakeTesting.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>SnowflakeTesting.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SnowflakeTesting.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SnowflakeTesting.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SnowflakeTesting.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SnowflakeTesting.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SpeedOfService.cs" />
+    <Compile Include="SqlTemplateBroker.cs" />
+    <Compile Include="ImsCkeData.cs" />
+    <Compile Include="StandardTLogProcessor.cs" />
+    <Compile Include="TaskProcessor.cs" />
+    <Compile Include="TextEncryption.cs" />
+    <Compile Include="TimeCardExcelReport.cs" />
+    <Compile Include="TimeFileAnalysis.cs">
       <DependentUpon>TimeFileAnalysis.dbml</DependentUpon>
     </Compile>
+    <Compile Include="TimeFileAnalysis.designer.cs">
+      <DependentUpon>TimeFileAnalysis.dbml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="TimeSegment.cs">
+      <DependentUpon>BrinkApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TLogProcessor.cs" />
+    <Compile Include="TLogReprocessor.cs" />
     <Compile Include="Transaction.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Transaction.dbml</DependentUpon>
     </Compile>
+    <Compile Include="TransactionAnalysis.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransactionAnalysis.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionAnalysisData.cs" />
     <Compile Include="TransactionData.cs" />
+    <Compile Include="TransactionDetail.cs">
+      <DependentUpon>OloPayEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionFile.cs">
+      <DependentUpon>OloPayEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionFileProcessor.cs" />
     <Compile Include="TransHist.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -555,13 +1191,145 @@
     </Compile>
     <Compile Include="TransHistCouponProcessor.cs" />
     <Compile Include="TransHistFileProcessor.cs" />
+    <Compile Include="TypeCode.cs">
+      <DependentUpon>OloPayEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Unit2ferSales.cs" />
+    <Compile Include="UnitData.cs">
+      <DependentUpon>OloPayEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="UnitManifest.cs" />
     <Compile Include="UnitBusinessWeek.cs" />
     <Compile Include="UnitSalesDetail.cs" />
     <Compile Include="Unzipper.cs" />
     <Compile Include="ValidationFileBuilder.cs" />
+    <Compile Include="ValidationLog.cs" />
+    <Compile Include="VCHR3Header.cs" />
+    <Compile Include="VCHR3_FileProcessor.cs" />
+    <Compile Include="WeeklyLaborSummaryProcessor.cs" />
     <Compile Include="Win7NodeUtility.cs" />
+    <Compile Include="XmlUtility.cs" />
+    <Compile Include="ZipFileExtractor.cs" />
+    <EntityDeploy Include="BrinkApi.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BrinkApi.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BrinkApi.edmx.diagram">
+      <DependentUpon>BrinkApi.edmx</DependentUpon>
+    </None>
+    <None Include="CkeFileProcessing.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>CkeFileProcessing.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CkePollFile.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>CkePollFile.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="DriveThruTimer.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DriveThruTimer.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DriveThruTimer.edmx.diagram">
+      <DependentUpon>DriveThruTimer.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="ElavonTest.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ElavonTest.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ElavonTest.edmx.diagram">
+      <DependentUpon>ElavonTest.edmx</DependentUpon>
+    </None>
+    <None Include="ESDM.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ESDM.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="OdsPosIntegration.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>OdsPosIntegration.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="OloPayEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OloPayEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="OloPayEntities.edmx.diagram">
+      <DependentUpon>OloPayEntities.edmx</DependentUpon>
+    </None>
+    <None Include="Oracle.DataAccess.Common.Configuration.Section.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Oracle.ManagedDataAccess.Client.Configuration.Section.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="RBI.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>RBI.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RED.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>RED.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RedStorage.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>RedStorage.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="RedStorage.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RedStorage1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="RedStorage.edmx.diagram">
+      <DependentUpon>RedStorage.edmx</DependentUpon>
+    </None>
+    <None Include="RED_Analysis.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>RED_Analysis.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RsUnits.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>RsUnits.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="SnowflakeTesting.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SnowflakeTesting.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SnowflakeTesting.edmx.diagram">
+      <DependentUpon>SnowflakeTesting.edmx</DependentUpon>
+    </None>
+    <None Include="TimeFileAnalysis.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TimeFileAnalysis.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TimeFileAnalysis.dbml.layout">
+      <DependentUpon>TimeFileAnalysis.dbml</DependentUpon>
+    </None>
+    <None Include="TransactionAnalysis.dbml.layout">
+      <DependentUpon>TransactionAnalysis.dbml</DependentUpon>
+    </None>
+    <None Include="Configurator.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Configurator.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PollFile.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>PollFile.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Recipes.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Recipes.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Transaction.dbml.layout">
       <DependentUpon>Transaction.dbml</DependentUpon>
     </None>
@@ -570,22 +1338,19 @@
       <LastGenOutput>HFSDB.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="TimeFileAnalysis.dbml.layout">
-      <DependentUpon>TimeFileAnalysis.dbml</DependentUpon>
-    </None>
     <None Include="HardeesRecipes.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>HardeesRecipes.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="TimeFileAnalysis.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>TimeFileAnalysis.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Transaction.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Transaction.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TransactionAnalysis.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TransactionAnalysis.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="TransHist.dbml.layout">
@@ -618,6 +1383,18 @@
     </None>
     <None Include="Coupon.dbml.layout">
       <DependentUpon>Coupon.dbml</DependentUpon>
+    </None>
+    <None Include="Configurator.dbml.layout">
+      <DependentUpon>Configurator.dbml</DependentUpon>
+    </None>
+    <None Include="CkeFileProcessing.dbml.layout">
+      <DependentUpon>CkeFileProcessing.dbml</DependentUpon>
+    </None>
+    <None Include="CkePollFile.dbml.layout">
+      <DependentUpon>CkePollFile.dbml</DependentUpon>
+    </None>
+    <None Include="ESDM.dbml.layout">
+      <DependentUpon>ESDM.dbml</DependentUpon>
     </None>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -676,14 +1453,8 @@
     <EmbeddedResource Include="Form26.resx">
       <DependentUpon>Form26.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form27.resx">
-      <DependentUpon>Form27.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form28.resx">
       <DependentUpon>Form28.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form29.resx">
-      <DependentUpon>Form29.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
@@ -804,11 +1575,89 @@
     <EmbeddedResource Include="Form63.resx">
       <DependentUpon>Form63.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form64.resx">
+      <DependentUpon>Form64.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form65.resx">
+      <DependentUpon>Form65.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form66.resx">
+      <DependentUpon>Form66.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form67.resx">
+      <DependentUpon>Form67.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form68.resx">
+      <DependentUpon>Form68.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form69.resx">
+      <DependentUpon>Form69.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form7.resx">
       <DependentUpon>Form7.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form70.resx">
+      <DependentUpon>Form70.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form71.resx">
+      <DependentUpon>Form71.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form72.resx">
+      <DependentUpon>Form72.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form73.resx">
+      <DependentUpon>Form73.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form74.resx">
+      <DependentUpon>Form74.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form75.resx">
+      <DependentUpon>Form75.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form76.resx">
+      <DependentUpon>Form76.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form77.resx">
+      <DependentUpon>Form77.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form78.resx">
+      <DependentUpon>Form78.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form79.resx">
+      <DependentUpon>Form79.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form8.resx">
       <DependentUpon>Form8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form80.resx">
+      <DependentUpon>Form80.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form81.resx">
+      <DependentUpon>Form81.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form82.resx">
+      <DependentUpon>Form82.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form83.resx">
+      <DependentUpon>Form83.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form84.resx">
+      <DependentUpon>Form84.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form85.resx">
+      <DependentUpon>Form85.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form86.resx">
+      <DependentUpon>Form86.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form87.resx">
+      <DependentUpon>Form87.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form88.resx">
+      <DependentUpon>Form88.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form89.resx">
+      <DependentUpon>Form89.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form9.resx">
       <DependentUpon>Form9.cs</DependentUpon>
@@ -816,11 +1665,65 @@
     <None Include="GiftCard.dbml.layout">
       <DependentUpon>GiftCard.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="Form90.resx">
+      <DependentUpon>Form90.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form91.resx">
+      <DependentUpon>Form91.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form92.resx">
+      <DependentUpon>Form92.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form93.resx">
+      <DependentUpon>Form93.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form94.resx">
+      <DependentUpon>Form94.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form95.resx">
+      <DependentUpon>Form95.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormX.resx">
+      <DependentUpon>FormX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBrinkFile.resx">
+      <DependentUpon>frmBrinkFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBrinkUnitSetup.resx">
+      <DependentUpon>frmBrinkUnitSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConfiguratorUpdate.resx">
+      <DependentUpon>frmConfiguratorUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConvergeTest.resx">
+      <DependentUpon>frmConvergeTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNetSalesComparison.resx">
+      <DependentUpon>frmNetSalesComparison.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPollFileRecovery.resx">
+      <DependentUpon>frmPollFileRecovery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRecoverMissingFiles.resx">
+      <DependentUpon>frmRecoverMissingFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSalesAnalysis.resx">
+      <DependentUpon>frmSalesAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmScannedCouponEpassUpdate.resx">
       <DependentUpon>frmScannedCouponEpassUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSmartReportsFix.resx">
       <DependentUpon>frmSmartReportsFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSqlBuilder.resx">
+      <DependentUpon>frmSqlBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTLogProcessor.resx">
+      <DependentUpon>frmTLogProcessor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTLogViewer.resx">
+      <DependentUpon>frmTLogViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUsageTest.resx">
       <DependentUpon>frmUsageTest.cs</DependentUpon>
@@ -830,6 +1733,18 @@
     </None>
     <None Include="HFSDB.dbml.layout">
       <DependentUpon>HFSDB.dbml</DependentUpon>
+    </None>
+    <None Include="PollFile.dbml.layout">
+      <DependentUpon>PollFile.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="frmXmlToJson.resx">
+      <DependentUpon>frmXmlToJson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmZipArchiveRepair.resx">
+      <DependentUpon>frmZipArchiveRepair.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="OdsPosIntegration.dbml.layout">
+      <DependentUpon>OdsPosIntegration.dbml</DependentUpon>
     </None>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -873,8 +1788,27 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Recipes.dbml.layout">
+      <DependentUpon>Recipes.dbml</DependentUpon>
+    </None>
+    <None Include="RsUnits.dbml.layout">
+      <DependentUpon>RsUnits.dbml</DependentUpon>
+    </None>
+    <None Include="RedStorage.dbml.layout">
+      <DependentUpon>RedStorage.dbml</DependentUpon>
+    </None>
+    <None Include="RBI.dbml.layout">
+      <DependentUpon>RBI.dbml</DependentUpon>
+    </None>
+    <None Include="RED.dbml.layout">
+      <DependentUpon>RED.dbml</DependentUpon>
+    </None>
+    <None Include="RED_Analysis.dbml.layout">
+      <DependentUpon>RED_Analysis.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="SQL\InsertEmployeeClock.sql" />
   </ItemGroup>
   <ItemGroup>
@@ -955,12 +1889,185 @@
     <EmbeddedResource Include="SQL\GetGMTimeCardHeaderData.sql" />
     <EmbeddedResource Include="SQL\InsertTimeFileData.sql" />
     <EmbeddedResource Include="SQL\GetActiveInventoryItems.sql" />
+    <EmbeddedResource Include="SQL\GetCompanyUnitList.sql" />
+    <EmbeddedResource Include="SQL\InsertPsEmployeeData.sql" />
+    <EmbeddedResource Include="SQL\GetInvalidEmployees.sql" />
+    <EmbeddedResource Include="SQL\UpdateEmployeeId.sql" />
+    <EmbeddedResource Include="SQL\GetNewNewYorkItems.sql" />
+    <EmbeddedResource Include="SQL\UpdateRecipeDetail.sql" />
+    <EmbeddedResource Include="SQL\UpdateCkeVendorXref.sql" />
+    <EmbeddedResource Include="SQL\GetDuplicateCostWarehouseXref.sql" />
+    <EmbeddedResource Include="SQL\GetRbiUnitSales.sql" />
+    <EmbeddedResource Include="SQL\GetEmployeePunchData.sql" />
+    <EmbeddedResource Include="SQL\GetInternationalUnitNumbers.sql" />
+    <EmbeddedResource Include="SQL\GetDriveThruTimerReportData.sql" />
+    <EmbeddedResource Include="SQL\GetDonationsForBrinkUnits.sql" />
+    <EmbeddedResource Include="SQL\GetProjectXReceipts.sql" />
+    <EmbeddedResource Include="SQL\DeleteFrachiseTimeCardRecords.sql" />
+    <EmbeddedResource Include="SQL\GetTimeCardDataII.sql" />
+    <EmbeddedResource Include="SQL\GetCT_EmployeePunchData.sql" />
+    <Content Include="BrinkApi.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BrinkApi.edmx</DependentUpon>
+      <LastGenOutput>BrinkApi.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BrinkApi.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BrinkApi.edmx</DependentUpon>
+      <LastGenOutput>BrinkApi.cs</LastGenOutput>
+    </Content>
+    <EmbeddedResource Include="SQL\GetBrinkMenuMixSold.sql" />
+    <EmbeddedResource Include="SQL\GetCrunchTimeMenuMixSold.sql" />
+    <EmbeddedResource Include="SQL\GetOpenCarlsUnits.sql" />
+    <EmbeddedResource Include="SQL\GetUnitMasterData.sql" />
+    <EmbeddedResource Include="SQL\GetRedNetSalesSummaries.sql" />
+    <EmbeddedResource Include="SQL\GetCrunchTimeManagerTimeCardData.sql" />
+    <EmbeddedResource Include="SQL\GetBrinkGiftCardOrders.sql" />
+    <EmbeddedResource Include="SQL\GetUnitData.sql" />
+    <EmbeddedResource Include="SQL\GetStarPosGiftCardOrders.sql" />
+    <EmbeddedResource Include="SQL\GetCaCorporateUnitNumbersByEffDate.sql" />
+    <EmbeddedResource Include="SQL\GetCrunchTimeTimeCardData.sql" />
+    <EmbeddedResource Include="SQL\GetEpassTimeCardData.sql" />
+    <EmbeddedResource Include="SQL\GetTimeCardReportWeekEndCount.sql" />
+    <EmbeddedResource Include="SQL\GetMissingUnitDates.sql" />
+    <EmbeddedResource Include="SQL\GetTimeCardData.sql" />
+    <EmbeddedResource Include="SQL\GetHardeesStarPosUnitList.sql" />
+    <EmbeddedResource Include="SQL\InsertBrinkUnitTemplate.sql" />
+    <Content Include="DriveThruTimer.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DriveThruTimer.edmx</DependentUpon>
+      <LastGenOutput>DriveThruTimer.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DriveThruTimer.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DriveThruTimer.edmx</DependentUpon>
+      <LastGenOutput>DriveThruTimer.cs</LastGenOutput>
+    </Content>
+    <Content Include="ElavonTest.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ElavonTest.edmx</DependentUpon>
+      <LastGenOutput>ElavonTest.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ElavonTest.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ElavonTest.edmx</DependentUpon>
+      <LastGenOutput>ElavonTest.cs</LastGenOutput>
+    </Content>
+    <Content Include="InfoSync.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OloPayEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OloPayEntities.edmx</DependentUpon>
+      <LastGenOutput>OloPayEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="OloPayEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OloPayEntities.edmx</DependentUpon>
+      <LastGenOutput>OloPayEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="RawAmexFileDefs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RedStorage.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RedStorage.edmx</DependentUpon>
+      <LastGenOutput>RedStorage.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="RedStorage.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RedStorage.edmx</DependentUpon>
+      <LastGenOutput>RedStorage.cs</LastGenOutput>
+    </Content>
+    <EmbeddedResource Include="SQL\GetUnitWeekEndDayFromRED.sql" />
+    <EmbeddedResource Include="SQL\GetBrinkNetSales.sql" />
+    <EmbeddedResource Include="SQL\GetCrunchTimeNetSales.sql" />
+    <EmbeddedResource Include="SQL\GetBrinkPaidInOuts.sql" />
+    <EmbeddedResource Include="SQL\GetEpassPaidInOuts.sql" />
+    <EmbeddedResource Include="SQL\GetDuplicateOrderIdFields.sql" />
+    <EmbeddedResource Include="SQL\DeleteBrinkOrder.sql" />
+    <EmbeddedResource Include="SQL\GetCrunchTimePunchData.sql" />
+    <EmbeddedResource Include="SQL\GetTransponderSales.sql" />
+    <EmbeddedResource Include="SQL\GetMissingBrinkData.sql" />
+    <EmbeddedResource Include="SQL\GetMissingBrinkUnitDates.sql" />
+    <EmbeddedResource Include="SQL\GetCrunchTimeInvoices.sql" />
+    <EmbeddedResource Include="SQL\GetCrunchTimeSalesData.sql" />
+    <EmbeddedResource Include="SQL\GetCrunchTimeShamrockProducts.sql" />
+    <EmbeddedResource Include="SQL\GetEpassShamrockProducts.sql" />
+    <EmbeddedResource Include="SQL\GetCalendarDayNetSales.sql" />
+    <EmbeddedResource Include="SQL\DeleteBrinkOrderData.sql" />
+    <EmbeddedResource Include="SQL\GetColumns.sql" />
+    <EmbeddedResource Include="SQL\GetFuseboxReconDetail.sql" />
+    <EmbeddedResource Include="SQL\GetDailySalesTotal.sql" />
+    <EmbeddedResource Include="SQL\GetBadFiles.sql" />
+    <EmbeddedResource Include="SQL\GetOrderIdField.sql" />
+    <Content Include="SnowflakeTesting.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SnowflakeTesting.edmx</DependentUpon>
+      <LastGenOutput>SnowflakeTesting.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SnowflakeTesting.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SnowflakeTesting.edmx</DependentUpon>
+      <LastGenOutput>SnowflakeTesting.cs</LastGenOutput>
+    </Content>
+    <EmbeddedResource Include="SQL\GetTrecsDetailData.sql" />
+    <Content Include="SQL\InsertJrMaster.sql" />
+    <Content Include="SQL\InsertRecipe.sql" />
+    <Content Include="SQL\InsertRecipeDetail.sql" />
+    <Content Include="SQL\TextFile1.txt" />
+    <EmbeddedResource Include="SQL\UpdateBrinkCashOverShort.sql" />
+    <Content Include="SQL\UpdateCashOverShort.sql" />
+    <EmbeddedResource Include="SQL\UpdateElavonUnitData.sql" />
+    <EmbeddedResource Include="SQL\UpdateOrderTimes.sql" />
+    <EmbeddedResource Include="SQL\UpdateDstOrder.sql" />
     <Content Include="UnitManifestExample.xml" />
     <EmbeddedResource Include="SQL\GetCkeTimePollEmployee.sql" />
     <EmbeddedResource Include="SQL\GetCkeTimePollSsnDataList.sql" />
     <EmbeddedResource Include="SQL\GetCarlsCompanyStores.sql" />
     <EmbeddedResource Include="SQL\Get2ferSales.sql" />
     <Content Include="SQL\GetEmployeeBySSN.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Outlook">
+      <Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>9</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="OUTLOOKADDINLib">
+      <Guid>{71713906-F9FD-46F4-B774-2C3957AC33E6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

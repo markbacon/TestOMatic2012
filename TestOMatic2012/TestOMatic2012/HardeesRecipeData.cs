@@ -9,35 +9,35 @@ namespace TestOMatic2012 {
 
 		public void SaveInventoryItem(InventoryItem invItem) {
 
-			TBL_Inv_ItemMaster itemMasterRecord = null;
+			//TBL_Inv_ItemMaster itemMasterRecord = null;
 
 
-			if (invItem.ID != 0) {
-				itemMasterRecord = _dataContext.TBL_Inv_ItemMasters.Where(i => i.tblItemId == invItem.ID).FirstOrDefault();
-			}
+			//if (invItem.ID != 0) {
+			//	itemMasterRecord = _dataContext.TBL_Inv_ItemMasters.Where(i => i.tblItemId == invItem.ID).FirstOrDefault();
+			//}
 
-			if (itemMasterRecord == null) {
+			//if (itemMasterRecord == null) {
 
-				itemMasterRecord = new TBL_Inv_ItemMaster();
+			//	itemMasterRecord = new TBL_Inv_ItemMaster();
 
-				itemMasterRecord.accountNo = invItem.AccountNumber;
-				itemMasterRecord.actualConversion = invItem.ConversionFactor;
-				itemMasterRecord.alphaSearchCode = invItem.AlphaCode;
-				itemMasterRecord.alternateUM = invItem.AlternateUnitOfMeasure;
-				itemMasterRecord.baseUnitOfMeasure = invItem.UnitOfMeasure;
-				itemMasterRecord.demandType = invItem.DemandType;
-				itemMasterRecord.description = invItem.Description;
-				itemMasterRecord.idealConversion = invItem.IdealConversionFactor;
-				itemMasterRecord.isReciped = invItem.IsReciped;
-				itemMasterRecord.itemCode = invItem.Code;
-				itemMasterRecord.statusCode = invItem.Status;
-				itemMasterRecord.storageCode = invItem.StorageCode;
+			//	itemMasterRecord.accountNo = invItem.AccountNumber;
+			//	itemMasterRecord.actualConversion = invItem.ConversionFactor;
+			//	itemMasterRecord.alphaSearchCode = invItem.AlphaCode;
+			//	itemMasterRecord.alternateUM = invItem.AlternateUnitOfMeasure;
+			//	itemMasterRecord.baseUnitOfMeasure = invItem.UnitOfMeasure;
+			//	itemMasterRecord.demandType = invItem.DemandType;
+			//	itemMasterRecord.description = invItem.Description;
+			//	itemMasterRecord.idealConversion = invItem.IdealConversionFactor;
+			//	itemMasterRecord.isReciped = invItem.IsReciped;
+			//	itemMasterRecord.itemCode = invItem.Code;
+			//	itemMasterRecord.statusCode = invItem.Status;
+			//	itemMasterRecord.storageCode = invItem.StorageCode;
 
-				_dataContext.TBL_Inv_ItemMasters.InsertOnSubmit(itemMasterRecord);
-				_dataContext.SubmitChanges();
+			//	_dataContext.TBL_Inv_ItemMasters.InsertOnSubmit(itemMasterRecord);
+			//	_dataContext.SubmitChanges();
 
 
-			}
+			//}
 
 
 

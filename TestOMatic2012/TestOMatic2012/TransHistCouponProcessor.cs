@@ -33,12 +33,12 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------------
 		public void Run() {
 
-			string tlogDirectory = "D:\\xdata1\\cmsos2\\ckenode";
+			string tlogDirectory = "D:\\xdata1\\ckenodeXM1";
 
 			DirectoryInfo di = new DirectoryInfo(tlogDirectory);
 
 
-			DirectoryInfo[] directories = di.GetDirectories("X15*");
+			DirectoryInfo[] directories = di.GetDirectories("X11*");
 
 			foreach (DirectoryInfo directory in directories) {
 

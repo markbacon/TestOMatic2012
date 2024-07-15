@@ -29,4 +29,17 @@
       <Column Name="RowNumber" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
     </Type>
   </Table>
+  <Table Name="Detail.RingInOut" Member="RingInOuts">
+    <Type Name="RingInOut">
+      <Column Name="RingInOutID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RingType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TerminalID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="BeginingCash" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="RingInOutDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FCTTranID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CashDrawerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RowNumber" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+    </Type>
+  </Table>
 </Database>

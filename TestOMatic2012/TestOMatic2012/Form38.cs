@@ -67,7 +67,7 @@ namespace TestOMatic2012 {
 				textBox1.Text += "Processing pos_fact_id:  " + posFzctId.ToString() + "\r\n";
 				Application.DoEvents();
 
-				errMessage = data.ExecuteCashOverShortUpdate(posFzctId);
+				//errMessage = data.ExecuteCashOverShortUpdate(posFzctId);
 
 				if (!string.IsNullOrEmpty(errMessage)) {
 					textBox1.Text += "Error updating cash o/s for pos_fact_id:  " + posFzctId.ToString() + " Error message:  " + errMessage + "\r\n";

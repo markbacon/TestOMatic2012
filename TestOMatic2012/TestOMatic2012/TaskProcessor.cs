@@ -17,16 +17,16 @@ namespace TestOMatic2012 {
 				 
 				Logger.Write("Start Task: " + command + " " + commandArgs);
 
-				string message = "";
+				//string message = "";
 
 
 				ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(command, commandArgs);
 				psi.CreateNoWindow = true;
 
-				psi.RedirectStandardError = true;
-				psi.RedirectStandardInput = true;
-				psi.RedirectStandardOutput = true;
-				psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+				//psi.RedirectStandardError = true;
+				//psi.RedirectStandardInput = true;
+				//psi.RedirectStandardOutput = true;
+				psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
 
 				string workingDirectoryName = Path.GetDirectoryName(command);
 
@@ -35,33 +35,33 @@ namespace TestOMatic2012 {
 				}
 
 
-				psi.UseShellExecute = false;
+				//psi.UseShellExecute = false;
 
 				Process commandProcess = System.Diagnostics.Process.Start(psi);
-				StreamReader sr1 = commandProcess.StandardError;
-				StreamReader sr2 = commandProcess.StandardOutput;
+				//StreamReader sr1 = commandProcess.StandardError;
+				//StreamReader sr2 = commandProcess.StandardOutput;
 
-				while (!commandProcess.HasExited) {
-					System.Threading.Thread.Sleep(5000);
-				}
+				//while (!commandProcess.HasExited) {
+				//	System.Threading.Thread.Sleep(5000);
+				//}
 
-				if (commandProcess.ExitCode != 0) {
-					isSuccessful = false;
-				}
+				//if (commandProcess.ExitCode != 0) {
+				//	isSuccessful = false;
+				//}
 
-				if (isSuccessful) {
-					message = "Command: " + command + " Successful with an exit code of: " + commandProcess.ExitCode.ToString();
-					Logger.Write(message);
-				}
-				else {
-					message = "Command:" + command + " Failed with exit code of: " + commandProcess.ExitCode.ToString();
-					Logger.Write(message);
+				//if (isSuccessful) {
+				//	message = "Command: " + command + " Successful with an exit code of: " + commandProcess.ExitCode.ToString();
+				//	Logger.Write(message);
+				//}
+				//else {
+				//	message = "Command:" + command + " Failed with exit code of: " + commandProcess.ExitCode.ToString();
+				//	Logger.Write(message);
 
-					string failureReason = "Failure Reason: " + sr1.ReadToEnd();
+				//	string failureReason = "Failure Reason: " + sr1.ReadToEnd();
 
-					Logger.Write(failureReason);
-					Logger.WriteError(message + ". " + failureReason);
-				}
+				//	Logger.Write(failureReason);
+				//	Logger.WriteError(message + ". " + failureReason);
+				//}
 			}
 			catch (Exception ex) {
 				Logger.Write("Run command failed.  Please see error log for details.");

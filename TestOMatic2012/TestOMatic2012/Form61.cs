@@ -338,5 +338,9 @@ namespace TestOMatic2012 {
 				sw.Write(fileData);
 			}
 		}
+
+		private void button1_Click(object sender, EventArgs e) {
+
+		}
 	}
 }

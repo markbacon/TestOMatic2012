@@ -12,6 +12,8 @@ namespace TestOMatic2012 {
 	public partial class Form21 : Form {
 		public Form21() {
 			InitializeComponent();
+
+			Logger.LoggerWrite += form8_onLoggerWrite;
 		}
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
@@ -29,6 +31,49 @@ namespace TestOMatic2012 {
 			ProcessSalesData(startDate, endDate);
 
 			button1.Enabled = true;
+		}
+		//---------------------------------------------------------------------------------------------------
+		private void button2_Click(object sender, EventArgs e) {
+
+			button2.Enabled = false;
+
+			DirectoryInfo di = new DirectoryInfo( @"X:\Program Files\CKE\CkeFileTransfer\Archive");
+
+			string[] lines = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+			foreach (string line in lines) {
+
+				DateTime businessDate = Convert.ToDateTime(line);
+
+				string searchPattern = "*" + businessDate.ToString("yyyyMMdd") + "*.zip";
+
+				FileInfo[] files = di.GetFiles(searchPattern);
+
+				foreach (FileInfo file in files) {
+
+					string targetPath = Path.Combine("C:\\Temp357", file.Name);
+
+					Logger.Write("Copying file: " + targetPath);
+
+					file.CopyTo(targetPath, true);
+				}
+
+				searchPattern = "Har*" + businessDate.ToString("yyyyMMdd") + "*.txt";
+
+				files = di.GetFiles(searchPattern);
+
+				foreach (FileInfo file in files) {
+
+					string targetPath = Path.Combine("C:\\Temp357", file.Name);
+
+					Logger.Write("Copying file: " + targetPath);
+
+					file.CopyTo(targetPath, true);
+				}
+			}
+
+
+			button2.Enabled = true;
 		}
 		//---------------------------------------------------------------------------------------------------
 		private void BuildFile(DateTime businessDate) {
@@ -60,6 +105,12 @@ namespace TestOMatic2012 {
 
 				sw.Write(sb.ToString());
 			}
+		}
+		//---------------------------------------------------------------------------------------------------
+		private void form8_onLoggerWrite(object sender, LoggerEventArgs e) {
+
+			textBox1.Text += e.Message + "\r\n";
+			Application.DoEvents();
 		}
 		//---------------------------------------------------------------------------------------------------
 		private void GetOrders(DateTime businessDate, StringBuilder sb) {

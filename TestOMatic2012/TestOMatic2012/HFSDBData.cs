@@ -88,6 +88,17 @@ namespace TestOMatic2012 {
 			return _dac.ExecuteQuery(sb.ToString());
 		}
 		//---------------------------------------------------------------------------------------------------------
+		public RingInOut GetRingOut(int ringInOutId) {
+
+
+			HFSDBDataContext dataContext = new HFSDBDataContext();
+
+			return (from r in dataContext.RingInOuts
+					where r.RingInOutID == ringInOutId
+					select r).FirstOrDefault();
+					
+		}
+		//---------------------------------------------------------------------------------------------------------
 		//-- Private Members
 		//---------------------------------------------------------------------------------------------------------
 		private DataAccess _dac;

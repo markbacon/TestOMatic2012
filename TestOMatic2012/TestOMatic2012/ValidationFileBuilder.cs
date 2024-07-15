@@ -14,6 +14,8 @@ namespace TestOMatic2012 {
 
 			try {
 
+
+
 				INFO2000Data data = new INFO2000Data();
 
 				DataTable dt = data.GetCarlsValidationData(businessDate);

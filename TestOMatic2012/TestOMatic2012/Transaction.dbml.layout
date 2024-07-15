@@ -1,12 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Transaction">
   <DataContextMoniker Name="/TransactionDataContext" />
-  <nestedChildShapes>
-    <classShape Id="bbc2a440-22bc-40b3-8a95-68ef6b1cf6bf" absoluteBounds="1.875, 1.625, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/TransactionDataContext/TransHistFile" />
-      <nestedChildShapes>
-        <elementListCompartment Id="9a3a08c5-819b-4bac-9122-02dab3276cf1" absoluteBounds="1.8900000000000001, 2.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-  </nestedChildShapes>
 </ordesignerObjectsDiagram>

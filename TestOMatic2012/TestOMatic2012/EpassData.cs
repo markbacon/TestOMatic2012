@@ -53,6 +53,13 @@ namespace TestOMatic2012 {
 
 			return couponId;
 		}
+		//---------------------------------------------------------------------------------------------------------
+		public List<string> GetHardeesCorporateUnitList() {
+
+			List<string> unitList = new List<string>();
+
+			return unitList;
+		}
 		//---------------------------------------------------------------------------------------------------
 		public int GetPosFactId(string unitNumber, DateTime businessDate) {
 

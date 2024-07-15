@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TimeFileAnalysis" Class="TimeFileAnalysisDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=TimeFileAnalysis;Integrated Security=True" SettingsObjectName="TestOMatic2012.Properties.Settings" SettingsPropertyName="TimeFileAnalysisConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TimeCardAnalysis" Class="TimeFileAnalysisDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=TimeCardAnalysis;Integrated Security=True" SettingsObjectName="TestOMatic2012.Properties.Settings" SettingsPropertyName="TimeCardAnalysisConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.TimeCardRecord" Member="TimeCardRecords">
     <Type Name="TimeCardRecord">
       <Column Name="TimeCardRecordId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -16,8 +16,8 @@
       <Column Name="WeekEndDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.TimeCardDetail" Member="TimeCardDetails">
-    <Type Name="TimeCardDetail">
+  <Table Name="dbo.TimeCardDetail" Member="TimeCardDetailFreds">
+    <Type Name="TimeCardDetailFred">
       <Column Name="TimeCardDetailId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TimeCardRecordId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="BusinessDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
@@ -39,13 +39,103 @@
       <Column Name="TotalHours" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.Employee" Member="Employees">
-    <Type Name="Employee">
+  <Table Name="dbo.Employee" Member="EmployeeTimes">
+    <Type Name="EmployeeTime">
       <Column Name="EmployeeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="EmployeeName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="SSN" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LawsuitEmployee" Member="LawsuitEmployees">
+    <Type Name="LawsuitEmployee">
+      <Column Name="LawsuitEmployeeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmployeeNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LawsuitEmployeeUnit" Member="LawsuitEmployeeUnits">
+    <Type Name="LawsuitEmployeeUnit">
+      <Column Name="LawsuitEmployeeId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LawsuitEmployeeII" Member="LawsuitEmployeeIIs">
+    <Type Name="LawsuitEmployeeII">
+      <Column Name="LawsuitEmployeeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmployeeNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PeopleSoftEmployee" Member="PeopleSoftEmployees">
+    <Type Name="PeopleSoftEmployee">
+      <Column Name="EmployeeNumber" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EmployeeName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeState" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="IsCaliforniaEmployee" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PeopleSoftEmployeeState" Member="PeopleSoftEmployeeStates">
+    <Type Name="PeopleSoftEmployeeState">
+      <Column Name="EmployeeNumber" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmployeeReportBreaks" Member="EmployeeReportBreaks">
+    <Type Name="EmployeeReportBreak">
+      <Column Name="EmployeeReportId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="WeekEndingDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="PunchIn" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="PunchOut" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="Hours" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="PunchType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CaliforniaCorporateUnits" Member="CaliforniaCorporateUnits">
+    <Type Name="CaliforniaCorporateUnit">
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FranchiseConversionDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CorporateCloseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TimeKeepingReportDetailCrunchTime" Member="TimeKeepingReportDetailCrunchTimes">
+    <Type Name="TimeKeepingReportDetailCrunchTime">
+      <Column Name="TimeKeepingReportDetailCrunchTimeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="WeekEndingDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="PunchIn" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="PunchOut" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Hours" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="PunchType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TimeKeepingReportDetailEpass" Member="TimeKeepingReportDetailEpasses">
+    <Type Name="TimeKeepingReportDetailEpass">
+      <Column Name="TimeKeepingReportDetailEpassId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="WeekEndingDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="PunchIn" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="PunchOut" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="Hours" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="PunchType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

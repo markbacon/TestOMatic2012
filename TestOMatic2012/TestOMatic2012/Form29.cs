@@ -54,14 +54,14 @@ namespace TestOMatic2012 {
 
 				string[] nameParts = employeeName.Split(new char[] { ',' });
 
-				Employee emp = new Employee();
-				emp.EmployeeName = employeeName;
-				emp.FirstName = nameParts[1].Trim();
-				emp.LastName = nameParts[0].Trim();
-				emp.SSN = ssn;
+				//Employee emp = new Employee();
+				//emp.EmployeeName = employeeName;
+				//emp.FirstName = nameParts[1].Trim();
+				//emp.LastName = nameParts[0].Trim();
+				//emp.SSN = ssn;
 
-				_dataContext.Employees.InsertOnSubmit(emp);
-				_dataContext.SubmitChanges();
+				//_dataContext.Employees.InsertOnSubmit(emp);
+				//_dataContext.SubmitChanges();
 			}
 
 			button2.Enabled = true;
@@ -94,86 +94,86 @@ namespace TestOMatic2012 {
 		//---------------------------------------------------------------------------------------------------
 		private void ProcessFile(string filePath) {
 
-			int lineCount = 0;
-			int timeCardRecordId = -1;
+			//int lineCount = 0;
+			//int timeCardRecordId = -1;
 
-			using (StreamReader sr = new StreamReader(filePath)) {
+			//using (StreamReader sr = new StreamReader(filePath)) {
 
-				while (sr.Peek() != -1) {
+			//	while (sr.Peek() != -1) {
 
-					string line = sr.ReadLine();
+			//		string line = sr.ReadLine();
 
-					string[] items = line.Split(new char[] { '\t' });
+			//		string[] items = line.Split(new char[] { '\t' });
 
-					if (line.IndexOf("TIMECARD") > -1) {
-
-
-						string ssn = items[4].Replace("\"", "");
-						string unitNumber = items[0].Replace("\"", "");
-						DateTime weekEndDate = Convert.ToDateTime(items[1]);
-
-						timeCardRecordId = GetTimeCardRecordId(ssn, unitNumber, weekEndDate);
-
-						if (timeCardRecordId == -1) {
-							Logger.Write("Time card record not found for SSN: " + ssn + ". Unit Number:  " + unitNumber + ". Week End Date:  " + weekEndDate.ToString("MM/dd/yyyy"));
-
-							TimeCardRecord tcr = new TimeCardRecord();
-							tcr.EmployeeJobCode = items[7].Replace("\"", "");
-							tcr.EmployeeName = items[3].Replace("\"", ""); ;
-							tcr.SSN = items[4].Replace("\"", ""); ;
-							tcr.UnitNumber = items[0].Replace("\"", ""); ;
-							tcr.WeekEndDate = Convert.ToDateTime(items[1]);
+			//		if (line.IndexOf("TIMECARD") > -1) {
 
 
-							_dataContext.TimeCardRecords.InsertOnSubmit(tcr);
-							_dataContext.SubmitChanges();
+			//			string ssn = items[4].Replace("\"", "");
+			//			string unitNumber = items[0].Replace("\"", "");
+			//			DateTime weekEndDate = Convert.ToDateTime(items[1]);
 
-							timeCardRecordId = tcr.TimeCardRecordId;
-						}
-					}
-					else if (line.IndexOf("SHIFT") > -1) {
-						TimeCardDetail tcd = new TimeCardDetail();
+			//			timeCardRecordId = GetTimeCardRecordId(ssn, unitNumber, weekEndDate);
 
-						tcd.BusinessDate = DateTime.ParseExact(items[4], "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-						tcd.ClockIn = Convert.ToDecimal(items[6]);
-						tcd.ClockOut = Convert.ToDecimal(items[7]);
+			//			if (timeCardRecordId == -1) {
+			//				Logger.Write("Time card record not found for SSN: " + ssn + ". Unit Number:  " + unitNumber + ". Week End Date:  " + weekEndDate.ToString("MM/dd/yyyy"));
 
-						tcd.DayOfWeek = items[5].Replace("\"", ""); ;
-						tcd.ElapsedTime = Convert.ToDecimal(items[8]);
-						tcd.ShiftStatusCode = items[10].Replace("\"", "");
-						tcd.TimeCardRecordId = timeCardRecordId;
+			//				TimeCardRecord tcr = new TimeCardRecord();
+			//				tcr.EmployeeJobCode = items[7].Replace("\"", "");
+			//				tcr.EmployeeName = items[3].Replace("\"", ""); ;
+			//				tcr.SSN = items[4].Replace("\"", ""); ;
+			//				tcr.UnitNumber = items[0].Replace("\"", ""); ;
+			//				tcr.WeekEndDate = Convert.ToDateTime(items[1]);
 
-						_dataContext.TimeCardDetails.InsertOnSubmit(tcd);
-						_dataContext.SubmitChanges();
-					}
 
-					else if (line.IndexOf("TOTALS") > -1) {
+			//				_dataContext.TimeCardRecords.InsertOnSubmit(tcr);
+			//				_dataContext.SubmitChanges();
 
-						TimeCardTotal tct = new TimeCardTotal();
+			//				timeCardRecordId = tcr.TimeCardRecordId;
+			//			}
+			//		}
+			//		else if (line.IndexOf("SHIFT") > -1) {
+			//			TimeCardDetail tcd = new TimeCardDetail();
 
-						tct.OvertimeHours = Convert.ToDecimal(items[7]);
-						tct.RegularHours = Convert.ToDecimal(items[6]);
-						tct.TimeCardRecordId = timeCardRecordId;
-						tct.TotalHours = Convert.ToDecimal(items[9]);
-						tct.VacationHours = Convert.ToDecimal(items[8]);
+			//			tcd.BusinessDate = DateTime.ParseExact(items[4], "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+			//			tcd.ClockIn = Convert.ToDecimal(items[6]);
+			//			tcd.ClockOut = Convert.ToDecimal(items[7]);
 
-						_dataContext.TimeCardTotals.InsertOnSubmit(tct);
-						_dataContext.SubmitChanges();
+			//			tcd.DayOfWeek = items[5].Replace("\"", ""); ;
+			//			tcd.ElapsedTime = Convert.ToDecimal(items[8]);
+			//			tcd.ShiftStatusCode = items[10].Replace("\"", "");
+			//			tcd.TimeCardRecordId = timeCardRecordId;
 
-					}
+			//			_dataContext.TimeCardDetails.InsertOnSubmit(tcd);
+			//			_dataContext.SubmitChanges();
+			//		}
 
-					lineCount++;
+			//		else if (line.IndexOf("TOTALS") > -1) {
 
-					if (lineCount % 100 == 0) {
-						Logger.Write(lineCount.ToString() + " lines processed.");
-					}
+			//			TimeCardTotal tct = new TimeCardTotal();
 
-					if (lineCount % 100 == 0) {
-						_dataContext = new TimeFileAnalysisDataContext();
-					}
+			//			tct.OvertimeHours = Convert.ToDecimal(items[7]);
+			//			tct.RegularHours = Convert.ToDecimal(items[6]);
+			//			tct.TimeCardRecordId = timeCardRecordId;
+			//			tct.TotalHours = Convert.ToDecimal(items[9]);
+			//			tct.VacationHours = Convert.ToDecimal(items[8]);
 
-				}
-			}
+			//			_dataContext.TimeCardTotals.InsertOnSubmit(tct);
+			//			_dataContext.SubmitChanges();
+
+			//		}
+
+			//		lineCount++;
+
+			//		if (lineCount % 100 == 0) {
+			//			Logger.Write(lineCount.ToString() + " lines processed.");
+			//		}
+
+			//		if (lineCount % 100 == 0) {
+			//			_dataContext = new TimeFileAnalysisDataContext();
+			//		}
+
+			//	}
+			//}
 		}
 		//---------------------------------------------------------------------------------------------------
 		private void textBox1_TextChanged(object sender, EventArgs e) {

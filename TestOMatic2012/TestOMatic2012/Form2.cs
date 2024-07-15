@@ -164,7 +164,7 @@ namespace TestOMatic2012 {
 
 			button5.Enabled = false;
 
-			string pollFileRootDirName = "C:\\PollFile\\PollFiles";
+			string pollFileRootDirName = "C:\\temp.44";
 			string searchPattern = "X15*_InvSummary.xml";
 
 			DirectoryInfo di = new DirectoryInfo(pollFileRootDirName);

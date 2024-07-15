@@ -13,34 +13,121 @@ namespace TestOMatic2012 {
 	public partial class Form54 : Form {
 		public Form54() {
 			InitializeComponent();
+
+			Logger.LoggerWrite += form8_onLoggerWrite;
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
 
 			button1.Enabled = false;
 
-			ProcessDirectory(@"C:\Store Data\x1100285\X1100285");
+			List<string> unitList = GetUnitList();
 
+			DirectoryInfo di = new DirectoryInfo("C:\\CkeMixTest");
+
+			DirectoryInfo[] directories = di.GetDirectories();
+
+			foreach (DirectoryInfo directory in directories) {
+
+				ProcessDirectory(directory);
+
+
+			}
 
 			button1.Enabled = true;
 		}
 		//---------------------------------------------------------------------------------------------------------
-		private void ProcessDirectory(string dirName) {
+		private List<string> GetUnitList() {
 
-			DirectoryInfo di = new DirectoryInfo(dirName);
+			List<string> unitList = new List<string>();
 
-			DirectoryInfo[] directories = di.GetDirectories("X*");
+			unitList.Add("X1100471");
 
-			foreach (DirectoryInfo directory in directories) {
+			//string filePath = "C:\\Temp.44\\FreeStyleUnits.txt";
 
+			//using (StreamReader sr = new StreamReader(filePath)) {
 
-				FileInfo[] files = directory.GetFiles("*Mix.pol");
+			//	while (sr.Peek() != -1) {
 
-				foreach (FileInfo file in files) {
+			//		string line = sr.ReadLine();
+			//		string[] items = line.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 
+			//		foreach (string item in items) {
+			//			unitList.Add("X" + item.Trim());
+			//		}
+			//	}
+			//}
+
+			return unitList;
+		}
+		//---------------------------------------------------------------------------------------------------------
+		private void ProcessDirectoryX(DirectoryInfo di) {
+
+			DateTime startDate = Convert.ToDateTime("05/31/2016");
+
+			while (startDate < DateTime.Today) {
+
+				string fileName = di.Name + "_" + startDate.ToString("yyyyMMdd") + "_Mix.pol";
+
+				FileInfo file = di.GetFiles(fileName).SingleOrDefault();
+
+				if (file != null) {
+					Logger.Write("Processing file: " + fileName);
 					ProcessFile(file);
-
 				}
+				else {
+
+					Logger.Write("File not found: ");
+				}
+
+
+
+
+				startDate = startDate.AddDays(1);
+			}
+		}
+		//---------------------------------------------------------------------------------------------------------
+		private void ProcessDirectory(DirectoryInfo di) {
+
+
+			FileInfo[] files = di.GetFiles("*Mix.pol");
+
+			foreach (FileInfo file in files) {
+
+				Logger.Write("Processing file: " + file.Name);
+				ProcessMixFile(file);
+
+			}
+		}
+		//---------------------------------------------------------------------------------------------------------
+		private void ProcessMixFile(FileInfo file) {
+
+
+			try {
+
+				DataAnalysisDataContext dataContext = new DataAnalysisDataContext();
+
+				MixPollFile mpf = dataContext.MixPollFiles.Where(m => m.FileName == file.Name).FirstOrDefault();
+
+				if (mpf == null) {
+					
+					mpf = new MixPollFile();
+					mpf.FileName = file.Name;
+					mpf.BusinessDate = DateTime.ParseExact(file.Name.Substring(9, 8), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+					mpf.UnitNumber = file.Name.Substring(1, 7);
+					mpf.DirectoryName = file.DirectoryName;
+
+					dataContext.MixPollFiles.InsertOnSubmit(mpf);
+					dataContext.SubmitChanges();
+				}
+				else {
+					Logger.Write("File already exists: " + file.FullName);
+				}
+
+			}
+			catch (Exception ex) {
+				Logger.Write("An exception occurred processing file: " + file.Name + ". Please see error log for details.");
+				Logger.WriteError(ex);
 			}
 		}
 		//---------------------------------------------------------------------------------------------------------
@@ -52,7 +139,7 @@ namespace TestOMatic2012 {
 			mpf.FileName = file.Name;
 
 			DataAnalysisDataContext dataContext = new DataAnalysisDataContext();
-	
+
 
 			using (StreamReader sr = file.OpenText()) {
 
@@ -99,6 +186,27 @@ namespace TestOMatic2012 {
 					}
 
 				}
+			}
+		}
+
+		//---------------------------------------------------------------------------------------------------
+		private void form8_onLoggerWrite(object sender, LoggerEventArgs e) {
+
+			textBox1.Text += e.Message + "\r\n";
+			Application.DoEvents();
+		}
+		//---------------------------------------------------------------------------------------------------
+		private void textBox1_TextChanged(object sender, EventArgs e) {
+
+			if (textBox1.Text.Length > 2024) {
+				textBox1.Text = "";
+			}
+
+
+			if (textBox1.Text.Length > 0) {
+				textBox1.SelectionStart = textBox1.Text.Length - 1;
+				textBox1.ScrollToCaret();
+				Application.DoEvents();
 			}
 		}
 	}
