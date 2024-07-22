@@ -1,0 +1,696 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BrinkApiDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BrinkDestination">
+          <Key>
+            <PropertyRef Name="BrinkDestinationId" />
+            <PropertyRef Name="UnitNumber" />
+          </Key>
+          <Property Name="BrinkDestinationId" Type="int" Nullable="false" />
+          <Property Name="UnitNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BrinkOrder">
+          <Key>
+            <PropertyRef Name="BrinkOrderId" />
+          </Key>
+          <Property Name="BrinkOrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnitNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="BusinessDate" Type="date" Nullable="false" />
+          <Property Name="OrderNumber" Type="smallint" Nullable="false" />
+          <Property Name="OrderName" Type="varchar" MaxLength="150" />
+          <Property Name="DestinationId" Type="int" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="TerminalId" Type="int" Nullable="false" />
+          <Property Name="NetSales" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="Tax" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="SubTotal" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="DiscountAmount" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="PromoAmount" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="DisplaySubTotal" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="DisplayTax" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="GrossSales" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="OpenTime" Type="datetime" Nullable="false" />
+          <Property Name="FirstSendTime" Type="datetime" />
+          <Property Name="ModifiedTime" Type="datetime" Nullable="false" />
+          <Property Name="PickTime" Type="datetime" />
+          <Property Name="ClosedTime" Type="datetime" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="GuestCount" Type="int" Nullable="false" />
+          <Property Name="GuestCountFracional" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="CustomerId" Type="uniqueidentifier" />
+          <Property Name="IdField" Type="bigint" Nullable="false" />
+          <Property Name="IdEncodedField" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsClosed" Type="bit" Nullable="false" />
+          <Property Name="IsFutureOrder" Type="bit" Nullable="false" />
+          <Property Name="IsRefund" Type="bit" Nullable="false" />
+          <Property Name="IsTaxExempt" Type="bit" Nullable="false" />
+          <Property Name="Rounding" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="SectionId" Type="int" />
+          <Property Name="TaxExemptId" Type="varchar" MaxLength="250" />
+          <Property Name="TillNumber" Type="int" />
+          <Property Name="OrderAdditionalDetails" Type="varchar(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BrinkOrderPayment">
+          <Key>
+            <PropertyRef Name="BrinkOrderPaymentId" />
+          </Key>
+          <Property Name="BrinkOrderPaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrinkOrderId" Type="int" Nullable="false" />
+          <Property Name="BusinessDate" Type="date" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Change" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TenderId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Last4" Type="char" MaxLength="4" />
+          <Property Name="AuthorizationCode" Type="varchar" MaxLength="50" />
+          <Property Name="ReferenceNumber" Type="varchar" MaxLength="50" />
+          <Property Name="MerchantAccountType" Type="int" />
+          <Property Name="TipAmount" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BrinkPromo">
+          <Key>
+            <PropertyRef Name="BrinkPromoId" />
+          </Key>
+          <Property Name="BrinkPromoId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsCoupon" Type="bit" Nullable="false" />
+          <Property Name="CouponNumber" Type="varchar" MaxLength="10" />
+          <Property Name="CouponName" Type="varchar" MaxLength="100" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BrinkTender">
+          <Key>
+            <PropertyRef Name="BrinkTenderId" />
+          </Key>
+          <Property Name="BrinkTenderId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TenderTypeId" Type="int" Nullable="false" />
+          <Property Name="TenderTypeName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BrinkUnit">
+          <Key>
+            <PropertyRef Name="UnitNumber" />
+          </Key>
+          <Property Name="UnitNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EntityId" Type="int" Nullable="false" />
+          <Property Name="LocationToken" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EffectiveDate" Type="date" Nullable="false" />
+          <Property Name="TimeZone" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="BusinessDayStartTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DateDimension">
+          <Key>
+            <PropertyRef Name="DateId" />
+          </Key>
+          <Property Name="DateId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="CKEWeekStartDate" Type="date" Nullable="false" />
+          <Property Name="CKEWeekEndDate" Type="date" Nullable="false" />
+          <Property Name="DayNumberOfWeek" Type="int" Nullable="false" />
+          <Property Name="WeekDayName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="YearNumber" Type="int" Nullable="false" />
+          <Property Name="MonthNumber" Type="int" Nullable="false" />
+          <Property Name="MonthName" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TimeSegment">
+          <Key>
+            <PropertyRef Name="TimeSegmentId" />
+          </Key>
+          <Property Name="TimeSegmentId" Type="int" Nullable="false" />
+          <Property Name="TimeSegment" Type="varchar" MaxLength="10" />
+          <Property Name="TimeSegmentStart" Type="time" Precision="2" />
+          <Property Name="TimeSegmentEnd" Type="time" Precision="2" />
+          <Property Name="Min30TimeSegmentId" Type="int" />
+          <Property Name="Min60TimeSegmentId" Type="int" />
+        </EntityType>
+        <EntityType Name="CkePeriod">
+          <Key>
+            <PropertyRef Name="PeriodId" />
+          </Key>
+          <Property Name="PeriodId" Type="int" Nullable="false" />
+          <Property Name="FiscalPeriod" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FiscalYear" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PeriodStartDate" Type="date" Nullable="false" />
+          <Property Name="PeriodEndDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenuItemPricing">
+          <Key>
+            <PropertyRef Name="UnitNumber" />
+            <PropertyRef Name="BrinkMenuItemId" />
+          </Key>
+          <Property Name="UnitNumber" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="BrinkMenuItemId" Type="int" Nullable="false" />
+          <Property Name="PLU" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemDescription" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsCombo" Type="bit" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RoyaltyEntity">
+          <Key>
+            <PropertyRef Name="FranchiseNumber" />
+          </Key>
+          <Property Name="FranchiseNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GroupNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntityDescription" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="GroupDescription" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="EnableRoyaltyReport" Type="bit" Nullable="false" />
+          <Property Name="SendReportByEmail" Type="bit" Nullable="false" />
+          <Property Name="SendReportBySftp" Type="bit" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="RoyaltyUnit">
+          <Key>
+            <PropertyRef Name="UnitNumber" />
+          </Key>
+          <Property Name="UnitNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FranchiseNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GroupNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReportingFrequency" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BrinkOrder_BrinkOrderPayment">
+          <End Role="BrinkOrder" Type="Self.BrinkOrder" Multiplicity="1" />
+          <End Role="BrinkOrderPayment" Type="Self.BrinkOrderPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BrinkOrder">
+              <PropertyRef Name="BrinkOrderId" />
+            </Principal>
+            <Dependent Role="BrinkOrderPayment">
+              <PropertyRef Name="BrinkOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoyaltyEntity_RoyaltyUnit">
+          <End Role="RoyaltyEntity" Type="Self.RoyaltyEntity" Multiplicity="1" />
+          <End Role="RoyaltyUnit" Type="Self.RoyaltyUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoyaltyEntity">
+              <PropertyRef Name="FranchiseNumber" />
+            </Principal>
+            <Dependent Role="RoyaltyUnit">
+              <PropertyRef Name="FranchiseNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BrinkApiDataModelStoreContainer">
+          <EntitySet Name="BrinkDestination" EntityType="Self.BrinkDestination" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BrinkOrder" EntityType="Self.BrinkOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BrinkOrderPayment" EntityType="Self.BrinkOrderPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BrinkPromo" EntityType="Self.BrinkPromo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BrinkTender" EntityType="Self.BrinkTender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BrinkUnit" EntityType="Self.BrinkUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DateDimension" EntityType="Self.DateDimension" Schema="ODS" store:Type="Tables" />
+          <EntitySet Name="TimeSegment" EntityType="Self.TimeSegment" Schema="ODS" store:Type="Tables" />
+          <EntitySet Name="CkePeriod" EntityType="Self.CkePeriod" Schema="Report" store:Type="Tables" />
+          <EntitySet Name="MenuItemPricing" EntityType="Self.MenuItemPricing" Schema="Report" store:Type="Tables" />
+          <EntitySet Name="RoyaltyEntity" EntityType="Self.RoyaltyEntity" Schema="Report" store:Type="Tables" />
+          <EntitySet Name="RoyaltyUnit" EntityType="Self.RoyaltyUnit" Schema="Report" store:Type="Tables" />
+          <AssociationSet Name="FK_BrinkOrder_BrinkOrderPayment" Association="Self.FK_BrinkOrder_BrinkOrderPayment">
+            <End Role="BrinkOrder" EntitySet="BrinkOrder" />
+            <End Role="BrinkOrderPayment" EntitySet="BrinkOrderPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoyaltyEntity_RoyaltyUnit" Association="Self.FK_RoyaltyEntity_RoyaltyUnit">
+            <End Role="RoyaltyEntity" EntitySet="RoyaltyEntity" />
+            <End Role="RoyaltyUnit" EntitySet="RoyaltyUnit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BrinkApiDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BrinkOrder">
+          <Key>
+            <PropertyRef Name="BrinkOrderId" />
+          </Key>
+          <Property Name="BrinkOrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BusinessDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OrderNumber" Type="Int16" Nullable="false" />
+          <Property Name="OrderName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DestinationId" Type="Int32" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="TerminalId" Type="Int32" Nullable="false" />
+          <Property Name="NetSales" Type="Decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="Tax" Type="Decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="SubTotal" Type="Decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="DiscountAmount" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="PromoAmount" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="DisplaySubTotal" Type="Decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="DisplayTax" Type="Decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="GrossSales" Type="Decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="OpenTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FirstSendTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PickTime" Type="DateTime" Precision="3" />
+          <Property Name="ClosedTime" Type="DateTime" Precision="3" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="GuestCount" Type="Int32" Nullable="false" />
+          <Property Name="GuestCountFracional" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="CustomerId" Type="Guid" />
+          <Property Name="IdField" Type="Int64" Nullable="false" />
+          <Property Name="IdEncodedField" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsClosed" Type="Boolean" Nullable="false" />
+          <Property Name="IsFutureOrder" Type="Boolean" Nullable="false" />
+          <Property Name="IsRefund" Type="Boolean" Nullable="false" />
+          <Property Name="IsTaxExempt" Type="Boolean" Nullable="false" />
+          <Property Name="Rounding" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="SectionId" Type="Int32" />
+          <Property Name="TaxExemptId" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TillNumber" Type="Int32" />
+          <Property Name="OrderAdditionalDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BrinkOrderPayments" Relationship="BrinkApiDataModel.FK_BrinkOrder_BrinkOrderPayment" FromRole="BrinkOrder" ToRole="BrinkOrderPayment" />
+        </EntityType>
+        <EntityContainer Name="BrinkApiDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BrinkOrders" EntityType="Self.BrinkOrder" />
+          <EntitySet Name="BrinkUnits" EntityType="BrinkApiDataModel.BrinkUnit" />
+          <EntitySet Name="BrinkDestinations" EntityType="BrinkApiDataModel.BrinkDestination" />
+          <EntitySet Name="DateDimensions" EntityType="BrinkApiDataModel.DateDimension" />
+          <EntitySet Name="TimeSegments" EntityType="BrinkApiDataModel.TimeSegment" />
+          <EntitySet Name="BrinkOrderPayments" EntityType="BrinkApiDataModel.BrinkOrderPayment" />
+          <EntitySet Name="BrinkTenders" EntityType="BrinkApiDataModel.BrinkTender" />
+          <AssociationSet Name="FK_BrinkOrder_BrinkOrderPayment" Association="BrinkApiDataModel.FK_BrinkOrder_BrinkOrderPayment">
+            <End Role="BrinkOrder" EntitySet="BrinkOrders" />
+            <End Role="BrinkOrderPayment" EntitySet="BrinkOrderPayments" />
+          </AssociationSet>
+          <EntitySet Name="RoyaltyEntities" EntityType="BrinkApiDataModel.RoyaltyEntity" />
+          <EntitySet Name="RoyaltyUnits" EntityType="BrinkApiDataModel.RoyaltyUnit" />
+          <AssociationSet Name="FK_RoyaltyEntity_RoyaltyUnit" Association="BrinkApiDataModel.FK_RoyaltyEntity_RoyaltyUnit">
+            <End Role="RoyaltyEntity" EntitySet="RoyaltyEntities" />
+            <End Role="RoyaltyUnit" EntitySet="RoyaltyUnits" />
+          </AssociationSet>
+          <EntitySet Name="CkePeriods" EntityType="BrinkApiDataModel.CkePeriod" />
+          <EntitySet Name="BrinkPromoes" EntityType="BrinkApiDataModel.BrinkPromo" />
+          <EntitySet Name="MenuItemPricings" EntityType="BrinkApiDataModel.MenuItemPricing" />
+        </EntityContainer>
+        <EntityType Name="BrinkUnit">
+          <Key>
+            <PropertyRef Name="UnitNumber" />
+          </Key>
+          <Property Name="UnitNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LocationToken" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EffectiveDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TimeZone" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="EntityId" Type="Int32" Nullable="false" />
+          <Property Name="BusinessDayStartTime" Type="Time" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="BrinkDestination">
+          <Key>
+            <PropertyRef Name="BrinkDestinationId" />
+            <PropertyRef Name="UnitNumber" />
+          </Key>
+          <Property Name="BrinkDestinationId" Type="Int32" Nullable="false" />
+          <Property Name="UnitNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DateDimension">
+          <Key>
+            <PropertyRef Name="DateId" />
+          </Key>
+          <Property Name="DateId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CKEWeekStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CKEWeekEndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DayNumberOfWeek" Type="Int32" Nullable="false" />
+          <Property Name="WeekDayName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="YearNumber" Type="Int32" Nullable="false" />
+          <Property Name="MonthNumber" Type="Int32" Nullable="false" />
+          <Property Name="MonthName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TimeSegment">
+          <Key>
+            <PropertyRef Name="TimeSegmentId" />
+          </Key>
+          <Property Name="TimeSegmentId" Type="Int32" Nullable="false" />
+          <Property Name="TimeSegment1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TimeSegmentStart" Type="Time" Precision="2" />
+          <Property Name="TimeSegmentEnd" Type="Time" Precision="2" />
+          <Property Name="Min30TimeSegmentId" Type="Int32" />
+          <Property Name="Min60TimeSegmentId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BrinkOrderPayment">
+          <Key>
+            <PropertyRef Name="BrinkOrderPaymentId" />
+          </Key>
+          <Property Name="BrinkOrderPaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrinkOrderId" Type="Int32" Nullable="false" />
+          <Property Name="BusinessDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="Change" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TenderId" Type="Int32" Nullable="false" />
+          <Property Name="Last4" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="AuthorizationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BrinkOrder" Relationship="BrinkApiDataModel.FK_BrinkOrder_BrinkOrderPayment" FromRole="BrinkOrderPayment" ToRole="BrinkOrder" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="MerchantAccountType" Type="Int32" />
+          <Property Name="TipAmount" Type="Decimal" Precision="12" Scale="2" />
+        </EntityType>
+        <EntityType Name="BrinkTender">
+          <Key>
+            <PropertyRef Name="BrinkTenderId" />
+          </Key>
+          <Property Name="BrinkTenderId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TenderTypeId" Type="Int32" Nullable="false" />
+          <Property Name="TenderTypeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_BrinkOrder_BrinkOrderPayment">
+          <End Type="BrinkApiDataModel.BrinkOrder" Role="BrinkOrder" Multiplicity="1" />
+          <End Type="BrinkApiDataModel.BrinkOrderPayment" Role="BrinkOrderPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BrinkOrder">
+              <PropertyRef Name="BrinkOrderId" />
+            </Principal>
+            <Dependent Role="BrinkOrderPayment">
+              <PropertyRef Name="BrinkOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RoyaltyEntity">
+          <Key>
+            <PropertyRef Name="FranchiseNumber" />
+          </Key>
+          <Property Name="FranchiseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GroupNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EntityDescription" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="GroupDescription" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RoyaltyUnits" Relationship="BrinkApiDataModel.FK_RoyaltyEntity_RoyaltyUnit" FromRole="RoyaltyEntity" ToRole="RoyaltyUnit" />
+          <Property Name="EnableRoyaltyReport" Type="Boolean" Nullable="false" />
+          <Property Name="SendReportByEmail" Type="Boolean" Nullable="false" />
+          <Property Name="SendReportBySftp" Type="Boolean" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="RoyaltyUnit">
+          <Key>
+            <PropertyRef Name="UnitNumber" />
+          </Key>
+          <Property Name="UnitNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FranchiseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GroupNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReportingFrequency" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RoyaltyEntity" Relationship="BrinkApiDataModel.FK_RoyaltyEntity_RoyaltyUnit" FromRole="RoyaltyUnit" ToRole="RoyaltyEntity" />
+        </EntityType>
+        <Association Name="FK_RoyaltyEntity_RoyaltyUnit">
+          <End Type="BrinkApiDataModel.RoyaltyEntity" Role="RoyaltyEntity" Multiplicity="1" />
+          <End Type="BrinkApiDataModel.RoyaltyUnit" Role="RoyaltyUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoyaltyEntity">
+              <PropertyRef Name="FranchiseNumber" />
+            </Principal>
+            <Dependent Role="RoyaltyUnit">
+              <PropertyRef Name="FranchiseNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CkePeriod">
+          <Key>
+            <PropertyRef Name="PeriodId" />
+          </Key>
+          <Property Name="PeriodId" Type="Int32" Nullable="false" />
+          <Property Name="FiscalPeriod" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FiscalYear" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PeriodStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PeriodEndDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="BrinkPromo">
+          <Key>
+            <PropertyRef Name="BrinkPromoId" />
+          </Key>
+          <Property Name="BrinkPromoId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsCoupon" Type="Boolean" Nullable="false" />
+          <Property Name="CouponNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CouponName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MenuItemPricing">
+          <Key>
+            <PropertyRef Name="UnitNumber" />
+            <PropertyRef Name="BrinkMenuItemId" />
+          </Key>
+          <Property Name="UnitNumber" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="BrinkMenuItemId" Type="Int32" Nullable="false" />
+          <Property Name="PLU" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ItemDescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsCombo" Type="Boolean" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BrinkApiDataModelStoreContainer" CdmEntityContainer="BrinkApiDataEntities">
+          <EntitySetMapping Name="BrinkOrders">
+            <EntityTypeMapping TypeName="BrinkApiDataModel.BrinkOrder">
+              <MappingFragment StoreEntitySet="BrinkOrder">
+                <ScalarProperty Name="BrinkOrderId" ColumnName="BrinkOrderId" />
+                <ScalarProperty Name="UnitNumber" ColumnName="UnitNumber" />
+                <ScalarProperty Name="BusinessDate" ColumnName="BusinessDate" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="OrderName" ColumnName="OrderName" />
+                <ScalarProperty Name="DestinationId" ColumnName="DestinationId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="TerminalId" ColumnName="TerminalId" />
+                <ScalarProperty Name="NetSales" ColumnName="NetSales" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="PromoAmount" ColumnName="PromoAmount" />
+                <ScalarProperty Name="DisplaySubTotal" ColumnName="DisplaySubTotal" />
+                <ScalarProperty Name="DisplayTax" ColumnName="DisplayTax" />
+                <ScalarProperty Name="GrossSales" ColumnName="GrossSales" />
+                <ScalarProperty Name="OpenTime" ColumnName="OpenTime" />
+                <ScalarProperty Name="FirstSendTime" ColumnName="FirstSendTime" />
+                <ScalarProperty Name="ModifiedTime" ColumnName="ModifiedTime" />
+                <ScalarProperty Name="PickTime" ColumnName="PickTime" />
+                <ScalarProperty Name="ClosedTime" ColumnName="ClosedTime" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="GuestCount" ColumnName="GuestCount" />
+                <ScalarProperty Name="GuestCountFracional" ColumnName="GuestCountFracional" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="IdField" ColumnName="IdField" />
+                <ScalarProperty Name="IdEncodedField" ColumnName="IdEncodedField" />
+                <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
+                <ScalarProperty Name="IsFutureOrder" ColumnName="IsFutureOrder" />
+                <ScalarProperty Name="IsRefund" ColumnName="IsRefund" />
+                <ScalarProperty Name="IsTaxExempt" ColumnName="IsTaxExempt" />
+                <ScalarProperty Name="Rounding" ColumnName="Rounding" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="TaxExemptId" ColumnName="TaxExemptId" />
+                <ScalarProperty Name="TillNumber" ColumnName="TillNumber" />
+                <ScalarProperty Name="OrderAdditionalDetails" ColumnName="OrderAdditionalDetails" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BrinkUnits">
+            <EntityTypeMapping TypeName="BrinkApiDataModel.BrinkUnit">
+              <MappingFragment StoreEntitySet="BrinkUnit">
+                <ScalarProperty Name="BusinessDayStartTime" ColumnName="BusinessDayStartTime" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="LocationToken" ColumnName="LocationToken" />
+                <ScalarProperty Name="UnitNumber" ColumnName="UnitNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BrinkDestinations">
+            <EntityTypeMapping TypeName="BrinkApiDataModel.BrinkDestination">
+              <MappingFragment StoreEntitySet="BrinkDestination">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UnitNumber" ColumnName="UnitNumber" />
+                <ScalarProperty Name="BrinkDestinationId" ColumnName="BrinkDestinationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DateDimensions">
+            <EntityTypeMapping TypeName="BrinkApiDataModel.DateDimension">
+              <MappingFragment StoreEntitySet="DateDimension">
+                <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+                <ScalarProperty Name="MonthNumber" ColumnName="MonthNumber" />
+                <ScalarProperty Name="YearNumber" ColumnName="YearNumber" />
+                <ScalarProperty Name="WeekDayName" ColumnName="WeekDayName" />
+                <ScalarProperty Name="DayNumberOfWeek" ColumnName="DayNumberOfWeek" />
+                <ScalarProperty Name="CKEWeekEndDate" ColumnName="CKEWeekEndDate" />
+                <ScalarProperty Name="CKEWeekStartDate" ColumnName="CKEWeekStartDate" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="DateId" ColumnName="DateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeSegments">
+            <EntityTypeMapping TypeName="BrinkApiDataModel.TimeSegment">
+              <MappingFragment StoreEntitySet="TimeSegment">
+                <ScalarProperty Name="Min60TimeSegmentId" ColumnName="Min60TimeSegmentId" />
+                <ScalarProperty Name="Min30TimeSegmentId" ColumnName="Min30TimeSegmentId" />
+                <ScalarProperty Name="TimeSegmentEnd" ColumnName="TimeSegmentEnd" />
+                <ScalarProperty Name="TimeSegmentStart" ColumnName="TimeSegmentStart" />
+                <ScalarProperty Name="TimeSegment1" ColumnName="TimeSegment" />
+                <ScalarProperty Name="TimeSegmentId" ColumnName="TimeSegmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BrinkOrderPayments">
+            <EntityTypeMapping TypeName="BrinkApiDataModel.BrinkOrderPayment">
+              <MappingFragment StoreEntitySet="BrinkOrderPayment">
+                <ScalarProperty Name="TipAmount" ColumnName="TipAmount" />
+                <ScalarProperty Name="MerchantAccountType" ColumnName="MerchantAccountType" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
+                <ScalarProperty Name="AuthorizationCode" ColumnName="AuthorizationCode" />
+                <ScalarProperty Name="Last4" ColumnName="Last4" />
+                <ScalarProperty Name="TenderId" ColumnName="TenderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Change" ColumnName="Change" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="BusinessDate" ColumnName="BusinessDate" />
+                <ScalarProperty Name="BrinkOrderId" ColumnName="BrinkOrderId" />
+                <ScalarProperty Name="BrinkOrderPaymentId" ColumnName="BrinkOrderPaymentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BrinkTenders">
+            <EntityTypeMapping TypeName="BrinkApiDataModel.BrinkTender">
+              <MappingFragment StoreEntitySet="BrinkTender">
+                <ScalarProperty Name="TenderTypeName" ColumnName="TenderTypeName" />
+                <ScalarProperty Name="TenderTypeId" ColumnName="TenderTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BrinkTenderId" ColumnName="BrinkTenderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoyaltyEntities">
+            <EntityTypeMapping TypeName="BrinkApiDataModel.RoyaltyEntity">
+              <MappingFragment StoreEntitySet="RoyaltyEntity">
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="SendReportBySftp" ColumnName="SendReportBySftp" />
+                <ScalarProperty Name="SendReportByEmail" ColumnName="SendReportByEmail" />
+                <ScalarProperty Name="EnableRoyaltyReport" ColumnName="EnableRoyaltyReport" />
+                <ScalarProperty Name="GroupDescription" ColumnName="GroupDescription" />
+                <ScalarProperty Name="EntityDescription" ColumnName="EntityDescription" />
+                <ScalarProperty Name="GroupNumber" ColumnName="GroupNumber" />
+                <ScalarProperty Name="FranchiseNumber" ColumnName="FranchiseNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoyaltyUnits">
+            <EntityTypeMapping TypeName="BrinkApiDataModel.RoyaltyUnit">
+              <MappingFragment StoreEntitySet="RoyaltyUnit">
+                <ScalarProperty Name="ReportingFrequency" ColumnName="ReportingFrequency" />
+                <ScalarProperty Name="GroupNumber" ColumnName="GroupNumber" />
+                <ScalarProperty Name="FranchiseNumber" ColumnName="FranchiseNumber" />
+                <ScalarProperty Name="UnitNumber" ColumnName="UnitNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CkePeriods">
+            <EntityTypeMapping TypeName="BrinkApiDataModel.CkePeriod">
+              <MappingFragment StoreEntitySet="CkePeriod">
+                <ScalarProperty Name="PeriodEndDate" ColumnName="PeriodEndDate" />
+                <ScalarProperty Name="PeriodStartDate" ColumnName="PeriodStartDate" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="FiscalPeriod" ColumnName="FiscalPeriod" />
+                <ScalarProperty Name="PeriodId" ColumnName="PeriodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BrinkPromoes">
+            <EntityTypeMapping TypeName="BrinkApiDataModel.BrinkPromo">
+              <MappingFragment StoreEntitySet="BrinkPromo">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CouponName" ColumnName="CouponName" />
+                <ScalarProperty Name="CouponNumber" ColumnName="CouponNumber" />
+                <ScalarProperty Name="IsCoupon" ColumnName="IsCoupon" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BrinkPromoId" ColumnName="BrinkPromoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuItemPricings">
+            <EntityTypeMapping TypeName="BrinkApiDataModel.MenuItemPricing">
+              <MappingFragment StoreEntitySet="MenuItemPricing">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsCombo" ColumnName="IsCombo" />
+                <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+                <ScalarProperty Name="PLU" ColumnName="PLU" />
+                <ScalarProperty Name="BrinkMenuItemId" ColumnName="BrinkMenuItemId" />
+                <ScalarProperty Name="UnitNumber" ColumnName="UnitNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

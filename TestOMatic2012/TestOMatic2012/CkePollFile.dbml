@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CkePollFileData" Class="CkePollFileDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=CkePollFileData;Integrated Security=True" SettingsObjectName="TestOMatic2012.Properties.Settings" SettingsPropertyName="CkePollFileDataConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.FinFile" Member="FinFiles">
+    <Type Name="FinFile">
+      <Column Name="FinFileId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FileDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="FinFile_FinFileDetail" Member="FinFileDetails" ThisKey="FinFileId" OtherKey="FinFileId" Type="FinFileDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FinFileDetail" Member="FinFileDetails">
+    <Type Name="FinFileDetail">
+      <Column Name="FinFileDetailId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FinFileId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IndexNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="FinFile_FinFileDetail" Member="FinFile" ThisKey="FinFileId" OtherKey="FinFileId" Type="FinFile" IsForeignKey="true" />
+      <Association Name="FinFileIndex_FinFileDetail" Member="FinFileIndex" ThisKey="IndexNumber" OtherKey="IndexNumber" Type="FinFileIndex" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FinFileIndex" Member="FinFileIndexes">
+    <Type Name="FinFileIndex">
+      <Column Name="IndexNumber" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="FinFileIndex_FinFileDetail" Member="FinFileDetails" ThisKey="IndexNumber" OtherKey="IndexNumber" Type="FinFileDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DriveThruSummary" Member="DriveThruSummaries">
+    <Type Name="DriveThruSummary">
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HmeCarCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BrinkDriveThrucount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DriveThruFile" Member="DriveThruFiles">
+    <Type Name="DriveThruFile">
+      <Column Name="DriveThruFileId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="GreetCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MenuCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LineCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Win2Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DriveThruTimerDetail" Member="DriveThruTimerDetails">
+    <Type Name="DriveThruTimerDetail">
+      <Column Name="DriveThruTimerDetail" Member="DriveThruTimerDetail1" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DepartureTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EventName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CarsInQueue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Order1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Menu1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MenuBoard" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Greet" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Greet1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Order2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Menu2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Greet2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cashier" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Service" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Presenter" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LaneQueue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LaneTotal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FinFileData" Member="FinFileDatas">
+    <Type Name="FinFileData">
+      <Column Name="FinFileDataId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="NetSales" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="NetSalesCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TaxableSales" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="SalesTax" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="ToGoAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="DriveThruAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="DineInAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="DeliveryAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="CashDepositAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="CreditCardAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="GraveyardAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="GraveyardCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EarlyBreakfastAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="EarlyBreakfastCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BreakfastAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="BreakfastCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LunchAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="LunchCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AfternoonAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="AfternoonCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DinnerAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="DinnerCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LateNightAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="LateNightCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CkeFinFileRecorvery" Member="CkeFinFileRecorveries">
+    <Type Name="CkeFinFileRecorvery">
+      <Column Name="UnitNumber" Type="System.String" DbType="NChar(7) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UnitNetSales" Member="UnitNetSales">
+    <Type Name="UnitNetSale">
+      <Column Name="UnitNumber" Type="System.String" DbType="NChar(7) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NetSales" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

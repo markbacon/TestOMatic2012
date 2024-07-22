@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="CkeFileProcessing">
+  <DataContextMoniker Name="/CkeFileProcessingDataContext" />
+  <nestedChildShapes>
+    <classShape Id="011c7970-c0c2-401c-b0e7-8dfd5a2f694b" absoluteBounds="3.25, 2.75, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/CkeFileProcessingDataContext/Entity" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6d831990-6c0f-4d75-bc27-1c3f90d93bcf" absoluteBounds="3.265, 3.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="54940f11-5f67-4438-90e6-5b0f812baa12" absoluteBounds="6.875, 2.625, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/CkeFileProcessingDataContext/LinkIdLookup" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c419b821-5832-4150-bc87-36128585c914" absoluteBounds="6.89, 3.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

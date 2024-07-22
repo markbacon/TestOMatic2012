@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e8ff5f32816741e68babfb20698fc7ee" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="BrinkApiDataModel.BrinkOrder" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrinkApiDataModel.BrinkUnit" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BrinkApiDataModel.BrinkDestination" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="BrinkApiDataModel.DateDimension" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BrinkApiDataModel.TimeSegment" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="BrinkApiDataModel.BrinkOrderPayment" Width="1.5" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="BrinkApiDataModel.BrinkTender" Width="1.5" PointX="7.375" PointY="0.75" />
+        <AssociationConnector Association="BrinkApiDataModel.FK_BrinkOrder_BrinkOrderPayment" />
+        <EntityTypeShape EntityType="BrinkApiDataModel.RoyaltyEntity" Width="1.5" PointX="7.375" PointY="3.875" />
+        <EntityTypeShape EntityType="BrinkApiDataModel.RoyaltyUnit" Width="1.5" PointX="9.625" PointY="3.875" />
+        <AssociationConnector Association="BrinkApiDataModel.FK_RoyaltyEntity_RoyaltyUnit" />
+        <EntityTypeShape EntityType="BrinkApiDataModel.CkePeriod" Width="1.5" PointX="7.375" PointY="7.75" />
+        <EntityTypeShape EntityType="BrinkApiDataModel.BrinkPromo" Width="1.5" PointX="9.375" PointY="6.75" />
+        <EntityTypeShape EntityType="BrinkApiDataModel.MenuItemPricing" Width="1.5" PointX="5.375" PointY="10.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
